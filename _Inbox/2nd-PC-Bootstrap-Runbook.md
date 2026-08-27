@@ -42,13 +42,14 @@ Status on this Mac:
 - ✅ `gh` CLI installed (v2.98)
 - ✅ SSH key generated: `~/.ssh/id_ed25519` (pubkey below)
 - ✅ git SSH-prefers (`insteadOf`), credential helper = osxkeychain, global identity = Ole <olesyarasing@users.noreply.github.com>
-- ✅ vault `origin` set → `git@github.com:olesyarasing/obsidian-vault.git`
+- ✅ vault `origin` set → `git@github.com:Ole00007/obsidian-vault.git` (repo does not exist yet — 404 confirmed 2026-08-27, will be created on first push)
 - ⏳ **ONE manual step left (Ole):** add the public key to GitHub →
-  **Settings → SSH and GPG keys → New SSH key** → paste:
+  **https://github.com/settings/ssh/new** → paste:
   ```
   ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMI7UMy2QQHIKb8VNzRDYU6OphcXahj2ESk2q31Ijnqx olesiarasing-vault
   ```
-- After adding: `ssh -T git@github.com` should say "Hi <user>!"; then `git push -u origin main` (creates the private repo on first push if it doesn't exist via the GitHub "create from push" behavior, or use `gh repo create obsidian-vault --private --source=. --push`).
+- After adding: `ssh -T git@github.com` should say "Hi Ole00007!"; then
+  `cd ~/Obsidian && gh repo create obsidian-vault --private --source=. --push` (creates the private repo + pushes).
 
 ### 2. Install Hermes + copy profiles on the 2nd PC
 - Install Hermes Agent (docs: hermes-agent.nousresearch.com).
