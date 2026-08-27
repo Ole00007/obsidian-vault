@@ -1,0 +1,6 @@
+"Action","When to use"
+"Type a message or press Enter","UI just didn't refresh after actual completion apiyi"
+"Ctrl+C","Cancel the stuck turn without losing session apiyi"
+"Run /doctor (Claude Code)","Diagnoses config/context issues causing the wedge apiyi"
+"Close terminal + resume session","Streaming connection is truly dead, not just UI lag apiyi"
+"kill -9 <pid>","Last resort — force-kills the wedged process apiyi"

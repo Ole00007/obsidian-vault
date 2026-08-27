@@ -1,0 +1,7 @@
+"Spec","Value"
+"Role","Background layer only — Avv. Pagliano's portrait placeholder stays on top, unchanged"
+"Position",".hero section, background-image or absolutely-positioned <img> behind existing content"
+"Treatment","Slight dark overlay/gradient (e.g. rgba(14,42,71,.55) navy) so foreground text/avatar stay legible"
+"Animation","Subtle slow Ken Burns zoom (scale 1 → 1.06 over ~20s, ease-in-out, infinite alternate) — motion should read as ""premium,"" not busy"
+"Responsive","object-fit: cover, crop-safe center focal point so it doesn't cut oddly on mobile"
+"Swap-out note","Must be trivial to replace with the real supplied photo in a few days — one src/CSS variable, no structural changes"

@@ -1,0 +1,5 @@
+"Missing feature (LexFlow-MVP)","Already designed in ContaFlow/lexflow-crm plan?","Reusable as-is?"
+"CSV import/export for tasks","Yes — Phase 5.1-5.3 specced exact CSV export/import routes and response format (GET /api/pratiche/export.csv, summary JSON ""12 importati, 2 errori"") LexTaskFlow_Master_Plan_v4_UPDATED.xlsx","Yes, adapt route name to /api/tasks/export.csv and /import, logic is directly portable"
+"Task priority levels","Yes — attivita.priorita field already designed: bassa/media/alta/urgente (4-tier enum) LexTaskFlow_Master_Plan_v4_UPDATED.xlsx","Yes, same enum pattern, just add column + Marshmallow validation"
+"Task assignment to users","Partially — assigned_to FK to users.id already in the English-schema tasks table design from v4 LexTaskFlow_Master_Plan_v4_UPDATED.xlsx","Yes, this was already planned for tasks, just never coded — no need to touch ContaFlow at all, it's already in your own schema spec"
+"Task duration/time tracking","No — not designed in either plan","No reuse available — this one needs fresh design, lowest priority, can be deferred"

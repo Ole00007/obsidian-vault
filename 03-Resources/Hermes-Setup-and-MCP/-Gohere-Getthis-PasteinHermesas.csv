@@ -1,0 +1,5 @@
+"#","Go here","Get this","Paste in Hermes as"
+"1","https://aistudio.google.com/apikey","Gemini key","GOOGLE_API_KEY"
+"2","Already have OpenRouter key","Reuse it","OPENROUTER_API_KEY"
+"3","https://www.firecrawl.dev","Firecrawl key","FIRECRAWL_API_KEY"
+"4","https://app.tavily.com","Tavily key","TAVILY_API_KEY"

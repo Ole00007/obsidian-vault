@@ -1,0 +1,4 @@
+"Action","Shortcut","Notes"
+"New tab (same window)","Cmd + T","Stays in the same Terminal window — same dashboard, just a new tab next to the others"
+"Switch to next tab","Cmd + Shift + ] or Ctrl + Tab","Cycle right through tabs"
+"Switch to previous tab","`Cmd + Shift +",""

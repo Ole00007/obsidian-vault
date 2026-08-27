@@ -1,0 +1,5 @@
+"Platform","Best For (Recap)","Key Limitation to Watch"
+"Vercel","Next.js/React landing pages, fastest DX northflank+1","Free bandwidth caps out at 100GB, viral traffic can spike costs vibecoder"
+"Cloudflare Pages","High-traffic, global audiences, edge workloads speedvitals+1","Runtime constraints (V8/Workers only), no traditional Node.js backend kuberns"
+"GitHub Pages","Static docs/portfolios, zero-config swhabitation+1","No server-side logic, functions, or dynamic content at all reddit"
+"Render","Full-stack apps needing DB + backend + static frontend together swhabitation+1","Not the fastest for pure static/edge use cases compared to Cloudflare luckymedia"

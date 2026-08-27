@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alena Krot Clinic — Landing Page Batch Liguria | July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#0073b6;
+    --navy:#003399;
+    --bg:#f7fbff;
+    --surface:#ffffff;
+    --surface-2:#eef6fc;
+    --text:#183042;
+    --muted:#5b7384;
+    --line:#d8e6f2;
+    --gold:#c3a765;
+    --shadow:0 18px 40px rgba(0,51,153,.08);
+    --radius:20px;
+    --max:1180px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(circle at top right, rgba(0,115,182,.10), transparent 28%),
+      linear-gradient(180deg, #fbfdff 0%, #f4f9fd 100%);
+    overflow-x:hidden;
+  }
+  img{display:block;max-width:100%;height:auto;border-radius:18px}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  a{color:inherit}
+
+  /* ===== TOPBAR / NAV ===== */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(12px);
+    background:rgba(255,255,255,.86);
+    border-bottom:1px solid rgba(216,230,242,.8);
+  }
+  .topbar .wrap{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 20px;
+  }
+  .brand{
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    font-size:.72rem;
+    color:var(--navy);
+    font-weight:700;
+  }
+  .brand span{display:block;font-size:.62rem;color:var(--muted);letter-spacing:.08em;font-weight:500;margin-top:2px}
+  .nav-desktop{
+    display:none;
+    gap:20px;
+    font-size:.9rem;
+  }
+  .nav-desktop a{text-decoration:none;color:var(--muted);font-weight:500;transition:color .2s}
+  .nav-desktop a:hover{color:var(--primary)}
+  .burger{
+    display:flex;flex-direction:column;justify-content:center;gap:5px;
+    width:40px;height:40px;border:1px solid var(--line);border-radius:10px;
+    background:#fff;cursor:pointer;padding:0 9px;
+  }
+  .burger span{display:block;height:2px;width:100%;background:var(--navy);border-radius:2px;transition:transform .25s ease, opacity .25s ease}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+  .mobile-menu{
+    position:fixed;top:0;right:0;height:100vh;width:min(320px,86vw);
+    background:#fff;box-shadow:-18px 0 40px rgba(0,51,153,.14);
+    transform:translateX(100%);transition:transform .32s ease;
+    z-index:60;padding:90px 26px 26px;display:flex;flex-direction:column;gap:16px;
+  }
+  .mobile-menu.open{transform:translateX(0)}
+  .mobile-menu a{
+    text-decoration:none;color:var(--text);font-weight:600;font-size:1.05rem;
+    padding:10px 0;border-bottom:1px solid var(--line);
+  }
+  .menu-overlay{
+    position:fixed;inset:0;background:rgba(9,26,45,.35);
+    opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:55;
+  }
+  .menu-overlay.open{opacity:1;pointer-events:all}
+
+  @media (min-width:900px){
+    .nav-desktop{display:flex}
+    .burger{display:none}
+  }
+
+  /* ===== TYPE ===== */
+  .eyebrow{
+    display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--primary);font-weight:700;margin-bottom:12px;
+  }
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;margin:0;line-height:1.05;color:#10283a}
+  h1{font-size:clamp(2.2rem,7vw,5.2rem);max-width:12ch}
+  h2{font-size:clamp(1.7rem,5vw,3rem);margin-bottom:12px}
+  h3{font-size:1.35rem;margin-bottom:8px}
+  .lead{max-width:64ch;font-size:1rem;line-height:1.75;color:var(--muted);margin:16px 0 24px}
+  .section-copy{max-width:70ch;color:var(--muted);line-height:1.75;margin:0 0 18px}
+
+  /* ===== HERO ===== */
+  .hero{padding:44px 0 30px}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:22px;align-items:center}
+  @media (min-width:900px){.hero-grid{grid-template-columns:1.15fr .85fr;gap:28px}}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:999px;text-decoration:none;font-weight:600;border:1px solid transparent;font-size:.92rem}
+  .btn.primary{background:linear-gradient(135deg,var(--primary),var(--navy));color:#fff}
+  .btn.secondary{background:#fff;border-color:var(--line);color:var(--navy)}
+  .panel{background:rgba(255,255,255,.9);border:1px solid rgba(216,230,242,.85);box-shadow:var(--shadow);border-radius:var(--radius)}
+  .hero-card{padding:16px;overflow:hidden}
+  .zoom-frame{border-radius:18px;overflow:hidden;aspect-ratio:4/5}
+  .zoom-frame img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease;transform:scale(1.0)}
+  .zoom-frame:hover img, .zoom-frame.autozoom img{transform:scale(1.12)}
+  .hero-note{margin-top:12px;padding:12px 14px;background:var(--surface-2);border-radius:14px;color:var(--muted);font-size:.86rem;line-height:1.6}
+
+  section{padding:30px 0}
+  .grid-2,.grid-3,.grid-4{display:grid;gap:16px}
+  .grid-2{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr}
+  .grid-4{grid-template-columns:1fr}
+  @media (min-width:640px){.grid-2{grid-template-columns:repeat(2,1fr)}.grid-4{grid-template-columns:repeat(2,1fr)}}
+  @media (min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)}.grid-4{grid-template-columns:repeat(4,1fr)}}
+
+  .card{padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
+  .kicker{font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--primary);font-weight:700;margin-bottom:8px}
+  .card p,.card li{color:var(--muted);line-height:1.7;font-size:.92rem}
+  .mini{color:var(--navy);font-weight:600;font-size:.86rem}
+
+  .thumb{border-radius:16px;overflow:hidden;aspect-ratio:4/3;margin-bottom:12px}
+  .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+  .thumb:hover img{transform:scale(1.08)}
+
+  /* ===== DASHBOARD STAT CARDS ===== */
+  .dash-card{padding:18px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+  .dash-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .dash-value{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--navy);font-weight:700}
+  .dash-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .dash-bar{height:8px;background:var(--surface-2);border-radius:999px;overflow:hidden;margin-top:6px}
+  .dash-bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--gold))}
+
+  /* ===== BEFORE/AFTER SLIDER ===== */
+  .ba-wrap{position:relative;max-width:640px;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/3;user-select:none}
+  .ba-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+  .ba-after{clip-path:inset(0 0 0 50%)}
+  .ba-handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.6);cursor:ew-resize;transform:translateX(-50%)}
+  .ba-handle::after{content:"⇔";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--navy);font-weight:700;box-shadow:var(--shadow)}
+  .ba-tag{position:absolute;top:12px;background:rgba(16,40,58,.65);color:#fff;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;padding:5px 10px;border-radius:999px}
+  .ba-before-tag{left:12px}
+  .ba-after-tag{right:12px}
+
+  /* ===== SKIN LAYERS SVG ===== */
+  .skin-svg-wrap{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:18px;overflow:hidden}
+  .skin-legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .skin-legend span{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted)}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+
+  /* ===== ACCORDION / DROPDOWN ===== */
+  details{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden}
+  details summary{
+    list-style:none;cursor:pointer;padding:16px 18px;font-weight:600;color:var(--navy);
+    display:flex;justify-content:space-between;align-items:center;font-size:.98rem;
+  }
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";font-size:1.3rem;color:var(--primary);transition:transform .25s ease}
+  details[open] summary::after{transform:rotate(45deg)}
+  details .details-body{padding:0 18px 18px;color:var(--muted);line-height:1.75;font-size:.92rem}
+  details .details-body .slug{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;color:var(--primary);background:var(--surface-2);padding:8px 10px;border-radius:10px;display:inline-block;margin:8px 0;word-break:break-word}
+
+  .timeline{display:grid;gap:14px}
+  .step{display:grid;grid-template-columns:60px 1fr;gap:14px;align-items:start;padding:16px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+  .step .num{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--primary),var(--navy));color:#fff;font-weight:700;font-size:.92rem}
+
+  .footer{padding:34px 0 56px}
+  .footer-box{padding:22px;background:linear-gradient(135deg,#ffffff,#eef7ff);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+  .footer-box p{margin:10px 0 0;color:var(--muted);line-height:1.75;font-size:.92rem}
+
+  .visual-row{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
+  @media (min-width:640px){.visual-row{grid-template-columns:repeat(3,1fr)}}
+
+  @media (min-width:900px){
+    h1{max-width:none}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <div class="brand">Alena Krot Clinic<span>Genova · Ventimiglia</span></div>
+      <nav class="nav-desktop">
+        <a href="#priorita">Priorità</a>
+        <a href="#visual">Prima/Dopo</a>
+        <a href="#pelle">Pelle</a>
+        <a href="#pagine">Landing pages</a>
+        <a href="#template">Template</a>
+        <a href="#seo">Local SEO</a>
+      </nav>
+      <button class="burger" id="burgerBtn" aria-label="Apri menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#priorita">Priorità</a>
+    <a href="#visual">Prima / Dopo</a>
+    <a href="#pelle">Strati della pelle</a>
+    <a href="#pagine">Landing pages</a>
+    <a href="#template">Template</a>
+    <a href="#seo">Local SEO</a>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">July 2026 strategic rollout</span>
+        <h1>Prime landing pages for Genoa &amp; Ventimiglia</h1>
+        <p class="lead">
+          Focus on natural facial aesthetics, medical skin quality, and trust-led conversion.
+          The positioning is soft, expert, and personalized: fewer "beauty promises," more diagnosis,
+          harmony, seasonality, and long-term skin intelligence.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="#pagine">View page batch</a>
+          <a class="btn secondary" href="#template">View template</a>
+        </div>
+      </div>
+      <div class="panel hero-card">
+        <div class="zoom-frame autozoom">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/023bae6f52e46fd7d1790707db246f09592800f4.jpg" alt="Consulenza di medicina estetica naturale con analisi del volto" loading="lazy" width="900" height="1125">
+        </div>
+        <div class="hero-note">
+          Regola visiva per l'intero materiale: solo immagini di trattamento viso, consulenza, analisi della pelle,
+          melasma, antiage e valorizzazione labbra. Nessun trattamento corpo, nessuna immagine spa generica.
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="priorita">
+    <div class="wrap">
+      <span class="eyebrow">Strategic focus</span>
+      <h2>What leads the first batch</h2>
+      <p class="section-copy">
+        Il primo cluster presenta Alena come medico per il miglioramento naturale del viso, il supporto
+        alla pigmentazione, la pianificazione antiage attenta e l'analisi approfondita della pelle —
+        non come un semplice listino trattamenti.
+      </p>
+
+      <div class="grid-4">
+        <article class="card">
+          <div class="thumb"><img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/0728fb72cf642a14376a23e02c21cdaaa4123456.jpg" alt="Primo piano labbra durante trattamento filler naturale" loading="lazy" width="500" height="375"></div>
+          <div class="kicker">Priority 01</div>
+          <h3>Filler labbra</h3>
+          <p>Alta intenzione locale, forte conversione, messaggio di risultato naturale e gestione delle aspettative.</p>
+        </article>
+        <article class="card">
+          <div class="thumb"><img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/c6236e6dab04c79ce1882aaaf5dcdc77563b5c25.jpg" alt="Trattamento viso delicato antiage in ambiente clinico" loading="lazy" width="500" height="375"></div>
+          <div class="kicker">Priority 02</div>
+          <h3>Antiage delicato</h3>
+          <p>Ringiovanimento graduale ed elegante per donne 35+, 40+, 45+, con sezioni dedicate anche all'uomo.</p>
+        </article>
+        <article class="card">
+          <div class="thumb"><img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/1df832111bd7062e6fa6eb4f571e05e53628e908.jpg" alt="Primo piano viso con melasma e pigmentazione da valutare" loading="lazy" width="500" height="375"></div>
+          <div class="kicker">Priority 03</div>
+          <h3>Melasma</h3>
+          <p>Pagina diagnostica ad alta fiducia: pigmentazione, stagionalità, recidiva, revisione medica personalizzata.</p>
+        </article>
+        <article class="card">
+          <div class="thumb"><img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/023bae6f52e46fd7d1790707db246f09592800f4.jpg" alt="Analisi digitale della pelle durante consulenza olistica" loading="lazy" width="500" height="375"></div>
+          <div class="kicker">Priority 04</div>
+          <h3>Analisi olistica</h3>
+          <p>Differenziazione tramite alimentazione, sonno, stress, ormoni, routine e valutazione analisi del sangue.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="visual">
+    <div class="wrap">
+      <span class="eyebrow">Procedure dashboard &amp; risultati</span>
+      <h2>Dati di trattamento e confronto prima/dopo</h2>
+      <p class="section-copy">
+        Ogni pagina treatment deve mostrare aspettative realistiche in modo visivo: durata, tempo di recupero,
+        naturalezza del risultato, e un confronto prima/dopo interattivo per il filler labbra.
+      </p>
+
+      <div class="grid-4" style="margin-bottom:24px">
+        <div class="dash-card">
+          <div class="dash-top"><span class="dash-label">Durata effetto filler</span><span class="dash-value">9-12m</span></div>
+          <div class="dash-bar"><i style="width:78%"></i></div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-top"><span class="dash-label">Tempo di recupero</span><span class="dash-value">24-48h</span></div>
+          <div class="dash-bar"><i style="width:35%"></i></div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-top"><span class="dash-label">Naturalezza percepita</span><span class="dash-value">96%</span></div>
+          <div class="dash-bar"><i style="width:96%"></i></div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-top"><span class="dash-label">Sedute consigliate/anno</span><span class="dash-value">1-2</span></div>
+          <div class="dash-bar"><i style="width:50%"></i></div>
+        </div>
+      </div>
+
+      <div class="ba-wrap ba-static" id="baWrap">
+        <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/8566e5991a715ddc7cc5e0fb44c3e6c3f8b93f03.jpg" alt="Confronto prima e dopo trattamento melasma sullo stesso viso" style="position:static;width:100%;height:100%;object-fit:cover;">
+        <div class="ba-tag ba-before-tag">Prima</div>
+        <div class="ba-tag ba-after-tag">Dopo</div>
+      </div>
+      <p style="text-align:center;color:var(--muted);font-size:.82rem;margin-top:10px">Risultato reale su trattamento melasma personalizzato — stesso viso, prima e dopo</p>
+    </div>
+  </section>
+
+  <section id="pelle">
+    <div class="wrap">
+      <span class="eyebrow">Skin science</span>
+      <h2>Visualizzazione degli strati della pelle</h2>
+      <p class="section-copy">
+        Un diagramma semplice aiuta il paziente a capire dove agisce ogni trattamento: superficie, profondità
+        del derma, e supporto strutturale — coerente con l'approccio medico e olistico della clinica.
+      </p>
+      <div class="skin-svg-wrap">
+        <svg viewBox="0 0 600 220" width="100%" height="auto" role="img" aria-label="Diagramma degli strati della pelle: epidermide, derma, ipoderma">
+          <rect x="0" y="0" width="600" height="60" fill="#eaf3fb"/>
+          <rect x="0" y="60" width="600" height="90" fill="#cfe4f4"/>
+          <rect x="0" y="150" width="600" height="70" fill="#9cc3de"/>
+          <circle cx="120" cy="30" r="6" fill="#0073b6"/>
+          <circle cx="260" cy="100" r="7" fill="#003399"/>
+          <circle cx="420" cy="180" r="8" fill="#c3a765"/>
+          <text x="20" y="35" font-family="Inter, sans-serif" font-size="13" fill="#183042" font-weight="600">Epidermide</text>
+          <text x="20" y="100" font-family="Inter, sans-serif" font-size="13" fill="#183042" font-weight="600">Derma</text>
+          <text x="20" y="185" font-family="Inter, sans-serif" font-size="13" fill="#183042" font-weight="600">Ipoderma</text>
+        </svg>
+        <div class="skin-legend">
+          <span><i class="dot" style="background:#0073b6"></i> Trattamenti superficiali: melasma, luminosità estiva</span>
+          <span><i class="dot" style="background:#003399"></i> Trattamenti di media profondità: antiage, texture</span>
+          <span><i class="dot" style="background:#c3a765"></i> Supporto strutturale: filler labbra, volumizzazione</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pagine">
+    <div class="wrap">
+      <span class="eyebrow">First publication batch</span>
+      <h2>12 launch pages</h2>
+      <p class="section-copy">
+        Due hub città ancorano il cluster. Dieci pagine trattamento catturano l'intento locale e alimentano
+        autorità verso gli hub. Apri ogni voce per i dettagli.
+      </p>
+
+      <details open>
+        <summary>Genova — Hub e trattamenti <span class="mini">6 pagine</span></summary>
+        <div class="details-body">
+          <p><strong>Medicina Estetica Viso a Genova</strong> — hub principale.</p>
+          <div class="slug">/medicina-estetica-viso-genova/</div>
+          <p><strong>Filler Labbra Genova</strong> — volume naturale, definizione, correzione asimmetrie.</p>
+          <div class="slug">/filler-labbra-genova/</div>
+          <p><strong>Antiage Naturale Genova</strong> — percorso progressivo per 35+, 40+, 45+.</p>
+          <div class="slug">/antiage-naturale-genova/</div>
+          <p><strong>Melasma Genova</strong> — valutazione diagnostica, trigger, gestione recidiva.</p>
+          <div class="slug">/melasma-genova/</div>
+          <p><strong>Trattamenti Viso Estate Genova</strong> — segmentazione per età e uomo.</p>
+          <div class="slug">/trattamenti-viso-estate-genova/</div>
+          <p><strong>Analisi Olistica della Pelle Genova</strong> — alimentazione, sonno, stress, analisi.</p>
+          <div class="slug">/analisi-olistica-pelle-genova/</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>Ventimiglia — Hub e trattamenti <span class="mini">6 pagine</span></summary>
+        <div class="details-body">
+          <p><strong>Medicina Estetica Viso a Ventimiglia</strong> — hub principale.</p>
+          <div class="slug">/medicina-estetica-viso-ventimiglia/</div>
+          <p><strong>Filler Labbra Ventimiglia</strong> — armonia, volume, definizione locale.</p>
+          <div class="slug">/filler-labbra-ventimiglia/</div>
+          <p><strong>Antiage Naturale Ventimiglia</strong> — prevenzione e freschezza del viso.</p>
+          <div class="slug">/antiage-naturale-ventimiglia/</div>
+          <p><strong>Melasma Ventimiglia</strong> — approccio medico alla discromia, sole e stagionalità.</p>
+          <div class="slug">/melasma-ventimiglia/</div>
+          <p><strong>Trattamenti Viso Estate Ventimiglia</strong> — idratazione, tono, luminosità.</p>
+          <div class="slug">/trattamenti-viso-estate-ventimiglia/</div>
+          <p><strong>Analisi Olistica della Pelle Ventimiglia</strong> — approccio causale, non solo sintomatico.</p>
+          <div class="slug">/analisi-olistica-pelle-ventimiglia/</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="template">
+    <div class="wrap">
+      <span class="eyebrow">Reusable page system</span>
+      <h2>Landing page blueprint</h2>
+      <p class="section-copy">
+        Una struttura unica alimenta ogni pagina trattamento, con introduzioni localizzate, FAQ e immagini dedicate.
+      </p>
+
+      <details open>
+        <summary>Above the fold</summary>
+        <div class="details-body">
+          <ol>
+            <li>H1 localizzato con trattamento + città</li>
+            <li>Promessa di risultato naturale con angolo di consulenza personalizzata</li>
+            <li>CTA di prenotazione primaria</li>
+            <li>Trust strip del medico: approccio, armonia, piano su misura</li>
+            <li>Una sola immagine di trattamento viso</li>
+          </ol>
+        </div>
+      </details>
+
+      <details>
+        <summary>Core sections</summary>
+        <div class="details-body">
+          <ol>
+            <li>Per chi è indicato</li>
+            <li>Come funziona</li>
+            <li>Cosa valutiamo prima del trattamento</li>
+            <li>Risultato atteso e tempi</li>
+            <li>Estate / sole / routine / mantenimento</li>
+            <li>Domande frequenti locali</li>
+          </ol>
+        </div>
+      </details>
+
+      <details>
+        <summary>Audience segmentation</summary>
+        <div class="details-body">
+          <ul>
+            <li>Donna 35+: prevenzione e glow</li>
+            <li>Donna 40+: texture, tonicità, segni iniziali</li>
+            <li>Donna 45+: armonia, supporto globale, qualità della pelle</li>
+            <li>Uomo: freschezza, definizione, naturalezza, tempi rapidi</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>Differentiation blocks</summary>
+        <div class="details-body">
+          <ul>
+            <li>Valutazione alimentazione e stile di vita</li>
+            <li>Effetto di stress e sonno sulla pelle</li>
+            <li>Contesto ormonale o infiammatorio</li>
+            <li>Eventuale discussione di analisi del sangue</li>
+            <li>Allineamento della routine domiciliare</li>
+          </ul>
+        </div>
+      </details>
+
+      <div class="visual-row">
+        <div class="thumb"><img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/860bf51b187a4011f6a8f7a937718e14f8620c03.jpg" alt="Donna over 40 durante trattamento viso rigenerante" loading="lazy" width="500" height="375"></div>
+        <div class="thumb"><img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/a9e9a9248641078af5a9af5bf051c398cc92be26.jpg" alt="Donna 35+ con pelle luminosa dopo routine antiage naturale" loading="lazy" width="500" height="375"></div>
+        <div class="thumb"><img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/92a2f5d2b6830f85f2fb3b7f4787af14ade41d95.jpg" alt="Trattamento viso maschile in ambiente clinico professionale" loading="lazy" width="500" height="375"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="seo">
+    <div class="wrap">
+      <span class="eyebrow">30 / 60 / 90 days</span>
+      <h2>Local SEO execution</h2>
+      <p class="section-copy">
+        Pubblicazione a ondate, ottimizzazione separata delle due entità locali, contenuto sempre orientato
+        alla risposta, non alla brochure.
+      </p>
+
+      <div class="timeline">
+        <article class="step">
+          <div class="num">30D</div>
+          <div><h3>Foundation</h3><p>Lancio hub città, filler e antiage. Allineamento GBP, servizi, immagini solo viso, link di prenotazione per entrambe le sedi.</p></div>
+        </article>
+        <article class="step">
+          <div class="num">60D</div>
+          <div><h3>Depth</h3><p>Pubblicazione melasma ed estate. FAQ localizzate, blocchi "per chi è" e contenuto sul metodo del medico con link interni.</p></div>
+        </article>
+        <article class="step">
+          <div class="num">90D</div>
+          <div><h3>Differentiation</h3><p>Pubblicazione delle due pagine di analisi olistica. Modulo di autovalutazione, raccolta recensioni, PR locale in Liguria.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-box">
+        <div class="kicker">Brand voice direction</div>
+        <h3>Autorevolezza gentile, risultati naturali, chiarezza medica</h3>
+        <p>
+          Linguaggio preferito: personalizzato, equilibrato, rispettoso, realistico, elegante.
+          Evitare promesse aggressive di bellezza. Enfatizzare qualità della pelle, armonia,
+          prevenzione, attenzione stagionale e il valore di comprendere la persona nella sua interezza.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  const burger = document.getElementById('burgerBtn');
+  const menu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('menuOverlay');
+  function closeMenu(){
+    burger.classList.remove('open');
+    menu.classList.remove('open');
+    overlay.classList.remove('open');
+    burger.setAttribute('aria-expanded','false');
+  }
+  burger.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    overlay.classList.toggle('open', isOpen);
+    burger.setAttribute('aria-expanded', isOpen ? 'true':'false');
+  });
+  overlay.addEventListener('click', closeMenu);
+  document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // Before/after now displayed as a static real comparison image (no slider needed).
+</script>
+</body>
+</html>

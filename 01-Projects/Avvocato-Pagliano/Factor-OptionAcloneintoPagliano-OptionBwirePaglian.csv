@@ -1,0 +1,6 @@
+"Factor","Option A (clone into Pagliano)","Option B (wire Pagliano → lexflow-crm as backend)"
+"Effort","High — Hermes rewrites/renames every heritage function inside a new app, repeatedly","Low-medium — Pagliano keeps its own LP/intake/chatbot, just POSTs to an existing, more mature API"
+"Collision risk","High — you named this exact risk yourself: ""risk of confusion or collision to lexflow-mvp or lexflow-crm"" from renaming heritage code inside a third app","Low — lexflow-crm stays untouched as the system of record; Pagliano is just a new client"
+"Reuse of your best asset","Wasted — lexflow-crm is already the most mature skeleton (migrations/, packages/db, apps/api) per your own research","Reused — this is exactly what should be reused, not re-cloned"
+"Duplication","Creates a THIRD parallel CRM implementation (LexFlow-MVP, lexflow-crm, now Pagliano-as-clone)","Avoids a third duplicate — Pagliano has no CRM logic of its own, just talks to one"
+"Matches your stated goal","No — you want Kanban, event management, notifications; rebuilding these a third time is the opposite of ""clone the design, don't invent"" principle you set earlier in this project","Yes — directly aligned with reuse-first principle already established as your rule"

@@ -1,0 +1,5 @@
+"Platform","Link","Best For","Free Tier Notes"
+"Vercel","vercel.com","Next.js/React landing pages, fastest DX northflank+1","100 GB/mo free bandwidth, unlimited custom domains + free SSL digitalapplied"
+"Cloudflare Pages","pages.cloudflare.com","High-traffic sites, edge performance, global audiences speedvitals+1","Unlimited free bandwidth, up to 100 custom domains/project digitalapplied+1"
+"GitHub Pages","pages.github.com","Static docs, portfolios, no backend needed swhabitation+1","Free, ~100GB soft bandwidth cap, static-only (no functions) snapdeploy+1"
+"Render (Static Sites)","render.com/docs/static-sites","Static sites plus backend/DB services on one platform swhabitation+1","Free static tier included, optional paid backend services render"

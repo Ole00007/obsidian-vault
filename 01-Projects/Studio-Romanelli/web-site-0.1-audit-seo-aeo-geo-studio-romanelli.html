@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit SEO · AEO · GEO — Studio Legale Associato Romanelli | AVIBE Agency</title>
+<meta name="description" content="Analisi tecnica e strategica completo per studio-romanelli.it: architettura, SEO, AEO, GEO, presenza locale e ricerca generativa AI.">
+
+<style>
+/* ===== Reset & Variables ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --navy: #152238;
+  --navy-2: #1f3352;
+  --gold: #b08d57;
+  --gold-light: #e8dcc4;
+  --paper: #faf8f4;
+  --paper-2: #f2ede4;
+  --ink: #20211f;
+  --ink-muted: #5c5a54;
+  --ink-faint: #918f88;
+  --line: rgba(21,34,56,0.12);
+  --ok: #3f6b3f;
+  --warn: #a8641f;
+  --bad: #9c3b3b;
+  --radius: 6px;
+  --shadow: 0 2px 10px rgba(21,34,56,0.06), 0 10px 30px rgba(21,34,56,0.05);
+  --card-bg: #ffffff;
+  --section-alt: var(--paper-2);
+  --toggle-bg: var(--navy);
+  --toggle-color: #f2ede4;
+  --hero-overlay: linear-gradient(180deg, rgba(21,34,56,0.94), rgba(21,34,56,0.88));
+  --footer-bg: var(--navy);
+  --footer-text: #eae6dc;
+  --badge-ok-bg: #e7efe3;
+  --badge-warn-bg: #f6ead9;
+  --badge-bad-bg: #f2dede;
+}
+
+[data-theme="dark"] {
+  --navy: #0d1627;
+  --navy-2: #152238;
+  --gold: #c4a46b;
+  --gold-light: #d4c098;
+  --paper: #13151a;
+  --paper-2: #1a1d24;
+  --ink: #e8e6e0;
+  --ink-muted: #b5b0a8;
+  --ink-faint: #7a7570;
+  --line: rgba(232,230,224,0.1);
+  --shadow: 0 2px 10px rgba(0,0,0,0.3), 0 10px 30px rgba(0,0,0,0.2);
+  --card-bg: #1e2128;
+  --section-alt: #161920;
+  --toggle-bg: #2a2d36;
+  --toggle-color: #e8e6e0;
+  --hero-overlay: linear-gradient(180deg, rgba(13,22,39,0.96), rgba(13,22,39,0.9));
+  --footer-bg: #0d0f14;
+  --footer-text: #c7c5be;
+  --badge-ok-bg: rgba(63,107,63,0.2);
+  --badge-warn-bg: rgba(168,100,31,0.2);
+  --badge-bad-bg: rgba(156,59,59,0.2);
+}
+
+body {
+  font-family: 'Georgia','Iowan Old Style','Times New Roman',serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  transition: background .3s ease, color .3s ease;
+}
+.sans { font-family: 'Helvetica Neue',Arial,sans-serif; }
+a { color: var(--navy); transition: color .2s; }
+[data-theme="dark"] a { color: var(--gold-light); }
+img,svg{display:block;max-width:100%;}
+.container{max-width:1040px;margin:0 auto;padding:0 32px;}
+
+/* ===== Scroll animations ===== */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.animate-on-scroll.delay-1 { transition-delay: .1s; }
+.animate-on-scroll.delay-2 { transition-delay: .2s; }
+.animate-on-scroll.delay-3 { transition-delay: .3s; }
+.animate-on-scroll.delay-4 { transition-delay: .4s; }
+
+/* ===== Image animations ===== */
+.img-reveal {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transition: opacity .8s ease, clip-path 1s ease;
+}
+.img-reveal.visible {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+}
+.img-parallax {
+  transition: transform .1s ease-out;
+}
+.img-float {
+  animation: floatAnim 4s ease-in-out infinite;
+}
+@keyframes floatAnim {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.img-glow {
+  transition: filter .5s ease;
+}
+.img-glow:hover {
+  filter: brightness(1.08) saturate(1.05);
+}
+
+/* ===== Top bar ===== */
+.topbar{
+  background:var(--navy);
+  color:var(--toggle-color);
+  padding:14px 0;
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  transition: background .3s;
+}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.topbar .brandmark{display:flex;align-items:center;gap:10px;}
+.topbar .brandmark span{color:var(--gold-light);}
+
+/* ===== Language + Theme controls ===== */
+.controls-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.lang-toggle {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: var(--gold-light);
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.lang-toggle:hover {
+  border-color: var(--gold);
+  background: rgba(176,141,87,0.15);
+}
+.theme-toggle {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: var(--gold-light);
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .2s;
+  line-height: 1;
+}
+.theme-toggle:hover {
+  border-color: var(--gold);
+  background: rgba(176,141,87,0.15);
+}
+
+/* ===== Navigation ===== */
+nav {
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background .3s, border-color .3s;
+}
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.nav-logo {
+  font-family: 'Georgia', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  transition: color .3s;
+}
+[data-theme="dark"] .nav-logo { color: var(--gold-light); }
+.nav-logo small {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.55rem;
+  font-weight: 400;
+  color: var(--ink-faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 0;
+}
+.nav-links li a {
+  display: block;
+  padding: 16px 14px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s, background .15s;
+}
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: var(--navy);
+  border-bottom-color: var(--gold);
+}
+[data-theme="dark"] .nav-links li a:hover,
+[data-theme="dark"] .nav-links li a.active {
+  color: var(--gold-light);
+}
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: var(--navy);
+  cursor: pointer;
+  padding: 12px 0;
+}
+[data-theme="dark"] .mobile-toggle { color: var(--gold-light); }
+
+@media (max-width: 720px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: var(--card-bg);
+    border-top: 1px solid var(--line);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    box-shadow: var(--shadow);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li a { padding: 12px 20px; border-bottom: 1px solid var(--line); }
+  .mobile-toggle { display: block; }
+  nav .container { flex-wrap: wrap; position: relative; }
+}
+
+/* ===== Cover ===== */
+.cover{
+  background: var(--hero-overlay), repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 40px);
+  color:#f7f4ee;
+  padding: 90px 0 70px;
+  transition: background .3s;
+}
+.cover .container{display:flex;flex-direction:column;gap:26px;}
+.cover-eyebrow{
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:12px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--gold-light);
+  display:flex;align-items:center;gap:10px;
+}
+.cover-eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);display:inline-block;}
+.cover h1{
+  font-size:clamp(2.1rem, 4vw, 3.2rem);
+  font-weight:400;
+  line-height:1.15;
+  max-width:16ch;
+}
+.cover h1 em{font-style:italic;color:var(--gold-light);}
+.cover-sub{
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:15px;
+  color:#cfd6e2;
+  max-width:60ch;
+}
+.cover-meta{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:18px;
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:13px;
+  border-top:1px solid rgba(255,255,255,0.15);
+  padding-top:22px;
+}
+.cover-meta div span{display:block;color:var(--gold-light);text-transform:uppercase;letter-spacing:.08em;font-size:10.5px;margin-bottom:5px;}
+
+/* ===== Section shell ===== */
+section.block{padding:56px 0;border-bottom:1px solid var(--line);}
+section.block:nth-of-type(even){background:var(--section-alt);}
+section.block:last-of-type{border-bottom:none;}
+.sec-label{
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:700;
+  margin-bottom:10px;
+}
+h2.sec-title{
+  font-size:clamp(1.5rem,2.6vw,2rem);
+  font-weight:400;
+  color:var(--navy);
+  max-width:24ch;
+  margin-bottom:20px;
+  transition: color .3s;
+}
+[data-theme="dark"] h2.sec-title { color: var(--gold-light); }
+.lede{font-size:1.05rem;color:var(--ink-muted);max-width:75ch;margin-bottom:28px;}
+p{margin-bottom:14px;max-width:75ch;}
+h3{font-family:'Helvetica Neue',Arial,sans-serif;font-size:1rem;color:var(--navy);margin:22px 0 10px;font-weight:700;transition:color .3s;}
+[data-theme="dark"] h3 { color: var(--gold-light); }
+
+/* ===== Grid cards ===== */
+.grid{display:grid;gap:18px;margin-top:10px;}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+.card{
+  background:var(--card-bg);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px 22px;
+  box-shadow:var(--shadow);
+  transition: background .3s, border-color .3s, transform .18s ease, box-shadow .18s ease;
+}
+.card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(21,34,56,0.1);}
+.card h4{font-family:'Helvetica Neue',Arial,sans-serif;font-size:.98rem;color:var(--navy);margin-bottom:8px;transition:color .3s;}
+[data-theme="dark"] .card h4 { color: var(--gold-light); }
+.card p{font-size:.94rem;color:var(--ink-muted);margin-bottom:0;}
+
+/* ===== Status badges ===== */
+.badge{
+  display:inline-block;
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  padding:3px 10px;
+  border-radius:999px;
+  margin-bottom:8px;
+}
+.badge.ok{background:var(--badge-ok-bg);color:var(--ok);}
+.badge.warn{background:var(--badge-warn-bg);color:var(--warn);}
+.badge.bad{background:var(--badge-bad-bg);color:var(--bad);}
+
+/* ===== Tables ===== */
+.table-wrap { overflow-x: auto; }
+table{width:100%;border-collapse:collapse;margin:18px 0 6px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:.9rem;}
+th{
+  background:var(--navy);
+  color:#f2ede4;
+  text-align:left;
+  padding:10px 12px;
+  font-weight:600;
+  font-size:.78rem;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  transition: background .3s;
+}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink);}
+tr:nth-child(even) td{background:rgba(21,34,56,0.02);}
+
+/* ===== Numbered list / roadmap ===== */
+.steps{counter-reset:step;margin-top:10px;}
+.step{
+  display:grid;grid-template-columns:56px 1fr;gap:18px;
+  padding:20px 0;border-top:1px solid var(--line);
+}
+.step:first-child{border-top:none;}
+.step-num{
+  counter-increment:step;
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:1.6rem;color:var(--gold);font-weight:700;
+}
+.step-num::before{content:counter(step,decimal-leading-zero);}
+.step h4{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--navy);margin-bottom:6px;font-size:1rem;transition:color .3s;}
+[data-theme="dark"] .step h4 { color: var(--gold-light); }
+.step p{font-size:.94rem;color:var(--ink-muted);margin-bottom:0;}
+
+/* ===== Score panel ===== */
+.score-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:16px;}
+.score{
+  background:var(--card-bg);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px;text-align:center;box-shadow:var(--shadow);
+  transition: background .3s;
+}
+.score .num{font-family:'Helvetica Neue',Arial,sans-serif;font-size:2rem;font-weight:700;color:var(--navy);transition:color .3s;}
+[data-theme="dark"] .score .num { color: var(--gold-light); }
+.score .num small{font-size:1rem;color:var(--ink-faint);font-weight:400;}
+.score .label{font-family:'Helvetica Neue',Arial,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-muted);margin-top:6px;}
+.bar{height:5px;background:var(--line);border-radius:3px;margin-top:10px;overflow:hidden;}
+.bar i{display:block;height:100%;background:var(--gold);}
+
+/* ===== Quote / callout ===== */
+.callout{
+  border-left:3px solid var(--gold);
+  background:var(--card-bg);
+  padding:18px 24px;
+  margin:22px 0;
+  font-style:italic;
+  color:var(--ink-muted);
+  box-shadow:var(--shadow);
+  transition: background .3s;
+}
+
+/* ===== Dropdown / accordion ===== */
+.dropdown {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin: 10px 0;
+  overflow: hidden;
+  background: var(--card-bg);
+  transition: background .3s, border-color .3s;
+}
+.dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  cursor: pointer;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--navy);
+  transition: color .3s;
+  user-select: none;
+}
+[data-theme="dark"] .dropdown-header { color: var(--gold-light); }
+.dropdown-header:hover { background: rgba(176,141,87,0.06); }
+.dropdown-header .arrow {
+  transition: transform .25s ease;
+  font-size: .75rem;
+  color: var(--gold);
+}
+.dropdown.open .dropdown-header .arrow { transform: rotate(180deg); }
+.dropdown-body {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s ease, padding .35s ease;
+}
+.dropdown.open .dropdown-body {
+  max-height: 600px;
+  padding: 0 20px 18px;
+}
+.dropdown-body p { font-size: .92rem; color: var(--ink-muted); margin-bottom: 8px; }
+.dropdown-body p:last-child { margin-bottom: 0; }
+
+/* ===== Image showcase grid ===== */
+.img-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+.img-grid figure {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--card-bg);
+  transition: transform .3s ease;
+}
+.img-grid figure:hover { transform: scale(1.02); }
+.img-grid img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  display: block;
+}
+.img-grid figcaption {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: .72rem;
+  text-align: center;
+  padding: 8px;
+  color: var(--ink-faint);
+}
+
+/* ===== Map embed ===== */
+.map-wrap {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin: 18px 0;
+}
+.map-wrap iframe {
+  width: 100%;
+  height: 320px;
+  border: none;
+  display: block;
+}
+
+/* ===== Footer / contact ===== */
+footer{background:var(--footer-bg);color:var(--footer-text);padding:60px 0 40px;transition:background .3s;}
+footer .container{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;}
+footer h3{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--gold-light);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;}
+footer p{color:#c7cddb;font-size:.92rem;max-width:50ch;}
+[data-theme="dark"] footer p { color: #a5a29a; }
+.contact-list{list-style:none;font-family:'Helvetica Neue',Arial,sans-serif;font-size:.92rem;}
+.contact-list li{padding:8px 0;border-top:1px solid rgba(255,255,255,0.12);display:flex;gap:10px;align-items:flex-start;}
+.contact-list li:first-child{border-top:none;}
+.contact-list a{color:#f2ede4;text-decoration:none;}
+.contact-list a:hover{text-decoration:underline;}
+.foot-bottom{
+  border-top:1px solid rgba(255,255,255,0.12);
+  margin-top:36px;padding-top:20px;
+  font-family:'Helvetica Neue',Arial,sans-serif;font-size:.78rem;color:#9aa4b8;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+
+/* ===== WhatsApp floating button ===== */
+.wa-fab{
+  position:fixed;right:22px;bottom:22px;z-index:999;
+  display:flex;align-items:center;gap:10px;
+  background:#1fb855;color:#fff;
+  font-family:'Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:14px;
+  padding:13px 20px 13px 14px;border-radius:999px;
+  box-shadow:0 8px 24px rgba(31,184,85,0.4);
+  text-decoration:none;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.wa-fab:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(31,184,85,0.5);}
+.wa-fab svg{width:22px;height:22px;flex-shrink:0;}
+
+/* ===== Cookie Consent Banner ===== */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--navy);
+  color: #f2ede4;
+  padding: 16px 32px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: .88rem;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+  transition: background .3s;
+}
+.cookie-banner.show { display: flex; }
+.cookie-banner p { color: #c7cddb; margin-bottom: 0; font-size: .85rem; }
+.cookie-banner .cookie-btns { display: flex; gap: 8px; flex-shrink: 0; }
+.cookie-btn {
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 700;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: .04em;
+  border: none;
+  cursor: pointer;
+  transition: all .18s;
+}
+.cookie-btn.accept { background: var(--gold); color: #fff; }
+.cookie-btn.accept:hover { background: #c4a46b; }
+.cookie-btn.reject { background: transparent; border: 1px solid rgba(255,255,255,0.25); color: #c7cddb; }
+.cookie-btn.reject:hover { border-color: var(--gold); color: var(--gold-light); }
+.cookie-btn.settings { background: transparent; border: 1px solid rgba(255,255,255,0.25); color: #c7cddb; }
+.cookie-btn.settings:hover { border-color: var(--gold); color: var(--gold-light); }
+
+/* ===== Cookie Settings Modal ===== */
+.cookie-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.cookie-modal.show { display: flex; }
+.cookie-modal-inner {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 32px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: var(--shadow);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.cookie-modal-inner h3 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.1rem;
+  color: var(--navy);
+  margin: 0 0 16px;
+}
+[data-theme="dark"] .cookie-modal-inner h3 { color: var(--gold-light); }
+.cookie-modal-inner .cookie-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.cookie-modal-inner .cookie-option:first-of-type { border-top: none; }
+.cookie-modal-inner .cookie-option label {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+[data-theme="dark"] .cookie-modal-inner .cookie-option label { color: var(--ink); }
+.cookie-modal-inner .cookie-option p {
+  font-size: .82rem;
+  color: var(--ink-faint);
+  margin: 2px 0 0;
+}
+/* Toggle switch */
+.switch {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.switch .slider {
+  position: absolute;
+  inset: 0;
+  background: var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.switch .slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 2px;
+  bottom: 2px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform .2s;
+}
+.switch input:checked + .slider { background: var(--gold); }
+.switch input:checked + .slider::before { transform: translateX(18px); }
+.switch input:disabled + .slider { opacity: .5; cursor: not-allowed; }
+.cookie-modal-inner .save-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  background: var(--gold);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  font-size: .85rem;
+  cursor: pointer;
+  transition: background .2s;
+}
+.cookie-modal-inner .save-btn:hover { background: #c4a46b; }
+
+/* ===== Language hidden spans ===== */
+[lang="en"] { display: none; }
+body[data-lang="en"] [lang="en"] { display: inline; }
+body[data-lang="en"] [lang="it"] { display: none; }
+body[data-lang="en"] .lang-toggle .label-it { display: none; }
+body[data-lang="en"] .lang-toggle .label-en { display: inline; }
+body:not([data-lang="en"]) .lang-toggle .label-en { display: none; }
+body:not([data-lang="en"]) .lang-toggle .label-it { display: inline; }
+
+/* ===== Responsive ===== */
+@media (max-width:720px){
+  footer .container{grid-template-columns:1fr;}
+  .cover{padding:64px 0 50px;}
+  .step{grid-template-columns:40px 1fr;}
+  .cookie-banner { flex-direction: column; text-align: center; padding: 14px 20px; }
+}
+@media print{
+  .wa-fab, .cookie-banner, .cookie-modal { display:none!important; }
+  section.block{break-inside:avoid;}
+}
+</style>
+</head>
+<body data-lang="it">
+
+<!-- Cookie Consent Banner -->
+<div class="cookie-banner show" id="cookieBanner">
+  <p lang="it">Questo sito utilizza cookie tecnici e di analisi per migliorare la tua esperienza. <a href="#" style="color:var(--gold-light);text-decoration:underline;" onclick="document.getElementById('cookieModal').classList.add('show');return false;">Gestisci preferenze</a></p>
+  <p lang="en">This site uses technical and analytics cookies to improve your experience. <a href="#" style="color:var(--gold-light);text-decoration:underline;" onclick="document.getElementById('cookieModal').classList.add('show');return false;">Manage preferences</a></p>
+  <div class="cookie-btns">
+    <button class="cookie-btn reject" onclick="acceptCookies(false)"><span lang="it">Rifiuta</span><span lang="en">Reject</span></button>
+    <button class="cookie-btn accept" onclick="acceptCookies(true)"><span lang="it">Accetta</span><span lang="en">Accept</span></button>
+  </div>
+</div>
+
+<!-- Cookie Settings Modal -->
+<div class="cookie-modal" id="cookieModal">
+  <div class="cookie-modal-inner">
+    <h3 lang="it">Preferenze Cookie</h3>
+    <h3 lang="en">Cookie Preferences</h3>
+    <div class="cookie-option">
+      <div>
+        <label lang="it">Cookie Tecnici (necessari)</label>
+        <label lang="en">Technical Cookies (required)</label>
+        <p lang="it">Necessari per il funzionamento del sito. Non possono essere disabilitati.</p>
+        <p lang="en">Required for the site to function. Cannot be disabled.</p>
+      </div>
+      <label class="switch"><input type="checkbox" checked disabled><span class="slider"></span></label>
+    </div>
+    <div class="cookie-option">
+      <div>
+        <label lang="it">Cookie di Analisi</label>
+        <label lang="en">Analytics Cookies</label>
+        <p lang="it">Ci aiutano a capire come i visitatori interagiscono con il sito.</p>
+        <p lang="en">Help us understand how visitors interact with the site.</p>
+      </div>
+      <label class="switch"><input type="checkbox" id="analyticsCookie"><span class="slider"></span></label>
+    </div>
+    <button class="save-btn" onclick="saveCookiePrefs()"><span lang="it">Salva preferenze</span><span lang="en">Save preferences</span></button>
+  </div>
+</div>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="container">
+    <div class="brandmark">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12 L12 3 L21 12 L18 12 L18 21 L6 21 L6 12 Z" stroke="#e8dcc4" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      AVIBE <span>Agency</span>
+    </div>
+    <div class="controls-wrap">
+      <span style="font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;color:rgba(255,255,255,0.5);">
+        <span lang="it">Audit riservato</span><span lang="en">Confidential Audit</span>
+      </span>
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()" aria-label="Toggle language">
+        <span class="label-it">IT</span>
+        <span class="label-en">EN</span>
+      </button>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">🌓</button>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav>
+  <div class="container">
+    <a href="index.html" class="nav-logo">
+      Romanelli
+      <small>Studio Legale Associato · Genova</small>
+    </a>
+    <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="professionisti.html">Professionisti</a></li>
+      <li><a href="aree.html">Aree di attività</a></li>
+      <li><a href="contatti.html">Contatti</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Cover -->
+<header class="cover">
+  <div class="container">
+    <div class="cover-eyebrow"><span lang="it">Audit SEO · AEO · GEO</span><span lang="en">SEO · AEO · GEO Audit</span></div>
+    <h1><span lang="it">Visibilità organica e visibilità <em>nei motori di risposta AI</em>.</span><span lang="en">Organic visibility and visibility <em>in AI answer engines</em>.</span></h1>
+    <p class="cover-sub"><span lang="it">Analisi tecnica e strategica del sito studio-romanelli.it: architettura, indicizzabilità, dati strutturati, presenza locale e prontezza per la ricerca generativa (Google AI Mode, ChatGPT, Perplexity, Gemini, Copilot).</span><span lang="en">Technical and strategic analysis of studio-romanelli.it: architecture, indexability, structured data, local presence, and readiness for generative search (Google AI Mode, ChatGPT, Perplexity, Gemini, Copilot).</span></p>
+    <div class="cover-meta">
+      <div><span lang="it">Cliente</span><span lang="en">Client</span>Studio Legale Associato Romanelli — Genova</div>
+      <div><span>Dominio</span>studio-romanelli.it</div>
+      <div><span lang="it">Data audit</span><span lang="en">Audit date</span>9 Agosto 2026</div>
+      <div><span lang="it">Preparato da</span><span lang="en">Prepared by</span>AVIBE Agency</div>
+    </div>
+  </div>
+</header>
+
+<!-- Image showcase -->
+<section class="block animate-on-scroll">
+  <div class="container">
+    <div class="sec-label"><span lang="it">Galleria</span><span lang="en">Gallery</span></div>
+    <h2 class="sec-title" style="max-width:100%"><span lang="it">Lo Studio in immagini</span><span lang="en">The Firm in pictures</span></h2>
+    <div class="img-grid">
+      <figure class="img-reveal img-glow"><img src="https://v3b.fal.media/files/b/0aa5a96b/zMBqW-AdwaRI59P4xGJKM_qCKpT1Cb.png" alt="Studio Legale - Interno"><figcaption lang="it">Studio Legale · Interno</figcaption><figcaption lang="en">Law Firm · Interior</figcaption></figure>
+      <figure class="img-reveal delay-1 img-glow"><img src="https://v3b.fal.media/files/b/0aa5a96f/XBvLxh8W-sNI1E4FWnuNf_Ni5XVsps.png" alt="Sala riunioni"><figcaption lang="it">Sala Riunioni</figcaption><figcaption lang="en">Conference Room</figcaption></figure>
+      <figure class="img-reveal delay-2 img-glow"><img src="https://v3b.fal.media/files/b/0aa5a970/c9hMf5KCHv7LhVOOFZ5_4_XRKKtSje.png" alt="Ingresso Studio"><figcaption lang="it">Ingresso Studio</figcaption><figcaption lang="en">Firm Entrance</figcaption></figure>
+      <figure class="img-reveal delay-3 img-glow"><img src="https://v3b.fal.media/files/b/0aa5a96d/szCLvrnm7oeGR85fLKEsr_J3B2PGin.png" alt="Bilancia della giustizia"><figcaption lang="it">Bilancia della Giustizia</figcaption><figcaption lang="en">Scales of Justice</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 00 — Punteggio sintetico -->
+<section class="block animate-on-scroll">
+  <div class="container">
+    <div class="sec-label"><span lang="it">00 — In sintesi</span><span lang="en">00 — Summary</span></div>
+    <h2 class="sec-title"><span lang="it">Fondamenta solide, potenziale in gran parte inespresso.</span><span lang="en">Solid foundations, largely untapped potential.</span></h2>
+    <p class="lede"><span lang="it">Il sito presenta una struttura pulita e una buona base tecnica (protocollo sitemap corretto, architettura a due livelli, HTTPS). Tuttavia, mancano quasi tutti gli elementi che oggi determinano la visibilità nei motori di risposta AI e un posizionamento locale competitivo: dati strutturati, contenuti in formato domanda/risposta, una scheda Google Business Profile attiva e una presenza editoriale continuativa.</span><span lang="en">The site has a clean structure and good technical foundation (correct sitemap protocol, two-level architecture, HTTPS). However, it lacks most elements that determine visibility in AI answer engines and competitive local positioning: structured data, Q&A-format content, an active Google Business Profile, and consistent editorial presence.</span></p>
+
+    <div class="score-wrap">
+      <div class="score animate-on-scroll delay-1">
+        <div class="num"><span lang="it">6<small>/10</small></span><span lang="en">6<small>/10</small></span></div>
+        <div class="label"><span lang="it">SEO tecnico</span><span lang="en">Technical SEO</span></div>
+        <div class="bar"><i style="width:60%"></i></div>
+      </div>
+      <div class="score animate-on-scroll delay-2">
+        <div class="num"><span lang="it">3<small>/10</small></span><span lang="en">3<small>/10</small></span></div>
+        <div class="label"><span lang="it">Local SEO / GEO</span><span lang="en">Local SEO / GEO</span></div>
+        <div class="bar"><i style="width:30%"></i></div>
+      </div>
+      <div class="score animate-on-scroll delay-3">
+        <div class="num"><span lang="it">2<small>/10</small></span><span lang="en">2<small>/10</small></span></div>
+        <div class="label"><span lang="it">AEO / Ricerca AI</span><span lang="en">AEO / AI Search</span></div>
+        <div class="bar"><i style="width:20%"></i></div>
+      </div>
+      <div class="score animate-on-scroll delay-4">
+        <div class="num"><span lang="it">4<small>/10</small></span><span lang="en">4<small>/10</small></span></div>
+        <div class="label"><span lang="it">Contenuti &amp; autorevolezza</span><span lang="en">Content &amp; authority</span></div>
+        <div class="bar"><i style="width:40%"></i></div>
+      </div>
+    </div>
+    <p style="font-size:.82rem;color:var(--ink-faint);margin-top:14px;"><span lang="it">Punteggi qualitativi assegnati da AVIBE Agency sulla base dell'analisi diretta del sito, della sitemap e della presenza esterna rilevata. Non sostituiscono un audit con strumenti a pagamento (Semrush, Search Console verificata) che AVIBE può eseguire in una fase successiva.</span><span lang="en">Qualitative scores assigned by AVIBE Agency based on direct site analysis, sitemap inspection, and detected external presence. They do not replace an audit with paid tools (Semrush, verified Search Console) which AVIBE can perform in a later phase.</span></p>
+  </div>
+</section>
+
+<!-- 01 — Architettura e sitemap -->
+<section class="block animate-on-scroll">
+  <div class="container">
+    <div class="sec-label"><span lang="it">01 — Architettura del sito e Sitemap</span><span lang="en">01 — Site Architecture &amp; Sitemap</span></div>
+    <h2 class="sec-title"><span lang="it">28 pagine, struttura chiara, priorità non differenziate.</span><span lang="en">28 pages, clear structure, undifferentiated priorities.</span></h2>
+    <p class="lede"><span lang="it">Il sito conta 28 URL indicizzabili organizzati in una struttura piatta a due livelli (Home → Hub → Sotto-pagina), corretta per un sito di queste dimensioni.</span><span lang="en">The site has 28 indexable URLs organized in a flat two-level structure (Home → Hub → Sub-page), appropriate for a site of this size.</span></p>
+
+    <div class="grid grid-3">
+      <div class="card animate-on-scroll delay-1"><h4><span lang="it">1 Homepage</span><span lang="en">1 Homepage</span></h4><p><span lang="it">Presenta chi siamo, aree di expertise, riconoscimenti e contatti.</span><span lang="en">Presents who we are, areas of expertise, awards, and contacts.</span></p></div>
+      <div class="card animate-on-scroll delay-2"><h4><span lang="it">6 pagine principali</span><span lang="en">6 main pages</span></h4><p><span lang="it">Professionisti, Aree di attività, News, Contatti, Consulenza a distanza, Privacy &amp; Cookie Policy.</span><span lang="en">Professionals, Practice Areas, News, Contacts, Remote Consultation, Privacy &amp; Cookie Policy.</span></p></div>
+      <div class="card animate-on-scroll delay-3"><h4><span lang="it">12 aree di attività</span><span lang="en">12 practice areas</span></h4><p><span lang="it">Da reati contro la persona a contrattualistica software — tutte raggiungibili in un click dalla home.</span><span lang="en">From crimes against the person to software contracts — all reachable in one click from the homepage.</span></p></div>
+      <div class="card animate-on-scroll delay-1"><h4><span lang="it">7 schede professionisti</span><span lang="en">7 professional profiles</span></h4><p><span lang="it">Bio individuali per soci, collaboratori e consulenti dello studio.</span><span lang="en">Individual bios for partners, associates, and consultants.</span></p></div>
+      <div class="card animate-on-scroll delay-2"><h4><span lang="it">2 articoli di news</span><span lang="en">2 news articles</span></h4><p><span lang="it">Sezione editoriale ancora molto limitata rispetto al potenziale.</span><span lang="en">Editorial section still very limited compared to potential.</span></p></div>
+      <div class="card animate-on-scroll delay-3"><h4><span lang="it">Hub-and-spoke a 2 livelli</span><span lang="en">2-level hub-and-spoke</span></h4><p><span lang="it">Nessuna pagina orfana rilevata: tutte le 28 URL sono raggiungibili dalla navigazione.</span><span lang="en">No orphan pages detected: all 28 URLs reachable from navigation.</span></p></div>
+    </div>
+
+    <!-- Dropdown: Anomalie sitemap -->
+    <div class="dropdown">
+      <div class="dropdown-header" onclick="toggleDropdown(this)">
+        <span lang="it">Anomalie riscontrate nella sitemap XML</span>
+        <span lang="en">Anomalies found in the XML sitemap</span>
+        <span class="arrow">&#9660;</span>
+      </div>
+      <div class="dropdown-body">
+        <div class="table-wrap">
+        <table>
+          <tr><th><span lang="it">Osservazione</span><span lang="en">Observation</span></th><th><span lang="it">Dettaglio</span><span lang="en">Detail</span></th><th><span lang="it">Impatto</span><span lang="en">Impact</span></th></tr>
+          <tr><td><span lang="it">Priorità identica</span><span lang="en">Identical priority</span></td><td><span lang="it">Tutte le 28 URL hanno <code>priority 1.0</code>, inclusa la Privacy Policy</span><span lang="en">All 28 URLs have <code>priority 1.0</code>, including Privacy Policy</span></td><td><span lang="it">Nessun segnale reale di importanza relativa per Google</span><span lang="en">No real relative importance signal for Google</span></td></tr>
+          <tr><td><span lang="it">Changefreq identica</span><span lang="en">Identical changefreq</span></td><td><span lang="it">Tutte le pagine dichiarano <code>monthly</code>, incluse pagine statiche che non cambiano mai</span><span lang="en">All pages declare <code>monthly</code>, including static pages that never change</span></td><td><span lang="it">Segnale non informativo per il crawler</span><span lang="en">Non-informative signal for the crawler</span></td></tr>
+          <tr><td><span lang="it">lastmod identica</span><span lang="en">Identical lastmod</span></td><td><span lang="it">Tutte le 28 URL riportano la stessa data (2025-04-01)</span><span lang="en">All 28 URLs report the same date (2025-04-01)</span></td><td><span lang="it">Indica generazione massiva automatica, non aggiornamento reale dei contenuti</span><span lang="en">Indicates bulk auto-generation, not real content updates</span></td></tr>
+          <tr><td><span lang="it">Nessuna estensione immagine</span><span lang="en">No image extension</span></td><td><span lang="it">Assenza di tag <code>&lt;image:image&gt;</code> nonostante foto professionisti presenti</span><span lang="en">Missing <code>&lt;image:image&gt;</code> tags despite professional photos</span></td><td><span lang="it">Occasione persa per la ricerca immagini</span><span lang="en">Missed opportunity for image search</span></td></tr>
+          <tr><td><span lang="it">Nessun hreflang</span><span lang="en">No hreflang</span></td><td><span lang="it">Sito monolingua, coerente con il pubblico target</span><span lang="en">Monolingual site, consistent with target audience</span></td><td><span lang="it">Nessuna azione richiesta salvo espansione internazionale</span><span lang="en">No action needed unless international expansion</span></td></tr>
+        </table>
+        </div>
+        <div class="callout" style="margin:12px 0 0;"><span lang="it">Una sitemap tecnicamente valida ma "piatta" nei segnali: oggi funziona come un semplice elenco di URL, non come uno strumento strategico di prioritizzazione del crawl.</span><span lang="en">A technically valid sitemap but "flat" in signals: currently works as a simple URL list, not as a strategic crawl prioritization tool.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 — SEO tecnico -->
+<section class="block animate-on-scroll">
+  <div class="container">
+    <div class="sec-label"><span lang="it">02 — SEO Tecnico e Performance</span><span lang="en">02 — Technical SEO &amp; Performance</span></div>
+    <h2 class="sec-title"><span lang="it">Le fondamenta ci sono; mancano le rifiniture che fanno la differenza.</span><span lang="en">Foundations are solid; the finishing touches that make the difference are missing.</span></h2>
+    <div class="grid grid-2">
+      <div class="card animate-on-scroll delay-1">
+        <span class="badge ok"><span lang="it">Verificato</span><span lang="en">Verified</span></span>
+        <h4>HTTPS attivo</h4>
+        <p><span lang="it">Il dominio è servito correttamente in HTTPS, requisito minimo di fiducia per Google.</span><span lang="en">The domain is served correctly over HTTPS, a minimum trust requirement for Google.</span></p>
+      </div>
+      <div class="card animate-on-scroll delay-2">
+        <span class="badge ok"><span lang="it">Verificato</span><span lang="en">Verified</span></span>
+        <h4><span lang="it">Sitemap XML pubblica</span><span lang="en">Public XML Sitemap</span></h4>
+        <p><span lang="it">Raggiungibile su /sitemap.xml e conforme al protocollo sitemaps.org 0.9.</span><span lang="en">Reachable at /sitemap.xml and compliant with sitemaps.org 0.9 protocol.</span></p>
+      </div>
+      <div class="card animate-on-scroll delay-3">
+        <span class="badge warn"><span lang="it">Da verificare</span><span lang="en">To verify</span></span>
+        <h4><span lang="it">Google Search Console</span><span lang="en">Google Search Console</span></h4>
+        <p><span lang="it">Non è possibile confermare da remoto se la proprietà è verificata e la sitemap inviata: va controllato lato cliente/agenzia con accesso all'account.</span><span lang="en">Cannot remotely confirm if ownership is verified and sitemap submitted: needs client/agency account access.</span></p>
+      </div>
+      <div class="card animate-on-scroll delay-4">
+        <span class="badge warn"><span lang="it">Da verificare</span><span lang="en">To verify</span></span>
+        <h4>robots.txt</h4>
+        <p><span lang="it">Il file non è risultato raggiungibile durante l'analisi: va controllato che esista e che non blocchi involontariamente crawler utili (incluso i bot dei motori AI).</span><span lang="en">The file was not reachable during analysis: check it exists and doesn't accidentally block useful crawlers (including AI engine bots).</span></p>
+      </div>
+      <div class="card animate-on-scroll delay-1">
+        <span class="badge warn"><span lang="it">Da migliorare</span><span lang="en">To improve</span></span>
+        <h4><span lang="it">Core Web Vitals</span><span lang="en">Core Web Vitals</span></h4>
+        <p><span lang="it">Non misurati con strumenti dedicati (PageSpeed/CrUX) in questa sessione: raccomandato un test formale prima di ogni intervento di sviluppo.</span><span lang="en">Not measured with dedicated tools (PageSpeed/CrUX) in this session: formal testing recommended before any development work.</span></p>
+      </div>
+      <div class="card animate-on-scroll delay-2">
+        <span class="badge bad"><span lang="it">Assente</span><span lang="en">Missing</span></span>
+        <h4><span lang="it">Dati strutturati (schema.org)</span><span lang="en">Structured data (schema.org)</span></h4>
+        <p><span lang="it">Nessuno schema Organization, LegalService, Attorney o FAQPage rilevato nelle pagine analizzate.</span><span lang="en">No Organization, LegalService, Attorney, or FAQPage schema detected in analyzed pages.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 — Local SEO / GEO -->
+<section class="block animate-on-scroll">
+  <div class="container">
+    <div class="sec-label"><span lang="it">03 — Local SEO e Presenza Territoriale (GEO)</span><span lang="en">03 — Local SEO &amp; GEO</span></div>
+    <h2 class="sec-title"><span lang="it">Un nome noto sulla carta, quasi invisibile nelle directory digitali.</span><span lang="en">A well-known name on paper, nearly invisible in digital directories.</span></h2>
+    <p class="lede"><span lang="it">Lo Studio Romanelli ha una storia solida (fondato nel 1973) e riconoscimenti autorevoli, ma la presenza digitale locale — la base della visibilità su Google Maps e nelle risposte AI geolocalizzate — è largamente incompleta.</span><span lang="en">Studio Romanelli has a solid history (founded in 1973) and authoritative recognition, but its local digital presence — the foundation of visibility on Google Maps and geolocalized AI responses — is largely incomplete.</span></p>
+
+    <div class="table-wrap">
+    <table>
+      <tr><th><span lang="it">Fonte</span><span lang="en">Source</span></th><th><span lang="it">Stato rilevato</span><span lang="en">Detected status</span></th><th><span lang="it">Nota</span><span lang="en">Note</span></th></tr>
+      <tr><td><span lang="it">Il Sole 24 Ore / Statista — "Studi Legali dell'Anno"</span><span lang="en">Il Sole 24 Ore / Statista — "Law Firms of the Year"</span></td><td><span class="badge ok"><span lang="it">Confermato</span><span lang="en">Confirmed</span></span></td><td><span lang="it">Presenza verificata nelle classifiche 2021 e 2023; il sito dichiara anche 2022 e 2024</span><span lang="en">Presence verified in 2021 and 2023 rankings; site also claims 2022 and 2024</span></td></tr>
+      <tr><td>PagineGialle.it</td><td><span class="badge bad"><span lang="it">Scheda non rivendicata</span><span lang="en">Unclaimed profile</span></span></td><td><span lang="it">Profilo al 20% di completamento, nessuna recensione, orari non impostati</span><span lang="en">Profile 20% complete, no reviews, hours not set</span></td></tr>
+      <tr><td>PagineBianche.it</td><td><span class="badge warn"><span lang="it">Presente, dati minimi</span><span lang="en">Present, minimal data</span></span></td><td><span lang="it">Indirizzo e numeri di telefono presenti, nessun altro dettaglio</span><span lang="en">Address and phone numbers present, no other details</span></td></tr>
+      <tr><td><span lang="it">Google Business Profile</span><span lang="en">Google Business Profile</span></td><td><span class="badge warn"><span lang="it">Non verificabile da remoto</span><span lang="en">Not verifiable remotely</span></span></td><td><span lang="it">Nessuna scheda Google Maps rilevata pubblicamente collegata al dominio durante la ricerca; da verificare/creare con accesso diretto</span><span lang="en">No Google Maps profile publicly linked to the domain found; verify/create with direct access</span></td></tr>
+      <tr><td><span lang="it">Directory di settore (avvocati-italia.com)</span><span lang="en">Industry directories</span></td><td><span class="badge ok"><span lang="it">Presente</span><span lang="en">Present</span></span></td><td><span lang="it">Listato con descrizione base dello studio</span><span lang="en">Listed with basic firm description</span></td></tr>
+      <tr><td>LinkedIn</td><td><span class="badge ok"><span lang="it">Presente</span><span lang="en">Present</span></span></td><td><span lang="it">Profili personali di due soci (Rinaldo ed Enrico Romanelli) citano lo studio</span><span lang="en">Personal profiles of two partners (Rinaldo and Enrico Romanelli) mention the firm</span></td></tr>
+    </table>
+    </div>
+
+    <div class="callout"><span lang="it">Senza una scheda Google Business Profile attiva e coerente, lo studio è sostanzialmente assente dal Local Pack di Google Maps e dalle risposte locali generate dagli assistenti AI — un problema più urgente di qualsiasi ottimizzazione on-page.</span><span lang="en">Without an active, consistent Google Business Profile, the firm is essentially absent from the Google Maps Local Pack and AI-generated local responses — a more urgent problem than any on-page optimization.</span></div>
+  </div>
+</section>
+
+<!-- 04 — AEO / GEO -->
+<section class="block animate-on-scroll">
+  <div class="container">
+    <div class="sec-label"><span lang="it">04 — AEO e Ricerca Generativa</span><span lang="en">04 — AEO &amp; Generative Search</span></div>
+    <h2 class="sec-title"><span lang="it">Il sito non è ancora scritto per essere citato dall'AI.</span><span lang="en">The site is not yet written to be cited by AI.</span></h2>
+    <p class="lede"><span lang="it">Google AI Mode, ChatGPT, Perplexity, Gemini e Copilot privilegiano contenuti con risposte dirette, entità chiare e struttura estraibile. Le pagine attuali dello Studio Romanelli sono descrittive ma non strutturate per questo tipo di lettura automatica.</span><span lang="en">Google AI Mode, ChatGPT, Perplexity, Gemini, and Copilot favor content with direct answers, clear entities, and extractable structure. Studio Romanelli's current pages are descriptive but not structured for this kind of automated reading.</span></p>
+
+    <div class="grid grid-2">
+      <div class="card animate-on-scroll delay-1">
+        <h4><span lang="it">Formato domanda/risposta assente</span><span lang="en">Missing Q&amp;A format</span></h4>
+        <p><span lang="it">Le 12 pagine di aree di attività descrivono l'ambito ma non rispondono a domande dirette del tipo "Cosa fare in caso di contestazione per reati tributari?".</span><span lang="en">The 12 practice area pages describe the scope but don't answer direct questions like "What to do in case of a tax crime dispute?"</span></p>
+      </div>
+      <div class="card animate-on-scroll delay-2">
+        <h4><span lang="it">Nessun FAQPage schema</span><span lang="en">No FAQPage schema</span></h4>
+        <p><span lang="it">Anche se venissero aggiunte FAQ testuali, senza markup strutturato il vantaggio per l'estrazione AI resterebbe parziale.</span><span lang="en">Even if FAQ text were added, without structured markup the AI extraction benefit would remain partial.</span></p>
+      </div>
+      <div class="card animate-on-scroll delay-3">
+        <h4><span lang="it">Entità professionali poco strutturate</span><span lang="en">Poorly structured professional entities</span></h4>
+        <p><span lang="it">Le 7 bio degli avvocati sono in prosa; credenziali, anno di iscrizione all'Albo e specializzazioni andrebbero evidenziati in modo scansionabile.</span><span lang="en">The 7 lawyer bios are in prose; credentials, bar admission year, and specializations should be highlighted in scannable format.</span></p>
+      </div>
+      <div class="card animate-on-scroll delay-4">
+        <h4><span lang="it">Autorevolezza editoriale limitata</span><span lang="en">Limited editorial authority</span></h4>
+        <p><span lang="it">Solo 2 articoli in tutta la sezione news: insufficiente per costruire il segnale di autorevolezza che i motori generativi premiano nel tempo.</span><span lang="en">Only 2 articles in the entire news section: insufficient to build the authority signal that generative engines reward over time.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 — Roadmap -->
+<section class="block animate-on-scroll">
+  <div class="container">
+    <div class="sec-label"><span lang="it">05 — Piano di Intervento Prioritario</span><span lang="en">05 — Priority Action Plan</span></div>
+    <h2 class="sec-title"><span lang="it">Da dove cominciare, in ordine di impatto.</span><span lang="en">Where to start, in order of impact.</span></h2>
+    <div class="steps">
+      <div class="step animate-on-scroll delay-1">
+        <div class="step-num"></div>
+        <div>
+          <h4><span lang="it">Attivare e completare Google Business Profile</span><span lang="en">Activate and complete Google Business Profile</span></h4>
+          <p><span lang="it">Creare o rivendicare la scheda, con NAP coerente, orari, categorie corrette e foto reali. È la base di ogni visibilità locale e GEO.</span><span lang="en">Create or claim the profile, with consistent NAP, hours, correct categories, and real photos. The foundation of all local and GEO visibility.</span></p>
+        </div>
+      </div>
+      <div class="step animate-on-scroll delay-2">
+        <div class="step-num"></div>
+        <div>
+          <h4><span lang="it">Implementare i dati strutturati essenziali</span><span lang="en">Implement essential structured data</span></h4>
+          <p><span lang="it">Organization, LegalService, Attorney (per ogni socio) e FAQPage sulle pagine di area di attività.</span><span lang="en">Organization, LegalService, Attorney (for each partner), and FAQPage on practice area pages.</span></p>
+        </div>
+      </div>
+      <div class="step animate-on-scroll delay-3">
+        <div class="step-num"></div>
+        <div>
+          <h4><span lang="it">Differenziare la sitemap</span><span lang="en">Differentiate the sitemap</span></h4>
+          <p><span lang="it">Assegnare priority e changefreq realistici; aggiornare i lastmod solo quando il contenuto cambia davvero.</span><span lang="en">Assign realistic priority and changefreq values; update lastmod only when content actually changes.</span></p>
+        </div>
+      </div>
+      <div class="step animate-on-scroll delay-4">
+        <div class="step-num"></div>
+        <div>
+          <h4><span lang="it">Riscrivere le pagine di area in formato risposta diretta</span><span lang="en">Rewrite area pages in direct-answer format</span></h4>
+          <p><span lang="it">Aprire ogni pagina con una risposta sintetica alla domanda implicita dell'utente, seguita da approfondimento e FAQ.</span><span lang="en">Open each page with a concise answer to the user's implicit question, followed by in-depth content and FAQ.</span></p>
+        </div>
+      </div>
+      <div class="step animate-on-scroll delay-1">
+        <div class="step-num"></div>
+        <div>
+          <h4><span lang="it">Rivendicare e completare le directory locali</span><span lang="en">Claim and complete local directories</span></h4>
+          <p><span lang="it">PagineGialle, PagineBianche e directory di settore: dati coerenti, descrizione completa, raccolta recensioni reali.</span><span lang="en">PagineGialle, PagineBianche, and industry directories: consistent data, complete description, real review collection.</span></p>
+        </div>
+      </div>
+      <div class="step animate-on-scroll delay-2">
+        <div class="step-num"></div>
+        <div>
+          <h4><span lang="it">Avviare un piano editoriale continuativo</span><span lang="en">Start an ongoing editorial plan</span></h4>
+          <p><span lang="it">Pubblicazione regolare di contenuti legali originali per costruire autorevolezza tematica nel tempo, sia per Google sia per i motori AI.</span><span lang="en">Regular publication of original legal content to build thematic authority over time, for both Google and AI engines.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 — Nota metodologica -->
+<section class="block animate-on-scroll">
+  <div class="container">
+    <div class="sec-label"><span lang="it">06 — Nota metodologica</span><span lang="en">06 — Methodological Note</span></div>
+    <h2 class="sec-title"><span lang="it">Come è stato condotto questo audit.</span><span lang="en">How this audit was conducted.</span></h2>
+    <p><span lang="it">L'analisi è stata condotta tramite ispezione diretta del sito pubblico, della sitemap XML, delle pagine di contatto e delle principali directory italiane (PagineGialle, PagineBianche, avvocati-italia.com), oltre a fonti pubbliche come Il Sole 24 Ore / Statista e LinkedIn. Non sono stati utilizzati strumenti di misurazione a pagamento (Semrush, Search Console verificata, PageSpeed Insights) né dati proprietari del cliente: alcuni indicatori (Core Web Vitals, stato reale di Google Search Console e Google Business Profile) andranno confermati con accesso diretto agli account del cliente in fase di scoping.</span><span lang="en">The analysis was conducted through direct inspection of the public site, XML sitemap, contact pages, and major Italian directories (PagineGialle, PagineBianche, avvocati-italia.com), as well as public sources such as Il Sole 24 Ore / Statista and LinkedIn. No paid measurement tools (Semrush, verified Search Console, PageSpeed Insights) or proprietary client data were used: some indicators (Core Web Vitals, actual Google Search Console and Google Business Profile status) should be confirmed with direct client account access during scoping.</span></p>
+  </div>
+</section>
+
+<!-- Mappa AVIBE Agency -->
+<section class="block animate-on-scroll">
+  <div class="container">
+    <div class="sec-label"><span lang="it">Dove trovarci</span><span lang="en">Where to find us</span></div>
+    <h2 class="sec-title" style="max-width:100%;"><span lang="it">AVIBE Agency — Genova</span><span lang="en">AVIBE Agency — Genoa</span></h2>
+    <p class="lede"><span lang="it">Corso Italia, 16142 Genova (GE), Italia</span><span lang="en">Corso Italia, 16142 Genoa (GE), Italy</span></p>
+    <div class="map-wrap">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4329.519317811595!2d8.9568!3d44.4025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12d3421b8b1d1b5b%3A0x1b8b1d1b5b1d1b5b!2sCorso+Italia%2C+16142+Genova+GE!5e0!3m2!1sit!2sit!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="AVIBE Agency - Corso Italia, Genova"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="contatti">
+  <div class="container">
+    <div>
+      <h3>AVIBE Agency</h3>
+      <p lang="it">Analisi e ottimizzazione SEO, AEO e GEO per studi professionali e piccole-medie imprese locali. Questo documento è riservato e preparato esclusivamente per Studio Legale Associato Romanelli.</p>
+      <p lang="en">SEO, AEO, and GEO analysis and optimization for professional firms and local SMEs. This document is confidential and prepared exclusively for Studio Legale Associato Romanelli.</p>
+      <p style="margin-top:18px;">Corso Italia, 16142 Genova, Italia</p>
+    </div>
+    <div>
+      <h3><span lang="it">Contatti</span><span lang="en">Contacts</span></h3>
+      <ul class="contact-list">
+        <li>&#9742; <a href="tel:+393****4084">+39 345 023 4084</a> — Alessia, AVIBE Agency</li>
+        <li>&#9993; <a href="mailto:info@avibeagency.it">info@avibeagency.it</a></li>
+        <li>&#127760; <a href="https://avibeagency.it" target="_blank" rel="noopener noreferrer">avibeagency.it</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3><span lang="it">Link</span><span lang="en">Links</span></h3>
+      <ul class="contact-list">
+        <li><a href="#"><span lang="it">Privacy Policy</span><span lang="en">Privacy Policy</span></a></li>
+        <li><a href="#"><span lang="it">Cookie Policy</span><span lang="en">Cookie Policy</span></a></li>
+        <li><a href="#"><span lang="it">Codice deontologico</span><span lang="en">Code of Ethics</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <div class="foot-bottom">
+      <span><span lang="it">Documento riservato — AVIBE Agency &copy; 2026</span><span lang="en">Confidential document — AVIBE Agency &copy; 2026</span></span>
+      <span><span lang="it">Audit realizzato il 9 Agosto 2026</span><span lang="en">Audit completed on August 9, 2026</span></span>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp FAB (clickable) -->
+<a class="wa-fab" href="https://wa.me/393450234084?text=Ciao%20Alessia%2C%20ho%20visto%20l%27audit%20SEO%2FAEO%2FGEO%20per%20Studio%20Romanelli%20e%20vorrei%20parlarne." target="_blank" rel="noopener noreferrer">
+  <svg viewBox="0 0 32 32" fill="#fff" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.7.8 5.2 2.3 7.3L4 29l6.4-1.7c2 1.1 4.3 1.7 6.6 1.7 7 0 12.7-5.6 12.7-12.5S23 3 16 3zm0 22.9c-2.1 0-4.1-.6-5.8-1.6l-.4-.2-3.8 1 1-3.7-.3-.4c-1.2-1.9-1.8-4-1.8-6.2C4.9 9.6 9.9 4.9 16 4.9c6.1 0 11.1 4.7 11.1 10.6S22.1 25.9 16 25.9zm6.1-8c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.7-1.7-1-.9-1.7-2-1.9-2.3-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2.1-.4 0-.6-.1-.2-.8-1.9-1-2.6-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.8 5.1.8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 2-.8 2.3-1.6.3-.8.3-1.4.2-1.6-.1-.1-.3-.2-.6-.4z"/></svg>
+  <span lang="it">Scrivi su WhatsApp</span><span lang="en">Chat on WhatsApp</span>
+</a>
+
+<script>
+/* ===== Scroll animation ===== */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.animate-on-scroll, .img-reveal').forEach(el => observer.observe(el));
+
+/* ===== Language toggle ===== */
+function toggleLang() {
+  const body = document.body;
+  const isEn = body.getAttribute('data-lang') === 'en';
+  body.setAttribute('data-lang', isEn ? 'it' : 'en');
+  localStorage.setItem('lang', isEn ? 'it' : 'en');
+}
+const savedLang = localStorage.getItem('lang');
+if (savedLang) document.body.setAttribute('data-lang', savedLang);
+
+/* ===== Theme toggle ===== */
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+}
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+
+/* ===== Dropdown toggle ===== */
+function toggleDropdown(header) {
+  header.parentElement.classList.toggle('open');
+}
+
+/* ===== Cookie consent ===== */
+let cookieConsentGiven = localStorage.getItem('cookieConsent');
+
+function acceptCookies(accepted) {
+  if (accepted) {
+    localStorage.setItem('cookieConsent', 'all');
+    localStorage.setItem('analyticsAllowed', 'true');
+  } else {
+    localStorage.setItem('cookieConsent', 'essential');
+    localStorage.setItem('analyticsAllowed', 'false');
+  }
+  document.getElementById('cookieBanner').classList.remove('show');
+  cookieConsentGiven = localStorage.getItem('cookieConsent');
+}
+
+function saveCookiePrefs() {
+  const analytics = document.getElementById('analyticsCookie').checked;
+  localStorage.setItem('cookieConsent', 'custom');
+  localStorage.setItem('analyticsAllowed', analytics ? 'true' : 'false');
+  document.getElementById('cookieModal').classList.remove('show');
+  document.getElementById('cookieBanner').classList.remove('show');
+  cookieConsentGiven = localStorage.getItem('cookieConsent');
+}
+
+// Close modal on overlay click
+document.getElementById('cookieModal').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('show');
+});
+
+// Hide banner if consent already given
+if (cookieConsentGiven) {
+  document.getElementById('cookieBanner').classList.remove('show');
+}
+
+// Parallax effect on images
+document.addEventListener('mousemove', function(e) {
+  const imgs = document.querySelectorAll('.img-parallax');
+  const x = (e.clientX / window.innerWidth - 0.5) * 6;
+  const y = (e.clientY / window.innerHeight - 0.5) * 6;
+  imgs.forEach(img => {
+    img.style.transform = `translate(${x}px, ${y}px)`;
+  });
+});
+
+/* ===== Mobile nav toggle ===== */
+function toggleMobileNav() {
+  document.querySelector('.nav-links').classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(function(link){
+  link.addEventListener('click', function(){
+    document.querySelector('.nav-links').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>

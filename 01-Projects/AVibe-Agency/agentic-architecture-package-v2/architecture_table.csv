@@ -1,0 +1,7 @@
+Step,Tool Used,How It Talks (the 'call'),What Happens,Why It Matters (in plain words)
+1. Customer Request,You / your client,Airtable (form or record),"Types a request, asks a question, or fills a form",Starts everything — no AI cost yet
+2. Orchestrator,Flowise / n8n-style automation,Airtable → Flowise flow,"Reads the request, decides which steps are needed and in what order","The 'traffic controller' — no reasoning, just routing rules"
+3. AI Brain,OpenRouter (model router),Flowise calls OpenRouter API,Picks the cheapest AI model smart enough for that specific task,Keeps cost low by not always using the most expensive AI
+4. Tool Connector,Composio,AI Brain calls Composio,"Lets the AI actually use your tools (Airtable, docs, files) safely",No manual copy-paste; AI acts directly inside your apps
+5. Memory,Hermes + Obsidian,Flowise writes/reads Hermes notes,Stores what happened so the next request has full context,Nothing gets 're-explained' every time — it remembers
+6. Result Delivered,Airtable record / document,Flowise writes back to Airtable,"Final answer, document or action appears where you expect it","You just see the finished output, not the process"

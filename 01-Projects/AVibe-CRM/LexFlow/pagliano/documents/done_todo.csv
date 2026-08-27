@@ -1,0 +1,44 @@
+Area,Status,Feature,Notes,Priority
+"Backend (CRM)","✅ DONE","CORS — localhost origins added","crm/__init__.py, live on prod",HIGH
+"Backend (CRM)","✅ DONE","/api/appointments — URL prefix fixed","register_blueprint without override",HIGH
+"Backend (CRM)","✅ DONE","Appointments → Google Calendar sync wired","crm/services/calendar.py, mock mode until creds",MEDIUM
+"Backend (CRM)","✅ DONE","Events.id auto-increment on Postgres","migration d4e5f6a7b8c9, was 500 bug",HIGH
+"Backend (CRM)","✅ DONE","Kanban dashboard + board routes","/kanban,/dashboard,/api/token (app.py+wsgi.py)",HIGH
+"Backend (CRM)","✅ DONE","/api/cases/bulk-update","crm/routes/cases.py, for Kanban drag-drop",HIGH
+"Backend (CRM)","✅ DONE","kanban_api_bp registration","was dead code, now active",HIGH
+"Backend (CRM)","✅ DONE","Tasks route prefix fixed","register_blueprint(tasks_bp) — was /api/ instead of /api/tasks/",HIGH
+"LP — Pagliano","✅ DONE","Hero header with interior photo + ken-burns","pagliano/static/hero-bg.png",HIGH
+"LP — Pagliano","✅ DONE","Favicon set (navy/gold P monogram)","SVG + 16/32/180/192 PNGs",HIGH
+"LP — Pagliano","✅ DONE","Mobile nav → right-side drawer","was full-screen overlay",HIGH
+"LP — Pagliano","✅ DONE","Section icons: emoji → inline SVGs","all sections (trust, areas, blog, credentials)",MEDIUM
+"LP — Pagliano","✅ DONE","Chatbot → Assistente digitale (rename + avatar)","Alessia, lady avatar dark hair",MEDIUM
+"LP — Pagliano","✅ DONE","Appointment flow (sede/telefono) in chat","POSTs JSON to /api/appointments",MEDIUM
+"LP — Pagliano","✅ DONE","Blog: ken-burns images + Leggi di più","3 themed photos + accordion text",MEDIUM
+"LP — Pagliano","✅ DONE","Chi Sono dropdown (professionista bio+credentials)","reuses .blog-more accordion",MEDIUM
+"LP — Pagliano","✅ DONE","Color tune: emerald (#1FAE72) → dusty sage (#698269)","all 31 occurrences changed",MEDIUM
+"LP — Pagliano","✅ DONE","Sans-serif card titles (Inter 650)","area-card h3 + blog-body h3",LOW
+"LP — Pagliano","✅ DONE","Relative asset paths (file:// works)","was /static/ → now static/",HIGH
+"LP — Pagliano","✅ DONE","Favicon cache-bust v=2 on Netlify","deployed to prod",MEDIUM
+"Documentation","✅ DONE","STYLEBOOK.md","arch + tokens + chatbot spec + gotchas",MEDIUM
+"Documentation","✅ DONE","This done_todo.csv","full inventory",LOW
+"Documentation","❌ TODO","Scheda.md (LP spec sheet)","",LOW
+"Documentation","❌ TODO","Sitemap.md","",LOW
+"Documentation","❌ TODO","Integration guide (deploy, endpoints, env vars, CORS)","",LOW
+"Documentation","❌ TODO","Webhook line codes","crm/services/webhook.py references",LOW
+"Documentation","❌ TODO","Multi-tenancy migration plan","Phase 1 scoped",MEDIUM
+"Backend (CRM)","❌ TODO","Auto-task on intake (Follow up)","intake.py → create Task",MEDIUM
+"Backend (CRM)","❌ TODO","Formatted case ID (e.g. PAG-2026-001)","computed property on Case model",LOW
+"Backend (CRM)","❌ TODO","Resend email integration","set RESEND_API_KEY on Railway + wire notifications",HIGH
+"Backend (CRM)","❌ TODO","Case status → email to client","on status→Active",MEDIUM
+"Backend (CRM)","❌ TODO","Google Calendar — attach real creds","need service account JSON, share calendar",MEDIUM
+"Backend (CRM)","❌ TODO","Webhook for WhatsApp/email status updates","business API integration",LOW
+"Backend (CRM)","❌ TODO","AI model integration for status summarization","",LOW
+"Multi-tenancy","⚠️ PLAN","Phase 1: tenant_id columns (DEFAULT NULL)","ALL tables, safe now",MEDIUM
+"Multi-tenancy","⚠️ PLAN","Phase 2: Middleware (g.tenant_id)","no code querying it yet, safe",MEDIUM
+"Multi-tenancy","⚠️ PLAN","Phase 3: Query filters (opt-in per route)","start with intake, then contacts, cases",HIGH
+"Multi-tenancy","⚠️ PLAN","Phase 4: Tenant onboarding + self-serve","admin panel",MEDIUM
+"Multi-tenancy","⚠️ PLAN","Auth: tenant-aware login + memberships","",HIGH
+"Chatbot","❌ TODO","AI-bot integration into handleSend()","new /api/chat endpoint + provider config",MEDIUM
+"Chatbot","❌ TODO","Pass to backend dev","remind later",LOW
+"LP — Pagliano","❌ TODO","Real portrait for Chi Sono photo","generate via FAL",LOW
+"LP — Pagliano","❌ TODO","Dark-theme colour check with dusty sage","",LOW

@@ -1,0 +1,5 @@
+"Step","What happened"
+"Image generation","Models wrote images to hosted media storage (user-gen-media-assets.s3.amazonaws.com) and returned temporary signed URLs"
+"This environment","The code sandbox cannot open those S3 URLs (TLS handshake fails: UNEXPECTED_EOF_WHILE_READING)"
+"“Share HTML with images inside”","Needs either (a) image bytes in the same environment as the HTML writer, or (b) you attaching PNGs, or (c) Claude Code on your machine with downloaded files"
+"Result","Chat showed images; no durable local files → no zip, no base64 embed, no finished index_v3.html"

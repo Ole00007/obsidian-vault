@@ -1,0 +1,8 @@
+"Aspect","stdio","http"
+"Where it runs","Locally, as a subprocess on your machine","Remotely, on someone else's server"
+"How it connects","Reads/writes via stdin/stdout — no network involved","Sends HTTP POST/GET requests over the internet modelcontextprotocol"
+"Launch method","Hermes runs a command (npx, uvx, docker) to start the tool","Hermes just calls a URL — nothing to install locally"
+"Speed","Very fast — 10,000+ ops/sec, no network latency mcpcat","Slower — 100-1,000 ops/sec, subject to network conditions mcpcat"
+"Security","Inherently more secure — no network exposure, can't be reached by other machines notes.kodekloud+1","Requires auth (API keys/tokens) since it's network-accessible kilo"
+"Needs credentials?","Usually no — runs with your local permissions","Almost always yes — needs an API key or OAuth token"
+"Best for","Local dev tools, CLI utilities, filesystem/database access","Remote SaaS services, multi-user platforms, cloud APIs notes.kodekloud"

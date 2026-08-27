@@ -1,0 +1,12 @@
+Kanban Column,Task,Owner Agent,Priority,Definition of Done,Status
+Backlog,"Claim/optimize MioDottore, Doctolib, iDoctors, Top Doctors profiles",HEAD-SEO -> customer-rel-manager,High,NAP consistency across all 4 directories,Not started
+Backlog,Build Schema AggregateRating (4.9/146 reviews) on every service page,frontend-developer,High,Schema validates in Rich Results Test,Not started
+Backlog,Publish AEO FAQ page: 'medico estetico russo Genova' (zero competitors),content-creator,High,"FAQPage schema live, cited in 1+ AI engine within 60 days",Not started
+Backlog,Publish geo-cluster pages: Ventimiglia + Palermo,content-creator,Medium,2 new pages ranking top 20 within 30 days,Not started
+To Do,Fix Flazio site access (Alena's admin invite) — infra blocker,operator-installer,Urgent,Full admin access confirmed,Blocked - pending Flazio
+To Do,"Run full technical audit (schema, CWV, redirects) on alenakrot.com",GSC-Agent + HEAD-SEO,High,Audit report with prioritized fix list delivered,Not started
+To Do,Create llms.txt / llms-full.txt for alenakrot.com,backend-developer,Medium,File live at domain root,Not started
+In Progress,"Set up GSC-Agent, ChatSEO-Agent, Cron-Agent in Hermes",operator-installer,High,All 3 agents active + connectivity test passed,In progress
+In Progress,Baseline AI-citation check (ChatGPT/Perplexity/AI Overview),ChatSEO-Agent,High,Baseline scorecard logged in memory-curator,In progress
+Review,Content brief: 'ringiovanimento viso Genova' AEO article,HEAD-SEO (QA before publish),Medium,"Brief approved, sent to content-creator",Awaiting QA
+Done,"Competitor analysis 10 competitors, 3 tiers",HEAD-SEO / marketing-analyst,-,Delivered June 2026,Complete

@@ -1,0 +1,8 @@
+"Planned endpoint","What to check for"
+"GET /health","Returns status ok + db connected LexTaskFlow_Master_Plan_v4_UPDATED.xlsx"
+"POST /auth/login","Hardcoded admin token flow LexTaskFlow_Master_Plan_v4_UPDATED.xlsx"
+"GET/POST /contacts","Full CRUD or partial? LexTaskFlow_Master_Plan_v4_UPDATED.xlsx"
+"GET/POST /cases","Full CRUD or partial? LexTaskFlow_Master_Plan_v4_UPDATED.xlsx"
+"PATCH /cases/:id/stage","Auto-writes activity row LexTaskFlow_Master_Plan_v4_UPDATED.xlsx"
+"POST /tasks","Exists at all? LexTaskFlow_Master_Plan_v4_UPDATED.xlsx"
+"POST /activities","Exists at all? LexTaskFlow_Master_Plan_v4_UPDATED.xlsx"

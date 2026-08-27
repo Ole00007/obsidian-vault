@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="slides-format" content="viewport">
+<title>SEO 2026: Термины, Автоматизация, Косметология</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<style type="text/tailwindcss">
+@theme {
+  --color-bg: #eef4fb;
+  --color-bg-deep: #e2ecf7;
+  --color-surface: #f7fafd;
+  --color-text: #1c2b3a;
+  --color-text-secondary: #48607a;
+  --color-text-muted: #7d93ac;
+  --color-accent-1: #2f6fb0;
+  --color-accent-2: #6fa8dc;
+  --color-accent-3: #9fc5e8;
+  --color-glass-bg: rgba(255,255,255,0.85);
+  --color-glass-border: rgba(47,111,176,0.14);
+  --color-vignette: rgba(47,111,176,0.06);
+  --font-display: 'DM Serif Display', serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+</style>
+
+<style>
+:root { --color-bg: #eef4fb; --color-text: #1c2b3a; --glow-color-rgb: 47,111,176; }
+*,*::before,*::after{box-sizing:border-box;}
+html,body{background:var(--color-bg);margin:0;}
+body{font-family:var(--font-body);color:var(--color-text);overflow:hidden;height:100vh;width:100vw;}
+.deck{width:100vw;height:100vh;position:relative;}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;background:var(--color-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transform:scale(0.95);transition:opacity .7s ease,transform .7s ease;pointer-events:none;overflow:hidden;}
+.slide.active{opacity:1;transform:scale(1);pointer-events:all;}
+.slide>.content{position:relative;z-index:2;width:100%;max-width:1100px;padding:clamp(1.5rem,4vw,4rem);}
+.nav-controls{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;z-index:100;background:var(--color-glass-bg);backdrop-filter:blur(10px);padding:10px 24px;border-radius:40px;border:1px solid var(--color-glass-border);}
+.nav-btn{width:40px;height:40px;border:none;background:var(--color-glass-bg);color:var(--color-accent-1);border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.nav-btn:hover{background:var(--color-glass-border);}
+.slide-dots{display:flex;gap:8px;}
+.slide-dots .dot{width:10px;height:10px;border-radius:50%;background:var(--color-glass-border);cursor:pointer;transition:background .3s,transform .3s;}
+.slide-dots .dot.active{background:var(--color-accent-1);transform:scale(1.3);}
+.slide-counter{font-size:.8rem;color:var(--color-text-muted);min-width:40px;text-align:center;}
+.reveal{opacity:0;transform:translateY(20px);}
+.gradient-mesh{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);animation:float-slow 10s ease-in-out infinite;}
+@keyframes float-slow{0%{transform:translate(0,0) scale(1);}50%{transform:translate(-30px,20px) scale(1.08);}100%{transform:translate(0,0) scale(1);}}
+.slide::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,var(--color-vignette) 100%);}
+
+/* PHOTO BLUE-TINT OVERLAY — applied to all content photos */
+.photo-frame{position:relative;overflow:hidden;border-radius:var(--radius-lg,16px);}
+.photo-frame img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(0.9) brightness(1.02);}
+.photo-frame::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(160deg, rgba(47,111,176,0.38) 0%, rgba(111,168,220,0.22) 55%, rgba(159,197,232,0.30) 100%);
+  mix-blend-mode:multiply;
+  pointer-events:none;
+}
+.photo-frame::before{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:rgba(47,111,176,0.10);
+  pointer-events:none;
+}
+
+.card{background:var(--color-glass-bg);border:1px solid var(--color-glass-border);box-shadow:0 4px 18px rgba(47,111,176,0.08);border-radius:16px;}
+.badge{display:inline-flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:var(--color-accent-1);border-radius:9999px;}
+</style>
+</head>
+<body>
+
+<div class="mouse-spotlight" style="position:fixed;inset:0;z-index:99;pointer-events:none;"></div>
+
+<div class="deck">
+
+<!-- SLIDE 1: TITLE -->
+<div class="slide slide-1 active" data-slide="1">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:480px;height:480px;top:-100px;right:-100px;background:var(--color-accent-1);opacity:0.14;"></div>
+    <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:var(--color-accent-2);opacity:0.12;"></div>
+    <div class="blob" style="width:220px;height:220px;top:35%;left:12%;background:var(--color-accent-3);opacity:0.10;"></div>
+  </div>
+  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+  <div class="content text-center">
+    <div class="text-[64px] mb-5 animate-[float_3s_ease-in-out_infinite]">🔎</div>
+    <h1 class="font-display text-[clamp(2.2rem,5vw,4rem)] font-bold text-accent-1 tracking-tight mb-4 reveal">SEO 2026: термины и автоматизация</h1>
+    <p class="text-[clamp(0.9rem,1.4vw,1.2rem)] font-light text-text-muted tracking-[4px] uppercase reveal">PBN · НЧ/СЧ · EEAT · Масштабирование контента</p>
+  </div>
+</div>
+
+<!-- SLIDE 2: PBN -->
+<div class="slide slide-2" data-slide="2">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:340px;height:340px;top:-70px;right:-70px;background:var(--color-accent-1);opacity:0.08;"></div>
+    <div class="blob" style="width:240px;height:240px;bottom:-60px;left:-40px;background:var(--color-accent-2);opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <h2 class="font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-bold text-accent-1 reveal mb-6">Что такое PBN</h2>
+    <div class="grid grid-cols-2 gap-8 items-center">
+      <div class="reveal">
+        <p class="text-lg text-text-secondary mb-4"><b class="text-accent-1">PBN — Private Blog Network.</b> Сеть собственных блогов, с которых ставят ссылки на основной сайт, чтобы передавать ему ссылочный вес.</p>
+        <div class="card p-5">
+          <p class="text-sm text-text-secondary">Обычно реализуется как набор блогов на WordPress-подобных платформах, публикующих статьи со ссылками только на целевой ресурс.</p>
+        </div>
+      </div>
+      <div class="reveal photo-frame" style="aspect-ratio:4/3;">
+        <img src="https://picsum.photos/seed/pbnnetwork/700/540" alt="Схема сети сайтов">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: НЧ/СЧ -->
+<div class="slide slide-3" data-slide="3">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:320px;height:320px;top:-60px;left:-60px;background:var(--color-accent-2);opacity:0.08;"></div>
+  </div>
+  <div class="content">
+    <h2 class="font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-bold text-accent-1 reveal mb-6">НЧ и СЧ запросы</h2>
+    <div class="grid grid-cols-2 gap-6">
+      <div class="card p-6 reveal">
+        <span class="badge px-4 py-1 text-xs mb-3">НЧ</span>
+        <h3 class="font-semibold text-lg mb-2">Низкочастотные</h3>
+        <p class="text-text-secondary text-sm">Узкие, конкретные запросы. Меньше спроса, но выше точность намерения пользователя.</p>
+      </div>
+      <div class="card p-6 reveal">
+        <span class="badge px-4 py-1 text-xs mb-3">СЧ</span>
+        <h3 class="font-semibold text-lg mb-2">Среднечастотные</h3>
+        <p class="text-text-secondary text-sm">Более широкие и конкурентные запросы, но всё ещё предметные.</p>
+      </div>
+    </div>
+    <div class="card p-5 mt-6 reveal">
+      <p class="text-sm text-text-secondary">Под такие запросы удобно делать много узких подборок, рейтингов и списков — это забирает широкое покрытие выдачи.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: EEAT -->
+<div class="slide slide-4" data-slide="4">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:360px;height:360px;bottom:-80px;right:-60px;background:var(--color-accent-1);opacity:0.08;"></div>
+  </div>
+  <div class="content">
+    <h2 class="font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-bold text-accent-1 reveal mb-6">Расшифровка EEAT</h2>
+    <div class="grid grid-cols-2 gap-8 items-center">
+      <div class="grid grid-cols-2 gap-4 reveal">
+        <div class="card p-4 text-center"><div class="text-2xl mb-1">🧭</div><p class="text-xs font-semibold">Experience</p><p class="text-[11px] text-text-muted">опыт</p></div>
+        <div class="card p-4 text-center"><div class="text-2xl mb-1">🎓</div><p class="text-xs font-semibold">Expertise</p><p class="text-[11px] text-text-muted">экспертность</p></div>
+        <div class="card p-4 text-center"><div class="text-2xl mb-1">🏛️</div><p class="text-xs font-semibold">Authoritativeness</p><p class="text-[11px] text-text-muted">авторитетность</p></div>
+        <div class="card p-4 text-center"><div class="text-2xl mb-1">🤝</div><p class="text-xs font-semibold">Trustworthiness</p><p class="text-[11px] text-text-muted">доверие</p></div>
+      </div>
+      <div class="reveal photo-frame" style="aspect-ratio:4/3;">
+        <img src="https://picsum.photos/seed/eeattrust/700/540" alt="Доверие и экспертность">
+      </div>
+    </div>
+    <p class="text-sm text-text-secondary mt-6 reveal">Масштабирование контента через AI не должно разрушать эти сигналы доверия к сайту.</p>
+  </div>
+</div>
+
+<!-- SLIDE 5: AUTOMATION -->
+<div class="slide slide-5" data-slide="5">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-60px;background:var(--color-accent-2);opacity:0.08;"></div>
+  </div>
+  <div class="content">
+    <h2 class="font-display text-[clamp(1.8rem,3.2vw,2.4rem)] font-bold text-accent-1 reveal mb-6">Масштабирование контента</h2>
+    <div class="grid grid-cols-2 gap-8 items-center">
+      <ul class="text-sm text-text-secondary space-y-3 reveal">
+        <li>1. Кластеризовать темы (например: биоревитализация, лазерное омоложение, чистка лица)</li>
+        <li>2. Генерировать серии страниц: топ-5, сравнения, ошибки, "кому подходит"</li>
+        <li>3. Автособирать каркас: H1/H2/FAQ/плюсы/CTA</li>
+        <li>4. Добавлять экспертный слой вручную: врач, противопоказания, кейсы</li>
+        <li>5. Публиковать сериями, закрывая весь кластер</li>
+      </ul>
+      <div class="reveal photo-frame" style="aspect-ratio:4/3;">
+        <img src="https://picsum.photos/seed/contentpipeline/700/540" alt="Конвейер контента">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: COSMETOLOGY EXAMPLES -->
+<div class="slide slide-6" data-slide="6">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;bottom:-60px;left:-60px;background:var(--color-accent-1);opacity:0.08;"></div>
+  </div>
+  <div class="content">
+    <h2 class="font-display text-[clamp(1.8rem,3.2vw,2.4rem)] font-bold text-accent-1 reveal mb-6">Примеры для косметологии</h2>
+    <div class="grid grid-cols-2 gap-6">
+      <div class="reveal photo-frame" style="aspect-ratio:1/1;">
+        <img src="https://picsum.photos/seed/cosmetology1/560/560" alt="Косметологическая процедура">
+      </div>
+      <div class="space-y-3 reveal">
+        <div class="card p-4 text-sm">"Биоревитализация для сухой кожи после 35: кому подходит, чего ожидать"</div>
+        <div class="card p-4 text-sm">"Топ-7 процедур для тусклой кожи: сравнение по восстановлению и эффекту"</div>
+        <div class="card p-4 text-sm">"Лазерное омоложение или RF-лифтинг: что выбрать"</div>
+        <div class="card p-4 text-sm">"5 ошибок после чистки лица, которые снижают результат"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: NOT ONLY WORDPRESS -->
+<div class="slide slide-7" data-slide="7">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:320px;height:320px;top:-60px;right:-60px;background:var(--color-accent-2);opacity:0.08;"></div>
+  </div>
+  <div class="content">
+    <h2 class="font-display text-[clamp(1.8rem,3.2vw,2.4rem)] font-bold text-accent-1 reveal mb-6">Не только WordPress</h2>
+    <div class="grid grid-cols-2 gap-8 items-center">
+      <div class="reveal photo-frame" style="aspect-ratio:4/3;">
+        <img src="https://picsum.photos/seed/nocode2026/700/540" alt="No-code платформы">
+      </div>
+      <div class="space-y-3 reveal text-sm text-text-secondary">
+        <p><b class="text-accent-1">Основной сайт</b> — ручной контроль качества, без вмешательства SEO-агента.</p>
+        <p><b class="text-accent-1">SEO-лендинги</b> — отдельный автономный слой: статический HTML, Lovable, Wix.</p>
+        <p>Смысл не в CMS-бренде, а в конвейере: шаблоны + данные + публикация.</p>
+        <p>Хранить матрицу: тема, город, проблема, аудитория, CTA, schema, FAQ.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: CLOSING -->
+<div class="slide slide-8" data-slide="8">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:460px;height:460px;top:-100px;left:-100px;background:var(--color-accent-1);opacity:0.15;"></div>
+    <div class="blob" style="width:300px;height:300px;bottom:-80px;right:-60px;background:var(--color-accent-2);opacity:0.12;"></div>
+  </div>
+  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+  <div class="content text-center">
+    <div class="text-[56px] mb-4">✨</div>
+    <h2 class="font-display text-[clamp(1.8rem,4vw,3rem)] font-bold text-accent-1 reveal mb-3">Готово к запуску</h2>
+    <p class="text-sm text-text-muted tracking-[4px] uppercase reveal">Шаблон статьи и Hermes-конфиги — в следующих файлах</p>
+  </div>
+</div>
+
+</div>
+
+<div class="nav-controls">
+  <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
+  <div class="slide-dots" id="dots"></div>
+  <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
+  <span class="slide-counter" id="counter">1 / 8</span>
+</div>
+
+<script>
+let current=1;
+const total=document.querySelectorAll('.slide').length;
+const dotsContainer=document.getElementById('dots');
+const counter=document.getElementById('counter');
+for(let i=1;i<=total;i++){const dot=document.createElement('div');dot.className='dot'+(i===1?' active':'');dot.onclick=()=>goToSlide(i);dotsContainer.appendChild(dot);}
+function goToSlide(n){const prev=document.querySelector('.slide.active');const next=document.querySelector(`.slide[data-slide="${n}"]`);if(prev)prev.classList.remove('active');if(next){next.classList.add('active');animateSlide(next);}current=n;updateNav();}
+function changeSlide(dir){let next=current+dir;if(next<1)next=total;if(next>total)next=1;goToSlide(next);}
+function updateNav(){document.querySelectorAll('.dot').forEach((d,i)=>{d.classList.toggle('active',i+1===current);});counter.textContent=current+' / '+total;}
+document.addEventListener('keydown',(e)=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();changeSlide(1);}if(e.key==='ArrowLeft'){e.preventDefault();changeSlide(-1);}});
+let touchStartX=0;
+document.addEventListener('touchstart',(e)=>{touchStartX=e.touches[0].clientX;});
+document.addEventListener('touchend',(e)=>{const diff=touchStartX-e.changedTouches[0].clientX;if(Math.abs(diff)>50)changeSlide(diff>0?1:-1);});
+function animateSlide(slide){slide.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transition='none';el.style.opacity='0';el.style.transform='translateY(20px)';el.offsetHeight;const delay=i*0.08;el.style.transition=`opacity 0.35s ease ${delay}s, transform 0.35s ease ${delay}s`;el.style.opacity='1';el.style.transform='translateY(0px)';});}
+document.addEventListener('mousemove',(e)=>{const spotlight=document.querySelector('.mouse-spotlight');if(spotlight){const rgb=getComputedStyle(document.documentElement).getPropertyValue('--glow-color-rgb').trim()||'47,111,176';spotlight.style.background=`radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(${rgb}, 0.06), transparent 40%)`;}});
+window.initParticles=function(canvas,options){if(!canvas)return;const ctx=canvas.getContext('2d');canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;const interactive=options.interactive!==false;const count=options.count||(interactive?55:18);let mx=-1000,my=-1000;const rgb=getComputedStyle(document.documentElement).getPropertyValue('--glow-color-rgb').trim()||'47,111,176';const[r,g,b]=rgb.split(',').map(Number);const particles=Array.from({length:count},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,size:Math.random()*2.5+0.8,alpha:Math.random()*0.35+0.1}));if(interactive){canvas.addEventListener('mousemove',(e)=>{const rect=canvas.getBoundingClientRect();mx=e.clientX-rect.left;my=e.clientY-rect.top;});canvas.addEventListener('mouseleave',()=>{mx=-1000;my=-1000;});}(function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{if(interactive){const dx=p.x-mx,dy=p.y-my,dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){const force=(120-dist)/120*2;p.vx+=(dx/dist)*force*0.1;p.vy+=(dy/dist)*force*0.1;}}p.vx*=0.98;p.vy*=0.98;p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle=`rgba(${r},${g},${b},${p.alpha})`;ctx.fill();});requestAnimationFrame(animate);})();};
+document.querySelectorAll('.particle-canvas').forEach(c=>window.initParticles(c,{interactive:true,count:55}));
+try{animateSlide(document.querySelector('.slide.active'));}catch(e){console.warn(e);}
+</script>
+</body>
+</html>

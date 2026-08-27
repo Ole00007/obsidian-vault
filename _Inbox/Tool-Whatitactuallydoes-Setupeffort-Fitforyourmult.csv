@@ -1,0 +1,4 @@
+"Tool","What it actually does","Setup effort","Fit for your multi-device plan"
+"Syncthing","Free P2P file sync engine — moves your vault's files between devices directly, no cloud middleman synch+1","Medium — you manage conflicts, device timing, mobile quirks yourself obsidian+1","Good as your vault sync layer, but only if you're comfortable with some tinkering"
+"BRAT + Hermes Obsidian plugin","Plugin installer/updater that lets you run the Hermes chat interface inside Obsidian's sidebar obsidian","Low — one-time install, auto-updates","This is your in-app bridge, not a sync tool — install once per device, no comparison needed"
+"Hermes Agent software","The actual AI agent engine (MIT license, free) that reads/writes vault files via Filesystem MCP hermes-agent.nousresearch+1","Medium — needs MCP config pointing at a scoped vault folder","This is your agent brain, works alongside whichever sync method you pick"

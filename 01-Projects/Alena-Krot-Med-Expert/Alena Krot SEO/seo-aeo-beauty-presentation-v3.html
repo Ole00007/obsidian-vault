@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>SEO x AEO для индустрии красоты — гайд</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6fafd;
+  --bg-deep:#eef6fb;
+  --surface:#ffffff;
+  --surface-2:#f1f7fb;
+  --border:rgba(15,45,70,0.08);
+  --text:#0f2a3e;
+  --text-mid:#3d5a70;
+  --text-muted:#7b93a4;
+  --accent:#3f8fc4;
+  --accent-2:#8fd0d8;
+  --accent-deep:#1f5d85;
+  --gold:#c9a86a;
+  --radius:18px;
+  --shadow:0 10px 30px rgba(15,60,90,0.08);
+  --maxw:1100px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Manrope',sans-serif;
+  background:linear-gradient(180deg,var(--bg) 0%,var(--bg-deep) 100%);
+  color:var(--text);
+  line-height:1.55;
+  min-width:316px;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--text);letter-spacing:.2px;}
+p,li{color:var(--text-mid);}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
+a{color:inherit;text-decoration:none;}
+
+/* ===== NAV ===== */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:var(--maxw);margin:0 auto;padding:12px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.logo{display:flex;align-items:center;gap:8px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.15rem;color:var(--accent-deep);white-space:nowrap;}
+.logo svg{flex-shrink:0;}
+.nav-links{
+  display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;justify-content:center;
+}
+.nav-links::-webkit-scrollbar{display:none;}
+.nav-links a{
+  font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--text-mid);padding:8px 12px;border-radius:999px;white-space:nowrap;
+  transition:background .25s,color .25s;
+}
+.nav-links a:hover,.nav-links a.active{background:var(--accent);color:#fff;}
+.lang-toggle{
+  display:flex;align-items:center;background:var(--surface-2);border-radius:999px;padding:3px;border:1px solid var(--border);flex-shrink:0;
+}
+.lang-toggle button{
+  border:none;background:transparent;padding:6px 12px;font-size:.72rem;font-weight:700;border-radius:999px;cursor:pointer;color:var(--text-muted);
+  transition:all .25s;
+}
+.lang-toggle button.active{background:var(--accent-deep);color:#fff;}
+
+/* ===== HERO ===== */
+.hero{padding:56px 0 40px;position:relative;overflow:hidden;}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;}
+.eyebrow{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-deep);margin-bottom:14px;display:inline-block;background:var(--surface-2);padding:6px 14px;border-radius:999px;border:1px solid var(--border);}
+.hero h1{font-size:clamp(1.9rem,4.2vw,3.1rem);line-height:1.12;margin-bottom:16px;}
+.hero p.lead{font-size:1.02rem;color:var(--text-mid);max-width:52ch;margin-bottom:22px;}
+.hero-stats{display:flex;gap:14px;flex-wrap:wrap;}
+.stat-pill{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 16px;box-shadow:var(--shadow);min-width:112px;}
+.stat-pill b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--accent-deep);}
+.stat-pill span{font-size:.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em;}
+.hero-visual{position:relative;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;}
+
+/* ===== SECTION ===== */
+section{padding:44px 0;border-top:1px solid var(--border);}
+.section-head{margin-bottom:26px;}
+.section-head .eyebrow{margin-bottom:10px;}
+.section-head h2{font-size:clamp(1.5rem,3vw,2.1rem);}
+.section-head p{max-width:60ch;margin-top:8px;}
+
+/* ===== TERMS GRID ===== */
+.terms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.term-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;}
+.term-badge{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-family:'Cormorant Garamond',serif;font-size:1.1rem;}
+.term-card h3{font-size:1.15rem;}
+.term-card p{font-size:.88rem;}
+
+/* PBN diagram */
+.pbn-diagram{margin-top:22px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;display:grid;grid-template-columns:1fr;gap:18px;}
+.pbn-svg-wrap{display:flex;justify-content:center;}
+.pbn-legend{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;font-size:.78rem;color:var(--text-muted);}
+.pbn-legend span{display:flex;align-items:center;gap:6px;}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+
+/* funnel НЧ/СЧ */
+.funnel-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:22px;}
+.funnel-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);}
+.funnel-card h4{font-size:1rem;margin-bottom:10px;color:var(--accent-deep);}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.bar-row .label{font-size:.72rem;color:var(--text-muted);width:64px;flex-shrink:0;}
+.bar-track{flex:1;height:14px;background:var(--surface-2);border-radius:8px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--accent-2));}
+
+/* automation dashboard */
+.dash{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px;}
+.dash-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);text-align:center;}
+.dash-card b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--accent-deep);}
+.dash-card span{font-size:.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.03em;}
+
+.pipeline{display:flex;gap:0;margin-top:24px;overflow-x:auto;padding-bottom:6px;}
+.pipe-step{flex:1;min-width:150px;background:var(--surface);border:1px solid var(--border);padding:18px;position:relative;box-shadow:var(--shadow);}
+.pipe-step:first-child{border-radius:var(--radius) 0 0 var(--radius);}
+.pipe-step:last-child{border-radius:0 var(--radius) var(--radius) 0;}
+.pipe-step .n{width:26px;height:26px;border-radius:50%;background:var(--accent-deep);color:#fff;font-size:.75rem;display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:10px;}
+.pipe-step h5{font-size:.92rem;margin-bottom:4px;}
+.pipe-step p{font-size:.74rem;}
+
+/* examples cards cosmetology */
+.example-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:22px;}
+.example-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+.example-visual{height:90px;background:linear-gradient(135deg,var(--accent-2),var(--accent));position:relative;}
+.example-visual svg{position:absolute;inset:0;width:100%;height:100%;}
+.example-body{padding:16px 18px;}
+.example-body h4{font-size:.98rem;margin-bottom:6px;}
+.example-body p{font-size:.82rem;}
+
+/* platform comparison table */
+.platform-table{margin-top:22px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+table{width:100%;border-collapse:collapse;font-size:.85rem;}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--border);}
+th{background:var(--surface-2);color:var(--accent-deep);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;}
+tr:last-child td{border-bottom:none;}
+.tag{display:inline-block;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--accent-deep);}
+
+/* article template */
+.template-outline{margin-top:22px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;}
+.outline-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--border);align-items:flex-start;}
+.outline-item:last-child{border-bottom:none;}
+.outline-tag{font-size:.65rem;font-weight:800;background:var(--accent-deep);color:#fff;padding:3px 8px;border-radius:6px;flex-shrink:0;margin-top:2px;}
+.outline-item p{font-size:.85rem;color:var(--text-mid);}
+
+/* footer */
+footer{padding:40px 0 60px;text-align:center;}
+footer h3{font-size:1.4rem;margin-bottom:10px;}
+footer p{max-width:50ch;margin:0 auto 18px;}
+.cta-btn{display:inline-block;background:var(--accent-deep);color:#fff;padding:12px 26px;border-radius:999px;font-weight:700;font-size:.85rem;box-shadow:var(--shadow);}
+
+/* lang visibility */
+[data-lang="en"]{display:none;}
+body.lang-en [data-lang="ru"]{display:none;}
+body.lang-en [data-lang="en"]{display:inline;}
+body.lang-en [data-lang="en"].block{display:block;}
+[data-lang="ru"].block{display:block;}
+
+/* ===== responsive ===== */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-visual{max-width:280px;margin:0 auto;order:-1;}
+  .terms-grid{grid-template-columns:repeat(2,1fr);}
+  .funnel-wrap{grid-template-columns:1fr;}
+  .dash{grid-template-columns:repeat(2,1fr);}
+  .example-grid{grid-template-columns:1fr;}
+}
+@media (max-width:560px){
+  .terms-grid{grid-template-columns:1fr;}
+  .dash{grid-template-columns:repeat(2,1fr);}
+  .nav-inner{flex-wrap:wrap;}
+  .nav-links{order:3;width:100%;justify-content:flex-start;}
+  th,td{padding:9px 8px;font-size:.75rem;}
+  .hero-stats{gap:8px;}
+  .stat-pill{min-width:92px;padding:10px 12px;}
+}
+@media (max-width:340px){
+  .container{padding:0 12px;}
+  .hero h1{font-size:1.6rem;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.4"/><path d="M8 12c0-3 2-5 4-5s4 2 4 5-2 5-4 5-4-2-4-5Z" stroke="currentColor" stroke-width="1.2"/></svg>
+      <span data-lang="ru" class="block">SEO×AEO Beauty</span>
+      <span data-lang="en">SEO×AEO Beauty</span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#terms" data-lang="ru" class="block">Термины</a><a href="#terms" data-lang="en">Terms</a>
+      <a href="#automation" data-lang="ru" class="block">Автоматизация</a><a href="#automation" data-lang="en">Automation</a>
+      <a href="#platforms" data-lang="ru" class="block">Платформы</a><a href="#platforms" data-lang="en">Platforms</a>
+      <a href="#template" data-lang="ru" class="block">Шаблон статьи</a><a href="#template" data-lang="en">Article template</a>
+    </div>
+    <div class="lang-toggle">
+      <button id="btnRu" class="active">RU</button>
+      <button id="btnEn">EN</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow" data-lang="ru">SEO × AEO × Beauty</span>
+      <span class="eyebrow" data-lang="en">SEO × AEO × Beauty</span>
+      <h1 data-lang="ru">Термины, автоматизация и масштабирование контента для косметологии</h1>
+      <h1 data-lang="en">Terms, automation and content scaling for cosmetology</h1>
+      <p class="lead" data-lang="ru">Расшифровка PBN, НЧ/СЧ и EEAT — и практическая схема, как масштабировать SEO-контент клиники красоты через автоматизацию, не теряя доверие.</p>
+      <p class="lead" data-lang="en">A breakdown of PBN, long/mid-tail queries and EEAT — plus a practical scheme for scaling a beauty clinic's SEO content through automation without losing trust.</p>
+      <div class="hero-stats">
+        <div class="stat-pill"><b>PBN</b><span data-lang="ru">сеть блогов</span><span data-lang="en">blog network</span></div>
+        <div class="stat-pill"><b>НЧ/СЧ</b><span data-lang="ru">частотность</span><span data-lang="en">query volume</span></div>
+        <div class="stat-pill"><b>EEAT</b><span data-lang="ru">доверие</span><span data-lang="en">trust signal</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg viewBox="0 0 260 260" width="100%" height="100%">
+        <circle cx="130" cy="130" r="110" fill="url(#g1)"/>
+        <circle cx="130" cy="130" r="82" fill="#fff" opacity="0.6"/>
+        <circle cx="130" cy="70" r="7" fill="#3f8fc4"/>
+        <circle cx="80" cy="150" r="7" fill="#8fd0d8"/>
+        <circle cx="180" cy="150" r="7" fill="#c9a86a"/>
+        <circle cx="130" cy="130" r="14" fill="#1f5d85"/>
+        <line x1="130" y1="130" x2="130" y2="70" stroke="#1f5d85" stroke-width="2"/>
+        <line x1="130" y1="130" x2="80" y2="150" stroke="#1f5d85" stroke-width="2"/>
+        <line x1="130" y1="130" x2="180" y2="150" stroke="#1f5d85" stroke-width="2"/>
+        <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf5fa"/><stop offset="1" stop-color="#d9edf5"/></linearGradient></defs>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="terms">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-lang="ru">Расшифровка</span><span class="eyebrow" data-lang="en">Glossary</span>
+      <h2 data-lang="ru">PBN, НЧ/СЧ и EEAT простыми словами</h2>
+      <h2 data-lang="en">PBN, long/mid-tail and EEAT in plain terms</h2>
+    </div>
+    <div class="terms-grid">
+      <div class="term-card">
+        <div class="term-badge">PBN</div>
+        <h3 data-lang="ru">Private Blog Network</h3>
+        <h3 data-lang="en">Private Blog Network</h3>
+        <p data-lang="ru">Сеть собственных блогов, с которых ставят ссылки на основной сайт, чтобы усилить его позиции в выдаче.</p>
+        <p data-lang="en">A network of owned blogs linking back to the main site to strengthen its search rankings.</p>
+      </div>
+      <div class="term-card">
+        <div class="term-badge">СЧ</div>
+        <h3 data-lang="ru">Среднечастотные запросы</h3>
+        <h3 data-lang="en">Mid-tail queries</h3>
+        <p data-lang="ru">Более широкие и конкурентные формулировки со средним спросом, часто на уровне категории услуги.</p>
+        <p data-lang="en">Broader, more competitive queries with moderate search volume, usually at the service-category level.</p>
+      </div>
+      <div class="term-card">
+        <div class="term-badge">НЧ</div>
+        <h3 data-lang="ru">Низкочастотные запросы</h3>
+        <h3 data-lang="en">Long-tail queries</h3>
+        <p data-lang="ru">Узкие, конкретные формулировки с меньшим спросом, но высокой точностью намерения пользователя.</p>
+        <p data-lang="en">Narrow, specific queries with lower volume but much higher intent precision.</p>
+      </div>
+    </div>
+
+    <div class="pbn-diagram">
+      <div class="pbn-svg-wrap">
+        <svg viewBox="0 0 420 160" width="100%" height="150">
+          <circle cx="210" cy="80" r="26" fill="#1f5d85"/>
+          <text x="210" y="85" text-anchor="middle" fill="#fff" font-size="11" font-family="Manrope">Main site</text>
+          <g stroke="#8fd0d8" stroke-width="1.6">
+            <line x1="210" y1="80" x2="60" y2="30"/><line x1="210" y1="80" x2="60" y2="80"/><line x1="210" y1="80" x2="60" y2="130"/>
+            <line x1="210" y1="80" x2="360" y2="30"/><line x1="210" y1="80" x2="360" y2="80"/><line x1="210" y1="80" x2="360" y2="130"/>
+          </g>
+          <g fill="#3f8fc4">
+            <circle cx="60" cy="30" r="12"/><circle cx="60" cy="80" r="12"/><circle cx="60" cy="130" r="12"/>
+            <circle cx="360" cy="30" r="12"/><circle cx="360" cy="80" r="12"/><circle cx="360" cy="130" r="12"/>
+          </g>
+        </svg>
+      </div>
+      <div class="pbn-legend">
+        <span><span class="dot" style="background:#1f5d85"></span><span data-lang="ru">основной сайт</span><span data-lang="en">main site</span></span>
+        <span><span class="dot" style="background:#3f8fc4"></span><span data-lang="ru">блоги PBN</span><span data-lang="en">PBN blogs</span></span>
+      </div>
+    </div>
+
+    <div class="funnel-wrap">
+      <div class="funnel-card">
+        <h4 data-lang="ru">Пример СЧ-запроса</h4>
+        <h4 data-lang="en">Mid-tail example</h4>
+        <div class="bar-row"><span class="label" data-lang="ru">объём</span><span class="label" data-lang="en">volume</span><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></div>
+        <div class="bar-row"><span class="label" data-lang="ru">точность</span><span class="label" data-lang="en">intent</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div></div>
+        <p data-lang="ru">«биоревитализация лица» — широкая тема, высокая конкуренция.</p>
+        <p data-lang="en">"facial biorevitalization" — broad topic, high competition.</p>
+      </div>
+      <div class="funnel-card">
+        <h4 data-lang="ru">Пример НЧ-запроса</h4>
+        <h4 data-lang="en">Long-tail example</h4>
+        <div class="bar-row"><span class="label" data-lang="ru">объём</span><span class="label" data-lang="en">volume</span><div class="bar-track"><div class="bar-fill" style="width:25%"></div></div></div>
+        <div class="bar-row"><span class="label" data-lang="ru">точность</span><span class="label" data-lang="en">intent</span><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div></div>
+        <p data-lang="ru">«биоревитализация для сухой кожи после 35» — узко, но конверсионно.</p>
+        <p data-lang="en">"biorevitalization for dry skin after 35" — narrow, but converts well.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="eeat">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-lang="ru">Доверие</span><span class="eyebrow" data-lang="en">Trust</span>
+      <h2 data-lang="ru">EEAT: опыт, экспертность, авторитетность, доверие</h2>
+      <h2 data-lang="en">EEAT: Experience, Expertise, Authoritativeness, Trust</h2>
+    </div>
+    <div class="terms-grid">
+      <div class="term-card"><div class="term-badge">E</div><h3 data-lang="ru">Experience</h3><h3 data-lang="en">Experience</h3><p data-lang="ru">Личный опыт автора с темой или процедурой.</p><p data-lang="en">The author's real hands-on experience with the topic.</p></div>
+      <div class="term-card"><div class="term-badge">E</div><h3 data-lang="ru">Expertise</h3><h3 data-lang="en">Expertise</h3><p data-lang="ru">Профессиональные знания и квалификация.</p><p data-lang="en">Professional knowledge and qualification.</p></div>
+      <div class="term-card"><div class="term-badge">A</div><h3 data-lang="ru">Authoritativeness</h3><h3 data-lang="en">Authoritativeness</h3><p data-lang="ru">Признание в отрасли, ссылки, репутация.</p><p data-lang="en">Industry recognition, citations, reputation.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="automation">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-lang="ru">Масштабирование</span><span class="eyebrow" data-lang="en">Scaling</span>
+      <h2 data-lang="ru">Автоматизация контента для клиники красоты</h2>
+      <h2 data-lang="en">Content automation for a beauty clinic</h2>
+      <p data-lang="ru">Не «нейросеть пишет статью», а конвейер: кластер тем → серия страниц → каркас → экспертный слой → публикация.</p>
+      <p data-lang="en">Not "AI writes an article" — a pipeline: topic cluster → page series → skeleton → expert layer → publish.</p>
+    </div>
+
+    <div class="dash">
+      <div class="dash-card"><b>4</b><span data-lang="ru">кластера тем</span><span data-lang="en">topic clusters</span></div>
+      <div class="dash-card"><b>20+</b><span data-lang="ru">НЧ-страниц</span><span data-lang="en">long-tail pages</span></div>
+      <div class="dash-card"><b>1</b><span data-lang="ru">шаблон каркаса</span><span data-lang="en">page skeleton</span></div>
+      <div class="dash-card"><b>100%</b><span data-lang="ru">экспертная проверка</span><span data-lang="en">expert reviewed</span></div>
+    </div>
+
+    <div class="pipeline">
+      <div class="pipe-step"><div class="n">1</div><h5 data-lang="ru">Сбор сущностей</h5><h5 data-lang="en">Entity collection</h5><p data-lang="ru">Процедуры, проблемы, аудитории.</p><p data-lang="en">Procedures, problems, audiences.</p></div>
+      <div class="pipe-step"><div class="n">2</div><h5 data-lang="ru">Параметры</h5><h5 data-lang="en">Parameters</h5><p data-lang="ru">Плюсы, минусы, сроки, эффект.</p><p data-lang="en">Pros, cons, timing, effect.</p></div>
+      <div class="pipe-step"><div class="n">3</div><h5 data-lang="ru">Каркас статьи</h5><h5 data-lang="en">Article skeleton</h5><p data-lang="ru">H1/H2/FAQ автоматически.</p><p data-lang="en">H1/H2/FAQ generated.</p></div>
+      <div class="pipe-step"><div class="n">4</div><h5 data-lang="ru">Экспертный слой</h5><h5 data-lang="en">Expert layer</h5><p data-lang="ru">Комментарий врача, риски.</p><p data-lang="en">Doctor's note, risk caveats.</p></div>
+      <div class="pipe-step"><div class="n">5</div><h5 data-lang="ru">Публикация серией</h5><h5 data-lang="en">Series publish</h5><p data-lang="ru">Весь кластер, не одна статья.</p><p data-lang="en">Whole cluster, not one post.</p></div>
+    </div>
+
+    <div class="example-grid">
+      <div class="example-card">
+        <div class="example-visual"><svg viewBox="0 0 200 90"><path d="M0 60 Q50 20 100 45 T200 30" stroke="#fff" stroke-width="2.5" fill="none" opacity="0.85"/><circle cx="150" cy="35" r="4" fill="#fff"/></svg></div>
+        <div class="example-body"><h4 data-lang="ru">Биоревитализация после 35</h4><h4 data-lang="en">Biorevitalization after 35</h4><p data-lang="ru">Кому подходит, сколько держится эффект, чего ожидать.</p><p data-lang="en">Who it's for, how long it lasts, what to expect.</p></div>
+      </div>
+      <div class="example-card">
+        <div class="example-visual"><svg viewBox="0 0 200 90"><rect x="20" y="40" width="18" height="35" fill="#fff" opacity="0.85"/><rect x="50" y="25" width="18" height="50" fill="#fff" opacity="0.7"/><rect x="80" y="15" width="18" height="60" fill="#fff" opacity="0.9"/><rect x="110" y="35" width="18" height="40" fill="#fff" opacity="0.6"/></svg></div>
+        <div class="example-body"><h4 data-lang="ru">Топ-7 процедур для тусклой кожи</h4><h4 data-lang="en">Top-7 treatments for dull skin</h4><p data-lang="ru">Сравнение по восстановлению, цене, эффекту.</p><p data-lang="en">Compared by downtime, price, effect.</p></div>
+      </div>
+      <div class="example-card">
+        <div class="example-visual"><svg viewBox="0 0 200 90"><circle cx="60" cy="45" r="26" fill="none" stroke="#fff" stroke-width="4" opacity="0.85"/><circle cx="140" cy="45" r="26" fill="none" stroke="#fff" stroke-width="4" opacity="0.6" stroke-dasharray="4 5"/></svg></div>
+        <div class="example-body"><h4 data-lang="ru">Лазер или RF-лифтинг</h4><h4 data-lang="en">Laser vs RF-lifting</h4><p data-lang="ru">Что выбрать при первых признаках старения.</p><p data-lang="en">What to choose at the first signs of aging.</p></div>
+      </div>
+      <div class="example-card">
+        <div class="example-visual"><svg viewBox="0 0 200 90"><path d="M20 70 L60 30 L100 55 L140 20 L180 45" stroke="#fff" stroke-width="2.5" fill="none" opacity="0.85"/></svg></div>
+        <div class="example-body"><h4 data-lang="ru">5 ошибок после чистки лица</h4><h4 data-lang="en">5 mistakes after facial cleansing</h4><p data-lang="ru">Как не снизить результат процедуры.</p><p data-lang="en">How not to reduce the treatment's result.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="platforms">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-lang="ru">Не только WordPress</span><span class="eyebrow" data-lang="en">Beyond WordPress</span>
+      <h2 data-lang="ru">Где физически собирать SEO-страницы</h2>
+      <h2 data-lang="en">Where to actually build the SEO pages</h2>
+    </div>
+    <div class="platform-table">
+      <table>
+        <thead><tr>
+          <th data-lang="ru">Платформа</th><th data-lang="en">Platform</th>
+          <th data-lang="ru">Скорость</th><th data-lang="en">Speed</th>
+          <th data-lang="ru">Контроль</th><th data-lang="en">Control</th>
+          <th data-lang="ru">Для чего</th><th data-lang="en">Best for</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td>WordPress / PBN</td>
+            <td><span class="tag" data-lang="ru">средняя</span><span class="tag" data-lang="en">medium</span></td>
+            <td><span class="tag" data-lang="ru">высокий</span><span class="tag" data-lang="en">high</span></td>
+            <td data-lang="ru">Массовые блоги, ссылочная сеть</td><td data-lang="en">Bulk blogs, link network</td>
+          </tr>
+          <tr>
+            <td data-lang="ru">Статический HTML</td><td data-lang="en">Static HTML</td>
+            <td><span class="tag" data-lang="ru">высокая</span><span class="tag" data-lang="en">high</span></td>
+            <td><span class="tag" data-lang="ru">полный</span><span class="tag" data-lang="en">full</span></td>
+            <td data-lang="ru">Лендинги под конкретный НЧ-кластер</td><td data-lang="en">Landing pages per long-tail cluster</td>
+          </tr>
+          <tr>
+            <td>Lovable / AI builders</td>
+            <td><span class="tag" data-lang="ru">очень высокая</span><span class="tag" data-lang="en">very high</span></td>
+            <td><span class="tag" data-lang="ru">средний</span><span class="tag" data-lang="en">medium</span></td>
+            <td data-lang="ru">Быстрые прототипы, серии рейтингов</td><td data-lang="en">Fast prototypes, rating page series</td>
+          </tr>
+          <tr>
+            <td>Wix / no-code</td>
+            <td><span class="tag" data-lang="ru">высокая</span><span class="tag" data-lang="en">high</span></td>
+            <td><span class="tag" data-lang="ru">средний</span><span class="tag" data-lang="en">medium</span></td>
+            <td data-lang="ru">Локальные страницы, быстрый запуск</td><td data-lang="en">Local pages, quick launch</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="template">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-lang="ru">Готовый каркас</span><span class="eyebrow" data-lang="en">Ready skeleton</span>
+      <h2 data-lang="ru">Шаблон SEO-статьи: AI + ручная редактура</h2>
+      <h2 data-lang="en">SEO article template: AI + human edit</h2>
+    </div>
+    <div class="template-outline">
+      <div class="outline-item"><span class="outline-tag">H1</span><p data-lang="ru">Основной запрос в естественной форме</p><p data-lang="en">Primary query in natural form</p></div>
+      <div class="outline-item"><span class="outline-tag" data-lang="ru">Доверие</span><span class="outline-tag" data-lang="en">Trust</span><p data-lang="ru">Автор, дата, «не заменяет консультацию»</p><p data-lang="en">Author, date, "not a substitute for consultation"</p></div>
+      <div class="outline-item"><span class="outline-tag">H2</span><p data-lang="ru">Кому подходит / Что это / Преимущества</p><p data-lang="en">Who it's for / What it is / Benefits</p></div>
+      <div class="outline-item"><span class="outline-tag">H2</span><p data-lang="ru">Ограничения и процесс процедуры</p><p data-lang="en">Limitations and treatment process</p></div>
+      <div class="outline-item"><span class="outline-tag">FAQ</span><p data-lang="ru">5 частых вопросов пациентов</p><p data-lang="en">5 common patient questions</p></div>
+      <div class="outline-item"><span class="outline-tag">CTA</span><p data-lang="ru">Мягкий призыв записаться на консультацию</p><p data-lang="en">Soft call to book a consultation</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <h3 data-lang="ru">Готово к внедрению</h3><h3 data-lang="en">Ready to implement</h3>
+    <p data-lang="ru">Термины расшифрованы, конвейер контента описан, каркас статьи готов к использованию.</p>
+    <p data-lang="en">Terms decoded, content pipeline mapped, article skeleton ready to use.</p>
+    <a class="cta-btn" href="#terms" data-lang="ru">Наверх, к терминам</a>
+    <a class="cta-btn" href="#terms" data-lang="en">Back to terms</a>
+  </div>
+</footer>
+
+<script>
+const btnRu=document.getElementById('btnRu'),btnEn=document.getElementById('btnEn');
+btnRu.addEventListener('click',()=>{document.body.classList.remove('lang-en');btnRu.classList.add('active');btnEn.classList.remove('active');});
+btnEn.addEventListener('click',()=>{document.body.classList.add('lang-en');btnEn.classList.add('active');btnRu.classList.remove('active');});
+
+const links=document.querySelectorAll('.nav-links a');
+const secs=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{ if(scrollY>=s.offsetTop-90) cur=s.id; });
+  links.forEach(l=>{ l.classList.toggle('active', l.getAttribute('href')==='#'+cur); });
+});
+links.forEach(l=>l.addEventListener('click',e=>{
+  e.preventDefault();
+  const t=document.querySelector(l.getAttribute('href'));
+  if(t) window.scrollTo({top:t.offsetTop-72,behavior:'smooth'});
+}));
+</script>
+</body>
+</html>

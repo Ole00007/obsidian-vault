@@ -1,0 +1,8 @@
+"Dimension","DeepSeek V4 Pro","DeepSeek V4 Flash"
+"Total / active params","~1.6T total, ~49B active per token.bentoml+1","~284B total, ~13B active per token.eigent+2"
+"Context window","1,000,000 tokens for both models.eigent+4","1,000,000 tokens for both models.eigent+4"
+"Max output","Up to ~384k tokens per call on both.eigent+1","Up to ~384k tokens per call on both.eigent+1"
+"Inference cost (FLOPs, cache)","Uses ~27% of V3.2’s FLOPs at full 1M context; still heavier than Flash.bentoml","Pushes down to ~10% of V3.2’s FLOPs and ~7% of its KV cache; much lighter per token.bentoml"
+"Relative latency / throughput","Slower; more compute per token, better per‑token reasoning.rephrase-it+2","“Meaningfully faster” first‑token latency and higher throughput; designed for high‑QPS pipelines.rephrase-it+3"
+"Quality profile","Frontier‑level reasoning, coding, long‑horizon analysis; better on complex agent loops and long‑tail factual recall.10punto10+3","Reasoning “closely approaches” Pro on simple tasks, but weaker on complex multi‑step reasoning and hard QA.rephrase-it+1"
+"Typical speed ratio","Many benchmarks and vendor write‑ups describe Flash as 2–3× faster in practice for standard chat/agent workloads (higher tok/s and lower p50 latency).rephrase-it+3","Same point: Flash is the “fast response, high‑throughput” choice.lightning+1"

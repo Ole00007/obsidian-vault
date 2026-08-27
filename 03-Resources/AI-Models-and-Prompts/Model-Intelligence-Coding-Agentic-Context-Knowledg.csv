@@ -1,0 +1,7 @@
+"Model","Intelligence","Coding","Agentic","Context","Knowledge Cutoff","Free?"
+"gpt-oss-120b:free","23.8","28.6","37.9","131K","Jun 2024","✅"
+"deepseek-chat-v3-0324","—","22.0","16.3","164K","Jul 2024","❌"
+"qwen3-235b-a22b:free","78.0","81.0","70.0","128K","Sep 2024","✅"
+"llama-4-maverick:free","52.0","55.0","48.0","1M","Mar 2024","✅"
+"hermes-3-llama-3.1-70b","45.0","50.0","55.0","128K","Dec 2023","✅"
+"gpt-oss-20b:free","15.0","20.0","28.0","64K","Jun 2024","✅"

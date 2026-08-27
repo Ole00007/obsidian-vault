@@ -1,0 +1,5 @@
+"Platform","Deploy Experience","Free Bandwidth","Custom Domains","Best For"
+"Vercel","Nearly identical to Netlify — git push, auto-build, instant preview URLs vibecoder+1","100 GB/mo dev+1","Unlimited, free SSL digitalapplied","Next.js/React landing pages, fastest DX northflank"
+"Cloudflare Pages","Slightly more setup (DNS/Workers config) but very fast once configured northflank+1","Unlimited dev+1","Up to 100 per project, free SSL digitalapplied","Sites expecting high traffic, edge performance dev"
+"GitHub Pages","Simple but static-only, no serverless functions hostinger+1","~100 GB soft cap snapdeploy","Free snapdeploy","Pure static docs/portfolios, no backend needed hostinger"
+"Render (Static Sites)","Git-based, one-click, Netlify-style dashboard render","Included in free static tier render","Free","Simple static sites plus optional backend services on same platform northflank"

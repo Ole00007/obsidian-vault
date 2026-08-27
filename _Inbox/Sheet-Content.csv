@@ -1,0 +1,6 @@
+"Sheet","Content"
+"1 Fix Summary","3 fixes (BLOCKER → BUG → NOISE), each with exact command + context notes on PayPal/VPS"
+"2 Files & VSCode","All local paths with open commands, VS Code shortcuts without Copilot, models table"
+"3 GitHub Strategy","What to push (green) vs never push (red), with reasons"
+"4 Daily Git Prompt","Ready-to-paste prompt block for Hermes/Copilot/any model — safe test-before-push protocol"
+"5 Self-Organisation","Your 3 rules + 6-step fallback protocol if any agent crashes"

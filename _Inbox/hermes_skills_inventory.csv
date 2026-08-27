@@ -1,0 +1,7 @@
+skill_name,type,priority,purpose
+github-pr-workflow,Bundled,Use now,PR workflow
+systematic-debugging,Bundled,Use now,Structured debugging
+test-driven-development,Bundled,Use now,Endpoint TDD
+lexflow-railway-deploy,Create,Critical,Deploy checklist
+lexflow-migration,Create,Critical,Safe migrations
+lexflow-session-debrief,Create,Critical,Self-improvement loop

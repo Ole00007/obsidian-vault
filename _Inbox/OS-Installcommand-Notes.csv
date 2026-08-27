@@ -1,0 +1,4 @@
+"OS","Install command","Notes"
+"macOS / Linux","git clone --depth 1 https://github.com/AgriciDaniel/claude-seo.git && bash claude-seo/install.sh","Native bash, no extra runtime needed github"
+"Windows","git clone --depth 1 https://github.com/AgriciDaniel/claude-seo.git then powershell -ExecutionPolicy Bypass -File claude-seo\install.ps1","Uses .ps1, same repo, security-reviewable before execution github"
+"Any OS (fastest)","/plugin marketplace add AgriciDaniel/claude-seo → /plugin install claude-seo@agricidaniel-claude-seo → /seo setup","Runs inside Claude Code CLI itself, creates an isolated Python env + Playwright Chromium automatically github"

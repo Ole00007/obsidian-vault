@@ -1,0 +1,6 @@
+"Data type","Where to put it"
+"Your identity, projects, goals, working style","USER.md + MEMORY.md"
+"Operating behavior, tone, rules","SOUL.md"
+"Repeatable workflows (research, review, report)","Skills (~/.hermes/skills/)"
+"Repo/project-specific rules",".hermes.md or AGENTS.md inside each project"
+"Agent-specific scope and credentials","That agent's profile config"

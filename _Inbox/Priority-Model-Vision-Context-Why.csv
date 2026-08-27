@@ -1,0 +1,4 @@
+"Priority","Model","Vision?","Context","Why"
+"1 (Primary)","google/gemma-4-31b-it:free","Yes","262,144","Largest vision-capable Gemma variant, instruction-tuned, matches your original pick — just on a more reliable provider"
+"2 (Fallback)","nvidia/nemotron-nano-12b-v2-vl:free","Yes","128,000","Second vision-capable option — keeps vision alive even if tier 1 fails, unlike your Ollama chain which had zero vision backup"
+"3 (Fallback)","openai/gpt-oss-20b:free","No","131,072","Reliable text-only last resort, same as before"

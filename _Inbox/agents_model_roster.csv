@@ -1,0 +1,20 @@
+#,Agent,Purpose Bucket,Default Model,Fallback 1,Fallback 2
+1,operator-installer,⚙️ General operator,anthropic/claude-sonnet-4.6,anthropic/claude-opus-4.7,google/gemini-3-pro-preview
+2,lexflow-builder,💻 Coding specialist,openai/gpt-5.3-codex,deepseek/deepseek-v4-pro,anthropic/claude-sonnet-4.6
+3,agency-growth,📚 Research & planning,google/gemini-3-pro-preview,google/gemini-3.1-pro-preview,perplexity/sonar-pro
+4,sales-crm,⚡ Fast utility,anthropic/claude-haiku-4.5,openai/gpt-5.4-mini,anthropic/claude-sonnet-4.6
+5,telegram-utility,⚡ Fast utility,openai/gpt-5.4-mini,anthropic/claude-haiku-4.5,google/gemini-flash-2.5
+6,memory-curator,🗂️ Long-context synthesis,moonshotai/kimi-k2.6,anthropic/claude-sonnet-4.6,google/gemini-3-pro-preview
+7,content-creator,⚡ Fast utility,openai/gpt-5.4-mini,anthropic/claude-haiku-4.5,google/gemini-flash-2.5
+8,customer-rel-manager,⚡ Fast utility,anthropic/claude-haiku-4.5,openai/gpt-5.4-mini,google/gemini-flash-2.5
+9,marketing-analyst,⚡ Fast utility / Research,google/gemini-flash-2.5,perplexity/sonar-pro,google/gemini-3-pro-preview
+10,personal-assistant,⚡ Fast utility,openai/gpt-5.4-mini,anthropic/claude-haiku-4.5,google/gemini-flash-2.5
+11,librarian,🗂️ Long-context synthesis,moonshotai/kimi-k2.6,anthropic/claude-sonnet-4.6,google/gemini-3-pro-preview
+12,ads-expert,⚡ Fast utility,anthropic/claude-haiku-4.5,openai/gpt-5.4-mini,google/gemini-flash-2.5
+13,seo-aeo-expert,📚 Research & planning,google/gemini-3-pro-preview,perplexity/sonar-pro,google/gemini-3.1-pro-preview
+14,backend-developer,💻 Coding specialist,openai/gpt-5.3-codex,anthropic/claude-sonnet-4.6,deepseek/deepseek-v4-pro
+15,frontend-developer,💻 Coding specialist,openai/gpt-5.3-codex,anthropic/claude-sonnet-4.6,deepseek/deepseek-v4-pro
+16,data-analyst,⚡ Fast utility,anthropic/claude-haiku-4.5,openai/gpt-5.4-mini,google/gemini-flash-2.5
+17,devops-agent,⚡ Fast utility,google/gemini-flash-2.5,openai/gpt-5.4-mini,deepseek/deepseek-v4-pro
+18,qa-tester,⚡ Fast utility,anthropic/claude-haiku-4.5,openai/gpt-5.4-mini,google/gemini-flash-2.5
+19,email-campaign,⚡ Fast utility,anthropic/claude-haiku-4.5,openai/gpt-5.4-mini,google/gemini-flash-2.5

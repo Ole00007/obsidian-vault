@@ -1,0 +1,4 @@
+"Model","Fit for PA","Why"
+"tencent/hy3:free ✅ Recommended","Best overall","295B MoE, strong reasoning (GPQA 90.4), reliable tool-call parsing in agentic benchmarks, ~0.73s latency, 262K context — the right balance of reasoning quality, speed, and tool-use reliability for scheduling, delegating, and holding conversational contextapi-docs.wisprflow"
+"meituan/longcat-2.0:free","Alternative if memory-heavy","Highest instruction-following score (IFEval 90.0) and 1M context, but noticeably slower (~2.39s latency, 20 tok/s) — better for deep multi-day task tracking than snappy voice-mode chatgithub+1"
+"upstage/solar-pro4:free","Fastest fallback","0.47s latency, 524K context, agentic-tuned, but weaker instruction-following (71.2%) than hy3 or LongCatwhatllm+1"

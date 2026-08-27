@@ -1,0 +1,4 @@
+"New Sheet","Purpose"
+"Hermes Execution Plan","12-step build order with per-step approval flags Hermes can read directly"
+"Flexibility Decision Log","Every deviation scenario pre-mapped to a default action, so Hermes never stalls waiting for you"
+"Live Tracking Table (Today)","The mandatory plan-track-verify-debug table, pre-seeded for today's tasks with a ""Needs My Approval?"" column"

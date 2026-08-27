@@ -1,0 +1,6 @@
+"Setup piece","What it does","Why it helps"
+"Consistent folder structure (e.g. /Projects, /People, /Daily, /Reference)","Gives Hermes predictable paths to scope its reads/writes github","Easier for you to navigate, easier for Hermes to target specific folders"
+"Hindsight plugin ""Include/exclude folders"" setting","Limits which notes actually sync into the shared memory bank hindsight.vectorize","Keeps private/messy notes out of Hermes's memory while still visible to you"
+"Frontmatter tags (YAML metadata) on notes","Adds structured fields like project:, status:, client: at the top of notes","Hermes and Hindsight's graph reasoning can filter/relate notes far more precisely than free text github"
+"Community plugins: Dataview, Templater","Auto-generate indexes/dashboards and standardized note templates","Keeps your UX clean (visual dashboards) while enforcing the structure Hermes needs underneath"
+"hermes-workspace (500+ star GitHub project)","A Hermes-native GUI with chat, terminal, and skills manager","Purpose-built companion so you're not just relying on raw Obsidian UI to interact with Hermes github"

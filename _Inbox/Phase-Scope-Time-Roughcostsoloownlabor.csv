@@ -1,0 +1,7 @@
+"Phase","Scope","Time","Rough cost (solo, own labor)"
+"MVP agency site + core offer","Marketing site, one flagship service (e.g. AI-ready web design), basic AEO (llms.txt, schema.org, robots rules)","3-4 weeks","Infra only: ~€50-150/mo (Hetzner + Cloudflare + Supabase)"
+"First MCP product (like CRM)","One lean MCP server + OAuth + Postgres backend","2-3 months","'+€50-100/mo (Claude/Anthropic API usage scales with volume)"
+"Full AI Connector suite (CRM, Memory, Crew, GEO)","3 more MCP servers reusing shared memory/auth layer","4-6 months","Marginal, mostly time; API costs scale with usage"
+"AEO/GEO machine-readability layer","agent-card.json, llms-full.txt, Schema.org entity graph, Bing Webmaster tracking","2-4 weeks","Free (mostly engineering time)"
+"Security & orchestration hardening","Prompt-injection detection, PII masking, n8n/LangGraph workflows, agent fleet","Ongoing, 1-2 months initial","Time-heavy, low direct cost"
+"Open-source credibility layer","10-40 MIT repos, docs, npm packages","Ongoing, parallel to above","Free"

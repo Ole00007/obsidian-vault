@@ -1,0 +1,67 @@
+AGENT_RULES.md — v2 (Corrected & Expanded)
+Location: ~/Obsidian/AGENT_RULES.md — plain markdown, read by Hermes and any other local agent.
+
+== Answer to Q1: Was a review schedule specified? ==
+NO. Original rules only said "_Inbox/ first — never bypass it" with no cadence defined. Fixed below.
+
+== 1. Territorial Boundary ==
+Agents may read/write only inside ~/Obsidian/ and subfolders. Anything outside (Downloads, Desktop, Documents, other repos) forbidden unless explicitly approved by Ole in session.
+
+== 2. Inbox Rule (path explicit) ==
+- Inbox path: ~/Obsidian/_Inbox/ (exact, case-sensitive)
+- Every new file/note (human or agent) saved here first. Never write directly into Projects/, Areas/, Resources/, Archive/.
+- Every agent-created note must include routing tag (#project/#area/#resource/#archive) in frontmatter.
+
+== 3. Review & Auto-Sort Schedule (NEW) ==
+- Automatic (plugin): Auto Note Mover runs on every save — continuous.
+- Agent-driven: Hermes scans _Inbox/ ONCE DAILY IN THE EVENING (default 21:00-23:00 local), proposes routing fixes for unmatched notes.
+- Human-driven: Ole does 15-min manual PARA review ONCE A WEEK (Fri evening or Sunday).
+- If _Inbox/ unreviewed for >48h, agent must flag this at next session start.
+
+== 4. No Blind Deletions ==
+Archive, don't delete. Log every archive action in Areas/Agent-Log.md: timestamp, note name, reason, status=pending-approval until Ole confirms.
+
+== 5. Frontmatter Required ==
+Every note: title, created, tags, status (YAML). Use QuickAdd template as only sanctioned creation path for agents.
+
+== 6. Status Lifecycle ==
+draft -> active -> review -> archived
+Agents may move draft->active->review freely. Only Ole confirms review->archived.
+
+== 7. Wikilinks Mandatory ==
+Every note linked from at least 1 other note. Weekly orphan-note check (Obsidian "Orphan files" view or Dataview).
+
+== 8. No Secrets in Notes ==
+No API keys/tokens/passwords ever. If vault becomes git-tracked, add gitleaks pre-commit scan.
+
+== 9. Tool Preferences ==
+search_files > read_file > write_file > patch > terminal
+Terminal only for git ops or pre-approved scripts.
+
+== 10. Token / Cost Discipline (NEW) ==
+- Flag heavy tasks BEFORE running (large context, many tool calls, expensive model) and ask before proceeding.
+- Offer a model swap for heavy/long tasks (cheap model for simple steps, strong model for reasoning).
+- Keep sessions concise/focused; close out and summarize before switching tasks.
+- Compress context proactively: summarize history older than last 5-10 exchanges into a compact memory note instead of re-feeding verbatim.
+- Log token usage where possible so cost concentration is visible.
+
+== 11. Learning Across Sessions (NEW) ==
+- Hermes does NOT automatically retain full memory across sessions by default — verify its persistence config; treat memory as opt-in, not guaranteed.
+- After each session, write a short session note to Resources/Agent-Sessions/: what was done, what worked/failed, Ole's stated preferences.
+- Before starting a new session on a known project, read the latest session note for that project first.
+
+== 12. Per-Agent Rule Overrides (NEW — answers Q3) ==
+This file is the GLOBAL rule set. Each agent/tool can have its own override file that inherits these rules.
+
+Layer structure:
+- Global: ~/Obsidian/AGENT_RULES.md — applies to every agent
+- Per-agent: ~/Obsidian/_agents/<agent-name>.md — overrides/extends for one specific agent role
+- Per-folder: Projects/<ProjectName>/AGENTS.md — applies only inside that project folder; nearest file wins
+
+Setup steps:
+1. Create ~/Obsidian/_agents/ folder
+2. For each agent role (content-agent.md, code-agent.md, research-agent.md...) write: what it can touch, default model tier, extra output rules
+3. Top line of each file: "Inherits: ~/Obsidian/AGENT_RULES.md"
+4. Drop an AGENTS.md directly in a project folder for project-specific behavior regardless of which agent runs it
+
+Generated: 2026-08-06 - Iteration 2 - Supersedes AGENT_RULES.md v1

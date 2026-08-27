@@ -1,0 +1,6 @@
+"Agent","Runs Locally","PC/Desktop Control","Cloud Option"
+"Hermes","✅ Yes (your server)","✅ Via sandbox backends","❌ No managed cloud"
+"Flowise","✅ Yes (Docker)","❌ No","✅ Flowise Cloud"
+"MANUS","❌ Not publicly","❌ No","✅ Cloud-native"
+"Claude Code","✅ Yes","✅ Yes (with guardrails)","❌ No"
+"OpenClaw","✅ Yes","✅ Yes","❌ No"

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://firenze-segreta.example/</loc><priority>1.0</priority></url>
+  <url><loc>https://firenze-segreta.example/#story</loc><priority>0.7</priority></url>
+  <url><loc>https://firenze-segreta.example/#collections</loc><priority>0.8</priority></url>
+  <url><loc>https://firenze-segreta.example/#gallery</loc><priority>0.7</priority></url>
+  <url><loc>https://firenze-segreta.example/#visit</loc><priority>0.8</priority></url>
+  <url><loc>https://firenze-segreta.example/#blog</loc><priority>0.7</priority></url>
+  <url><loc>https://firenze-segreta.example/#book</loc><priority>0.9</priority></url>
+</urlset>

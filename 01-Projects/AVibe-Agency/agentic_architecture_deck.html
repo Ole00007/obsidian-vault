@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic Architecture — Orchestration &amp; Credits Management</title>
+<meta name="description" content="Low-cost AI agent orchestration architecture: Hermes, Airtable, OpenRouter, Composio, Obsidian. Build, test, deploy production apps with minimal tech and cost.">
+<meta name="keywords" content="agentic architecture, AI orchestration, Hermes agent, Airtable CRM, OpenRouter, Composio, low cost AI stack, app deployment, Perplexity research">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Agentic Architecture — Orchestration & Credits Management">
+<meta property="og:description" content="A premium walkthrough of a low-cost, production-grade multi-agent AI architecture for building and running apps.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Agentic Architecture — Orchestration & Credits Management",
+  "description": "Low-cost AI agent orchestration architecture combining Hermes, Airtable, OpenRouter, Composio, and Obsidian for production app development.",
+  "inLanguage": ["en","it","ru"],
+  "about": ["AI agents","orchestration","cost management","app deployment"]
+}
+</script>
+<style>
+:root{
+  --bg:#f7f8fb; --bg-elev:#ffffff; --text:#14171f; --text-soft:#5a6070;
+  --primary:#4f6df5; --primary-soft:#eef1ff; --accent:#22c58b; --accent-soft:#e8fbf3;
+  --warn:#f59e42; --warn-soft:#fff3e4; --border:#e6e8f0; --shadow:0 8px 30px rgba(20,23,31,0.06);
+  --radius:18px; --maxw:1180px;
+}
+[data-theme="dark"]{
+  --bg:#0f1116; --bg-elev:#171a22; --text:#eef0f5; --text-soft:#a3a8b8;
+  --primary:#7b93ff; --primary-soft:#1c2140; --accent:#3fe0a8; --accent-soft:#123027;
+  --warn:#ffb066; --warn-soft:#3a2a12; --border:#262a36; --shadow:0 8px 30px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;}
+a{color:var(--primary);text-decoration:none;}
+img{max-width:100%;display:block;border-radius:var(--radius);}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
+
+header.topbar{position:sticky;top:0;z-index:50;background:var(--bg-elev);border-bottom:1px solid var(--border);backdrop-filter:blur(6px);}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:var(--maxw);margin:0 auto;}
+.logo{font-weight:800;font-size:1.05rem;letter-spacing:-0.02em;}
+.logo span{color:var(--primary);}
+.controls{display:flex;gap:10px;align-items:center;}
+select, .theme-btn{
+  border:1px solid var(--border);background:var(--bg-elev);color:var(--text);
+  border-radius:10px;padding:8px 10px;font-size:0.85rem;cursor:pointer;
+}
+.theme-btn{display:flex;align-items:center;gap:6px;}
+nav.navmenu{position:relative;}
+.menu-btn{border:1px solid var(--border);background:var(--primary-soft);color:var(--primary);border-radius:10px;padding:8px 14px;font-weight:600;font-size:0.85rem;cursor:pointer;}
+.menu-panel{position:absolute;right:0;top:calc(100% + 8px);background:var(--bg-elev);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);min-width:220px;padding:8px;display:none;z-index:60;}
+.menu-panel.open{display:block;}
+.menu-panel a{display:block;padding:10px 12px;border-radius:8px;color:var(--text);font-size:0.9rem;}
+.menu-panel a:hover{background:var(--primary-soft);color:var(--primary);}
+
+.hero{padding:64px 0 40px;text-align:center;}
+.hero h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;line-height:1.15;margin:0 0 16px;letter-spacing:-0.02em;}
+.hero p{color:var(--text-soft);font-size:1.05rem;max-width:640px;margin:0 auto 28px;}
+.hero .tagpills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:28px;}
+.pill{background:var(--primary-soft);color:var(--primary);border-radius:999px;padding:6px 14px;font-size:0.8rem;font-weight:600;}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn{padding:12px 22px;border-radius:12px;font-weight:700;font-size:0.9rem;border:none;cursor:pointer;}
+.btn.primary{background:var(--primary);color:#fff;}
+.btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text);}
+
+section{padding:52px 0;border-top:1px solid var(--border);}
+section:first-of-type{border-top:none;}
+.section-head{max-width:680px;margin:0 auto 34px;text-align:center;}
+.section-head .eyebrow{color:var(--accent);font-weight:700;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;}
+.section-head h2{font-size:clamp(1.4rem,3.2vw,2rem);margin:8px 0 10px;font-weight:800;letter-spacing:-0.01em;}
+.section-head p{color:var(--text-soft);font-size:0.98rem;}
+
+.grid{display:grid;gap:22px;}
+.grid.cols-2{grid-template-columns:1fr;}
+.grid.cols-3{grid-template-columns:1fr;}
+@media(min-width:760px){.grid.cols-2{grid-template-columns:1fr 1fr;} .grid.cols-3{grid-template-columns:1fr 1fr 1fr;}}
+
+.card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);}
+.card h3{margin:0 0 8px;font-size:1.05rem;}
+.card p{color:var(--text-soft);font-size:0.92rem;margin:0;}
+.diagram-card figure{margin:0;}
+.diagram-card figcaption{padding:14px 4px 0;color:var(--text-soft);font-size:0.85rem;text-align:center;}
+
+.stack-table{width:100%;border-collapse:collapse;font-size:0.88rem;background:var(--bg-elev);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+.stack-table th,.stack-table td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;}
+.stack-table th{background:var(--primary-soft);color:var(--primary);font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.03em;}
+.stack-table tr:last-child td{border-bottom:none;}
+.table-scroll{overflow-x:auto;border-radius:var(--radius);}
+
+.accordion{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--bg-elev);margin-bottom:10px;}
+.accordion summary{cursor:pointer;padding:16px 18px;font-weight:700;font-size:0.95rem;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+.accordion summary::-webkit-details-marker{display:none;}
+.accordion summary::after{content:'+';font-size:1.2rem;color:var(--primary);}
+.accordion[open] summary::after{content:'–';}
+.accordion .acc-body{padding:0 18px 18px;color:var(--text-soft);font-size:0.9rem;line-height:1.6;}
+
+.cost-banner{background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:0.9rem;color:var(--text);display:flex;gap:10px;align-items:center;}
+.cost-banner b{color:var(--accent);}
+
+.tech-badges{display:flex;flex-wrap:wrap;gap:10px;}
+.tech-badge{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-size:0.82rem;font-weight:600;color:var(--text-soft);}
+
+.blog-placeholder{border:2px dashed var(--border);border-radius:var(--radius);padding:34px;text-align:center;color:var(--text-soft);}
+.blog-placeholder h3{color:var(--text);margin-top:0;}
+
+footer{padding:40px 0 60px;text-align:center;color:var(--text-soft);font-size:0.82rem;}
+footer .wrap{border-top:1px solid var(--border);padding-top:24px;}
+
+[data-i18n]{}
+.lang-hidden{display:none;}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">Agentic<span>Architecture</span></div>
+    <div class="controls">
+      <select id="langSelect" aria-label="Language">
+        <option value="en">EN</option>
+        <option value="it">IT</option>
+        <option value="ru">RU</option>
+      </select>
+      <button class="theme-btn" id="themeToggle">🌙 <span id="themeLabel">Dark</span></button>
+      <nav class="navmenu">
+        <button class="menu-btn" id="menuBtn">Menu ▾</button>
+        <div class="menu-panel" id="menuPanel">
+          <a href="#architecture" data-i18n="nav_arch">Architecture</a>
+          <a href="#stack" data-i18n="nav_stack">Tech Stack</a>
+          <a href="#diagrams" data-i18n="nav_diagrams">Workflows</a>
+          <a href="#costs" data-i18n="nav_costs">Costs</a>
+          <a href="#faq" data-i18n="nav_faq">FAQ</a>
+          <a href="#blog" data-i18n="nav_blog">Blog</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="tagpills">
+      <span class="pill" data-i18n="tag1">Low-Cost</span>
+      <span class="pill" data-i18n="tag2">Production-Ready</span>
+      <span class="pill" data-i18n="tag3">Multi-Agent</span>
+      <span class="pill" data-i18n="tag4">No-Code Glue</span>
+    </div>
+    <h1 data-i18n="hero_title">Agentic Architecture: Orchestration &amp; Credits Management</h1>
+    <p data-i18n="hero_sub">A lean, production-grade AI agent system built on Hermes, Airtable, OpenRouter, Composio and Obsidian — designed to run multimodal workflows and ship real apps at minimum cost.</p>
+    <div class="hero-cta">
+      <a href="#architecture" class="btn primary" data-i18n="cta1">See the Architecture</a>
+      <a href="#costs" class="btn ghost" data-i18n="cta2">View Costs</a>
+    </div>
+  </div>
+</section>
+
+<section id="architecture">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="eyebrow_arch">The Core Idea</div>
+      <h2 data-i18n="arch_h2">One Brain, Few Tools, Full Control</h2>
+      <p data-i18n="arch_p">Every request flows through a single orchestration brain (Hermes), routes to the cheapest capable AI model (OpenRouter), acts safely on your tools (Composio), and always lands back where your team and clients can see it (Airtable) — with private memory kept in Obsidian.</p>
+    </div>
+    <div class="card diagram-card" style="max-width:900px;margin:0 auto;">
+      <figure>
+        <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/4ff06d76-0f70-4eaf-a369-cad28ae57787.png" alt="Master architecture diagram">
+        <figcaption data-i18n="arch_caption">Master architecture: request → Airtable → Hermes → OpenRouter → Composio → result, with Obsidian memory.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="eyebrow_stack">Hardware &amp; Software</div>
+      <h2 data-i18n="stack_h2">The Minimum Tech You Actually Need</h2>
+      <p data-i18n="stack_p">No servers to babysit, no enterprise contracts. Every layer below can run on a laptop plus a handful of cheap cloud services.</p>
+    </div>
+    <div class="table-scroll">
+      <table class="stack-table">
+        <thead><tr>
+          <th data-i18n="th_layer">Layer</th><th data-i18n="th_tool">Tool</th><th data-i18n="th_role">Role</th><th data-i18n="th_cost">Est. Cost</th>
+        </tr></thead>
+        <tbody id="stackTableBody"></tbody>
+      </table>
+    </div>
+    <div style="height:18px;"></div>
+    <div class="cost-banner">
+      <span>💰</span>
+      <span data-i18n="cost_banner_main"><b>Estimated total:</b> roughly $40–90/month for the full stack, mostly pay-per-task AI fees — no fixed enterprise licensing.</span>
+    </div>
+  </div>
+</section>
+
+<section id="diagrams">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="eyebrow_diagrams">Operational Logic</div>
+      <h2 data-i18n="diagrams_h2">How Work Actually Moves</h2>
+      <p data-i18n="diagrams_p">Four views of the same system: scheduled jobs, parallel agent roles, app delivery, and client email handling.</p>
+    </div>
+    <div class="grid cols-2">
+      <div class="card diagram-card">
+        <figure>
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/d9d80b3b-9c48-473d-80e4-6b36e8da7b9f.png" alt="Cron scheduling circle">
+          <figcaption data-i18n="cap_cron">Cron circle — timers wake the right agent automatically, no manual triggers.</figcaption>
+        </figure>
+      </div>
+      <div class="card diagram-card">
+        <figure>
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/39555c98-12ed-451e-b804-1f1d8b056b77.png" alt="Parallel swarm map of agent roles">
+          <figcaption data-i18n="cap_swarm">Swarm map — Orchestrator delegates in parallel to Router, Builder, Keeper, Coder, Ops and Personal Assistant.</figcaption>
+        </figure>
+      </div>
+      <div class="card diagram-card">
+        <figure>
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/8022aa84-c6be-4f1a-8bd2-5dccb2acd2f0.png" alt="App building circle with full deployment stack">
+          <figcaption data-i18n="cap_appbuild">App-building circle — from idea and Perplexity R&amp;D through Claude/Codex/Qwen, GitHub, Supabase, Railway, Netlify, Cloudflare and Resend.</figcaption>
+        </figure>
+      </div>
+      <div class="card diagram-card">
+        <figure>
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/44da0834-e3f5-432f-9d61-4a8fcc8a2c3f.png" alt="Email automation flow">
+          <figcaption data-i18n="cap_email">Email flow — simple native Airtable sends vs AI-drafted, agent-powered Resend delivery.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="jobs">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="eyebrow_jobs">Business Coverage</div>
+      <h2 data-i18n="jobs_h2">What This Runs, Day to Day</h2>
+      <p data-i18n="jobs_p">Click each item to see which agent owns it and where the output lives.</p>
+    </div>
+    <div id="accordionJobs"></div>
+  </div>
+</section>
+
+<section id="costs">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="eyebrow_costs">Budget Reality</div>
+      <h2 data-i18n="costs_h2">Obsidian vs Airtable as the Hub</h2>
+      <p data-i18n="costs_p">We kept both — here's why, and what each path costs if you ever had to choose.</p>
+    </div>
+    <div class="table-scroll">
+      <table class="stack-table">
+        <thead><tr><th data-i18n="th_item">Item</th><th data-i18n="th_obsidian">Obsidian-as-hub</th><th data-i18n="th_airtable">Airtable-as-hub</th></tr></thead>
+        <tbody id="costTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="eyebrow_faq">Common Questions</div>
+      <h2 data-i18n="faq_h2">FAQ</h2>
+    </div>
+    <div id="accordionFaq"></div>
+  </div>
+</section>
+
+<section id="blog">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="eyebrow_blog">Coming Soon</div>
+      <h2 data-i18n="blog_h2">Blog &amp; Case Studies</h2>
+      <p data-i18n="blog_p">This section is reserved for articles once connected to Google Search Console — built for SEO, AEO and GEO discovery.</p>
+    </div>
+    <div class="blog-placeholder">
+      <h3 data-i18n="blog_ph_h3">Articles will appear here</h3>
+      <p data-i18n="blog_ph_p">Placeholder slots for future posts: "How we cut AI costs by 60%", "Building an app in a weekend with Hermes + Lovable", "CRM automation without Notion".</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div data-i18n="footer_text">Agentic Architecture deck — internal working document. Generated for client, partner and investor presentation.</div>
+  </div>
+</footer>
+
+<script>
+const STACK_ROWS = {
+  en: [
+    ["Orchestration","Hermes Agent","Native orchestration, cron, swarm — one brain","$5–20/mo hosting"],
+    ["Memory","Obsidian","Private vault — Hermes' notes and history","Free (+$4/mo sync optional)"],
+    ["Client Hub","Airtable","CRM, tasks, client zones, marketing data","$20–40/mo team plan"],
+    ["Model Routing","OpenRouter","Picks cheapest capable AI model, sets spend limits","Pay-per-task, ~5.5% fee"],
+    ["Tool Access","Composio","Secure connections to apps and data","Free tier / small fee"],
+    ["App Builder","Lovable","AI-generated frontend + backend","Usage-based"],
+    ["Code + Deploy","GitHub / Netlify / Hostinger","Version control, previews, hosting","Free–$20/mo"],
+    ["Backend/DB","Supabase / Railway / Cloudflare","Database, backend hosting, CDN & security","Free tier–$25/mo"],
+    ["Email","Resend","Bulk & AI-drafted email delivery","Free tier–$20/mo"]
+  ],
+  it: [
+    ["Orchestrazione","Hermes Agent","Orchestrazione nativa, cron, swarm — un solo cervello","$5–20/mese hosting"],
+    ["Memoria","Obsidian","Archivio privato — note e storico di Hermes","Gratis (+$4/mese sync opz.)"],
+    ["Hub Cliente","Airtable","CRM, task, aree cliente, dati marketing","$20–40/mese piano team"],
+    ["Instradamento Modelli","OpenRouter","Scegli il modello AI più economico adeguato, limiti di spesa","Pay-per-task, ~5.5% fee"],
+    ["Accesso Strumenti","Composio","Connessioni sicure ad app e dati","Gratis / piccola fee"],
+    ["App Builder","Lovable","Frontend + backend generati dall'AI","Basato sull'uso"],
+    ["Codice + Deploy","GitHub / Netlify / Hostinger","Versionamento, preview, hosting","Gratis–$20/mese"],
+    ["Backend/DB","Supabase / Railway / Cloudflare","Database, hosting backend, CDN e sicurezza","Gratis–$25/mese"],
+    ["Email","Resend","Invio email massivo e generato da AI","Gratis–$20/mese"]
+  ],
+  ru: [
+    ["Оркестрация","Hermes Agent","Встроенная оркестрация, cron, swarm — единый мозг","$5–20/мес хостинг"],
+    ["Память","Obsidian","Приватное хранилище — заметки и история Hermes","Бесплатно (+$4/мес синхр.)"],
+    ["Клиентский хаб","Airtable","CRM, задачи, зоны клиентов, маркетинговые данные","$20–40/мес командный план"],
+    ["Маршрутизация моделей","OpenRouter","Выбирает самую дешёвую подходящую модель, лимиты трат","Оплата за задачу, ~5.5% комиссия"],
+    ["Доступ к инструментам","Composio","Безопасные подключения к приложениям и данным","Бесплатно / небольшая плата"],
+    ["Конструктор приложений","Lovable","AI-генерация фронтенда и бэкенда","По использованию"],
+    ["Код + деплой","GitHub / Netlify / Hostinger","Версионирование, превью, хостинг","Бесплатно–$20/мес"],
+    ["Backend/БД","Supabase / Railway / Cloudflare","База данных, хостинг backend, CDN и безопасность","Бесплатно–$25/мес"],
+    ["Email","Resend","Массовая и AI-сгенерированная почта","Бесплатно–$20/мес"]
+  ]
+};
+
+const COST_ROWS = {
+  en: [
+    ["Core app","Free","Free"],
+    ["Sync across devices","$4–5/user/mo","Included in paid plans"],
+    ["Native CRM/automations","Needs plugins + bridges","Native, built-in"],
+    ["Team/commercial use","Custom license needed","~$20/seat/mo"],
+    ["Estimated total (solo)","~$15–40/mo + setup effort","~$20–40/mo"]
+  ],
+  it: [
+    ["App principale","Gratis","Gratis"],
+    ["Sync multi-dispositivo","$4–5/utente/mese","Incluso nei piani a pagamento"],
+    ["CRM/automazioni native","Richiede plugin + bridge","Nativo, integrato"],
+    ["Uso team/commerciale","Licenza personalizzata necessaria","~$20/utente/mese"],
+    ["Totale stimato (solo)","~$15–40/mese + impegno di setup","~$20–40/mese"]
+  ],
+  ru: [
+    ["Базовое приложение","Бесплатно","Бесплатно"],
+    ["Синхронизация устройств","$4–5/пользователь/мес","Включено в платные планы"],
+    ["Нативный CRM/автоматизации","Нужны плагины + мосты","Встроено"],
+    ["Командное/коммерческое использование","Нужна отдельная лицензия","~$20/место/мес"],
+    ["Итого (соло)","~$15–40/мес + время настройки","~$20–40/мес"]
+  ]
+};
+
+const JOBS = {
+  en: [
+    ["CRM / customer management","Owned by Personal Assistant + Router agents. Lives in Airtable. Every client has a scoped record with permissions set per team member or agent."],
+    ["Email digest","Personal Assistant runs a daily cron job, drafts a summary, sends via Airtable's native automation or Resend for larger volumes."],
+    ["Drafted client replies (early stage)","Personal Assistant drafts a reply in Airtable; a human approves and sends — full audit trail kept."],
+    ["Fully autonomous replies (mature stage)","Once error rate is low and monitored by Ops, the Personal Assistant can send directly, with the Orchestrator escalating anything unusual to a human."],
+    ["Task management with scoped access","Orchestrator manages the task board in Airtable; each agent and human sees only their assigned project zone."],
+    ["Marketing funnels","Builder agent assembles sequences and connects to marketing tools via Composio, data lives in Airtable."],
+    ["App development & maintenance","Coder agent builds with Claude/Codex/Qwen via Hermes Builder, ships through GitHub → Supabase/Railway → Netlify → Cloudflare."],
+    ["Content creation & cross-channel posting","Builder agent drafts content, cron schedules posting across channels, Keeper logs performance notes in Obsidian."]
+  ],
+  it: [
+    ["CRM / gestione clienti","Gestito da Personal Assistant + Router. Vive in Airtable. Ogni cliente ha un record con permessi per membro del team o agente."],
+    ["Digest email","Personal Assistant esegue un cron job giornaliero, redige un riepilogo, invia via automazione nativa Airtable o Resend per volumi maggiori."],
+    ["Risposte clienti in bozza (fase iniziale)","Personal Assistant redige una risposta in Airtable; un umano approva e invia — tracciabilità completa."],
+    ["Risposte completamente autonome (fase matura)","Con tasso di errore basso monitorato da Ops, Personal Assistant può inviare direttamente, con l'Orchestrator che segnala anomalie a un umano."],
+    ["Gestione task con accesso limitato","Orchestrator gestisce la board in Airtable; ogni agente e persona vede solo la propria area di progetto."],
+    ["Funnel di marketing","Builder assembla sequenze e si collega a strumenti marketing via Composio, dati in Airtable."],
+    ["Sviluppo e manutenzione app","Coder costruisce con Claude/Codex/Qwen via Hermes Builder, distribuisce tramite GitHub → Supabase/Railway → Netlify → Cloudflare."],
+    ["Creazione contenuti e pubblicazione multicanale","Builder redige contenuti, cron programma la pubblicazione, Keeper registra le performance in Obsidian."]
+  ],
+  ru: [
+    ["CRM / управление клиентами","Отвечают Personal Assistant + Router. Хранится в Airtable. У каждого клиента запись с правами доступа для команды/агентов."],
+    ["Email-дайджест","Personal Assistant запускает ежедневную cron-задачу, готовит сводку, отправляет через нативную автоматизацию Airtable или Resend для больших объёмов."],
+    ["Черновые ответы клиентам (начальный этап)","Personal Assistant готовит черновик в Airtable; человек одобряет и отправляет — полный аудит сохраняется."],
+    ["Полностью автономные ответы (зрелый этап)","При низком уровне ошибок, контролируемом Ops, Personal Assistant отправляет напрямую, а Orchestrator передаёт нестандартные случаи человеку."],
+    ["Управление задачами с ограниченным доступом","Orchestrator управляет доской задач в Airtable; каждый агент и человек видит только свою зону проекта."],
+    ["Маркетинговые воронки","Builder собирает последовательности и подключается к маркетинговым инструментам через Composio, данные в Airtable."],
+    ["Разработка и поддержка приложений","Coder создаёт код с Claude/Codex/Qwen через Hermes Builder, деплой через GitHub → Supabase/Railway → Netlify → Cloudflare."],
+    ["Создание контента и мультиканальная публикация","Builder готовит контент, cron планирует публикацию по каналам, Keeper логирует результаты в Obsidian."]
+  ]
+};
+
+const FAQ = {
+  en: [
+    ["Do we need Discord or n8n?","No. This version removes Discord entirely and defaults to Hermes-native orchestration instead of n8n/Flowise, keeping the stack leaner."],
+    ["What if Obsidian goes down?","Obsidian is local-first — your vault lives on disk regardless of any service outage. Only the optional Sync add-on depends on a cloud service."],
+    ["Can this scale to a small team?","Yes — Airtable's team plan and Hermes' swarm feature are both designed for multiple humans and multiple agents working the same base."],
+    ["Why not use Orb for billing here?","Orb is a billing/monetization platform, not hosting — it becomes relevant only once you launch a usage-based SaaS product, not for this internal architecture."]
+  ],
+  it: [
+    ["Serve Discord o n8n?","No. Questa versione rimuove del tutto Discord e usa l'orchestrazione nativa di Hermes invece di n8n/Flowise, mantenendo lo stack più leggero."],
+    ["Cosa succede se Obsidian non è disponibile?","Obsidian è local-first — il tuo vault vive sul disco indipendentemente da eventuali interruzioni di servizio. Solo il componente Sync opzionale dipende dal cloud."],
+    ["Può scalare per un piccolo team?","Sì — il piano team di Airtable e la funzione swarm di Hermes sono pensati per più persone e più agenti sulla stessa base."],
+    ["Perché non usare Orb per la fatturazione?","Orb è una piattaforma di fatturazione/monetizzazione, non di hosting — diventa rilevante solo quando lancerai un prodotto SaaS a consumo, non per questa architettura interna."]
+  ],
+  ru: [
+    ["Нужны ли Discord или n8n?","Нет. Эта версия полностью убирает Discord и использует нативную оркестрацию Hermes вместо n8n/Flowise, делая стек проще."],
+    ["Что если Obsidian недоступен?","Obsidian работает локально — ваш vault хранится на диске независимо от сбоев сервиса. Только опциональная функция Sync зависит от облака."],
+    ["Может ли это масштабироваться на небольшую команду?","Да — командный план Airtable и функция swarm в Hermes рассчитаны на нескольких людей и агентов, работающих с одной базой."],
+    ["Почему не использовать Orb для биллинга?","Orb — это платформа биллинга/монетизации, а не хостинга — она понадобится только при запуске SaaS-продукта с оплатой по использованию, а не для этой внутренней архитектуры."]
+  ]
+};
+
+const I18N = {
+  en: {
+    nav_arch:"Architecture", nav_stack:"Tech Stack", nav_diagrams:"Workflows", nav_costs:"Costs", nav_faq:"FAQ", nav_blog:"Blog",
+    tag1:"Low-Cost", tag2:"Production-Ready", tag3:"Multi-Agent", tag4:"No-Code Glue",
+    hero_title:"Agentic Architecture: Orchestration & Credits Management",
+    hero_sub:"A lean, production-grade AI agent system built on Hermes, Airtable, OpenRouter, Composio and Obsidian — designed to run multimodal workflows and ship real apps at minimum cost.",
+    cta1:"See the Architecture", cta2:"View Costs",
+    eyebrow_arch:"The Core Idea", arch_h2:"One Brain, Few Tools, Full Control",
+    arch_p:"Every request flows through a single orchestration brain (Hermes), routes to the cheapest capable AI model (OpenRouter), acts safely on your tools (Composio), and always lands back where your team and clients can see it (Airtable) — with private memory kept in Obsidian.",
+    arch_caption:"Master architecture: request → Airtable → Hermes → OpenRouter → Composio → result, with Obsidian memory.",
+    eyebrow_stack:"Hardware & Software", stack_h2:"The Minimum Tech You Actually Need",
+    stack_p:"No servers to babysit, no enterprise contracts. Every layer below can run on a laptop plus a handful of cheap cloud services.",
+    th_layer:"Layer", th_tool:"Tool", th_role:"Role", th_cost:"Est. Cost",
+    cost_banner_main:"<b>Estimated total:</b> roughly $40–90/month for the full stack, mostly pay-per-task AI fees — no fixed enterprise licensing.",
+    eyebrow_diagrams:"Operational Logic", diagrams_h2:"How Work Actually Moves",
+    diagrams_p:"Four views of the same system: scheduled jobs, parallel agent roles, app delivery, and client email handling.",
+    cap_cron:"Cron circle — timers wake the right agent automatically, no manual triggers.",
+    cap_swarm:"Swarm map — Orchestrator delegates in parallel to Router, Builder, Keeper, Coder, Ops and Personal Assistant.",
+    cap_appbuild:"App-building circle — from idea and Perplexity R&D through Claude/Codex/Qwen, GitHub, Supabase, Railway, Netlify, Cloudflare and Resend.",
+    cap_email:"Email flow — simple native Airtable sends vs AI-drafted, agent-powered Resend delivery.",
+    eyebrow_jobs:"Business Coverage", jobs_h2:"What This Runs, Day to Day", jobs_p:"Click each item to see which agent owns it and where the output lives.",
+    eyebrow_costs:"Budget Reality", costs_h2:"Obsidian vs Airtable as the Hub", costs_p:"We kept both — here's why, and what each path costs if you ever had to choose.",
+    th_item:"Item", th_obsidian:"Obsidian-as-hub", th_airtable:"Airtable-as-hub",
+    eyebrow_faq:"Common Questions", faq_h2:"FAQ",
+    eyebrow_blog:"Coming Soon", blog_h2:"Blog & Case Studies", blog_p:"This section is reserved for articles once connected to Google Search Console — built for SEO, AEO and GEO discovery.",
+    blog_ph_h3:"Articles will appear here", blog_ph_p:"Placeholder slots for future posts: \"How we cut AI costs by 60%\", \"Building an app in a weekend with Hermes + Lovable\", \"CRM automation without Notion\".",
+    footer_text:"Agentic Architecture deck — internal working document. Generated for client, partner and investor presentation."
+  },
+  it: {
+    nav_arch:"Architettura", nav_stack:"Stack Tecnico", nav_diagrams:"Flussi di Lavoro", nav_costs:"Costi", nav_faq:"FAQ", nav_blog:"Blog",
+    tag1:"Basso Costo", tag2:"Pronto alla Produzione", tag3:"Multi-Agente", tag4:"No-Code",
+    hero_title:"Architettura Agentica: Orchestrazione e Gestione Crediti",
+    hero_sub:"Un sistema AI leggero e pronto alla produzione basato su Hermes, Airtable, OpenRouter, Composio e Obsidian — progettato per far girare workflow multimodali e lanciare app reali al minimo costo.",
+    cta1:"Vedi l'Architettura", cta2:"Vedi i Costi",
+    eyebrow_arch:"L'Idea Centrale", arch_h2:"Un Cervello, Pochi Strumenti, Controllo Totale",
+    arch_p:"Ogni richiesta passa attraverso un unico cervello di orchestrazione (Hermes), viene instradata al modello AI più economico adeguato (OpenRouter), agisce in sicurezza sui tuoi strumenti (Composio) e torna sempre dove il tuo team e i clienti possono vederla (Airtable) — con memoria privata conservata in Obsidian.",
+    arch_caption:"Architettura principale: richiesta → Airtable → Hermes → OpenRouter → Composio → risultato, con memoria Obsidian.",
+    eyebrow_stack:"Hardware e Software", stack_h2:"Il Minimo di Tecnologia che Serve Davvero",
+    stack_p:"Nessun server da gestire, nessun contratto enterprise. Ogni livello qui sotto può girare su un laptop più pochi servizi cloud economici.",
+    th_layer:"Livello", th_tool:"Strumento", th_role:"Ruolo", th_cost:"Costo Stimato",
+    cost_banner_main:"<b>Totale stimato:</b> circa $40–90/mese per lo stack completo, principalmente costi pay-per-task AI — nessuna licenza enterprise fissa.",
+    eyebrow_diagrams:"Logica Operativa", diagrams_h2:"Come si Muove il Lavoro",
+    diagrams_p:"Quattro viste dello stesso sistema: job programmati, ruoli paralleli degli agenti, consegna app e gestione email clienti.",
+    cap_cron:"Cerchio cron — i timer svegliano l'agente giusto automaticamente, nessun trigger manuale.",
+    cap_swarm:"Mappa swarm — l'Orchestrator delega in parallelo a Router, Builder, Keeper, Coder, Ops e Personal Assistant.",
+    cap_appbuild:"Cerchio di sviluppo app — dall'idea e ricerca Perplexity attraverso Claude/Codex/Qwen, GitHub, Supabase, Railway, Netlify, Cloudflare e Resend.",
+    cap_email:"Flusso email — invio nativo semplice Airtable vs consegna AI-generata via Resend con agenti.",
+    eyebrow_jobs:"Copertura Business", jobs_h2:"Cosa Gira, Ogni Giorno", jobs_p:"Clicca ogni voce per vedere quale agente la gestisce e dove finisce l'output.",
+    eyebrow_costs:"Realtà di Budget", costs_h2:"Obsidian vs Airtable come Hub", costs_p:"Abbiamo mantenuto entrambi — ecco perché, e quanto costerebbe ciascun percorso se dovessi scegliere.",
+    th_item:"Voce", th_obsidian:"Obsidian come hub", th_airtable:"Airtable come hub",
+    eyebrow_faq:"Domande Frequenti", faq_h2:"FAQ",
+    eyebrow_blog:"Prossimamente", blog_h2:"Blog e Case Studies", blog_p:"Questa sezione è riservata agli articoli una volta collegata a Google Search Console — costruita per SEO, AEO e GEO.",
+    blog_ph_h3:"Gli articoli appariranno qui", blog_ph_p:"Slot placeholder per post futuri: \"Come abbiamo ridotto i costi AI del 60%\", \"Costruire un'app in un weekend con Hermes + Lovable\", \"Automazione CRM senza Notion\".",
+    footer_text:"Deck Architettura Agentica — documento di lavoro interno. Generato per presentazione a clienti, partner e investitori."
+  },
+  ru: {
+    nav_arch:"Архитектура", nav_stack:"Технологии", nav_diagrams:"Процессы", nav_costs:"Стоимость", nav_faq:"ЧаВо", nav_blog:"Блог",
+    tag1:"Низкая Стоимость", tag2:"Готово к Продакшену", tag3:"Мульти-Агент", tag4:"No-Code",
+    hero_title:"Агентная Архитектура: Оркестрация и Управление Кредитами",
+    hero_sub:"Компактная production-система на базе Hermes, Airtable, OpenRouter, Composio и Obsidian — для запуска мультимодальных процессов и реальных приложений при минимальных затратах.",
+    cta1:"Смотреть Архитектуру", cta2:"Смотреть Стоимость",
+    eyebrow_arch:"Основная Идея", arch_h2:"Один Мозг, Минимум Инструментов, Полный Контроль",
+    arch_p:"Каждый запрос проходит через единый оркестрирующий мозг (Hermes), направляется к самой дешёвой подходящей AI-модели (OpenRouter), безопасно работает с вашими инструментами (Composio) и всегда возвращается туда, где его видит команда и клиенты (Airtable) — с приватной памятью в Obsidian.",
+    arch_caption:"Главная архитектура: запрос → Airtable → Hermes → OpenRouter → Composio → результат, с памятью Obsidian.",
+    eyebrow_stack:"Железо и ПО", stack_h2:"Минимум Технологий, Который Реально Нужен",
+    stack_p:"Никаких серверов на постоянном контроле, никаких корпоративных контрактов. Каждый слой ниже может работать на ноутбуке плюс несколько дешёвых облачных сервисов.",
+    th_layer:"Слой", th_tool:"Инструмент", th_role:"Роль", th_cost:"Оценка Стоимости",
+    cost_banner_main:"<b>Итоговая оценка:</b> примерно $40–90/месяц за весь стек, в основном оплата по задачам AI — без фиксированных корпоративных лицензий.",
+    eyebrow_diagrams:"Операционная Логика", diagrams_h2:"Как Реально Движется Работа",
+    diagrams_p:"Четыре взгляда на одну систему: запланированные задачи, параллельные роли агентов, доставка приложений и обработка почты клиентов.",
+    cap_cron:"Cron-цикл — таймеры автоматически запускают нужного агента, без ручных триггеров.",
+    cap_swarm:"Карта swarm — Orchestrator параллельно делегирует Router, Builder, Keeper, Coder, Ops и Personal Assistant.",
+    cap_appbuild:"Цикл разработки приложений — от идеи и исследования Perplexity через Claude/Codex/Qwen, GitHub, Supabase, Railway, Netlify, Cloudflare и Resend.",
+    cap_email:"Поток email — простая нативная отправка Airtable против AI-сгенерированной доставки через Resend с агентами.",
+    eyebrow_jobs:"Бизнес-Покрытие", jobs_h2:"Что Работает Каждый День", jobs_p:"Нажмите на каждый пункт, чтобы увидеть, какой агент за него отвечает и куда идёт результат.",
+    eyebrow_costs:"Реальность Бюджета", costs_h2:"Obsidian vs Airtable как Хаб", costs_p:"Мы оставили оба — вот почему, и сколько бы стоил каждый путь, если бы пришлось выбирать.",
+    th_item:"Пункт", th_obsidian:"Obsidian как хаб", th_airtable:"Airtable как хаб",
+    eyebrow_faq:"Частые Вопросы", faq_h2:"ЧаВо",
+    eyebrow_blog:"Скоро", blog_h2:"Блог и Кейсы", blog_p:"Этот раздел зарезервирован для статей после подключения к Google Search Console — создан для SEO, AEO и GEO.",
+    blog_ph_h3:"Здесь появятся статьи", blog_ph_p:"Заготовки для будущих постов: «Как мы снизили расходы на AI на 60%», «Создание приложения за выходные с Hermes + Lovable», «Автоматизация CRM без Notion».",
+    footer_text:"Дек Агентной Архитектуры — внутренний рабочий документ. Создан для презентации клиентам, партнёрам и инвесторам."
+  }
+};
+
+function renderTable(bodyId, rows){
+  const body = document.getElementById(bodyId);
+  body.innerHTML = rows.map(r => '<tr>' + r.map(c => '<td>'+c+'</td>').join('') + '</tr>').join('');
+}
+function renderAccordion(containerId, items){
+  const el = document.getElementById(containerId);
+  el.innerHTML = items.map(([title, body]) => `
+    <details class="accordion"><summary>${title}</summary><div class="acc-body">${body}</div></details>
+  `).join('');
+}
+function applyI18n(lang){
+  const dict = I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]) el.innerHTML = dict[key];
+  });
+  renderTable('stackTableBody', STACK_ROWS[lang]);
+  renderTable('costTableBody', COST_ROWS[lang]);
+  renderAccordion('accordionJobs', JOBS[lang]);
+  renderAccordion('accordionFaq', FAQ[lang]);
+  document.documentElement.setAttribute('lang', lang);
+}
+document.getElementById('langSelect').addEventListener('change', e => applyI18n(e.target.value));
+
+const themeToggle = document.getElementById('themeToggle');
+const themeLabel = document.getElementById('themeLabel');
+themeToggle.addEventListener('click', ()=>{
+  const html = document.documentElement;
+  const now = html.getAttribute('data-theme');
+  const next = now === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  themeLabel.textContent = next === 'light' ? 'Dark' : 'Light';
+  themeToggle.firstChild.textContent = next === 'light' ? '🌙 ' : '☀️ ';
+});
+
+const menuBtn = document.getElementById('menuBtn');
+const menuPanel = document.getElementById('menuPanel');
+menuBtn.addEventListener('click', ()=> menuPanel.classList.toggle('open'));
+document.addEventListener('click', (e)=>{
+  if(!menuBtn.contains(e.target) && !menuPanel.contains(e.target)) menuPanel.classList.remove('open');
+});
+
+applyI18n('en');
+</script>
+</body>
+</html>

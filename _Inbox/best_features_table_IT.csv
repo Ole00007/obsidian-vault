@@ -1,0 +1,6 @@
+﻿Concorrente,Funzionalita distintiva,Implementazione in aLEXy
+Clio,Ciclo di vita unificato della pratica (dall'intake alla fatturazione ai documenti) + livello AI (Manage AI),Costruire matter_id come oggetto centrale a cui collegare tutto il resto; aggiungere un assistente AI che mostra le prossime azioni per ogni pratica
+MyCase,Portale rivolto al cliente con stato in tempo reale e condivisione documenti,"Aggiungere una rotta portale cliente in aLEXy - stato pratica in sola lettura, upload documenti, thread messaggi - autenticazione via magic link o OTP"
+Lawmatics,Flussi automatizzati di nurturing per l'intake (lead scoring in stile CRM + sequenze di follow-up),Costruire un'entita lead_pipeline con fasi configurabili + sequenze email/SMS attivate da trigger via Make.com o agenti Hermes
+Checkbox,Questionario di intake visuale no-code con logica a rami,Usare un form builder basato su JSON-schema - ogni nodo del grafo definisce le condizioni di ramificazione; l'agente Hermes puo consumare l'output
+vLex,Ricerca legale basata su AI collegata direttamente alle pratiche (matter),"Integrare un'API di ricerca legale (vLex, CourtListener) come tool call dentro l'agente Hermes; mostrare i risultati dentro la vista della pratica"

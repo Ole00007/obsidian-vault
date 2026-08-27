@@ -1,0 +1,5 @@
+"Model","Strengths","Context"
+"DeepSeek V3 Chat deepseek/deepseek-chat-v3-0324:free","Best free general-purpose writer — natural tone, strong for blog drafts and meta copy buldrr","64K"
+"Llama 3.3 70B Instruct meta-llama/llama-3.3-70b-instruct:free","Solid all-purpose writer, well-supported, great for content clusters and outlines klymentiev","128K"
+"Gemma 3 27B google/gemma-3-27b-it:free","Google's safety-tuned open model — clean, readable copy for brand-safe content buldrr","128K"
+"Mistral Small 24B mistral/mistral-small-24b:free","EU-hosted, GDPR-friendly — good for multilingual SEO (e.g. Italian content for Genova clients) klymentiev","128K"

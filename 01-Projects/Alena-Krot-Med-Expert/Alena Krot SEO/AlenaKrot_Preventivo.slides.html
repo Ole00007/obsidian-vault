@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="slides-format" content="viewport">
+<title>Preventivo – Alena Krot Website & SEO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+@theme {
+  --color-bg:           #14110e;
+  --color-bg-deep:      #0c0a08;
+  --color-surface:      #1e1a16;
+  --color-text:         #f5f0e8;
+  --color-text-secondary: #c9bfaf;
+  --color-text-muted:   #8a7f71;
+  --color-accent-1:     #c9a84c;
+  --color-accent-2:     #e8d5b5;
+  --color-accent-3:     #8b6914;
+  --color-glass-bg:     rgba(255,255,255,0.05);
+  --color-glass-border: rgba(201,168,76,0.18);
+  --color-vignette:     rgba(0,0,0,0.55);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+}
+</style>
+<style>
+:root {
+  --color-bg: #14110e;
+  --color-text: #f5f0e8;
+  --glow-color-rgb: 201,168,76;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{background:var(--color-bg);margin:0;}
+body{font-family:'Manrope',sans-serif;color:var(--color-text);overflow:hidden;height:100vh;width:100vw;}
+.deck{width:100vw;height:100vh;position:relative;}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;background:var(--color-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transform:scale(0.96);transition:opacity 0.7s ease,transform 0.7s ease;pointer-events:none;overflow:hidden;}
+.slide.active{opacity:1;transform:scale(1);pointer-events:all;}
+.slide>.content{position:relative;z-index:2;width:100%;max-width:1100px;padding:clamp(1.5rem,4vw,3.5rem);}
+.nav-controls{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;z-index:100;background:rgba(20,17,14,0.85);backdrop-filter:blur(12px);padding:9px 22px;border-radius:40px;border:1px solid rgba(201,168,76,0.2);}
+.nav-btn{width:36px;height:36px;border:none;background:rgba(201,168,76,0.1);color:#c9a84c;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.25s;}
+.nav-btn:hover{background:rgba(201,168,76,0.25);}
+.slide-dots{display:flex;gap:7px;}
+.slide-dots .dot{width:9px;height:9px;border-radius:50%;background:rgba(201,168,76,0.2);cursor:pointer;transition:background 0.3s,transform 0.3s;}
+.slide-dots .dot.active{background:#c9a84c;transform:scale(1.35);}
+.slide-counter{font-size:0.75rem;color:#8a7f71;min-width:38px;text-align:center;}
+.reveal{opacity:0;transform:translateY(18px);}
+
+/* Glow */
+.text-glow{text-shadow:0 0 22px rgba(201,168,76,0.55),0 0 44px rgba(201,168,76,0.2);}
+@keyframes glow-pulse{0%,100%{text-shadow:0 0 20px rgba(201,168,76,0.5),0 0 40px rgba(201,168,76,0.2);}50%{text-shadow:0 0 32px rgba(201,168,76,0.85),0 0 64px rgba(201,168,76,0.35);}}
+.glow-pulse{animation:glow-pulse 3s ease-in-out infinite;}
+
+/* Blobs */
+@keyframes float-slow{0%{transform:translate(0,0) scale(1);}33%{transform:translate(55px,-48px) scale(1.11);}66%{transform:translate(-38px,36px) scale(0.92);}100%{transform:translate(0,0) scale(1);}}
+@keyframes float-drift{0%{transform:translate(0,0) rotate(0deg);}50%{transform:translate(-45px,-55px) rotate(4deg);}100%{transform:translate(0,0) rotate(0deg);}}
+@keyframes float-bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+.gradient-mesh{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);animation:float-slow 11s ease-in-out infinite;}
+.blob:nth-child(2){animation:float-drift 15s ease-in-out infinite;}
+.blob:nth-child(3){animation:float-slow 19s ease-in-out infinite reverse;}
+
+/* Noise + Vignette */
+.slide::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px 256px;opacity:0.04;mix-blend-mode:overlay;}
+.slide::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,0.55) 100%);}
+
+/* Glass card */
+.glass{background:rgba(255,255,255,0.05);backdrop-filter:blur(14px);border:1px solid rgba(201,168,76,0.18);border-radius:14px;}
+
+/* Price cards */
+.price-card{background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.15);border-radius:14px;padding:1.6rem 1.4rem;transition:transform 0.25s,box-shadow 0.25s;}
+.price-card:hover{transform:translateY(-5px);box-shadow:0 12px 36px rgba(201,168,76,0.12);}
+.price-card.featured{border-color:rgba(201,168,76,0.55);background:rgba(201,168,76,0.07);}
+
+/* Bar fill */
+.bar-track{background:rgba(255,255,255,0.06);border-radius:6px;overflow:hidden;height:22px;}
+.bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#8b6914,#c9a84c);width:0%;transition:width 0.7s ease;}
+.bar-label{font-size:0.72rem;color:#8a7f71;width:200px;flex-shrink:0;}
+.bar-val{font-size:0.72rem;color:#c9a84c;min-width:80px;text-align:right;}
+
+/* Divider line */
+.gold-line{height:2px;background:linear-gradient(90deg,transparent,#c9a84c,transparent);margin:0.8rem 0;}
+
+/* Spotlight */
+.mouse-spotlight{position:fixed;inset:0;z-index:99;pointer-events:none;}
+
+/* Tag */
+.tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.2s!important;}}
+</style>
+</head>
+<body>
+<div class="mouse-spotlight"></div>
+<div class="deck">
+
+<!-- ╔═══════════════════════════════════════════════════════╗ -->
+<!-- ║  SLIDE 1 · TITLE                                     ║ -->
+<!-- ╚═══════════════════════════════════════════════════════╝ -->
+<div class="slide active" data-slide="1">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:520px;height:520px;top:-120px;right:-100px;background:#c9a84c;opacity:0.13;"></div>
+    <div class="blob" style="width:340px;height:340px;bottom:-80px;left:-60px;background:#8b6914;opacity:0.10;"></div>
+    <div class="blob" style="width:220px;height:220px;top:42%;left:14%;background:#e8d5b5;opacity:0.07;"></div>
+  </div>
+  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+  <div class="content text-center">
+    <div style="font-size:4.5rem;margin-bottom:1rem;animation:float-bob 3.5s ease-in-out infinite;">💼</div>
+    <h1 class="font-display reveal" style="font-size:clamp(2.4rem,5.5vw,5rem);font-weight:700;background:linear-gradient(135deg,#c9a84c,#e8d5b5,#c9a84c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.15;margin-bottom:1rem;">
+      Offerta Commerciale<br><em>Website & SEO Optimization</em>
+    </h1>
+    <p class="reveal" style="font-size:clamp(0.85rem,1.4vw,1.1rem);color:#8a7f71;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.5rem;">
+      Preventivo per Alena Krot · Giugno 2026
+    </p>
+    <p class="reveal" style="font-size:0.85rem;color:#c9a84c;letter-spacing:0.1em;">
+      Prepared by your Digital Partner
+    </p>
+  </div>
+</div>
+
+<!-- ╔═══════════════════════════════════════════════════════╗ -->
+<!-- ║  SLIDE 2 · WHAT THE MARKET CHARGES                   ║ -->
+<!-- ╚═══════════════════════════════════════════════════════╝ -->
+<div class="slide" data-slide="2">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:360px;height:360px;top:-80px;right:-70px;background:#c9a84c;opacity:0.08;"></div>
+    <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-40px;background:#8b6914;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="reveal" style="margin-bottom:0.5rem;">
+      <span class="tag" style="background:rgba(201,168,76,0.15);color:#c9a84c;">Market Research · EU 2026</span>
+    </div>
+    <h2 class="font-display reveal" style="font-size:clamp(1.9rem,3.8vw,3rem);font-weight:700;color:#f5f0e8;margin-bottom:0.3rem;">
+      What Agencies Charge in Europe
+    </h2>
+    <p class="reveal" style="font-size:0.85rem;color:#8a7f71;margin-bottom:1.4rem;">
+      Sources: netseo.it · up-seo.it · we-r.co · webcraftdev.com · iuntsevich.cz · June 2026
+    </p>
+
+    <!-- Bar chart rows -->
+    <div class="reveal" style="display:flex;flex-direction:column;gap:0.8rem;">
+
+      <div style="display:flex;align-items:center;gap:0.8rem;">
+        <span class="bar-label">Basic Website (5–10 pp)</span>
+        <div class="bar-track" style="flex:1;"><div class="bar-fill" data-width="20" style="background:linear-gradient(90deg,#4a3810,#8b6914);"></div></div>
+        <span class="bar-val">€300 – €1,500</span>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:0.8rem;">
+        <span class="bar-label">Business Site (custom)</span>
+        <div class="bar-track" style="flex:1;"><div class="bar-fill" data-width="52" style="background:linear-gradient(90deg,#6b4f18,#b8902e);"></div></div>
+        <span class="bar-val">€1,500 – €12,000</span>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:0.8rem;">
+        <span class="bar-label">SEO Setup (one-time)</span>
+        <div class="bar-track" style="flex:1;"><div class="bar-fill" data-width="34" style="background:linear-gradient(90deg,#5a3d12,#9e7820);"></div></div>
+        <span class="bar-val">€500 – €2,500</span>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:0.8rem;">
+        <span class="bar-label">Monthly SEO – Small Biz</span>
+        <div class="bar-track" style="flex:1;"><div class="bar-fill" data-width="28" style="background:linear-gradient(90deg,#50380f,#937020);"></div></div>
+        <span class="bar-val">€499 – €2,000 /mo</span>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:0.8rem;">
+        <span class="bar-label">Monthly SEO – SME</span>
+        <div class="bar-track" style="flex:1;"><div class="bar-fill" data-width="72" style="background:linear-gradient(90deg,#7a5a14,#c9a84c);"></div></div>
+        <span class="bar-val">€1,500 – €5,000 /mo</span>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:0.8rem;">
+        <span class="bar-label">Website + SEO Bundle</span>
+        <div class="bar-track" style="flex:1;"><div class="bar-fill" data-width="88" style="background:linear-gradient(90deg,#8b6914,#e8d5b5);"></div></div>
+        <span class="bar-val">€1,200 – €8,000</span>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:0.8rem;">
+        <span class="bar-label">AEO / AI Search Opt.</span>
+        <div class="bar-track" style="flex:1;"><div class="bar-fill" data-width="42" style="background:linear-gradient(90deg,#60471a,#b09035);"></div></div>
+        <span class="bar-val">€300 – €2,000 /mo</span>
+      </div>
+
+    </div>
+
+    <p class="reveal" style="font-size:0.78rem;color:#8a7f71;margin-top:1rem;">
+      ⚡ AI-assisted workflows (Manus AI, Perplexity) reduce production time ~60% vs. traditional agencies.
+    </p>
+  </div>
+</div>
+
+<!-- ╔═══════════════════════════════════════════════════════╗ -->
+<!-- ║  SLIDE 3 · PACKAGES                                  ║ -->
+<!-- ╚═══════════════════════════════════════════════════════╝ -->
+<div class="slide" data-slide="3">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:400px;height:400px;top:-100px;right:-80px;background:#c9a84c;opacity:0.09;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-70px;left:-50px;background:#e8d5b5;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="reveal" style="margin-bottom:0.4rem;">
+      <span class="tag" style="background:rgba(201,168,76,0.15);color:#c9a84c;">Service Packages</span>
+    </div>
+    <h2 class="font-display reveal" style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;margin-bottom:1.2rem;">
+      What's Included — Three Options
+    </h2>
+
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+
+      <!-- Package 1 -->
+      <div class="price-card">
+        <div style="font-size:1.8rem;margin-bottom:0.6rem;">🌐</div>
+        <h3 class="font-display" style="font-size:1.25rem;font-weight:700;color:#c9a84c;margin-bottom:0.4rem;">Website Build</h3>
+        <div style="height:2px;background:linear-gradient(90deg,#c9a84c,transparent);margin-bottom:0.8rem;"></div>
+        <ul style="font-size:0.8rem;color:#c9bfaf;line-height:1.8;list-style:none;padding:0;">
+          <li>✅ 5-page responsive site</li>
+          <li>✅ Custom design & branding</li>
+          <li>✅ Mobile-optimised</li>
+          <li>✅ Basic SEO meta tags</li>
+          <li>✅ Contact form</li>
+          <li>✅ Domain setup guidance</li>
+        </ul>
+        <div style="margin-top:1rem;padding-top:0.8rem;border-top:1px solid rgba(201,168,76,0.15);">
+          <div class="text-glow" style="font-size:1.6rem;font-weight:800;color:#c9a84c;">€1,200</div>
+          <div style="font-size:0.7rem;color:#8a7f71;">one-time · market avg €700–€4,500</div>
+        </div>
+      </div>
+
+      <!-- Package 2 — FEATURED -->
+      <div class="price-card featured">
+        <div style="font-size:1.8rem;margin-bottom:0.6rem;">🚀</div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <h3 class="font-display" style="font-size:1.25rem;font-weight:700;color:#c9a84c;margin-bottom:0.4rem;">Launch Bundle</h3>
+          <span class="tag" style="background:#c9a84c;color:#14110e;">BEST VALUE</span>
+        </div>
+        <div style="height:2px;background:linear-gradient(90deg,#c9a84c,#e8d5b5);margin-bottom:0.8rem;"></div>
+        <ul style="font-size:0.8rem;color:#c9bfaf;line-height:1.8;list-style:none;padding:0;">
+          <li>✅ Everything in Website Build</li>
+          <li>✅ Keyword research (top 10 terms)</li>
+          <li>✅ Full on-page SEO setup</li>
+          <li>✅ Semrush technical audit</li>
+          <li>✅ 2 SEO blog articles</li>
+          <li>✅ Google Search Console setup</li>
+        </ul>
+        <div style="margin-top:1rem;padding-top:0.8rem;border-top:1px solid rgba(201,168,76,0.3);">
+          <div class="text-glow glow-pulse" style="font-size:1.9rem;font-weight:800;color:#c9a84c;">€1,600</div>
+          <div style="font-size:0.7rem;color:#8a7f71;">one-time · market avg €1,200–€8,000</div>
+        </div>
+      </div>
+
+      <!-- Package 3 -->
+      <div class="price-card">
+        <div style="font-size:1.8rem;margin-bottom:0.6rem;">📈</div>
+        <h3 class="font-display" style="font-size:1.25rem;font-weight:700;color:#c9a84c;margin-bottom:0.4rem;">Monthly SEO Retainer</h3>
+        <div style="height:2px;background:linear-gradient(90deg,#c9a84c,transparent);margin-bottom:0.8rem;"></div>
+        <ul style="font-size:0.8rem;color:#c9bfaf;line-height:1.8;list-style:none;padding:0;">
+          <li>✅ Monthly technical audit</li>
+          <li>✅ 2 SEO-optimised articles</li>
+          <li>✅ Keyword tracking report</li>
+          <li>✅ AEO / AI search optimisation</li>
+          <li>✅ Monthly performance report</li>
+          <li>✅ Priority support</li>
+        </ul>
+        <div style="margin-top:1rem;padding-top:0.8rem;border-top:1px solid rgba(201,168,76,0.15);">
+          <div class="text-glow" style="font-size:1.6rem;font-weight:800;color:#c9a84c;">€450<span style="font-size:1rem;font-weight:400;">/mo</span></div>
+          <div style="font-size:0.7rem;color:#8a7f71;">ongoing · market avg €499–€2,000 /mo</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ╔═══════════════════════════════════════════════════════╗ -->
+<!-- ║  SLIDE 4 · PRICE POSITIONING                         ║ -->
+<!-- ╚═══════════════════════════════════════════════════════╝ -->
+<div class="slide" data-slide="4">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:380px;height:380px;top:-90px;left:-70px;background:#c9a84c;opacity:0.09;"></div>
+    <div class="blob" style="width:280px;height:280px;bottom:-60px;right:-50px;background:#8b6914;opacity:0.08;"></div>
+  </div>
+  <div class="content">
+    <div class="reveal" style="margin-bottom:0.4rem;">
+      <span class="tag" style="background:rgba(201,168,76,0.15);color:#c9a84c;">Price Justification</span>
+    </div>
+    <h2 class="font-display reveal" style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;margin-bottom:1.2rem;">
+      Why This Price Is Fair
+    </h2>
+
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;">
+
+      <div class="glass" style="padding:1.4rem;">
+        <h4 style="font-size:0.85rem;font-weight:700;color:#c9a84c;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.8rem;">📉 Below Agency Rates</h4>
+        <p style="font-size:0.82rem;color:#c9bfaf;line-height:1.7;">
+          Digital agencies in Italy and EU charge <strong style="color:#f5f0e8;">€3,500–€12,000</strong> for equivalent website + SEO packages.
+          Our AI-assisted workflow (Manus + Perplexity) cuts production time by ~60%, allowing competitive pricing.
+        </p>
+      </div>
+
+      <div class="glass" style="padding:1.4rem;">
+        <h4 style="font-size:0.85rem;font-weight:700;color:#c9a84c;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.8rem;">📈 Above Template Freelancers</h4>
+        <p style="font-size:0.82rem;color:#c9bfaf;line-height:1.7;">
+          Generic template sites cost <strong style="color:#f5f0e8;">€300–€700</strong> but include zero SEO strategy, no AEO, no keyword research.
+          Our bundle delivers real search visibility — not just a page that exists.
+        </p>
+      </div>
+
+      <div class="glass" style="padding:1.4rem;">
+        <h4 style="font-size:0.85rem;font-weight:700;color:#c9a84c;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.8rem;">🤖 AI-Powered Quality</h4>
+        <p style="font-size:0.82rem;color:#c9bfaf;line-height:1.7;">
+          Manus AI generates SEO-structured HTML automatically. Semrush audits catch every technical issue.
+          Result: <strong style="color:#f5f0e8;">agency-level output at mid-market cost</strong>.
+        </p>
+      </div>
+
+      <div class="glass" style="padding:1.4rem;">
+        <h4 style="font-size:0.85rem;font-weight:700;color:#c9a84c;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.8rem;">🔮 2026 AEO Advantage</h4>
+        <p style="font-size:0.82rem;color:#c9bfaf;line-height:1.7;">
+          AEO (Answer Engine Optimization for AI search) is a new service. Early adopters gain significant advantage.
+          Monthly retainer includes <strong style="color:#f5f0e8;">AI-search schema optimization</strong> that most agencies don't yet offer.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ╔═══════════════════════════════════════════════════════╗ -->
+<!-- ║  SLIDE 5 · TIMELINE                                  ║ -->
+<!-- ╚═══════════════════════════════════════════════════════╝ -->
+<div class="slide" data-slide="5">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:350px;height:350px;top:-70px;right:-60px;background:#c9a84c;opacity:0.08;"></div>
+    <div class="blob" style="width:240px;height:240px;bottom:-50px;left:-40px;background:#e8d5b5;opacity:0.06;"></div>
+  </div>
+  <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;"></canvas>
+  <div class="content">
+    <div class="reveal" style="margin-bottom:0.4rem;">
+      <span class="tag" style="background:rgba(201,168,76,0.15);color:#c9a84c;">Delivery Timeline</span>
+    </div>
+    <h2 class="font-display reveal" style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;margin-bottom:1.4rem;">
+      From Brief to Live Site — 7 Days
+    </h2>
+
+    <!-- Timeline -->
+    <div class="reveal" style="position:relative;padding-left:2.5rem;">
+      <div style="position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#c9a84c,#8b6914,#c9a84c);"></div>
+
+      <div style="display:flex;flex-direction:column;gap:1.1rem;">
+        <div style="position:relative;">
+          <div style="position:absolute;left:-2rem;top:3px;width:13px;height:13px;border-radius:50%;background:#c9a84c;box-shadow:0 0 10px rgba(201,168,76,0.6);"></div>
+          <div style="font-size:0.72rem;color:#8a7f71;text-transform:uppercase;letter-spacing:0.08em;">Day 0 — Today</div>
+          <div style="font-size:0.88rem;color:#f5f0e8;font-weight:600;">Keyword research + site brief preparation</div>
+          <div style="font-size:0.78rem;color:#8a7f71;">Semrush free audit · Perplexity brief generation</div>
+        </div>
+        <div style="position:relative;">
+          <div style="position:absolute;left:-2rem;top:3px;width:13px;height:13px;border-radius:50%;background:#c9a84c;box-shadow:0 0 10px rgba(201,168,76,0.6);"></div>
+          <div style="font-size:0.72rem;color:#8a7f71;text-transform:uppercase;letter-spacing:0.08em;">Day 1 — Build</div>
+          <div style="font-size:0.88rem;color:#f5f0e8;font-weight:600;">Manus AI generates full 5-page site</div>
+          <div style="font-size:0.78rem;color:#8a7f71;">Homepage · About · Services · Contact · Blog</div>
+        </div>
+        <div style="position:relative;">
+          <div style="position:absolute;left:-2rem;top:3px;width:13px;height:13px;border-radius:50%;background:#b8902e;box-shadow:0 0 8px rgba(184,144,46,0.5);"></div>
+          <div style="font-size:0.72rem;color:#8a7f71;text-transform:uppercase;letter-spacing:0.08em;">Day 2–3 — Review</div>
+          <div style="font-size:0.88rem;color:#f5f0e8;font-weight:600;">Client review, revisions, domain setup & publish</div>
+          <div style="font-size:0.78rem;color:#8a7f71;">Live URL delivered to client</div>
+        </div>
+        <div style="position:relative;">
+          <div style="position:absolute;left:-2rem;top:3px;width:13px;height:13px;border-radius:50%;background:#8b6914;box-shadow:0 0 8px rgba(139,105,20,0.5);"></div>
+          <div style="font-size:0.72rem;color:#8a7f71;text-transform:uppercase;letter-spacing:0.08em;">Day 4–5 — SEO</div>
+          <div style="font-size:0.88rem;color:#f5f0e8;font-weight:600;">Full SEO audit + fixes + 2 blog articles</div>
+          <div style="font-size:0.78rem;color:#8a7f71;">Semrush audit · Google Search Console verified</div>
+        </div>
+        <div style="position:relative;">
+          <div style="position:absolute;left:-2rem;top:3px;width:13px;height:13px;border-radius:50%;background:#c9a84c;box-shadow:0 0 12px rgba(201,168,76,0.7);"></div>
+          <div style="font-size:0.72rem;color:#c9a84c;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;">Day 7 — Handover</div>
+          <div style="font-size:0.9rem;color:#f5f0e8;font-weight:700;">Final delivery + SEO performance report</div>
+          <div style="font-size:0.78rem;color:#8a7f71;">Client sign-off · optional monthly retainer starts</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔═══════════════════════════════════════════════════════╗ -->
+<!-- ║  SLIDE 6 · CLOSING / CTA                             ║ -->
+<!-- ╚═══════════════════════════════════════════════════════╝ -->
+<div class="slide" data-slide="6">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:500px;height:500px;top:-100px;right:-90px;background:#c9a84c;opacity:0.14;"></div>
+    <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#8b6914;opacity:0.11;"></div>
+    <div class="blob" style="width:200px;height:200px;top:40%;left:10%;background:#e8d5b5;opacity:0.08;"></div>
+  </div>
+  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+  <div class="content text-center">
+    <div style="font-size:4rem;margin-bottom:1rem;animation:float-bob 3s ease-in-out infinite;">🤝</div>
+    <h2 class="font-display reveal" style="font-size:clamp(2rem,4.5vw,4rem);font-weight:700;background:linear-gradient(135deg,#c9a84c,#e8d5b5,#c9a84c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.8rem;">
+      Ready to Start?
+    </h2>
+    <div class="gold-line" style="width:200px;margin:0 auto 1.2rem;"></div>
+
+    <!-- Summary box -->
+    <div class="reveal glass" style="display:inline-block;padding:1.4rem 2.4rem;margin-bottom:1.4rem;text-align:left;">
+      <div style="display:grid;grid-template-columns:auto auto;gap:0.5rem 2rem;align-items:center;">
+        <span style="font-size:0.8rem;color:#8a7f71;">Website Build only</span>
+        <span style="font-size:1.1rem;font-weight:700;color:#c9a84c;">€1,200</span>
+        <span style="font-size:0.8rem;color:#8a7f71;">Launch Bundle (site + SEO)</span>
+        <span class="glow-pulse" style="font-size:1.3rem;font-weight:800;color:#c9a84c;">€1,600 ⭐</span>
+        <span style="font-size:0.8rem;color:#8a7f71;">Monthly SEO Retainer</span>
+        <span style="font-size:1.1rem;font-weight:700;color:#c9a84c;">€450 / mo</span>
+      </div>
+    </div>
+
+    <p class="reveal" style="font-size:0.82rem;color:#8a7f71;max-width:520px;margin:0 auto 0.6rem;line-height:1.7;">
+      These prices reflect mid-market European rates adjusted for AI-assisted delivery.<br>
+      All prices are net. Invoice issued upon project agreement.
+    </p>
+    <p class="reveal" style="font-size:0.8rem;color:#c9a84c;letter-spacing:0.12em;text-transform:uppercase;">
+      Valid 30 days from date of issue · June 11, 2026
+    </p>
+  </div>
+</div>
+
+</div><!-- .deck -->
+
+<!-- NAVIGATION -->
+<div class="nav-controls">
+  <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
+  <div class="slide-dots" id="dots"></div>
+  <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
+  <span class="slide-counter" id="counter">1 / 6</span>
+</div>
+
+<script>
+let current=1;
+const total=document.querySelectorAll('.slide').length;
+const dotsContainer=document.getElementById('dots');
+const counter=document.getElementById('counter');
+for(let i=1;i<=total;i++){const dot=document.createElement('div');dot.className='dot'+(i===1?' active':'');dot.onclick=()=>goToSlide(i);dotsContainer.appendChild(dot);}
+function goToSlide(n){const prev=document.querySelector('.slide.active');const next=document.querySelector(`.slide[data-slide="${n}"]`);if(prev)prev.classList.remove('active');if(next){next.classList.add('active');animateSlide(next);}current=n;updateNav();}
+function changeSlide(dir){let n=current+dir;if(n<1)n=total;if(n>total)n=1;goToSlide(n);}
+function updateNav(){document.querySelectorAll('.dot').forEach((d,i)=>{d.classList.toggle('active',i+1===current);});counter.textContent=current+' / '+total;}
+document.addEventListener('keydown',(e)=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();changeSlide(1);}if(e.key==='ArrowLeft'){e.preventDefault();changeSlide(-1);}});
+let touchStartX=0;
+document.addEventListener('touchstart',(e)=>{touchStartX=e.touches[0].clientX;});
+document.addEventListener('touchend',(e)=>{const diff=touchStartX-e.changedTouches[0].clientX;if(Math.abs(diff)>50)changeSlide(diff>0?1:-1);});
+
+function animateSlide(slide){
+  slide.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.style.transition='none';el.style.opacity='0';el.style.transform='translateY(18px)';
+    el.offsetHeight;
+    const delay=i*0.09;
+    el.style.transition=`opacity 0.38s ease ${delay}s, transform 0.38s ease ${delay}s`;
+    el.style.opacity='1';el.style.transform='translateY(0)';
+  });
+  // Bar fills
+  slide.querySelectorAll('.bar-fill:not(.fill-init)').forEach((bar,i)=>{
+    bar.classList.add('fill-init');
+    bar.style.width='0%';bar.style.transition=`width 0.6s ease ${i*0.1}s`;
+    bar.offsetHeight;bar.style.width=(bar.dataset.width||'50')+'%';
+  });
+}
+
+// Mouse spotlight
+document.addEventListener('mousemove',(e)=>{
+  const s=document.querySelector('.mouse-spotlight');
+  if(s)s.style.background=`radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px,rgba(201,168,76,0.06),transparent 40%)`;
+});
+
+// Particles
+window.initParticles=function(canvas,options){
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;
+  const interactive=options.interactive!==false;
+  const count=options.count||(interactive?55:18);
+  let mx=-1000,my=-1000;
+  const particles=Array.from({length:count},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,size:Math.random()*2.2+0.7,alpha:Math.random()*0.3+0.08}));
+  if(interactive){canvas.addEventListener('mousemove',(e)=>{const r=canvas.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});canvas.addEventListener('mouseleave',()=>{mx=-1000;my=-1000;});}
+  (function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      if(interactive){const dx=p.x-mx,dy=p.y-my,dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){const force=(120-dist)/120*2;p.vx+=(dx/dist)*force*0.1;p.vy+=(dy/dist)*force*0.1;}}
+      p.vx*=0.98;p.vy*=0.98;p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+      ctx.fillStyle=`rgba(201,168,76,${p.alpha})`;ctx.fill();
+    });
+    requestAnimationFrame(animate);
+  })();
+};
+document.querySelectorAll('.particle-canvas').forEach(c=>window.initParticles(c,{interactive:true,count:55}));
+document.querySelectorAll('.particle-canvas-ambient').forEach(c=>window.initParticles(c,{interactive:false,count:18}));
+
+try{animateSlide(document.querySelector('.slide.active'));}catch(e){console.warn(e);}
+</script>
+</body>
+</html>

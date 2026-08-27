@@ -1,0 +1,6 @@
+"File/Folder","What it contains"
+"~/.hermes/.env","Your API keys, model settings, base URL"
+"~/.hermes/config.yaml","All Hermes behavior settings (backend, tools, etc.)"
+"~/.hermes/SOUL.md","Your agent's personality and identity — edit this to customize Hermes"
+"~/.hermes/skills/","All installed skills (the 70+ that synced)"
+"~/.hermes/memory/","What Hermes remembers about you and your projects"

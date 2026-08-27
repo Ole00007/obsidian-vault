@@ -1,0 +1,8 @@
+"Rule","Why"
+"Always give API tokens, never account passwords","Tokens are scoped, revocable, expire"
+"Use read-only tokens where possible","Limits damage if compromised"
+"Set token expiry (30–90 days)","Auto-invalidates leaked tokens"
+"One token per agent/app","If one leaks, revoke only that one"
+"Never paste secrets in chat","Chat logs are stored — use .env files"
+"Never commit .env to git","Add .env to .gitignore always"
+"Rotate tokens after every major session","Especially after giving to an AI agent"

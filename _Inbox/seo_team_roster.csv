@@ -1,0 +1,12 @@
+Agent,Function,Responsibilities,Success Metrics / KPI Targets,Model Stack,Cron / Trigger Frequency
+HEAD-SEO (upgraded from seo-aeo-expert),Domain lead / orchestrator,Owns full SEO+AEO+GEO strategy for alenakrot.com; issues binding work orders; QA gate before publish,Organic sessions +15% MoM[web:72]; AI citation appearances 5+/week[cite:head]; keywords top-10 +20% QoQ,"google/gemini-3.5-flash (default), gemini-3.1-pro (fallback), sonar-pro (real-time)",Continuous (24/7 goal-mode)
+GSC-Agent,Technical/rank data specialist,Pulls clicks/impressions/position/index status; flags CTR-gap & position-gap queries,100% schema coverage monthly; index requests sent within 1h of publish,gemini-3.5-flash,Daily 06:00 CET
+ChatSEO-Agent,AI-visibility / GEO specialist,"AI citation tracking (ChatGPT/Perplexity/AI Overview), competitor gap-fill, content briefs where GSC has no data",Reference rate in AI answers +40% target[web:72]; 5+ citations/week,gemini-3.5-flash + sonar-pro,Weekly Monday 07:00 CET
+Cron-Agent,Scheduler,"Triggers all recurring jobs, retries failures, logs run status",0 missed scheduled jobs/month,n/a (scheduler),Continuous
+content-creator,Copywriter / production,"Executes content briefs from HEAD-SEO; answer-first structure, FAQ schema-ready copy",4 briefs fulfilled/month; 100% answer-first compliance[web:69],gemini-3.5-flash,On brief receipt
+frontend-developer,Core Web Vitals & schema fixer,"Implements JSON-LD schema, fixes LCP/INP/CLS on alenakrot.com (Flazio constraints apply)","CWV all green (LCP<2.5s, INP<200ms, CLS<0.1) weekly",claude/gpt-5.3-codex,On ticket
+backend-developer,Sitemap/robots/redirects,"Maintains sitemap.xml, robots.txt, llms.txt, redirect rules",llms.txt always current; 0 broken redirects,gpt-5.3-codex,On ticket
+marketing-analyst,Reporting,Compiles weekly ranking + traffic + AI-citation report; ties to bookings/leads (business KPI),Monthly report delivered; MoM lead/booking delta tracked,gemini-3.5-flash,Weekly + Monthly
+customer-rel-manager,Reputation/reviews,"Monitors and responds to Google/directory reviews, feeds review data into AggregateRating schema",Review score maintained ≥4.9; response time <48h,gemini-3.5-flash,Daily check
+memory-curator,Institutional memory,Logs every task/outcome; stores self-assessments for continuous improvement,100% task logging coverage,gemini-3.5-flash,Continuous
+operator-installer,Master orchestrator / DevOps,"Provisions new agents, manages MCP/API keys, resolves infra blockers (e.g. Flazio access)",0 unresolved infra blockers >48h,n/a,On demand

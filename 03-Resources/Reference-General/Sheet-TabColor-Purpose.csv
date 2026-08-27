@@ -1,0 +1,8 @@
+"Sheet","Tab Color","Purpose"
+"0_INDEX","Navy","Navigation hub with direct sheet links + key project facts"
+"1_Railway_Status","Red","4-service diagnosis table + 10-step ordered fix plan + Hermes Prompt 1 (copy-paste ready)"
+"2_Build_Gap_Analysis","Orange","21-component gap table: ✅ built / ⚠️ partial / ❌ missing + completion % formula"
+"3_Local_Docs_Map","Blue","7-doc hierarchy ranked by priority + 6-step Hermes session startup sequence"
+"4_Competitor_Apps","Green","Clio / MyCase / Filevine with live links + 5 OSS repos with GitHub links (Legal-Ease is best clone match github) + feature coverage matrix vs Clio"
+"5_Hermes_Prompts","Purple","Q5 answer + Prompt 1 (PLANNER) + Prompt 2 (BUILD) + VS Code Python env fix from your June 18 log paste-5.txt"
+"6_Phase_Roadmap","Navy","23 tasks across NOW / NEXT / LATER with file names, verify commands, time estimates"

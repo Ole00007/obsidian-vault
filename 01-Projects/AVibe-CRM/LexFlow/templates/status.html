@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Matter Status – LexFlow{% endblock %}
+
+{% block content %}
+<section class="card stack" aria-labelledby="page-title">
+    <header class="section">
+        <p class="eyebrow">Client status page</p>
+        <h1 id="page-title">Your Legal Matter – Status Update</h1>
+        <p class="intro">{{ matter["practice_area"] }} · {{ matter["urgency"] }} priority</p>
+        <div class="status-display">
+            <span class="eyebrow" style="margin-bottom: 0;">Current status</span>
+            <strong>{{ matter["status"] }}</strong>
+        </div>
+        <p style="margin-bottom: 0; color: var(--muted-2);">Request received: {{ matter["created_at"] }}</p>
+    </header>
+
+    <section class="section" aria-labelledby="matter-summary">
+        <h2 id="matter-summary">Matter summary</h2>
+        <div class="meta-list">
+            <p><strong>Client:</strong> {{ matter["client_name"] }}</p>
+            <p><strong>Practice area:</strong> {{ matter["practice_area"] }}</p>
+        </div>
+        <p><strong>Description:</strong> {{ matter["description"] or "No description provided." }}</p>
+    </section>
+
+    <section class="section" aria-labelledby="progress-indicator">
+        <h2 id="progress-indicator">Progress</h2>
+        <ol class="progress-list">
+            {% for status in statuses %}
+                <li class="{% if status == matter['status'] %}progress-current{% endif %}">
+                    {% if status == matter["status"] %}✓ {% endif %}{{ status }}
+                </li>
+            {% endfor %}
+        </ol>
+    </section>
+
+    <section class="section" aria-labelledby="timeline">
+        <h2 id="timeline">Timeline</h2>
+        {% if events %}
+            <ul class="timeline">
+                {% for event in events %}
+                    <li>
+                        <p><span class="badge">{{ event["status"] }}</span></p>
+                        <p>
+                            Update from your legal team: {{ event["note"] or "Status updated." }}
+                        </p>
+                        <p style="margin-bottom: 0; color: var(--muted);">{{ event["event_time"] }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% if events|length == 1 %}
+                <p class="notice">
+                    Your request has been received. Your legal team will review it shortly.
+                </p>
+            {% endif %}
+        {% else %}
+            <p class="notice">
+                Your request has been received. Your legal team will review it shortly.
+            </p>
+        {% endif %}
+    </section>
+
+    <section class="section" aria-labelledby="documents-received">
+        <h2 id="documents-received">Documents received</h2>
+        {% if docs %}
+            <ul class="timeline">
+                {% for doc in docs %}
+                    <li>{{ doc["original_name"] }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No documents on file. To send documents, please contact us directly.</p>
+        {% endif %}
+    </section>
+
+    <footer class="notice">
+        This page is private and accessible only via your personal link.
+        Your information is handled in accordance with applicable data protection regulations,
+        including the EU General Data Protection Regulation (GDPR).
+    </footer>
+</section>
+{% endblock %}

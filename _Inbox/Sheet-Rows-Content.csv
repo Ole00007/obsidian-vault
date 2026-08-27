@@ -1,0 +1,4 @@
+"Sheet","Rows","Content"
+"CMDs","23","Diagnostics, sidecar recovery, process control, session resume/maintenance, backup/migration commands"
+"Debugging_HERMES","23","Symptom → cause → fix → risk → source, now including a Source column citing exact GitHub issue numbers or FAQ"
+"Agent_Roles_Runbook","6","Who signals a bug, who pulls it into context, who executes the fix, who verifies afterward"

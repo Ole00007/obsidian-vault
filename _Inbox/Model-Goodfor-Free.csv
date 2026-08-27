@@ -1,0 +1,5 @@
+"Model","Good for","Free?"
+"google/gemini-flash-1.5","Fast coding, long context","✅ Free tier"
+"meta-llama/llama-3.3-70b","Code generation","✅ Free tier"
+"deepseek/deepseek-v3","Your existing default","Pay-per-use (cheap)"
+"anthropic/claude-sonnet-4","Complex reasoning, LexFlow architecture","Pay-per-use"

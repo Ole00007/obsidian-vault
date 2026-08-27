@@ -1,0 +1,24 @@
+Category,Dimension,DeepSeek V4 Pro,DeepSeek V4 Flash
+Specs,Total / active params,"~1.6T total, ~49B active per token","~284B total, ~13B active per token"
+Specs,Context window,"1,000,000 tokens","1,000,000 tokens"
+Specs,Max output per call,Up to ~384k tokens,Up to ~384k tokens
+Specs,Inference cost (FLOPs vs V3.2),~27% of V3.2 FLOPs at full 1M context,"~10% of V3.2 FLOPs, ~7% of its KV cache"
+Speed,Relative latency/throughput,"Slower; higher compute per token, best per-token reasoning",Meaningfully faster first-token latency and higher throughput
+Speed,Typical speed ratio vs counterpart,Baseline (1x),~2-3x faster than Pro on standard chat/agent workloads
+Quality,Quality profile,"Frontier-level reasoning, coding, long-horizon analysis, better long-tail factual recall",Approaches Pro on simple tasks; weaker on complex multi-step reasoning/hard QA
+Pricing,"Input price, cache miss (per 1M tokens)",$0.435 - $1.74 (provider-dependent),$0.14
+Pricing,"Input price, cache hit (per 1M tokens)",$0.0036 - $0.145,~$0.028
+Pricing,Output price (per 1M tokens),$0.87 - $3.48,$0.28
+Pricing,Relative price vs counterpart,~10-12x more expensive than Flash,Baseline; ~1/10 to 1/12 the cost of Pro
+Agent Use Case,Best use case: Planner/router agent,Recommended - needs strong reasoning & planning,Not ideal - insufficient depth for complex routing logic
+Agent Use Case,Best use case: Code-heavy builder (e.g. lexflow-builder),Recommended - higher coding/debugging quality on multi-file changes,Adequate for simple scripts only
+Agent Use Case,Best use case: Critical decision support (risk/legal/strategy),"Recommended - high accuracy needed, error cost is high",Not recommended - risk of shallow analysis
+Agent Use Case,Best use case: High-volume RAG / document QA,Overkill / costly,"Recommended - cheap, fast, sufficient reasoning"
+Agent Use Case,"Best use case: Bulk summarization (news, inbox, logs)",Overkill / costly,"Recommended - single-pass transforms, minimal quality gap"
+Agent Use Case,"Best use case: Tagging, classification, spam detection",Overkill / costly,"Recommended - pattern recognition, latency-sensitive"
+Agent Use Case,Best use case: Customer support / Telegram utility agents,Optional for complex escalations,"Recommended - UX depends on speed, quality gap small"
+Agent Use Case,Best use case: Long-context research (final pass),Recommended for final reasoning pass,Recommended for initial scanning/tagging pass
+Hermes Usage,Hermes access route,"External key via DeepSeek/OpenRouter, configured per profile","Bundled Tool Gateway, free/subsidized tier for Hermes users"
+Hermes Usage,Hermes cost to user,Paid per external API tariff,Effectively free up to quota via gateway
+Hermes Usage,Recommended Hermes agent assignment,"operator-installer, lexflow-builder (heavy coding), critical review passes","telegram-utility, customer-relationship-manager, marketing-analyst, memory-curator, bulk cron jobs"
+Hermes Usage,Recommended routing strategy,Reserve for on-demand expert mode / final reviews,"Default for always-on, high-QPS, and low-risk tasks"

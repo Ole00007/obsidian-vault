@@ -1,0 +1,7 @@
+"Pattern","Why it helps","Best home"
+"Explicit agent loop","Keeps the agent action-oriented and iterative.","SOUL.md"
+"Source-priority rule","Improves factual discipline in research tasks.","SOUL.md"
+"Notify vs ask split","Reduces interruptions during long workflows.","SOUL.md"
+"Todo discipline","Helps long tasks stay grounded.","Skill or workflow convention"
+"Planner-style decomposition","Useful for complex jobs without bloating the global prompt.hermes-agent","Skill"
+"Writing conventions","Good for report agents, but too narrow for a universal prompt.hermes-agent","Skill or context file"

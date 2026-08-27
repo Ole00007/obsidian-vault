@@ -1,0 +1,4 @@
+"Priority","Model","Why"
+"1 (Primary)","deepseek-v4-flash:0731","Strong reasoning/extraction, already proven in your stack, fast"
+"2 (Fallback)","gpt-oss:20b","Free, lightweight, reliable when primary is rate-limited"
+"3 (Fallback)","gemma4:31b","Free, capable general reasoning, last resort"

@@ -1,0 +1,38 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Obsidian workspace state (not knowledge)
+.obsidian/workspace*
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.trash/
+
+# Hermes / vault-internal runtime
+_Hermes/
+
+# Temporary / large / generated
+*.tmp
+*.log
+node_modules/
+
+# SECRETS — NEVER commit (real keys / credentials)
+api-keys-*.csv
+*CREDENTIALS*
+*credential*.md
+ORACLE_VPS_CREDENTIALS*
+debug_token.py
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Databases & schema (large / may hold data)
+*.db
+*.sql
+*.sqlite
+*.sqlite3
+backups/
+data/
+instance/

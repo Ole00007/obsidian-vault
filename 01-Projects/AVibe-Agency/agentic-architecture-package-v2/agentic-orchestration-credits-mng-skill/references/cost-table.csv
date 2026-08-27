@@ -1,0 +1,6 @@
+component,role,estimated_monthly_cost
+Hermes Agent,Orchestration + memory engine,$5-20 (VPS hosting)
+Obsidian,Memory vault,Free
+OpenRouter,Model routing,Pay-per-task, usually cents per call
+Composio,Tool connector,Free tier or small monthly fee
+Airtable,Data hub / client interface,Free or ~$20/month plan

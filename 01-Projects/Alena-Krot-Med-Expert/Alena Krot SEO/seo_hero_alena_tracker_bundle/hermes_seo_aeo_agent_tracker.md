@@ -1,0 +1,16 @@
+# Hermes SEO & AEO Agent Tracker for alenakrot.com
+
+| Task_id | Task_group | Task_name | Description_ru | Owner | Status | Frequency | Data_sources | Refs |
+|--------|-----------|-----------|----------------|-------|--------|-----------|-------------|------|
+| T1 | Technical | Check indexing and CWV for main home and listings | Проверить индексацию и Core Web Vitals для главной и основных страниц объектов на alenakrot.com. | SEO-HERO | planned | monthly | Search Console, PageSpeed, Semrush | https://developers.google.com/search/docs/monitor-debug/search-console-start; https://pagespeed.web.dev; https://www.semrush.com/blog/seo-basics/ |
+| T2 | Content | Map neighborhoods and property-type clusters | Собрать кластеры по районам и типам недвижимости, определить недостающие лендинги. | SEO-HERO | planned | quarterly | Semrush, Search Console | https://www.semrush.com/blog/geo-vs-seo/; https://www.semrush.com/blog/google-search-console/ |
+| T3 | GEO/AI | Check AI citations for core real-estate intents | Проверить, какие домены цитируют Perplexity, Google AI Overviews, ChatGPT и Gemini по основным real-estate запросам и есть ли alenakrot.com. | SEO-HERO | planned | monthly | Perplexity, Google, OpenAI, Semrush | https://www.semrush.com/blog/geo-vs-seo/; https://en.wemakefuture.it/call/speaker/ |
+| T4 | Analytics | Map GTM/GA4 events to leads and bookings | Настроить и проверить события GA4 (form_submit, call_click, whatsapp_click, book_now_click) и связать их с лидами в CRM. | SEO-HERO | planned | monthly | GA4, CRM, GTM | https://analytics-tips.com/en/set-up-conversions-in-ga4; https://contentsquare.com/guides/google-analytics-glossary/conversions/ |
+| T5 | Schema | Audit and expand schema markup | Проверить существующую schema.org-разметку (RealEstateAgent, LocalBusiness, FAQ) и спланировать недостающие типы. | SEO-HERO | planned | quarterly | Rich Results Test, site HTML | https://developers.google.com/search/docs/appearance/structured-data; https://www.semrush.com/blog/seo-basics/ |
+| T6 | Internal Linking | Improve internal links between neighborhood and listing pages | Усилить внутренние ссылки между страницами районов, типов объектов и конкретных объявлений. | SEO-HERO | planned | quarterly | Semrush, site crawl | https://www.semrush.com/blog/seo-basics/ |
+| T7 | Reviews & Local | Audit GBP and local review signals | Проверить профили Google Business Profile и отзывы, убедиться в консистентности NAP и описаний. | SEO-HERO | planned | quarterly | GBP, review platforms | https://www.semrush.com/blog/seo-basics/; https://www.semrush.com/blog/google-search-console/ |
+| T8 | Learning | Weekly learning summary for SEO & AEO | Краткий еженедельный отчёт по прогрессу аудита и обучения: 3 главных приоритета на неделю. | You | planned | weekly | Hermes reports, GA4, GSC | https://www.semrush.com/blog/seo-basics/; https://developers.google.com/search/docs/monitor-debug/search-console-start |
+
+## Links
+- Parent: [[seo_hero_alena_tracker_bundle-INDEX]]
+- Related: [[seo_hero_notion_setup]]

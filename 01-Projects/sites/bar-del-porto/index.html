@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bar del Porto — Fiori di Porto Antico di Genova</title>
+<meta name="description" content="Bar del Porto is a flower atelier on the waterfront of Porto Antico di Genova — bouquets, event florals, and honeymoon & anniversary arrangements under the warm light of an August Ligurian afternoon." />
+<meta name="keywords" content="bar Genova, aperitivo Porto Antico, cocktail Liguria, spritz, drink, serata" />
+<meta name="author" content="Bar del Porto" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://bar-del-porto.example/" />
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="business.business" />
+<meta property="og:title" content="Bar del Porto — Fiori di Porto Antico di Genova" />
+<meta property="og:description" content="A waterfront aperitivo bar on the Ligurian waterfront — cocktails, spritz and small bites." />
+<meta property="og:url" content="https://bar-del-porto.example/" />
+<meta property="og:site_name" content="Bar del Porto" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- Favicon (local SVG; brand PNG logo also generated: see artefacts.md) -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="icon" type="image/png" sizes="512x512" href="favicon.png" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<!-- Structured data: LocalBusiness (edit @id / sameAs when real profiles exist) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BarOrPub",
+  "name": "Bar del Porto",
+  "description": "Aperitivo bar at Porto Antico di Genova — cocktails, spritz, small bites & weekend plans.",
+  "image": "https://images.pexels.com/photos/27565828/pexels-photo-27565828.jpeg",
+  "url": "https://bar-del-porto.example/",
+  "telephone": "+390105550178",
+  "priceRange": "€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Porto Antico di Genova, Calata Falcone C.A.",
+    "addressLocality": "Genova",
+    "postalCode": "16124",
+    "addressRegion": "GE",
+    "addressCountry": "IT"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 44.4056, "longitude": 8.9298 },
+  "openingHours": ["Tu-Su 17:00-01:00"],
+  "areaServed": "Genova, Liguria"
+}
+</script>
+
+<style>
+/* ============================================================
+   Bar del Porto — "Romantic Ligurian August" design system
+   Mobile-first (base = mobile; min-width breakpoints enhance)
+   ============================================================ */
+:root, [data-theme="light"] {
+  --paper:#F4F1EC; --paper-2:#E9E3DA; --ink:#1E2433; --muted:#5C6478; --line:#D9D2C6;
+  --terracotta:#C8763E; --terracotta-d:#A65A2C;
+  --sea:#2C4A6E; --sea-light:#6E8DB0; --coral:#E58E78; --pink:#E8D3C2; --gold:#D9A24B; --gold-soft:#E6D6B0;
+  --display:"Cormorant Garamond", Georgia, serif;
+  --body:"Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --r-sm:10px; --r-md:16px; --r-lg:26px;
+  --shadow:0 18px 50px -28px rgba(58,46,42,0.45);
+  --shadow-soft:0 10px 30px -20px rgba(58,46,42,0.4);
+  --maxw:1180px;
+  --header-bg:rgba(251,246,240,0.92);
+}
+[data-theme="dark"] {
+  --paper:#12161F; --paper-2:#1B2230; --ink:#EDE7DC; --muted:#A7AEC0; --line:#2A3242;
+  --terracotta:#E0915A; --terracotta-d:#C0733E;
+  --sea:#6E8DB0; --sea-light:#9CB6D0; --coral:#E58E78; --pink:#483A2E; --gold:#E3B45C; --gold-soft:#2A3242;
+  --shadow:0 18px 50px -28px rgba(0,0,0,0.7);
+  --shadow-soft:0 10px 30px -20px rgba(0,0,0,0.6);
+  --header-bg:rgba(27,21,18,0.92);
+  --paper-2:#1B2230;
+}
+
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; font-family:var(--body); font-weight:300; color:var(--ink); background:var(--paper); line-height:1.7; -webkit-font-smoothing:antialiased; transition:background .3s ease, color .3s ease; }
+img { max-width:100%; display:block; }
+a { color:inherit; text-decoration:none; }
+
+h1,h2,h3,h4 { font-family:var(--display); font-weight:500; line-height:1.08; margin:0; letter-spacing:.01em; }
+p { margin:0 0 1rem; }
+
+.wrap { width:100%; max-width:var(--maxw); margin:0 auto; padding:0 1.25rem; }
+
+.eyebrow { font-family:var(--body); font-weight:400; font-size:.78rem; letter-spacing:.32em; text-transform:uppercase; color:var(--terracotta-d); }
+
+.btn { display:inline-flex; align-items:center; gap:.5rem; font-family:var(--body); font-weight:400; font-size:.95rem; letter-spacing:.06em; padding:.85rem 1.7rem; border-radius:999px; border:1px solid transparent; cursor:pointer; transition:transform .25s, background .25s, color .25s, box-shadow .25s; min-height:44px; }
+.btn-primary { background:var(--terracotta); color:#fff5ef; box-shadow:var(--shadow-soft); }
+.btn-primary:hover { background:var(--terracotta-d); transform:translateY(-2px); }
+.btn-ghost { background:transparent; color:var(--ink); border-color:var(--line); }
+.btn-ghost:hover { border-color:var(--terracotta); color:var(--terracotta-d); transform:translateY(-2px); }
+.btn-gold { background:var(--gold); color:#fffaf0; }
+.btn-gold:hover { background:#b8915a; transform:translateY(-2px); }
+
+.divider { display:flex; align-items:center; justify-content:center; gap:1rem; margin:3rem auto; color:var(--gold); }
+.divider::before, .divider::after { content:""; height:1px; width:min(120px,22vw); background:linear-gradient(90deg,transparent,var(--gold-soft)); }
+.divider::after { background:linear-gradient(90deg,var(--gold-soft),transparent); }
+
+/* ---------- Header ---------- */
+header.site { position:fixed; top:0; left:0; right:0; z-index:50; transition:background .35s, box-shadow .35s, padding .35s; padding:1.1rem 0; }
+header.site.scrolled { background:var(--header-bg); backdrop-filter:blur(10px); box-shadow:0 1px 0 var(--line); padding:.7rem 0; }
+.nav { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.brand { font-family:var(--display); font-size:1.6rem; font-weight:600; letter-spacing:.02em; color:var(--ink); display:flex; align-items:center; gap:.5rem; }
+.brand svg { width:26px; height:26px; flex:none; }
+.brand span { color:var(--terracotta-d); }
+.header-tools { display:flex; align-items:center; gap:.5rem; }
+.icon-btn { width:42px; height:42px; border-radius:50%; border:1px solid var(--line); background:transparent; color:var(--ink); cursor:pointer; display:grid; place-items:center; transition:background .25s, border-color .25s; }
+.icon-btn:hover { border-color:var(--terracotta); color:var(--terracotta-d); }
+.icon-btn svg { width:20px; height:20px; }
+.whatsapp-btn { color:#25D366; border-color:rgba(37,211,102,.4); }
+.whatsapp-btn:hover { background:rgba(37,211,102,.12); color:#25D366; }
+
+/* Language + theme toggles */
+.lang-toggle { display:flex; align-items:center; gap:.15rem; border:1px solid var(--line); border-radius:999px; padding:.2rem .35rem; }
+.lang-toggle button { border:0; background:transparent; cursor:pointer; font-size:1.05rem; line-height:1; padding:.15rem .25rem; border-radius:50%; opacity:.5; transition:opacity .2s, transform .2s; }
+.lang-toggle button.active { opacity:1; transform:scale(1.15); }
+
+/* Nav */
+.nav-links { position:fixed; inset:0 0 0 auto; width:min(82vw,330px); background:var(--paper); flex-direction:column; align-items:flex-start; padding:5.5rem 2rem; gap:1.4rem; box-shadow:-20px 0 60px -30px rgba(0,0,0,.5); transform:translateX(100%); transition:transform .35s; z-index:60; display:flex; }
+.nav-links.open { transform:translateX(0); }
+.nav-links a { font-size:1.05rem; letter-spacing:.04em; color:var(--ink); position:relative; }
+.nav-links a::after { content:""; position:absolute; left:0; bottom:-4px; height:1px; width:0; background:var(--terracotta); transition:width .3s; }
+.nav-links a:hover::after { width:100%; }
+.nav-cta { margin-top:.4rem; }
+.menu-toggle { display:grid; background:none; border:0; cursor:pointer; padding:8px; }
+.menu-toggle span { display:block; width:24px; height:2px; background:var(--ink); margin:5px 0; transition:.3s; }
+
+/* ---------- Hero ---------- */
+.hero { position:relative; min-height:100svh; display:flex; align-items:center; overflow:hidden; isolation:isolate; }
+.hero-media { position:absolute; inset:0; z-index:-3; background:radial-gradient(120% 80% at 75% 12%, rgba(240,211,206,.9) 0%, rgba(240,211,206,0) 55%), linear-gradient(180deg,#F6D9C4 0%,#F2C7B0 22%,#E9B9A8 42%,#D9A89C 58%,#9FBFC2 80%,#6E9BA4 100%); }
+[data-theme="dark"] .hero-media { background:radial-gradient(120% 80% at 75% 12%, rgba(90,64,56,.7) 0%, rgba(90,64,56,0) 55%), linear-gradient(180deg,#2a201b 0%,#33241d 40%,#3a4a4d 80%,#2f565e 100%); }
+.hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; animation:kenburns 22s ease-in-out infinite alternate; }
+@keyframes kenburns { from { transform:scale(1.04); } to { transform:scale(1.12) translate(-1.2%,-1.2%); } }
+.hero-scrim { position:absolute; inset:0; z-index:-2; background:linear-gradient(180deg, rgba(58,46,42,.12) 0%, rgba(58,46,42,.05) 40%, rgba(58,46,42,.42) 100%); }
+.hero-grain { position:absolute; inset:0; z-index:-1; opacity:.35; background-image:radial-gradient(rgba(58,46,42,.06) 1px, transparent 1px); background-size:4px 4px; mix-blend-mode:multiply; }
+.hero-inner { position:relative; z-index:1; padding-top:7rem; padding-bottom:4rem; }
+.hero .eyebrow { color:#fff3ea; text-shadow:0 1px 12px rgba(58,46,42,.4); }
+.hero h1 { font-size:clamp(3.4rem,11vw,8.5rem); font-weight:500; margin:.4rem 0 .2rem; color:#fffaf4; text-shadow:0 3px 36px rgba(58,46,42,.45); }
+.hero .lede { font-size:clamp(1.05rem,2.4vw,1.5rem); max-width:34ch; color:#fff4ec; margin:1.2rem 0 2rem; font-weight:300; text-shadow:0 1px 18px rgba(58,46,42,.4); }
+.hero-actions { display:flex; flex-wrap:wrap; gap:1rem; }
+.scroll-cue { position:absolute; left:50%; bottom:1.6rem; transform:translateX(-50%); z-index:1; font-size:.72rem; letter-spacing:.3em; text-transform:uppercase; color:#fff4ec; display:flex; flex-direction:column; align-items:center; gap:.5rem; opacity:.8; }
+.scroll-cue .dot { width:1px; height:34px; background:#fff4ec; animation:cue 2.2s ease-in-out infinite; transform-origin:top; }
+@keyframes cue { 0%,100% { transform:scaleY(.3); opacity:.4 } 50% { transform:scaleY(1); opacity:1 } }
+
+/* ---------- Sections ---------- */
+section { padding:4rem 0; }
+.section-head { max-width:60ch; margin-bottom:2.5rem; }
+.section-head h2 { font-size:clamp(2.2rem,5vw,3.6rem); margin:.5rem 0 .8rem; }
+.section-head p { color:var(--muted); font-size:1.05rem; }
+
+/* Story */
+.story { background:var(--paper); }
+.story-grid { display:grid; grid-template-columns:1fr; gap:2rem; align-items:center; }
+.story-copy h2 { font-size:clamp(2rem,4.5vw,3.2rem); margin:.5rem 0 1rem; }
+.story-copy p { color:var(--muted); }
+.story-copy .pull { font-family:var(--display); font-style:italic; font-size:1.5rem; color:var(--terracotta-d); border-left:2px solid var(--gold); padding-left:1.2rem; margin:1.6rem 0; line-height:1.4; }
+.story-media { aspect-ratio:4/5; border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--shadow); position:relative; background:url('https://images.pexels.com/photos/27668709/pexels-photo-27668709.jpeg?auto=compress&cs=tinysrgb&w=1280&q=80') center/cover, linear-gradient(150deg,var(--pink),var(--sea-light) 70%,var(--sea)); }
+.story-media .tag { position:absolute; left:1.2rem; bottom:1.2rem; color:#fff; font-size:.78rem; letter-spacing:.18em; text-transform:uppercase; background:rgba(58,46,42,.35); padding:.4rem .9rem; border-radius:999px; backdrop-filter:blur(4px); }
+
+/* Collections */
+.collections { background:var(--paper-2); }
+.coll-grid { display:grid; grid-template-columns:1fr; gap:1.5rem; }
+.coll-card { background:var(--paper); border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--shadow-soft); border:1px solid var(--line); transition:transform .3s, box-shadow .3s; display:flex; flex-direction:column; }
+.coll-card:hover { transform:translateY(-6px); box-shadow:var(--shadow); }
+.coll-media { aspect-ratio:3/2; position:relative; overflow:hidden; }
+.coll-media .ph { position:absolute; inset:0; background-size:cover; background-position:center; transition:transform .6s; }
+.coll-card:hover .ph { transform:scale(1.05); }
+.coll-body { padding:1.6rem 1.6rem 1.9rem; }
+.coll-num { font-family:var(--display); font-style:italic; font-size:1.1rem; color:var(--gold); }
+.coll-body h3 { font-size:1.7rem; margin:.2rem 0 .6rem; }
+.coll-body p { color:var(--muted); font-size:.98rem; margin-bottom:0; }
+
+/* Gallery (clickable lightbox) */
+.gallery-grid { display:grid; grid-template-columns:1fr; grid-auto-rows:220px; gap:1rem; }
+.g-tile { position:relative; border-radius:var(--r-md); overflow:hidden; box-shadow:var(--shadow-soft); cursor:pointer; }
+.g-tile:focus-visible { outline:3px solid var(--gold); outline-offset:3px; }
+.g-tile .ph { position:absolute; inset:0; background-size:cover; background-position:center; background-color:var(--gold-soft); transition:transform .6s; }
+.g-tile:hover .ph { transform:scale(1.06); }
+.g-tile .cap { position:absolute; left:0; right:0; bottom:0; padding:1rem; color:#fff; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; background:linear-gradient(transparent, rgba(58,46,42,.55)); }
+.g-tile .zoom { position:absolute; top:.8rem; right:.8rem; width:34px; height:34px; border-radius:50%; background:rgba(251,246,240,.85); color:var(--ink); display:grid; place-items:center; font-size:.9rem; opacity:0; transform:scale(.8); transition:opacity .3s, transform .3s; }
+.g-tile:hover .zoom, .g-tile:focus-visible .zoom { opacity:1; transform:scale(1); }
+
+/* Visit */
+.visit { background:var(--paper); }
+.visit-grid { display:grid; grid-template-columns:1fr; gap:2rem; align-items:stretch; }
+.visit-info h2 { font-size:clamp(2rem,4.5vw,3rem); margin:.5rem 0 1.2rem; }
+.info-row { display:flex; gap:1rem; padding:1rem 0; border-top:1px solid var(--line); }
+.info-row:last-of-type { border-bottom:1px solid var(--line); }
+.info-row .k { font-size:.78rem; letter-spacing:.18em; text-transform:uppercase; color:var(--terracotta-d); width:96px; flex:none; padding-top:.2rem; }
+.info-row .v { color:var(--ink); }
+.info-row .v a:hover { color:var(--terracotta-d); }
+.map-frame { position:relative; border-radius:var(--r-lg); overflow:hidden; min-height:320px; aspect-ratio:4/3; box-shadow:var(--shadow-soft); border:1px solid var(--line); background:var(--paper-2); }
+.map-frame iframe { width:100%; height:100%; border:0; display:block; }
+.map-link { position:absolute; right:10px; bottom:10px; background:rgba(251,246,240,.94); color:var(--sea); font-size:.75rem; letter-spacing:.04em; padding:.4rem .85rem; border-radius:999px; box-shadow:var(--shadow-soft); }
+.map-link:hover { color:var(--terracotta-d); }
+
+/* Blog */
+.blog { background:var(--paper-2); }
+.blog-grid { display:grid; grid-template-columns:1fr; gap:1rem; }
+.qa { background:var(--paper); border:1px solid var(--line); border-radius:var(--r-md); padding:1.4rem 1.6rem; box-shadow:var(--shadow-soft); }
+.qa h3 { font-size:1.35rem; margin-bottom:.5rem; color:var(--terracotta-d); }
+.qa p { color:var(--muted); margin:0; }
+
+/* CTA */
+.cta { background:linear-gradient(160deg,var(--terracotta),var(--terracotta-d)); color:#fff7f1; text-align:center; }
+.cta .eyebrow { color:var(--gold-soft); }
+.cta h2 { font-size:clamp(2.4rem,6vw,4.2rem); margin:.6rem 0 1rem; color:#fff7f1; }
+.cta p { color:rgba(255,247,241,.86); max-width:50ch; margin:0 auto 2rem; }
+.cta-form { display:flex; flex-wrap:wrap; gap:.8rem; justify-content:center; max-width:640px; margin:0 auto; }
+.cta-form input { font-family:var(--body); font-size:.95rem; color:var(--ink); padding:.85rem 1.1rem; border-radius:999px; border:0; min-height:44px; min-width:200px; flex:1 1 200px; }
+.cta-form input::placeholder { color:#9a8c82; }
+.cta .btn-gold { flex:0 0 auto; }
+.cta .fine { font-size:.78rem; color:rgba(255,247,241,.7); margin-top:1.4rem; letter-spacing:.04em; }
+
+/* Footer */
+footer.site { background:var(--ink); color:#e9ddd2; padding:4rem 0 2.5rem; }
+.foot-grid { display:flex; flex-wrap:wrap; gap:2.5rem; justify-content:space-between; align-items:flex-start; }
+footer .brand { color:#fff; }
+footer .brand span { color:var(--gold-soft); }
+.foot-col h4 { font-family:var(--body); font-weight:400; font-size:.78rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:.8rem; }
+.foot-col a, .foot-col p { color:#d8cabb; font-size:.92rem; margin:.25rem 0; display:block; }
+.foot-col a:hover { color:#fff; }
+.foot-social { display:flex; gap:.6rem; margin-top:.6rem; }
+.foot-social a { width:40px; height:40px; border-radius:50%; border:1px solid rgba(255,255,255,.2); display:grid; place-items:center; color:#e9ddd2; transition:background .25s, color .25s; }
+.foot-social a:hover { background:rgba(255,255,255,.12); color:#fff; }
+.foot-social svg { width:18px; height:18px; }
+.foot-bottom { margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,.12); font-size:.8rem; color:#b6a699; display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem; }
+
+/* Lightbox */
+.lightbox { position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center; background:rgba(34,26,22,.88); backdrop-filter:blur(6px); padding:4vmin; }
+.lightbox.open { display:flex; }
+.lightbox img { max-width:92vw; max-height:82vh; border-radius:var(--r-md); box-shadow:0 30px 80px -20px rgba(0,0,0,.6); object-fit:contain; }
+.lightbox .lb-cap { position:absolute; bottom:4vmin; left:50%; transform:translateX(-50%); color:#fff; letter-spacing:.14em; text-transform:uppercase; font-size:.85rem; }
+.lightbox button { position:absolute; border-radius:50%; border:1px solid rgba(255,255,255,.4); background:rgba(255,255,255,.1); color:#fff; cursor:pointer; display:grid; place-items:center; transition:background .25s; }
+.lightbox button:hover { background:rgba(255,255,255,.25); }
+.lightbox .lb-close { top:3vmin; right:3vmin; width:48px; height:48px; font-size:1.4rem; }
+.lightbox .lb-nav { top:50%; transform:translateY(-50%); width:52px; height:52px; font-size:1.5rem; }
+.lightbox .lb-prev { left:3vmin; }
+.lightbox .lb-next { right:3vmin; }
+
+/* Chatbot */
+.chat-fab { position:fixed; right:1.2rem; bottom:1.2rem; z-index:90; width:64px; height:64px; border-radius:50%; border:0; cursor:pointer; background:var(--terracotta); box-shadow:0 12px 30px -10px rgba(58,46,42,.6); background-size:cover; background-position:center; display:grid; place-items:center; transition:transform .25s; }
+.chat-fab:hover { transform:scale(1.06); }
+.chat-fab span { font-size:1.6rem; }
+.chat-panel { position:fixed; right:1.2rem; bottom:6rem; z-index:91; width:min(360px,92vw); height:min(520px,72vh); background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow); display:none; flex-direction:column; overflow:hidden; }
+.chat-panel.open { display:flex; }
+.chat-head { background:linear-gradient(160deg,var(--terracotta),var(--terracotta-d)); color:#fff7f1; padding:1rem 1.2rem; display:flex; align-items:center; gap:.7rem; }
+.chat-head img { width:38px; height:38px; border-radius:50%; object-fit:cover; border:2px solid rgba(255,255,255,.5); }
+.chat-head .t { font-family:var(--display); font-size:1.2rem; }
+.chat-head .s { font-size:.72rem; opacity:.85; }
+.chat-close { margin-left:auto; background:rgba(255,255,255,.15); border:0; color:#fff; width:30px; height:30px; border-radius:50%; cursor:pointer; }
+.chat-body { flex:1; overflow-y:auto; padding:1rem; display:flex; flex-direction:column; gap:.6rem; }
+.chat-msg { max-width:85%; padding:.6rem .9rem; border-radius:14px; font-size:.92rem; line-height:1.4; }
+.chat-msg.bot { background:var(--paper-2); align-self:flex-start; border-bottom-left-radius:4px; }
+.chat-msg.user { background:var(--terracotta); color:#fff; align-self:flex-end; border-bottom-right-radius:4px; }
+.chat-quick { display:flex; flex-wrap:wrap; gap:.4rem; padding:0 .8rem .6rem; }
+.chat-quick button { font-size:.75rem; border:1px solid var(--line); background:var(--paper); color:var(--ink); border-radius:999px; padding:.35rem .8rem; cursor:pointer; }
+.chat-quick button:hover { border-color:var(--terracotta); color:var(--terracotta-d); }
+.chat-input { display:flex; gap:.4rem; padding:.7rem; border-top:1px solid var(--line); }
+.chat-input input { flex:1; border:1px solid var(--line); border-radius:999px; padding:.6rem .9rem; font-family:var(--body); font-size:.9rem; background:var(--paper); color:var(--ink); }
+.chat-input button { border:0; background:var(--terracotta); color:#fff; border-radius:50%; width:40px; height:40px; cursor:pointer; }
+
+/* Reveal */
+.reveal { opacity:0; transform:translateY(26px); transition:opacity .8s, transform .8s; }
+.reveal.in { opacity:1; transform:none; }
+
+/* ---------- Desktop enhancements (mobile-first) ---------- */
+@media (min-width:560px) {
+  .gallery-grid { grid-template-columns:repeat(2,1fr); }
+  .g-tile.wide { grid-column:span 2; }
+}
+@media (min-width:900px) {
+  section { padding:6rem 0; }
+  .story-grid { grid-template-columns:1.05fr .95fr; gap:4rem; }
+  .coll-grid { grid-template-columns:repeat(3,1fr); }
+  .gallery-grid { grid-template-columns:repeat(3,1fr); }
+  .visit-grid { grid-template-columns:.9fr 1.1fr; gap:4rem; }
+  .blog-grid { grid-template-columns:repeat(2,1fr); }
+  .nav-links { position:static; inset:auto; width:auto; flex-direction:row; align-items:center; padding:0; gap:2rem; box-shadow:none; transform:none; background:transparent; }
+  .nav-links a { font-size:.9rem; }
+  .menu-toggle { display:none; }
+  .hero-actions .btn { flex:0 1 auto; }
+}
+@media (min-width:1200px) { .blog-grid { grid-template-columns:repeat(3,1fr); } }
+
+@media (prefers-reduced-motion:reduce) {
+  * { animation:none !important; scroll-behavior:auto; }
+  .reveal { opacity:1; transform:none; transition:none; }
+  .hero-video { animation:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site" id="header">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="4" fill="var(--terracotta)"/><g fill="var(--coral)"><ellipse cx="16" cy="7" rx="3" ry="5"/><ellipse cx="25" cy="16" rx="5" ry="3"/><ellipse cx="16" cy="25" rx="3" ry="5"/><ellipse cx="7" cy="16" rx="5" ry="3"/></g><path d="M2 28 Q16 22 30 28" stroke="var(--sea)" stroke-width="2" fill="none"/></svg>
+      Bar del Porto
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#story" data-i18n="nav_story">Story</a>
+      <a href="#collections" data-i18n="nav_collections">Collections</a>
+      <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
+      <a href="#visit" data-i18n="nav_visit">Visit</a>
+      <a href="#blog" data-i18n="nav_blog">Journal</a>
+      <a href="#book" class="btn btn-primary nav-cta" data-i18n="nav_book">Book a bouquet</a>
+    </nav>
+
+    <div class="header-tools">
+      <a class="icon-btn whatsapp-btn" id="waHeader" aria-label="WhatsApp" href="#" target="_blank" rel="noopener" title="WhatsApp"></a>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button data-lang="en" class="active" title="English" aria-label="English">🇬🇧</button>
+        <button data-lang="it" title="Italiano" aria-label="Italiano">🇮🇹</button>
+        <button data-lang="ru" title="Русский" aria-label="Русский">🇷🇺</button>
+      </div>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme" title="Light / dark">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+      </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="hero-media" aria-hidden="true">
+    <video class="hero-video" autoplay muted loop playsinline poster="https://images.pexels.com/photos/27565828/pexels-photo-27565828.jpeg?auto=compress&cs=tinysrgb&w=1600&q=80">
+      <source src="assets/hero.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-grain" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow reveal">Fiori · Porto Antico di Genova</p>
+    <h1 class="reveal">Bar del Porto</h1>
+    <p class="lede reveal" data-i18n="hero_lede">A flower atelier where the warm light of an August Ligurian afternoon meets the quiet blue of the harbor — and where every bunch is tied for someone you love.</p>
+    <div class="hero-actions reveal">
+      <a href="#book" class="btn btn-primary" data-i18n="hero_cta1">Book a bouquet</a>
+      <a href="#story" class="btn btn-ghost" data-i18n="hero_cta2">Our story</a>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"><span>Scroll</span><span class="dot"></span></div>
+</section>
+
+<!-- ===================== STORY ===================== -->
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <div class="story-copy reveal">
+        <p class="eyebrow" data-i18n="story_eyebrow">Born on the waterfront</p>
+        <h2 data-i18n="story_title">Where the harbor keeps its promises</h2>
+        <p data-i18n="story_p1">Bar del Porto sits a short walk from the fishing boats and the old warehouses of Porto Antico, where the sea breeze carries salt and the late-summer sun turns the stone warm as terracotta. We opened here on purpose: Genova's harbor has always been a place of arrivals, of people meeting, of love letters posted and honeymoons begun.</p>
+        <p class="pull" data-i18n="story_pull">“Every flower we sell left the water once — now it returns to someone's hands by the sea.”</p>
+        <p data-i18n="story_p2">Our work is small and considered. We source from Ligurian growers when the season allows, condition each stem by hand, and arrange the way the light falls at six in the evening — soft, golden, a little in love.</p>
+      </div>
+      <div class="story-media reveal" role="img" aria-label="Porto Antico di Genova harbor — client photo to be supplied">
+        <span class="tag" data-i18n="story_tag">Atelier · Porto Antico</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider" aria-hidden="true">❀</div></div>
+
+<!-- ===================== COLLECTIONS ===================== -->
+<section class="collections" id="collections">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" data-i18n="coll_eyebrow">What we make</p>
+      <h2 data-i18n="coll_title">Collections &amp; services</h2>
+      <p data-i18n="coll_intro">Three ways to mark a moment — from an ordinary Tuesday to the day everything changed.</p>
+    </div>
+    <div class="coll-grid" id="collGrid"><!-- rendered by JS --></div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" data-i18n="gallery_eyebrow">From the atelier</p>
+      <h2 data-i18n="gallery_title">Gallery</h2>
+      <p data-i18n="gallery_intro">Tap any image to view it full size.</p>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"><!-- rendered by JS --></div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider" aria-hidden="true">❀</div></div>
+
+<!-- ===================== VISIT ===================== -->
+<section class="visit" id="visit">
+  <div class="wrap">
+    <div class="visit-grid">
+      <div class="visit-info reveal">
+        <p class="eyebrow" data-i18n="visit_eyebrow">Find us</p>
+        <h2 data-i18n="visit_title">Visit the atelier</h2>
+        <div class="info-row"><span class="k" data-i18n="info_addr">Address</span><span class="v">Porto Antico di Genova<br/>Calata Falcone C．A．, 16124 Genova (GE)</span></div>
+        <div class="info-row"><span class="k" data-i18n="info_hours">Hours</span><span class="v">Tue–Sun · 9:00–19:00<br/>Monday by appointment</span></div>
+        <div class="info-row"><span class="k" data-i18n="info_call">Call</span><span class="v"><a id="telLink" href="#">+39 010 555 0178</a></span></div>
+        <div class="info-row"><span class="k" data-i18n="info_write">Write</span><span class="v"><a href="mailto:ciao@bar-del-porto.example">ciao@bar-del-porto.example</a></span></div>
+      </div>
+      <div class="map-frame reveal">
+        <iframe title="Map of Porto Antico di Genova" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=8.9098,44.3978,8.9498,44.4134&layer=mapnik&marker=44.4056,8.9298"></iframe>
+        <a class="map-link" href="https://www.openstreetmap.org/?mlat=44.4056&mlon=8.9298#map=15/44.4056/8.9298" target="_blank" rel="noopener" data-i18n="map_link">Open in map ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BLOG / JOURNAL ===================== -->
+<section class="blog" id="blog">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" data-i18n="blog_eyebrow">Journal</p>
+      <h2 data-i18n="blog_title">Ligurian flowers &amp; floral notes</h2>
+      <p data-i18n="blog_intro">Answers to the questions we're asked most — from local blooms to care, events and delivery.</p>
+    </div>
+    <div class="blog-grid" id="blogGrid"><!-- rendered by JS --></div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="cta" id="book">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="cta_eyebrow">Order &amp; book</p>
+    <h2 class="reveal" data-i18n="cta_title">Let us tie something for you</h2>
+    <p class="reveal" data-i18n="cta_text">Tell us the date and the feeling — a birthday, a proposal, a Tuesday that deserved flowers. We'll reply the same day.</p>
+    <form class="cta-form reveal" id="bookForm" aria-label="Booking enquiry">
+      <input type="text" name="name" placeholder="Your name" aria-label="Your name" required />
+      <input type="email" name="email" placeholder="Email" aria-label="Email" required />
+      <input type="date" name="date" aria-label="Preferred date" />
+      <button type="submit" class="btn btn-gold" data-i18n="cta_send">Send request</button>
+    </form>
+    <p class="fine" data-i18n="cta_fine">Demo form — connect SITE_CONFIG.orderEndpoint to your CRM / email on integration. No data is sent in this preview.</p>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site">
+  <div class="wrap foot-grid">
+    <div class="foot-col" style="max-width:280px">
+      <div class="brand">Bar del Porto</div>
+      <p style="margin-top:.8rem" data-i18n="foot_about">Fiori di Porto Antico di Genova — bouquets, event florals, and honeymoon arrangements under the summer light.</p>
+    </div>
+    <div class="foot-col">
+      <h4 data-i18n="foot_explore">Explore</h4>
+      <a href="#story" data-i18n="nav_story">Story</a>
+      <a href="#collections" data-i18n="nav_collections">Collections</a>
+      <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
+      <a href="#visit" data-i18n="nav_visit">Visit</a>
+      <a href="#blog" data-i18n="nav_blog">Journal</a>
+    </div>
+    <div class="foot-col">
+      <h4 data-i18n="foot_contact">Contact</h4>
+      <a id="telLinkFoot" href="#">+39 010 555 0178</a>
+      <a href="mailto:ciao@bar-del-porto.example">ciao@bar-del-porto.example</a>
+      <p>Porto Antico di Genova<br/>16124 Genova (GE)</p>
+      <a class="whatsapp-btn" id="waFoot" aria-label="WhatsApp" href="#" target="_blank" rel="noopener" style="display:inline-flex;width:40px;height:40px;border-radius:50%;border:1px solid rgba(37,211,102,.4);align-items:center;justify-content:center;color:#25D366;margin-top:.5rem">💬</a>
+    </div>
+    <div class="foot-col">
+      <h4 data-i18n="foot_follow">Follow</h4>
+      <!-- Social endpoints: replace href="#" with real profile URLs / webhooks when available -->
+      <div class="foot-social">
+        <a href="#" data-social="instagram" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" data-social="facebook" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.5-3H14V4.5c0-.9.3-1.5 1.6-1.5H17V.2C16.6.1 15.5 0 14.3 0 11.8 0 10 1.6 10 4.3V6H7v3h3v9h4z"/></svg></a>
+        <a href="#" data-social="pinterest" aria-label="Pinterest" title="Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 3 5.6 3 10.2c0 2.8 1.6 5 4 6.1-.2-.5-.3-1.3 0-1.9l1.2-5c-.3-.7-.1-1.5.7-2 .8-.6 1.9-.4 2.5.4.7 1 .6 2.3-.2 3.4-.3.4-.8.8-.8 1.4 0 .7.6 1.2 1.3 1.2 1.7 0 2.9-1.9 2.9-4.1C19.7 6.3 16.4 2 12 2z"/></svg></a>
+        <a href="#" data-social="tiktok" aria-label="TikTok" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2 1.5 3.4 3.5 3.6v2.4c-1.2 0-2.3-.4-3.5-1v5.8c0 3-2.3 5.2-5.2 5.2S5.6 17 5.6 14c0-2.8 2.3-5 5.2-5 .4 0 .7 0 1 .1v2.6c-.3-.1-.7-.2-1-.2-1.5 0-2.6 1.2-2.6 2.7s1.1 2.7 2.6 2.7 2.6-1.2 2.6-2.7V3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© <span id="year"></span> Bar del Porto — placeholder name, swap with client brand.</span>
+    <span data-i18n="foot_case">Case study · Avibe Agency</span>
+  </div>
+</footer>
+
+<!-- ===================== LIGHTBOX ===================== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" aria-label="Close (Esc)">✕</button>
+  <button class="lb-nav lb-prev" aria-label="Previous image">‹</button>
+  <button class="lb-nav lb-next" aria-label="Next image">›</button>
+  <img id="lbImg" src="" alt="" />
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+
+<!-- ===================== CHATBOT ===================== -->
+<button class="chat-fab" id="chatFab" aria-label="Open chat" aria-expanded="false">
+  <span>💬</span>
+</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat">
+  <div class="chat-head">
+    <img id="chatAvatar" src="" alt="Bar del Porto concierge" />
+    <div><div class="t" data-i18n="chat_title">Bar del Porto Concierge</div><div class="s" data-i18n="chat_status">Usually replies in minutes</div></div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat">✕</button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-quick" id="chatQuick"></div>
+  <form class="chat-input" id="chatForm">
+    <input type="text" id="chatText" placeholder="Write a message…" aria-label="Message" />
+    <button type="submit" aria-label="Send">➤</button>
+  </form>
+</div>
+
+<script>
+/* ============================================================
+   SITE CONFIG — all external endpoints in ONE place.
+   Replace placeholders / wire to backend before go-live.
+   ============================================================ */
+window.SITE_CONFIG = {
+  phone: "+390105550178",
+  whatsapp: "+390105550178",          // used for wa.me link
+  email: "ciao@bar-del-porto.example",
+  // --- Payments (Stripe). Set publishable key; keep secret server-side only. ---
+  stripe: { publishableKey: "pk_live_XXXX", currency: "eur" },
+  // --- Order / CRM / email automation endpoints (insert real webhooks) ---
+  orderEndpoint:  "/api/order",            // TODO: POST order → backend/CRM
+  crmWebhook:    "https://hooks.avibe.agency/bar-del-porto/crm",   // TODO: real CRM webhook
+  emailApi:      "https://api.avibe.agency/bar-del-porto/email",   // TODO: real email service
+  newsletterApi: "/api/newsletter",        // TODO: capture leads
+  mapEmbed: "https://www.openstreetmap.org/export/embed.html?bbox=8.918,44.400,8.942,44.412&layer=mapnik&marker=44.4056,8.9298"
+};
+/* Chatbot configuration — connect to any model later. */
+window.CHATBOT_CONFIG = {
+  apiUrl: "",                  // TODO: e.g. "/api/chat" or hosted LLM endpoint
+  model: "",                  // TODO: e.g. "gpt-4o-mini"
+  apiKey: "",                 // TODO: server-side only — never ship in client
+  avatar: "https://images.pexels.com/photos/13975904/pexels-photo-13975904.jpeg?auto=compress&cs=tinysrgb&w=200&q=80",
+  whatsapp: "+390105550178",
+  fallbackReply: "Grazie! Our florist will reply shortly. For immediate help, message us on WhatsApp at +39 010 555 0178."
+};
+
+/* ---------------- Image helpers ---------------- */
+const PEX = (id, w=1280) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}&q=80`;
+const ASSET = (n) => `assets/${n}`;
+
+/* ---------------- i18n ---------------- */
+const I18N = {
+  "en": {
+    "nav_story": "Story",
+    "nav_collections": "Menu",
+    "nav_gallery": "Gallery",
+    "nav_visit": "Contact",
+    "nav_blog": "Journal",
+    "nav_book": "Book a table",
+    "hero_lede": "Waterfront aperitivo bar — spritz, sea and slow evenings, poured like a letter to someone you love.",
+    "hero_cta1": "Book a table",
+    "hero_cta2": "Our story",
+    "story_eyebrow": "Born by the harbour",
+    "story_title": "Where the port keeps its promises",
+    "story_p1": "Bar del Porto sits a few steps from the fishing boats of Porto Antico, where the sea breeze carries salt and the late-summer sun warms the stone like terracotta. We opened here on purpose: Genova has always been a place of arrivals, meetings and long goodbyes.",
+    "story_pull": "«Every drink we pour once arrived by sea — now it returns in the hands of someone on the shore.»",
+    "story_p2": "Our work is small and careful. In season we press citrus, build each cocktail by hand and time it to the light at six in the evening — soft, golden, a little in love with the place.",
+    "story_tag": "Bar · Porto Antico",
+    "coll_eyebrow": "What we pour",
+    "coll_title": "Menu & services",
+    "coll_intro": "Three ways to celebrate an evening — from an ordinary Tuesday to the day that changed everything.",
+    "coll_bouquets_t": "Aperitivo",
+    "coll_bouquets": "Hand-built spritz and small plates — for the evening that needs them. Soft service, at the bar or delivered in Genova.",
+    "coll_events_t": "Cocktails",
+    "coll_events": "Negroni, sours and signatures along the Ligurian coast. Recipes and serves shaped to your palate and the room's light.",
+    "coll_honey_t": "Bites & weekends",
+    "coll_honey": "Our signature. Small bites and weekend plans for couples by the sea — surprise tables, corners and seaside seats.",
+    "gallery_eyebrow": "From the bar",
+    "gallery_title": "Gallery",
+    "gallery_intro": "Tap an image to view it full screen.",
+    "cap_summer": "Summer spritz",
+    "cap_harbor": "Harbour light",
+    "cap_coral": "Coral & gold",
+    "cap_water": "On the water",
+    "cap_emotion": "Poured with feeling",
+    "cap_smile": "A summer smile",
+    "cap_atelier": "Bar corner",
+    "visit_eyebrow": "Where we are",
+    "visit_title": "Find the bar",
+    "info_addr": "Address",
+    "info_hours": "Hours",
+    "info_call": "Call",
+    "info_write": "Write",
+    "map_link": "Open in map ↗",
+    "blog_eyebrow": "Journal",
+    "blog_title": "Aperitivo & notes",
+    "blog_intro": "Answers to the most frequent questions — from signatures to bites, events and bookings.",
+    "q_ligurian_q": "What should I order?",
+    "q_ligurian_a": "The mild coast favours spritz, citrus and small plates. In season we press local citrus by hand.",
+    "q_types_q": "What do you serve?",
+    "q_types_a": "From a mono-theme spritz to rich signature lists, negroni and impactful serves — each shaped around guest and occasion.",
+    "q_events_q": "Do you host events?",
+    "q_events_a": "Yes — tastings, dinners and events in Genova and on the Riviera. We design menus, timelines and serves matched to your palate and the room's light.",
+    "q_prices_q": "How much are drinks?",
+    "q_prices_a": "Hand-built spritz start from €8; events are quoted on brief. Tell us date and feeling and we send a clear proposal the same day.",
+    "q_care_q": "How do I enjoy the evening?",
+    "q_care_a": "Book a table, change plans every two days, keep away from crowds and direct sun. Most evenings stay golden 7–10 hours.",
+    "q_delivery_q": "Do you take bookings?",
+    "q_delivery_a": "Yes — in Genova and Porto Antico, with surprise tables at hotels and restaurants for visitors. Book for evenings and special dates.",
+    "cta_eyebrow": "Order & book",
+    "cta_title": "Let us pour something for you",
+    "cta_text": "Tell us the date and the feeling — a birthday, a proposal, a Tuesday that deserved a drink. We reply the same day.",
+    "cta_send": "Send request",
+    "cta_fine": "Demo form — connect SITE_CONFIG.orderEndpoint to CRM / email during integration. No data is sent in preview.",
+    "foot_about": "Waterfront aperitivo bar by the sea — spritz, cocktails and small bites under the summer light.",
+    "foot_explore": "Explore",
+    "foot_contact": "Contact",
+    "foot_follow": "Follow",
+    "foot_case": "Case study · Avibe Agency",
+    "chat_title": "Bar del Porto Concierge",
+    "chat_status": "Usually replies in minutes",
+    "chat_greet": "Hi! 🍸 I'm the Bar del Porto host. Ask me about spritz, events or bookings — or tap a question below.",
+    "chat_q1": "Spritz & prices",
+    "chat_q2": "Cocktails & events",
+    "chat_q3": "Bookings in Genova",
+    "chat_thinking": "Typing…"
+  },
+  "it": {
+    "nav_story": "Storia",
+    "nav_collections": "Menù",
+    "nav_gallery": "Galleria",
+    "nav_visit": "Contatti",
+    "nav_blog": "Diario",
+    "nav_book": "Prenota un tavolo",
+    "hero_lede": "Bar dell'aperitivo sul mare — spritz, acqua e serate lente, versate come una lettera a chi ami.",
+    "hero_cta1": "Prenota un tavolo",
+    "hero_cta2": "La nostra storia",
+    "story_eyebrow": "Nato in porto",
+    "story_title": "Dove il porto mantiene le promesse",
+    "story_p1": "Bar del Porto si trova a pochi passi dalle barche dei pescatori di Porto Antico, dove la brezza di mare porta il sale e il sole di fine estate scalda la pietra come la terracotta. Abbiamo aperto qui di proposito: il porto di Genova è sempre stato un luogo di arrivi, incontri e lunghi addii.",
+    "story_pull": "«Ogni drink che versiamo è arrivato una volta dal mare — ora torna tra le mani di qualcuno, sulla riva.»",
+    "story_p2": "Il nostro lavoro è piccolo e curato. Quando la stagione lo permette spremiamo agrumi, prepariamo ogni cocktail a mano e lo calibriamo sulla luce delle sei di sera — morbida, dorata, un po' innamorata del posto.",
+    "story_tag": "Bar · Porto Antico",
+    "coll_eyebrow": "Cosa versiamo",
+    "coll_title": "Menù & servizi",
+    "coll_intro": "Tre modi di celebrare una sera — da un martedì qualunque al giorno che ha cambiato tutto.",
+    "coll_bouquets_t": "Aperitivo",
+    "coll_bouquets": "Spritz e piccoli piatti accordati a mano, per la sera che ne ha bisogno. Servizio morbido, al banco o consegnato a Genova.",
+    "coll_events_t": "Cocktail",
+    "coll_events": "Negroni, sour e signature lungo la costa ligure. Ricette e serve pensati per il tuo palato e la luce della sala.",
+    "coll_honey_t": "Bocconi & weekend",
+    "coll_honey": "La nostra firma. Piccoli piatti e weekend per le coppie sul mare — tavoli a sorpresa, angoli e posti in riva.",
+    "gallery_eyebrow": "Dal bar",
+    "gallery_title": "Galleria",
+    "gallery_intro": "Tocca un'immagine per vederla a tutto schermo.",
+    "cap_summer": "Spritz d'estate",
+    "cap_harbor": "Luce di porto",
+    "cap_coral": "Corallo & oro",
+    "cap_water": "Sul mare",
+    "cap_emotion": "Versato con sentimento",
+    "cap_smile": "Un sorriso d'estate",
+    "cap_atelier": "Angolo bar",
+    "visit_eyebrow": "Dove siamo",
+    "visit_title": "Trova il bar",
+    "info_addr": "Indirizzo",
+    "info_hours": "Orari",
+    "info_call": "Chiama",
+    "info_write": "Scrivi",
+    "map_link": "Apri nella mappa ↗",
+    "blog_eyebrow": "Diario",
+    "blog_title": "Aperitivo & note",
+    "blog_intro": "Risposte alle domande più frequenti — dalle signature ai bocconi, agli eventi e alle prenotazioni.",
+    "q_ligurian_q": "Cosa devo ordinare?",
+    "q_ligurian_a": "Il clima mite della costa favorisce spritz, agrumi e piccoli piatti. Nella stagione spremiamo agrumi locali a mano.",
+    "q_types_q": "Cosa servite?",
+    "q_types_a": "Dal menu spritz monoTematico a ricche liste di signature, negroni e serve d'effetto — ognuno creato attorno a ospite e occasione.",
+    "q_events_q": "Ospitate eventi?",
+    "q_events_a": "Sì — degustazioni, cene ed eventi a Genova e sulla Riviera. Progettiamo menu, tempistiche e serve abbinati al palato e alla luce della sala.",
+    "q_prices_q": "Quanto costano i drink?",
+    "q_prices_a": "Gli spritz accordati a mano partono da 8 €; gli eventi sono quotati su brief. Raccontaci data e sentimento e ti invieremo una proposta chiara in giornata.",
+    "q_care_q": "Come godersi la sera?",
+    "q_care_a": "Prenota un tavolo, cambia piano ogni due giorni, tieniti lontano da folle e sole diretto. La maggior parte delle sere resta dorata 7–10 ore.",
+    "q_delivery_q": "Prendete prenotazioni?",
+    "q_delivery_a": "Sì — a Genova e Porto Antico, con tavoli a sorpresa in hotel e ristoranti per i visitatori. Prenota per le sere e le date speciali.",
+    "cta_eyebrow": "Ordina & prenota",
+    "cta_title": "Lasciaci versare qualcosa per te",
+    "cta_text": "Raccontaci la data e il sentimento — un compleanno, una proposta, un martedì che meritava un drink. Rispondiamo in giornata.",
+    "cta_send": "Invia richiesta",
+    "cta_fine": "Modulo demo — collega SITE_CONFIG.orderEndpoint al CRM / email in fase di integrazione. Nessun dato viene inviato in anteprima.",
+    "foot_about": "Bar dell'aperitivo sul mare — spritz, cocktail e piccoli piatti sotto la luce d'estate.",
+    "foot_explore": "Esplora",
+    "foot_contact": "Contatti",
+    "foot_follow": "Seguici",
+    "foot_case": "Case study · Avibe Agency",
+    "chat_title": "Concierge Bar del Porto",
+    "chat_status": "Risponde di solito in pochi minuti",
+    "chat_greet": "Ciao! 🍸 Sono l'host del Bar del Porto. Chiedimi di spritz, eventi o prenotazioni — o tocca una domanda qui sotto.",
+    "chat_q1": "Spritz & prezzi",
+    "chat_q2": "Cocktail & eventi",
+    "chat_q3": "Prenotazioni a Genova",
+    "chat_thinking": "Sta scrivendo…"
+  },
+  "ru": {
+    "nav_story": "История",
+    "nav_collections": "Меню",
+    "nav_gallery": "Галерея",
+    "nav_visit": "Контакт",
+    "nav_blog": "Журнал",
+    "nav_book": "Забронировать стол",
+    "hero_lede": "Приморский бар аперитиво — спритц, море и медленные вечера, налитые как письмо тому, кого любишь.",
+    "hero_cta1": "Забронировать стол",
+    "hero_cta2": "Наша история",
+    "story_eyebrow": "Рождён в гавани",
+    "story_title": "Где порт хранит обещания",
+    "story_p1": "Bar del Porto находится в нескольких шагах от рыбацких лодок Порто-Антико, где морской бриз несёт соль, а закатное солнце греет камень цвета терракоты. Мы открылись здесь не случайно: генуэзская гавань всегда была местом встреч, любовных писем и долгих прощаний.",
+    "story_pull": "«Каждый напиток, что мы наливаем, однажды пришёл с моря — теперь он возвращается в руки кого-то на берегу.»",
+    "story_p2": "Наше дело маленькое и осознанное. В сезон мы выжимаем цитрус, готовим каждый коктейль вручную и выстраиваем его по свету в шесть вечера, — мягко, золотисто, слегка влюблённо в это место.",
+    "story_tag": "Бар · Порто-Антико",
+    "coll_eyebrow": "Что мы наливаем",
+    "coll_title": "Меню и услуги",
+    "coll_intro": "Три способа отметить вечер — от обычного вторника до дня, который всё изменил.",
+    "coll_bouquets_t": "Аперитиво",
+    "coll_bouquets": "Авторские спритц и закуски. Мягкое обслуживание, у бара или доставка по Генуе.",
+    "coll_events_t": "Коктейли",
+    "coll_events": "Негрони, суры и фирменные по лигурийскому побережью. Рецепты и подача под ваш вкус и свет зала.",
+    "coll_honey_t": "Закуски и выходные",
+    "coll_honey": "Наша подпись. Закуски и планы выходных для пар у моря — секретные столы, уголки и места у воды.",
+    "gallery_eyebrow": "Из бара",
+    "gallery_title": "Галерея",
+    "gallery_intro": "Нажмите на фото, чтобы открыть его на весь экран.",
+    "cap_summer": "Летний спритц",
+    "cap_harbor": "Свет гавани",
+    "cap_coral": "Коралл и золото",
+    "cap_water": "На воде",
+    "cap_emotion": "Налито с чувством",
+    "cap_smile": "Летняя улыбка",
+    "cap_atelier": "Уголок бара",
+    "visit_eyebrow": "Где мы",
+    "visit_title": "Найдите бар",
+    "info_addr": "Адрес",
+    "info_hours": "Часы",
+    "info_call": "Телефон",
+    "info_write": "Почта",
+    "map_link": "Открыть на карте ↗",
+    "blog_eyebrow": "Журнал",
+    "blog_title": "Аперитиво и заметки",
+    "blog_intro": "Ответы на самые частые вопросы — от фирменных до закусок, событий и бронирований.",
+    "q_ligurian_q": "Что заказать?",
+    "q_ligurian_a": "Мягкий климат побережья подходит спритцу, цитрусу и закускам. В сезон мы выжимаем местный цитрус вручную.",
+    "q_types_q": "Что вы подаёте?",
+    "q_types_a": "От моно-меню спритц до насыщенных фирменных карт, негрони и эффектной подачи — каждый под гостя и повод.",
+    "q_events_q": "Проводите ли вы события?",
+    "q_events_a": "Да — дегустации, ужины и корпоративы по Генуе и Ривьере. Проектируем меню, тайминги и подачу под ваш вкус и свет зала.",
+    "q_prices_q": "Сколько стоят напитки?",
+    "q_prices_a": "Авторские спритц — от 8 €; события оцениваем по брифу. Напишите дату и настроение — пришлём чёткое предложение в тот же день.",
+    "q_care_q": "Как больше насладиться вечером?",
+    "q_care_a": "Бронируйте стол, меняйте план каждые два дня, держитесь подальше от толпы и прямого солнца. Большинство вечеров золоты 7–10 часов.",
+    "q_delivery_q": "Принимаете ли вы брони?",
+    "q_delivery_a": "Да — по Генуе и Порто-Антико, в том числе секретные столы в отелях и ресторанах для гостей. Заказывайте на вечер и особые даты.",
+    "cta_eyebrow": "Заказ и бронь",
+    "cta_title": "Позвольте нам налить для вас",
+    "cta_text": "Расскажите дату и настроение — день рождения, предложение, вторник, заслуживший напитка. Ответим в тот же день.",
+    "cta_send": "Отправить заявку",
+    "cta_fine": "Демо-форма — подключите SITE_CONFIG.orderEndpoint к CRM / email при интеграции. В превью данные не отправляются.",
+    "foot_about": "Приморский бар аперитиво у моря — спритц, коктейли и закуски в летнем свете.",
+    "foot_explore": "Разделы",
+    "foot_contact": "Контакты",
+    "foot_follow": "Мы в соцсетях",
+    "foot_case": "Кейс · Avibe Agency",
+    "chat_title": "Консьерж Bar del Porto",
+    "chat_status": "Обычно отвечает за минуты",
+    "chat_greet": "Ciao! 🍸 Я хост Bar del Porto. Спросите о спритце, событиях или бронях — или нажмите вопрос ниже.",
+    "chat_q1": "Спритц и цены",
+    "chat_q2": "Коктейли и события",
+    "chat_q3": "Брони в Генуе",
+    "chat_thinking": "Печатает…"
+  }
+};
+
+/* ---------------- Data (drives render + i18n) ---------------- */
+const COLLECTIONS = [
+  { n:"i.", img:PEX(27565828), titleKey:"coll_bouquets_t", textKey:"coll_bouquets" },
+  { n:"ii.", img:PEX(3794291), titleKey:"coll_events_t", textKey:"coll_events" },
+  { n:"iii.", img:PEX(27668709), titleKey:"coll_honey_t", textKey:"coll_honey" }
+];
+const GALLERY = [
+  { capKey:"cap_summer", img:PEX(27565828), full:PEX(27565828,1600) },
+  { capKey:"cap_harbor", img:PEX(27668709), full:PEX(27668709,1600) },
+  { capKey:"cap_coral", img:PEX(3794291), full:PEX(3794291,1600) },
+  { capKey:"cap_water", img:PEX(247350), full:PEX(247350,1600), user:true },
+  { capKey:"cap_emotion", img:PEX(9650653), full:PEX(9650653,1600), user:true },
+  { capKey:"cap_smile", img:PEX(31917406), full:PEX(31917406,1600) },
+  { capKey:"cap_atelier", img:PEX(11849088), full:PEX(11849088,1600) }
+];
+const BLOG = [
+  { qKey:"q_ligurian_q", aKey:"q_ligurian_a" },
+  { qKey:"q_types_q", aKey:"q_types_a" },
+  { qKey:"q_events_q", aKey:"q_events_a" },
+  { qKey:"q_prices_q", aKey:"q_prices_a" },
+  { qKey:"q_care_q", aKey:"q_care_a" },
+  { qKey:"q_delivery_q", aKey:"q_delivery_a" }
+];
+
+/* ---------------- Render ---------------- */
+let LANG = "en";
+function t(key){ return (I18N[LANG] && I18N[LANG][key]) || I18N.en[key] || key; }
+
+function renderCollections(){
+  document.getElementById("collGrid").innerHTML = COLLECTIONS.map(c => `
+    <article class="coll-card reveal">
+      <div class="coll-media"><div class="ph" style="background-image:url('${c.img}'), linear-gradient(140deg, var(--coral), var(--gold-soft))"></div></div>
+      <div class="coll-body"><span class="coll-num">${c.n}</span><h3>${t(c.titleKey)}</h3><p>${t(c.textKey)}</p></div>
+    </article>`).join("");
+  observeReveals();
+}
+function renderGallery(){
+  document.getElementById("galleryGrid").innerHTML = GALLERY.map((g,i) => `
+    <figure class="g-tile ${i===0||i===5?'wide':''} reveal" role="button" tabindex="0" aria-label="View ${t(g.capKey)}" data-i="${i}">
+      <div class="ph" style="background-image:url('${g.img}')"></div>
+      <span class="zoom" aria-hidden="true">⤢</span>
+      <figcaption class="cap">${t(g.capKey)}</figcaption>
+    </figure>`).join("");
+  document.querySelectorAll("#galleryGrid .g-tile").forEach(el => {
+    const i = +el.dataset.i;
+    el.addEventListener("click", () => openLb(i));
+    el.addEventListener("keydown", e => { if(e.key==="Enter"||e.key===" "){ e.preventDefault(); openLb(i); } });
+  });
+  observeReveals();
+}
+function renderBlog(){
+  document.getElementById("blogGrid").innerHTML = BLOG.map(b => `
+    <div class="qa reveal"><h3>${t(b.qKey)}</h3><p>${t(b.aKey)}</p></div>`).join("");
+  observeReveals();
+}
+
+/* ---------------- i18n apply ---------------- */
+function applyLang(lang){
+  LANG = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.setAttribute("data-lang", lang);
+  document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.getAttribute("data-i18n")); });
+  document.querySelectorAll(".lang-toggle button").forEach(b => b.classList.toggle("active", b.dataset.lang===lang));
+  renderCollections(); renderGallery(); renderBlog();
+  // chat quick replies (re-render only if empty / language changed)
+  renderChatQuick();
+  try { localStorage.setItem("mf-lang", lang); } catch(e){}
+}
+
+/* ---------------- Reveal observer ---------------- */
+let revealIO;
+function observeReveals(){
+  if (!("IntersectionObserver" in window)) { document.querySelectorAll(".reveal").forEach(e=>e.classList.add("in")); return; }
+  if (!revealIO) revealIO = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); revealIO.unobserve(e.target);} }), {threshold:0.12});
+  document.querySelectorAll(".reveal:not(.in)").forEach(e=>revealIO.observe(e));
+}
+
+/* ---------------- Lightbox ---------------- */
+const lb = document.getElementById("lightbox"), lbImg = document.getElementById("lbImg"), lbCap = document.getElementById("lbCap");
+let lbIndex = 0;
+function openLb(i){ lbIndex=i; const g=GALLERY[i]; lbImg.src=g.full; lbImg.alt=t(g.capKey); lbCap.textContent=t(g.capKey); lb.classList.add("open"); document.body.style.overflow="hidden"; lb.querySelector(".lb-close").focus(); }
+function closeLb(){ lb.classList.remove("open"); document.body.style.overflow=""; }
+function stepLb(d){ openLb((lbIndex+d+GALLERY.length)%GALLERY.length); }
+lb.addEventListener("click", e=>{ if(e.target===lb) closeLb(); });
+lb.querySelector(".lb-close").addEventListener("click", closeLb);
+lb.querySelector(".lb-prev").addEventListener("click", ()=>stepLb(-1));
+lb.querySelector(".lb-next").addEventListener("click", ()=>stepLb(1));
+document.addEventListener("keydown", e=>{ if(!lb.classList.contains("open"))return; if(e.key==="Escape")closeLb(); if(e.key==="ArrowRight")stepLb(1); if(e.key==="ArrowLeft")stepLb(-1); });
+
+/* ---------------- Header / nav / theme ---------------- */
+const header = document.getElementById("header");
+const onScroll = ()=>header.classList.toggle("scrolled", window.scrollY>40);
+onScroll(); window.addEventListener("scroll", onScroll, {passive:true});
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+menuToggle.addEventListener("click", ()=>{ const o=navLinks.classList.toggle("open"); menuToggle.setAttribute("aria-expanded", o?"true":"false"); });
+navLinks.querySelectorAll("a").forEach(a=>a.addEventListener("click", ()=>{ navLinks.classList.remove("open"); menuToggle.setAttribute("aria-expanded","false"); }));
+
+const themeToggle = document.getElementById("themeToggle");
+function setTheme(th){ document.documentElement.setAttribute("data-theme", th); try{ localStorage.setItem("mf-theme", th); }catch(e){} }
+themeToggle.addEventListener("click", ()=> setTheme(document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark") );
+
+document.querySelectorAll(".lang-toggle button").forEach(b=> b.addEventListener("click", ()=>applyLang(b.dataset.lang)) );
+
+/* ---------------- WhatsApp / phone links ---------------- */
+const wa = SITE_CONFIG.whatsapp.replace(/\D/g,"");
+const waUrl = `https://wa.me/${wa}?text=${encodeURIComponent("Ciao Bar del Porto! I'd love to book a table at Bar del Porto.")}`;
+const telUrl = `tel:${SITE_CONFIG.phone}`;
+document.getElementById("waHeader").href = waUrl;
+document.getElementById("waFoot").href = waUrl;
+document.getElementById("telLink").href = telUrl;
+document.getElementById("telLinkFoot").href = telUrl;
+
+/* ---------------- Booking form (demo → endpoint stub) ---------------- */
+document.getElementById("bookForm").addEventListener("submit", (e)=>{
+  e.preventDefault();
+  const btn = e.target.querySelector("button"); const orig = btn.textContent;
+  btn.textContent = "✿"; btn.disabled = true;
+  // TODO: fetch(SITE_CONFIG.orderEndpoint, {method:"POST", body: JSON.stringify({...})})
+  setTimeout(()=>{ btn.textContent = orig; btn.disabled=false; e.target.reset(); }, 2200);
+});
+
+/* ---------------- Chatbot (connectable later) ---------------- */
+const chatFab = document.getElementById("chatFab");
+const chatPanel = document.getElementById("chatPanel");
+const chatBody = document.getElementById("chatBody");
+const chatQuick = document.getElementById("chatQuick");
+const chatForm = document.getElementById("chatForm");
+const chatText = document.getElementById("chatText");
+document.getElementById("chatAvatar").src = CHATBOT_CONFIG.avatar;
+chatFab.style.backgroundImage = `url('${CHATBOT_CONFIG.avatar}')`;
+chatFab.querySelector("span").style.display = "none";
+
+function chatOpen(o){ chatPanel.classList.toggle("open", o); chatFab.setAttribute("aria-expanded", o?"true":"false"); if(o) chatText.focus(); }
+chatFab.addEventListener("click", ()=> chatOpen(!chatPanel.classList.contains("open")) );
+document.getElementById("chatClose").addEventListener("click", ()=> chatOpen(false));
+function botSay(text){ const d=document.createElement("div"); d.className="chat-msg bot"; d.textContent=text; chatBody.appendChild(d); chatBody.scrollTop=chatBody.scrollHeight; }
+function userSay(text){ const d=document.createElement("div"); d.className="chat-msg user"; d.textContent=text; chatBody.appendChild(d); chatBody.scrollTop=chatBody.scrollHeight; }
+function renderChatQuick(){
+  chatQuick.innerHTML = "";
+  [["chat_q1","Bouquets & prices"],["chat_q2","Events & weddings"],["chat_q3","Delivery in Genova"]].forEach(([k])=>{
+    const b=document.createElement("button"); b.type="button"; b.textContent=t(k);
+    b.addEventListener("click", ()=> sendChat(t(k)) ); chatQuick.appendChild(b);
+  });
+}
+async function sendChat(text){
+  if(!text.trim()) return;
+  userSay(text); chatText.value="";
+  const thinking=document.createElement("div"); thinking.className="chat-msg bot"; thinking.textContent=t("chat_thinking"); chatBody.appendChild(thinking);
+  try {
+    if (CHATBOT_CONFIG.apiUrl) {
+      const r = await fetch(CHATBOT_CONFIG.apiUrl, {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body: JSON.stringify({ model:CHATBOT_CONFIG.model, message:text })
+      });
+      const data = await r.json();
+      thinking.textContent = data.reply || data.message || CHATBOT_CONFIG.fallbackReply;
+    } else {
+      setTimeout(()=>{ thinking.textContent = CHATBOT_CONFIG.fallbackReply; }, 600);
+    }
+  } catch(err){ thinking.textContent = CHATBOT_CONFIG.fallbackReply; }
+}
+chatForm.addEventListener("submit", (e)=>{ e.preventDefault(); sendChat(chatText.value); });
+
+/* ---------------- Init ---------------- */
+document.getElementById("year").textContent = new Date().getFullYear();
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const heroVid = document.querySelector(".hero-video");
+if (reduce && heroVid){ heroVid.removeAttribute("autoplay"); heroVid.pause(); }
+// restore prefs
+try {
+  const savedLang = localStorage.getItem("mf-lang"); if(savedLang) applyLang(savedLang); else applyLang("en");
+  const savedTheme = localStorage.getItem("mf-theme"); if(savedTheme) setTheme(savedTheme);
+} catch(e){ applyLang("en"); }
+// greeting + first render
+botSay(t("chat_greet"));
+renderCollections(); renderGallery(); renderBlog(); observeReveals();
+</script>
+</body>
+</html>

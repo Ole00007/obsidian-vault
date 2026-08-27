@@ -1,0 +1,9 @@
+Schedule,Agent(s),Job,Reports To
+06:00 CET Daily,GSC-Agent,"Search Analytics pull, index status check",HEAD-SEO
+07:00 CET Mon (Weekly),ChatSEO-Agent,AI-visibility scan on priority query set,HEAD-SEO
+Wed (Weekly),GSC-Agent,Indexing status + auto-submit new URLs,HEAD-SEO
+Thu (Weekly),customer-rel-manager,Review monitoring + response pass,HEAD-SEO
+Fri 09:00 CET (Weekly),marketing-analyst,Weekly ranking/traffic/citation report to HEAD-SEO -> Alena,HEAD-SEO
+1st of month 08:00 CET,HEAD-SEO + marketing-analyst,Aggregate cost/traction/business-KPI monthly report,operator-installer
+30th of month,backend-developer + HEAD-SEO,Competitor backlink & AI-citation audit refresh,HEAD-SEO
+On every content publish,backend-developer / GSC-Agent,Fast-indexing request within 1h of publish,HEAD-SEO

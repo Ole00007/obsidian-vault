@@ -1,0 +1,4 @@
+"Your Need","Can Notion + Hermes Alone Handle It?","Notes"
+"SEO/AEO/GEO tracking for Alena's site","Yes","Workers can pull SEO data via webhook into a Notion database on a schedule; Hermes can process/analyze that data directly through the Notion API thomas-wiegold+1"
+"LexFlow build logging/ops tracking","Yes","Hermes → Notion API direct write covers this; no need for a middle-man automation tool notion+1"
+"Complex multi-step conditional logic","Partially","Workers require writing actual code (TypeScript); Make gives you a visual builder for non-code logic — useful if Hermes doesn't want to write custom Worker scripts every time cotera+1"

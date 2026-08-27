@@ -1,0 +1,4 @@
+"Date","Plan","Location","Action taken","Verification","Debug notes","Status"
+"2026-07-29","Complete truncated HTML draft","Full file","Finished form/footer/WhatsApp/chat blocks, wired JS handlers","File-lock audit clean, doctype/close verified, hash confirmed","None","Done"
+"2026-07-29","Harden sticky header","<style> header{}","Added -webkit-backdrop-filter + isolation:isolate proactively","Property presence confirmed in saved file","Applied lesson from prior Alexy project before user hit the same bug","Done"
+"2026-07-29","Document webhooks","Form + WhatsApp link","Added WH-01/WH-02 markers + registry table","Both markers found in file","LEAD_WEBHOOK_URL is still a placeholder — must be replaced","Needs review"

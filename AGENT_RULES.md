@@ -1,0 +1,1 @@
+/Users/olesiarasing/Obsidian/_Meta/AGENT_RULES.md

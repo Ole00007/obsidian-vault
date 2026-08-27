@@ -1,0 +1,6 @@
+"Model ID (paste exactly)","Strength","Context"
+"deepseek/deepseek-chat-v3-0324:free","Coding, reasoning","128K"
+"meta-llama/llama-4-maverick:free","General, coding","128K"
+"google/gemma-3-27b-it:free","Coding, instruction following","96K"
+"qwen/qwen3.6-plus:free","Near-frontier coding, FREE","128K"
+"mistralai/mistral-small-4:free","Coding + reasoning, Apache 2.0","128K"

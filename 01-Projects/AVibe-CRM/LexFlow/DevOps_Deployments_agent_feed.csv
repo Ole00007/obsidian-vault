@@ -1,0 +1,132 @@
+Sheet,Row_Type,Field_1,Field_2,Field_3,Field_4,Field_5,Field_6
+Platform Comparison,HEADER,Platform,Link,Best For,Notes,,
+Platform Comparison,DATA,Vercel,https://vercel.com,"Next.js/React landing pages, fastest DX","100GB/mo free bandwidth, unlimited custom domains + free SSL",,
+Platform Comparison,DATA,Cloudflare Pages,https://pages.cloudflare.com,"High-traffic sites, edge performance, global audiences","Unlimited free bandwidth, up to 100 custom domains/project",,
+Platform Comparison,DATA,GitHub Pages,https://pages.github.com,"Static docs, portfolios, no backend needed","Free, ~100GB soft bandwidth cap, static-only (no functions)",,
+Platform Comparison,DATA,Render (Static Sites),https://render.com/docs/static-sites,Static sites plus backend/DB services on one platform,"Free static tier, optional paid backend services",,
+Platform Comparison,DATA,Netlify,https://www.netlify.com,"Git-based static/JAMstack deploys, forms, functions","Credit-based free tier, pauses deploys when credits run out",,
+Platform Comparison,DATA,Railway,https://railway.app,"Full backend deploys (Flask/Node/DBs), your LexFlow-style stack","Usage-based free trial credit ($5), then pay-as-you-go",,
+Platform Comparison,DATA,Hetzner Cloud,https://www.hetzner.com/cloud/,"Full-control VPS: self-hosted DBs, always-on AI agents (Hermes/aLEXy), EU data residency","No PaaS convenience — you manage OS/Docker yourself; from €3.99–4.10/mo, 20TB traffic bundled free",,
+Free Tiers & CLI,HEADER,Platform,Free Tier Summary,CLI Docs Link,,,
+Free Tiers & CLI,DATA,Netlify,"100GB bandwidth/mo, credit-based Agent Runner limits, pauses when exhausted",https://docs.netlify.com/cli/get-started/,,,
+Free Tiers & CLI,DATA,Vercel,"100GB bandwidth/mo, 100 serverless function invocations/day (Hobby plan)",https://vercel.com/docs/cli,,,
+Free Tiers & CLI,DATA,Cloudflare Pages,"Unlimited bandwidth, 500 builds/month, 100 custom domains/project",https://developers.cloudflare.com/workers/wrangler/install-and-update/,,,
+Free Tiers & CLI,DATA,GitHub Pages,"Free for public repos, ~100GB soft bandwidth cap, static only",https://cli.github.com/manual/,,,
+Free Tiers & CLI,DATA,Render,Free static sites + free tier for small web services (spun down after inactivity),https://render.com/docs/cli,,,
+Free Tiers & CLI,DATA,Railway,"$5 one-time trial credit, then usage-based (no persistent free tier)",https://docs.railway.com/guides/cli,,,
+Free Tiers & CLI,DATA,Hetzner Cloud,"No free tier — flat monthly price from €3.99/mo (CX22), 20TB traffic bundled included, no usage surprises",https://docs.hetzner.com/cloud/cli/,,,
+Deployed Projects,HEADER,Platform,Project Name,Dashboard Link,Live Public URL,Published,Owner
+Deployed Projects,DATA,Netlify,poetic-kleicha-28d058,https://app.netlify.com/projects/poetic-kleicha-28d058/,https://poetic-kleicha-28d058.netlify.app,Aug 5 (7 days ago),AVibe Agent
+Deployed Projects,DATA,Netlify,gregarious-panda-2dc365,https://app.netlify.com/projects/gregarious-panda-2dc365/,https://gregarious-panda-2dc365.netlify.app,Jul 19 (24 days ago),AVibe Agent
+Deployed Projects,DATA,Netlify,stalwart-figolla-4630b8,https://app.netlify.com/projects/stalwart-figolla-4630b8/,https://stalwart-figolla-4630b8.netlify.app,Jul 8 (a month ago),AVibe Agent
+Deployed Projects,DATA,Netlify,unrivaled-paletas-d249b5,https://app.netlify.com/projects/unrivaled-paletas-d249b5/,https://unrivaled-paletas-d249b5.netlify.app,Jul 6 (a month ago),AVibe Agent
+Deployed Projects,DATA,Netlify,avibe-calcio-031726,https://app.netlify.com/projects/avibe-calcio-031726/,https://avibe-calcio-031726.netlify.app,Jul 6 (a month ago),AVibe Agent
+Deployed Projects,DATA,Netlify,meek-swan-ea585b,https://app.netlify.com/projects/meek-swan-ea585b/,https://meek-swan-ea585b.netlify.app,Jul 1 (a month ago),AVibe Agent
+Deployed Projects,DATA,Netlify,scintillating-gaufre-1d7f90,https://app.netlify.com/projects/scintillating-gaufre-1d7f90/,https://scintillating-gaufre-1d7f90.netlify.app,Jun 11 (2 months ago),AVibe Agent
+Deployed Projects,DATA,Netlify,muzloto-apr-1f8f19,https://app.netlify.com/projects/muzloto-apr-1f8f19/,https://muzloto-apr-1f8f19.netlify.app,May 22 (3 months ago),AVibe Agent
+Deployed Projects,DATA,Netlify,curious-fairy-b6fbcd,https://app.netlify.com/projects/curious-fairy-b6fbcd/,https://curious-fairy-b6fbcd.netlify.app,May 6 (3 months ago),AVibe Agent
+Deployed Projects,DATA,Netlify,nimble-parfait-5af189,https://app.netlify.com/projects/nimble-parfait-5af189/,https://nimble-parfait-5af189.netlify.app,Apr 28 (3 months ago),AVibe Agent
+Deployed Projects,DATA,Netlify,majestic-strudel-252e45,https://app.netlify.com/projects/majestic-strudel-252e45/,https://majestic-strudel-252e45.netlify.app,Apr 24 (4 months ago),AVibe Agent
+Deployed Projects,DATA,Netlify,coruscating-pegasus-c96710,https://app.netlify.com/projects/coruscating-pegasus-c96710/,https://coruscating-pegasus-c96710.netlify.app,Aug 5 (7 days ago),AVibe Agent
+Deployed Projects,DATA,Netlify,verdant-crumble-021449,https://app.netlify.com/projects/verdant-crumble-021449/,https://verdant-crumble-021449.netlify.app,Aug 4 (8 days ago),AVibe Agent
+Deployed Projects,DATA,Netlify,brilliant-peony-769aca,https://app.netlify.com/projects/brilliant-peony-769aca/,https://brilliant-peony-769aca.netlify.app,Jul 9 (a month ago),AVibe Agent
+Deployed Projects,DATA,Netlify,astounding-pavlova-45b690,https://app.netlify.com/projects/astounding-pavlova-45b690/,https://astounding-pavlova-45b690.netlify.app,Apr 26 (4 months ago),AVibe Agent
+Deployed Projects,DATA,Netlify,hilarious-genie-087339,https://app.netlify.com/projects/hilarious-genie-087339/,https://hilarious-genie-087339.netlify.app,Apr 17 (4 months ago),AVibe Agent
+Deployed Projects,DATA,Netlify,graceful-lokum-a9cf0b,https://app.netlify.com/projects/graceful-lokum-a9cf0b/,https://graceful-lokum-a9cf0b.netlify.app,Mar 17 (5 months ago),AVibe Agent
+Deployed Projects,DATA,Vercel,(pending — add later),,,,
+Deployed Projects,DATA,Cloudflare Pages / Workers,romanelli-studio,https://dash.cloudflare.com/177be9fe43f849edf5c98ea100ac0f24/workers/services/view/romanelli-studio/production/builds/306799ed-08b5-4ecc-9e62-672224fdfbaf,https://romanelli-studio.olesya00007.workers.dev/,Live,Ole00007 (GitHub: Ole00007/Romanelli-studio)
+Deployed Projects,DATA,GitHub Pages,(pending — add later),,,,
+Deployed Projects,DATA,Render,(pending — add later),,,,
+Deployed Projects,DATA,Railway,(pending — add later),,,,
+Deployed Projects,DATA,Hetzner Cloud,(pending — add later),,,,
+Build Settings,HEADER,Repo Type,Base Directory,Build Command,Publish Directory,Notes,
+Build Settings,DATA,Plain static HTML in repo root,(blank),(none needed),.,"No build step, just serves files as-is",
+Build Settings,DATA,Vite app in repo root,(blank),npm run build,dist,Standard Vite/React/Vue output folder,
+Build Settings,DATA,Create React App (CRA) in root,(blank),npm run build,build,CRA default output folder,
+Build Settings,DATA,Next.js (static export),(blank),npm run build && npm run export,out,Only if using next export; otherwise use SSR-capable host,
+Build Settings,DATA,Site inside frontend/ subfolder,frontend,npm run build (run inside base dir),frontend/dist (or as configured),Set 'Base directory' so platform cd's into subfolder before building,
+Build Settings,DATA,Monorepo with multiple apps,apps/<app-name>,depends on package.json scripts,apps/<app-name>/dist,Use per-app base directory + workspace-aware build command,
+Build Settings,DATA,Flask/Python backend (Railway/Render),(repo root or /backend),pip install -r requirements.txt,"N/A (web service, not static)",No publish directory; runs as a persistent process on a port,
+Build Settings,DATA,Cloudflare Worker (wrangler.toml present),(blank),npm install && wrangler deploy (or Workers Builds auto),"N/A (Worker script, not static publish dir)",Uses wrangler.toml for config; can auto-build via Cloudflare Git integration,
+Build Settings,DATA,Full stack on Hetzner VPS (Docker Compose),(repo root),docker compose build && docker compose up -d,"N/A (persistent server, not a build/publish pipeline)",You SSH in or use a deploy script/GitHub Actions to pull + restart containers; no managed build step,
+Env Vars & Secrets,HEADER,Variable Name,Platform(s) Used On,Purpose,Where Set,Status,
+Env Vars & Secrets,DATA,DATABASE_URL,"Railway, Render, Hetzner (self-hosted Postgres)",Postgres/Supabase connection string,Platform dashboard / .env on server → Environment Variables,To verify,
+Env Vars & Secrets,DATA,SECRET_KEY / FLASK_SECRET_KEY,"Railway, Render, Hetzner",Flask session/CSRF signing key,Platform dashboard / server .env,To verify,
+Env Vars & Secrets,DATA,SUPABASE_URL,"Netlify, Vercel, Railway",Supabase project endpoint,Platform dashboard,To verify,
+Env Vars & Secrets,DATA,SUPABASE_ANON_KEY,"Netlify, Vercel",Public client key for Supabase,Platform dashboard (safe to expose client-side),To verify,
+Env Vars & Secrets,DATA,SUPABASE_SERVICE_ROLE_KEY,"Railway, Render only",Server-side privileged key,Backend platform only — NEVER in frontend build,To verify,
+Env Vars & Secrets,DATA,AIRTABLE_API_KEY,"Netlify Functions, Railway",Airtable integration auth,Platform dashboard,To verify,
+Env Vars & Secrets,DATA,OPENAI_API_KEY / ANTHROPIC_API_KEY,"Railway, Render, Netlify Functions, Hetzner",AI model calls (Hermes/aLEXy agents),Platform dashboard / server .env,To verify,
+Env Vars & Secrets,DATA,NODE_VERSION,"Netlify, Vercel",Pin Node version for consistent builds,netlify.toml / vercel.json or dashboard,To verify,
+Env Vars & Secrets,DATA,PYTHON_VERSION,"Railway, Render",Pin Python version,runtime.txt / dashboard,To verify,
+Env Vars & Secrets,DATA,NETLIFY_AUTH_TOKEN,GitHub Actions (CI),Allows CI to trigger Netlify deploys from GitHub,GitHub repo → Settings → Secrets,Check if configured — flagged as 'Never used',
+Env Vars & Secrets,DATA,VERCEL_TOKEN,GitHub Actions (CI),Allows CI to trigger Vercel deploys from GitHub,GitHub repo → Settings → Secrets,To verify,
+Env Vars & Secrets,DATA,RAILWAY_TOKEN,GitHub Actions (CI),Allows CI to trigger Railway deploys,GitHub repo → Settings → Secrets,To verify,
+Env Vars & Secrets,DATA,CLOUDFLARE_API_TOKEN / ACCOUNT_ID,Cloudflare Workers Git integration / GitHub Actions,Auth for Cloudflare Workers deploy (wrangler),Cloudflare dashboard → My Profile → API Tokens; GitHub repo secrets,To verify — related to romanelli-studio 'Never used' flag,
+Env Vars & Secrets,DATA,HETZNER_SSH_KEY,GitHub Actions (CI) → Hetzner deploy step,Private key to SSH into VPS and pull/restart containers,"GitHub repo → Settings → Secrets (store private key, add public key to server)",To set up when server is provisioned,
+Env Vars & Secrets,DATA,HETZNER_SERVER_IP,GitHub Actions (CI) → Hetzner deploy step,Target host for SSH deploy script,GitHub repo → Settings → Secrets/Variables,To set up when server is provisioned,
+Domains & DNS,HEADER,Domain,Project/Platform,DNS Provider,Record Type,Points To,SSL Status
+Domains & DNS,DATA,(example) lexflow.app,LexFlow — Railway/Netlify,(e.g. Cloudflare/Namecheap),CNAME/A,platform-provided target,To verify
+Domains & DNS,DATA,(example) alexy.ai,aLEXy — Vercel,,CNAME,cname.vercel-dns.com,To verify
+Domains & DNS,DATA,romanelli-studio.olesya00007.workers.dev,Romanelli Studio — Cloudflare Worker,Cloudflare (workers.dev subdomain),Managed by Cloudflare,N/A — default Workers subdomain,Active
+Domains & DNS,DATA,(example) yourdomain.com,Future Hetzner VPS project,"Cloudflare (recommended, free proxy+SSL)",A record → server's public IPv4,Hetzner server IP (assigned at provisioning),To set up
+CI-CD Checklist,HEADER,Item,Platform,Status,How to Fix / Set Up,Link,
+CI-CD Checklist,DATA,GitHub → Netlify Auth connection,Netlify,Verify — flagged 'Never used' in GitHub integrations,Netlify site settings → Build & deploy → Continuous Deployment → Link repository; or GitHub → Settings → Applications → Authorized OAuth Apps → check Netlify is authorized,https://app.netlify.com/,
+CI-CD Checklist,DATA,GitHub → Vercel integration,Vercel,To verify,GitHub → Settings → Integrations → Vercel; or import repo at vercel.com/new,https://vercel.com/new,
+CI-CD Checklist,DATA,GitHub → Railway integration,Railway,To verify,Railway dashboard → New Project → Deploy from GitHub repo → authorize GitHub App,https://railway.app/new,
+CI-CD Checklist,DATA,GitHub → Cloudflare Workers Auth,romanelli-studio (Cloudflare Worker),To fix — flagged 'Never used',See 'Next Automations' sheet for exact links/steps,https://dash.cloudflare.com/177be9fe43f849edf5c98ea100ac0f24/workers/services/view/romanelli-studio/production/builds/306799ed-08b5-4ecc-9e62-672224fdfbaf,
+CI-CD Checklist,DATA,"GitHub → Hetzner deploy (SSH-based, no native App)",Future Hetzner VPS project,To set up when provisioned,No OAuth app exists — use a GitHub Actions step that SSHes in with HETZNER_SSH_KEY and runs a pull/restart script,https://docs.hetzner.com/cloud/servers/getting-started/connect-to-server/,
+CI-CD Checklist,DATA,GitHub Actions workflow file present,All,To verify — none found yet in Romanelli-studio repo,Check for .github/workflows/*.yml in each repo,https://docs.github.com/actions,
+CI-CD Checklist,DATA,Auto-deploy on push to main,All,To verify,Check each platform's dashboard → Deploy triggers / branch settings,,
+CI-CD Checklist,DATA,Preview deploys on PR/branch,"Netlify, Vercel, Cloudflare Pages",To verify,Enabled by default once repo is linked — check dashboard settings,,
+CI-CD Checklist,DATA,Build notifications (Slack/email),All,Optional,Platform dashboard → Notifications,,
+CI-CD Checklist,DATA,Secrets synced between GitHub & platform,All,To verify,See 'Env Vars & Secrets' sheet,,
+Deployment Checklist,HEADER,Phase,Task,Done,,,
+Deployment Checklist,DATA,Pre-deploy,Run build locally (npm run build / flask run) and confirm no errors,,,,
+Deployment Checklist,DATA,Pre-deploy,Confirm env vars set on target platform match .env.example,,,,
+Deployment Checklist,DATA,Pre-deploy,Check requirements.txt / package.json is up to date,,,,
+Deployment Checklist,DATA,Pre-deploy,Verify database migrations applied (if backend),,,,
+Deployment Checklist,DATA,Pre-deploy,Update AVIBE logo asset and favicon are in place,,,,
+Deployment Checklist,DATA,Deploy,Push to correct branch / trigger deploy via CLI or dashboard,,,,
+Deployment Checklist,DATA,Deploy,Watch build logs for warnings/errors,,,,
+Deployment Checklist,DATA,Post-deploy,Open the LIVE public URL (not dashboard link) and test key flows,,,,
+Deployment Checklist,DATA,Post-deploy,Check mobile responsiveness on live URL,,,,
+Deployment Checklist,DATA,Post-deploy,Verify SSL/HTTPS is active (padlock in browser),,,,
+Deployment Checklist,DATA,Post-deploy,Test forms / API endpoints / auth flows,,,,
+Deployment Checklist,DATA,Post-deploy,Update this workbook: add project row in 'Deployed Projects' sheet,,,,
+Deployment Checklist,DATA,Post-deploy,Share live URL (not dashboard link) with collaborators/investors,,,,
+Quick Reference,HEADER,Note,,,,,
+Quick Reference,DATA,Netlify dashboard link vs live URL: app.netlify.com/projects/<name>/ is a private admin dashboard; <name>.netlify.app is the public live site.,,,,,
+Quick Reference,DATA,Cloudflare follows the same pattern: dash.cloudflare.com/.../builds/... is the private build view; <name>.workers.dev is the public live site.,,,,,
+Quick Reference,DATA,"Hetzner has no such split — you provision a raw VPS with just a public IP, then point your own domain at it.",,,,,
+Quick Reference,DATA,CLI: netlify login | netlify deploy --prod,,,,,
+Quick Reference,DATA,CLI: vercel login | vercel --prod,,,,,
+Quick Reference,DATA,CLI: wrangler login | wrangler deploy (Workers) / wrangler pages deploy <dir> (Pages),,,,,
+Quick Reference,DATA,"CLI: gh auth login (GitHub Pages deploys via Actions, not a direct CLI push)",,,,,
+Quick Reference,DATA,CLI: railway login | railway up,,,,,
+Quick Reference,DATA,"CLI: ssh root@<hetzner-ip> then docker compose up -d, or run your deploy script",,,,,
+Quick Reference,DATA,"See 'Next Automations' sheet for the two priority fixes: GitHub-Cloudflare Auth for romanelli-studio, and GitHub Actions pipeline for Railway + Netlify/Vercel.",,,,,
+Quick Reference,DATA,"See 'Hetzner Server' sheet for when to move workloads from Railway/Render onto a Hetzner VPS, and what traffic comes bundled free.",,,,,
+Next Automations,HEADER,#,Automation,Target,Direct Link,Steps,Status
+Next Automations,DATA,1,Fix GitHub → Cloudflare Workers Auth (flagged 'Never used'),romanelli-studio (Cloudflare Worker),https://dash.cloudflare.com/177be9fe43f849edf5c98ea100ac0f24/workers/services/view/romanelli-studio/production/builds/306799ed-08b5-4ecc-9e62-672224fdfbaf,"1) Confirm Git integration shows Ole00007/Romanelli-studio branch main connected. 2) If not, Cloudflare dashboard -> Workers & Pages -> romanelli-studio -> Settings -> Builds -> Connect to Git. 3) Check github.com/settings/installations for the Cloudflare Workers and Pages app repo access. 4) Push a commit to main and confirm auto-build triggers. 5) Verify live site updates.",To verify/fix
+Next Automations,DATA,2,"Add GitHub Actions pipeline: Flask backend -> Railway, frontend -> Netlify/Vercel on merge to main",LexFlow / aLEXy backend + frontend repos,https://github.com/Ole00007/Romanelli-studio/settings/secrets/actions,"1) Add secrets NETLIFY_AUTH_TOKEN, VERCEL_TOKEN, RAILWAY_TOKEN. 2) Create .github/workflows/deploy.yml with deploy-backend (Railway) and deploy-frontend (Netlify/Vercel) jobs on push to main. 3) Commit workflow file. 4) Push to main, check Actions tab. 5) Confirm live URLs update automatically.",To build
+Hetzner Server,HEADER,Section,Scenario/Plan,Detail1,Detail2,Detail3,Detail4
+Hetzner Server,DATA,Where & When,Outgrow Railway usage billing,Hetzner CX22 ~€3.99-4.10/mo flat vs Railway per-second metered billing,LexFlow backend once past MVP testing with steady usage,,
+Hetzner Server,DATA,Where & When,Always-on background processes,"VPS runs 24/7, no cold starts or invocation caps",aLEXy / Hermes agent orchestration,,
+Hetzner Server,DATA,Where & When,Full root/OS control,Real Ubuntu/Debian box with root access vs abstracted PaaS OS,"Custom system deps: OCR, headless browsers, AI model runtimes",,
+Hetzner Server,DATA,Where & When,EU data residency / GDPR,"German company, EU datacenters (Falkenstein, Nuremberg, Helsinki)",LexFlow legal-tech client/case data under Italian/EU privacy law,,
+Hetzner Server,DATA,Where & When,Self-hosting DB/Redis/vector store,Cheaper long-term than managed DB add-ons at scale,Moving off Supabase free tier or self-hosting RAG vector DB,,
+Hetzner Server,DATA,Where & When,Consolidate multiple small apps,One CX32/CX42 running several Dockerized apps via Compose/reverse proxy for one flat fee,Multiple AVibe client landing pages/internal tools instead of N separate PaaS bills,,
+Hetzner Server,DATA,Where & When,When NOT needed yet,Static landing pages/quick MVP demos are faster and free on PaaS,"AVibe landing pages, one-off client MVP demos stay on Netlify/Vercel",,
+Hetzner Server,DATA,Bundled Traffic,CX22 (shared vCPU),2 vCPU / 4GB RAM / 40GB SSD,from €3.99-4.10/mo,20 TB (EU) bundled,~€1/TB overage
+Hetzner Server,DATA,Bundled Traffic,CX32 (shared vCPU),4 vCPU / 8GB RAM / 80GB SSD,€6.80/mo,20 TB (EU) bundled,~€1/TB overage
+Hetzner Server,DATA,Bundled Traffic,CX42 (shared vCPU),8 vCPU / 16GB RAM / 160GB SSD,€16.40/mo,20 TB (EU) bundled,~€1/TB overage
+Hetzner Server,DATA,Bundled Traffic,CX52 (shared vCPU),16 vCPU / 32GB RAM / 320GB SSD,€32.40/mo,20 TB (EU) bundled,~€1/TB overage
+Hetzner Server,DATA,Bundled Traffic,"CAX11-CAX41 (Arm, cost-optimized)",2-16 vCPU / 4-32GB RAM,from ~€3.79/mo,20 TB (EU) bundled,~€1/TB overage
+Hetzner Server,DATA,Bundled Traffic,"CPX11-CPX51 (dedicated vCPU, global)",2-16 vCPU / 2-32GB RAM,from ~€4.35/mo,20TB EU / 1-5TB US / 0.5-5TB Singapore,~€1/TB overage
+Hetzner Server,DATA,Bundled Traffic,"CCX13-CCX63 (dedicated vCPU, high perf)",2-48 vCPU / 8-192GB RAM,from ~€13/mo,20-60TB EU / 1-8TB US & SIN,~€1/TB overage
+Hetzner Server,DATA,Bundled Traffic,AX/EX series (bare metal root server),"Physical hardware, varies",from ~€39/mo,Unlimited traffic on standard 1Gbit uplink,N/A unlimited
+Hetzner Server,DATA,Key Takeaway,Traffic included by default,No extra charge unless exceeded — rare for typical SaaS/landing pages,,,
+Hetzner Server,DATA,Key Takeaway,Shared bandwidth speed,"Uncapped but not guaranteed, ~300-500 Mbit/s in practice",,,
+Hetzner Server,DATA,Key Takeaway,Dedicated root servers,Unlimited traffic on standard 1Gbit uplink,"10Gbit uplink add-on has 20TB/mo cap, ~€1.20/TB overage",,
+Hetzner Server,DATA,Key Takeaway,vs Railway egress billing,Railway bills egress at $0.05/GB on top of compute,Hetzner's bundled traffic removes that line item for most workloads,,

@@ -1,0 +1,8 @@
+"Model","Cost","Daily limit","Context","Best for","Runs out?"
+"qwen3-235b-a22b:free","🟢 FREE","50 req/day openrouter","256K","Coding, reasoning","No"
+"llama-4-maverick:free","🟢 FREE","50 req/day buldrr","1M","Large files, docs","No"
+"deepseek-chat-v3-0324:free","🟢 FREE","50 req/day buldrr","64K","General chat, writing","No"
+"deepseek-r1:free","🟢 FREE","50 req/day buldrr","64K","Reasoning, debugging","No"
+"llama-3.3-70b-instruct:free","🟢 FREE","50 req/day costgoat","128K","Instructions, summaries","No"
+"Claude Sonnet 4.6","🟡 $3/$15 per 1M tokens tldl","Plan-based","200K","Complex coding","Yes"
+"GitHub Copilot","🔴 Exhausted","Monthly credits learn.microsoft","Varies","VS Code inline","Yes — resets 1 July"

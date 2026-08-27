@@ -1,0 +1,6 @@
+"Role","Best free model(s)","Why"
+"a) Planning/admin project tracking","tencent/hy3:free","Built for planning and multi-step reasoning tests, with configurable reasoning effort for complex multi-step tasks openrouter+1"
+"b) Coder (full-stack dev)","qwen/qwen3-coder:free, poolside/laguna-m.1:free","Qwen3 Coder handles repo-scale context (1M tokens) for code exploration; Laguna M.1 is tuned for coding-agent experiments teamday"
+"c) MCP and CLI master","nvidia/nemotron-3-ultra-550b-a55b:free","Explicitly suited for long-running agentic workflows including agent orchestration and complex enterprise/CLI-driven tasks openrouter"
+"d) Content creator","meta-llama/llama-3.3-70b-instruct:free, google/gemma-4-31b-it:free","Best general drafting/instruction-following models with solid context windows for long-form content teamday"
+"e) Reasoning","openai/gpt-oss-120b:free, nvidia/nemotron-3-super-120b-a12b:free","GPT-OSS 120B targets general reasoning/agent experiments; Nemotron 3 Super handles long-context reasoning with 1M token window teamday"

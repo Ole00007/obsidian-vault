@@ -1,0 +1,6 @@
+"#","File","Where it goes","Purpose"
+"1","SOUL.md","~/.hermes/profiles/lexflow-builder/SOUL.md","Build Architect agent identity, full stack scope, product context, context window handoff rule"
+"2","AGENTS.md","Root of LexFlow-MVP repo","Repo map, file paths, stack, deploy rules — Hermes reads automatically from working directory"
+"3","SKILL_lexflow-deploy.md","~/.hermes/skills/lexflow-deploy/SKILL.md (rename)","Deploy recovery skill — Railway fix, Procfile rules, code recovery, Lovable integration"
+"4","LEXFLOW_REBUILD_PLAN.md","Keep for reference / share with collaborators","Full diagnosis of the Railway break + step-by-step rebuild plan"
+"5","requirements_fixed.txt","Replace requirements.txt in LexFlow-MVP repo","Adds the missing resend==2.4.0 — fixes the ImportError crash"

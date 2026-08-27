@@ -1,0 +1,7 @@
+"What","Path","How to open"
+"Hermes config, sessions, logs","~/.hermes/","open ~/.hermes in Terminal"
+"All your agent profiles (LexFlow, SEO, etc.)","~/.hermes/profiles/","open ~/.hermes/profiles — you saw 22 folders in the paste paste.txt"
+"Agent conversation logs","~/.hermes/logs/","Open in VS Code: code ~/.hermes/logs"
+"LexFlow backend code","~/.hermes/profiles/lexflowbackend-dev/","code ~/.hermes/profiles/lexflowbackend-dev"
+"LexFlow frontend","~/.hermes/profiles/lexflow-builder/","code ~/.hermes/profiles/lexflow-builder"
+"SEO agents","~/.hermes/profiles/seo-aeo-expert/ etc.","Same pattern"

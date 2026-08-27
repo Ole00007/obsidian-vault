@@ -1,0 +1,51 @@
+PAGLIANO PROJECT — DIRECTORIES & KEY LOCATIONS (2026-08-03)
+=====================================================================
+LOCAL (this machine):
+   Repo working dir:   /Users/olesiarasing/Desktop/projects/services/LexFlow-MVP
+   Pagliano LP source: /Users/olesiarasing/Desktop/projects/services/LexFlow-MVP/pagliano/
+       - index.html  (Netlify LP, deployed)
+       - templates/pagliano.html (local Flask copy, synced)
+       - static/chat-widget.js
+       - app.py (local LP proxy app)
+       - database.py, pagliano.db (local-only, NOT deployed)
+   Backend source:     /Users/olesiarasing/Desktop/projects/services/LexFlow-MVP/
+       - wsgi.py, app.py, Procfile, railway.toml
+       - crm/ (blueprints: auth, intake, contacts, cases, tasks, kanban...)
+       - migrations/ (alembic, head = c3d4e5f6g7h8)
+       - templates/ (login.html NEW, admin.html, base.html, index.html...)
+   Session summary:    /Users/olesiarasing/Desktop/projects/services/PAGLIANO_SESSION_SUMMARY_2026-08-03.md
+   This file:          /Users/olesiarasing/Desktop/projects/services/PAGLIANO_DIRS.txt
+   Local notes:        /tmp/pagliano_admin_pw.txt, /tmp/pg_public_url.txt (credentials)
+
+GITHUB:
+   Repo:               https://github.com/Ole00007/LexFlow-MVP
+   Pagliano folder:    https://github.com/Ole00007/LexFlow-MVP/tree/main/pagliano
+   Branch:             main (HEAD == origin == fec2114)
+
+NETLIFY (LP hosting):
+   Live LP:            https://verdant-crumble-021449.netlify.app
+   Site ID:            b060d5c1-c7fe-4c3a-be3a-f74d6b3fac18
+   Team:               AVibe Agent (olesya00007@yahoo.com)
+   CLI:                npx netlify-cli deploy --prod --dir=/tmp/pagliano-lp-deploy --site=b060d5c1-c7fe-4c3a-be3a-f74d6b3fac18
+
+RAILWAY (backend hosting):
+   Project:            compassionate-trust
+   Project ID:         5fb4dd26-3a6b-4646-a8d8-65dddd85eb1f
+   Env ID:             69a65c2d-fcb4-4078-b41d-1befa1ff7081
+   Service:            web (web-production-ab54f.up.railway.app)
+   Repo source:        Ole00007/LexFlow-MVP (auto-deploy from main)
+   CLI link:           railway link --project 5fb4dd26-3a6b-4646-a8d8-65dddd85eb1f
+
+POSTGRES (database):
+   Service:            project "perceptive-achievement" (1fe25c7a-6a68-4c21-b27f-50c3e69daaf3),
+                       service "Postgres" (a5e4ef6c-7a41-402b-b256-c6007790e3df)
+   Public proxy:       postgresql://postgres:***@viaduct.proxy.rlwy.net:37017/railway
+   Env on web:         DATABASE_URL (set on compassionate-trust web service)
+   Migration head:     c3d4e5f6g7h8
+
+ENDPOINTS:
+   POST /api/intake    https://web-production-ab54f.up.railway.app/api/intake   (201)
+   GET  /login         https://web-production-ab54f.up.railway.app/login
+   GET  /admin         https://web-production-ab54f.up.railway.app/admin
+   GET  /api/health    https://web-production-ab54f.up.railway.app/api/health  (200)
+=====================================================================

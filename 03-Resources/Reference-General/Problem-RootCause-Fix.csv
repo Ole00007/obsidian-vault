@@ -1,0 +1,4 @@
+"Problem","Root Cause","Fix"
+"MCP config not saving","CLI prompt rejected, YAML malformed","Edit ~/.hermes/config.yaml directly composio"
+"Response truncated","max_tokens bug — config.yaml ignored","Add HERMES_MAX_TOKENS=8192 to .env youtube"
+"'--continue fails","Context full or session corrupted","Run /compress or start fresh session youtube"

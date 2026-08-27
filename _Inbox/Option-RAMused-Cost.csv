@@ -1,0 +1,3 @@
+"Option","RAM used","Cost"
+"Use cloud API (OpenRouter, Nous Portal)","~200 MB on your Mac (model runs in the cloud)","Free tier or pay-per-use"
+"Run model locally with Ollama","6–16 GB on your Mac","Free but may slow your Mac"

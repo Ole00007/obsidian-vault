@@ -1,0 +1,7 @@
+Capability,Obsidian,Airtable
+Native database/CRM,"No — needs plugins (Tasks, Kanban) or new 'Bases' beta feature for lightweight tables inside the vault","Yes — native relational tables, views, forms, linked records built for CRM/marketing use out of the box"
+Task management,"Good for personal/solo task tracking via Tasks plugin (checkboxes, due dates, recurring); no shared boards, no notifications, no mobile push","Built-in Kanban/calendar/Gantt views, assignees, notifications, mobile app — built for team task tracking"
+"Marketing tool connections (e.g. email, ads, CRM sync)","No native integrations; requires bridge tools (Zapier + file sync, or a connector like Clawify) writing Markdown files into the vault",Native integrations + public API + hundreds of Zapier/Composio-ready connectors
+Multi-user / client access,"Single-user-first by design; sync is per-vault, not built for simultaneous multi-user editing","Built for multi-user collaboration, shared views, client-facing forms/portals"
+Automation triggers,"None native; must simulate via file watchers, scripts, or third-party bridges",Native automations (record created/updated triggers) plus API webhooks
+Best fit,"Your own memory/notebook, project documentation, agent context","Client-facing hub: forms, CRM-lite, task boards, marketing data, automation triggers"

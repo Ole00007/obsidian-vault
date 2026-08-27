@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}LexFlow – Legal Intake & Status Suite{% endblock %}
+
+{% block content %}
+<section class="card stack" aria-labelledby="page-title">
+    <div class="section">
+        <p class="eyebrow">Trusted legal intelligence</p>
+        <h1 id="page-title">LexFlow – Legal Intake &amp; Status Suite</h1>
+        <p class="intro">
+            Start a private intake, attach supporting documents, and receive a personal
+            matter-tracking link. LexFlow keeps this MVP focused on workflow only, not
+            legal advice or AI-generated conclusions.
+        </p>
+        <div class="actions">
+            <a class="button" href="#intake-form">Start secure intake</a>
+            <a class="button button-secondary" href="{{ url_for('admin') }}">Staff workspace</a>
+        </div>
+    </div>
+
+    <div class="feature-grid" aria-label="LexFlow MVP features">
+        <div class="feature">
+            <h3>Private intake</h3>
+            <p>Collect only the essential details needed for a first legal review.</p>
+        </div>
+        <div class="feature">
+            <h3>Document upload</h3>
+            <p>Attach common file types so the legal team can review context faster.</p>
+        </div>
+        <div class="feature">
+            <h3>Matter tracking</h3>
+            <p>Clients receive a personal link to follow status updates in plain language.</p>
+        </div>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notice">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <form id="intake-form" class="section" action="/submit" method="post" enctype="multipart/form-data">
+        <h2>New matter intake</h2>
+        <p class="intro">
+            Use only the information needed for a first review. Required fields are marked with an asterisk.
+        </p>
+        <div class="grid">
+            <p>
+                <label for="client_name">Client name *</label>
+                <input id="client_name" name="client_name" type="text" required>
+            </p>
+
+            <p>
+                <label for="email">Email *</label>
+                <input id="email" name="email" type="email" required>
+            </p>
+        </div>
+
+        <div class="grid">
+            <p>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel">
+            </p>
+
+            <p>
+                <label for="company">Company</label>
+                <input id="company" name="company" type="text">
+            </p>
+        </div>
+
+        <div class="grid">
+            <p>
+                <label for="practice_area">Practice area *</label>
+                <select id="practice_area" name="practice_area" required>
+                    <option value="">Select practice area</option>
+                    {% for practice in practices %}
+                        <option value="{{ practice }}">{{ practice }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+
+            <p>
+                <label for="urgency">Urgency</label>
+                <select id="urgency" name="urgency">
+                    <option value="Low">Low</option>
+                    <option value="Medium" selected>Medium</option>
+                    <option value="High">High</option>
+                    <option value="Critical">Critical</option>
+                </select>
+            </p>
+        </div>
+
+        <p>
+            <label for="description">Brief description</label>
+            <textarea id="description" name="description" rows="5" placeholder="Share the key facts or request. Avoid unnecessary personal information."></textarea>
+        </p>
+
+        <p>
+            <label for="documents">Documents</label>
+            <input id="documents" type="file" name="documents" multiple accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.txt">
+            <small>Accepted: PDF, Word, images, TXT · Max recommended: 10 MB per file</small>
+        </p>
+
+        <div class="actions">
+            <button class="button" type="submit">Create matter</button>
+            <a class="button button-secondary" href="{{ url_for('load_demo') }}">Load demo data</a>
+        </div>
+    </form>
+
+    <div class="notice">
+        This MVP supports intake, document receipt, and matter status tracking only.
+        LexFlow does not provide legal advice, legal opinions, or final legal outputs.
+    </div>
+</section>
+{% endblock %}

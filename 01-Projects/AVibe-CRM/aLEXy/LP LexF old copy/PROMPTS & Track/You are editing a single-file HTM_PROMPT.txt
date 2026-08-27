@@ -1,0 +1,155 @@
+You are editing a single-file HTML landing page for LexFlow (a legal SaaS).
+The file is: index.html (or whatever name the local file has).
+Do NOT rewrite the file. Make ONLY the 6 surgical changes described below.
+After each change, add a one-line HTML comment like: <!-- CHANGE 1 APPLIED -->.
+Preserve ALL existing CSS, JS, layout, IDs, classes, and structure unchanged.
+
+---
+
+CHANGE 1 — Chatbot intro message (Alessia widget first message)
+
+Find the Alessia chatbot widget. Locate the first bot message bubble — the one that currently says something like "Capito. La aiutiamo a chiarire subito la situazione." or any variation of it.
+
+Replace it with the following bilingual version, using the existing .it-only / .en-only span pattern:
+
+IT:
+"Sono l'assistente virtuale dello Studio Legale X. Mi racconti la sua situazione: in base a ciò che mi dirà, la indirizzerò subito verso l'avvocato più adatto al suo caso specifico.
+Se il problema è urgente, lo indichi subito tramite i pulsanti qui sotto — 🔴 Alta, 🟡 Media, 🟢 Bassa — così possiamo gestire la sua pratica con la giusta priorità."
+
+EN:
+"I'm the virtual assistant of Studio Legale X. Tell me about your situation: based on what you share, I'll connect you right away with the lawyer best suited for your specific legal matter.
+If your issue is urgent, please indicate it using the buttons below — 🔴 High, 🟡 Medium, 🟢 Low — so we can handle your case with the right priority."
+
+Apply .it-only and .en-only spans as used elsewhere in the file (body.classList.contains('en') pattern).
+
+---
+
+CHANGE 2 — Fix bilingual bleed in the tag pills (For Who section)
+
+Find the .forwho-tags div. Inside it are <span class="tag accent"> elements containing BOTH .it-only and .en-only spans. The CSS already hides one or the other based on language.
+
+The bug is that tags render like "Soci Senior Senior Partners" because both spans appear together.
+
+Confirm the spans already use class="it-only" / class="en-only". If they do, the CSS must be checked.
+Fix: ensure each tag pill has this exact structure:
+  <span class="tag accent"><span class="it-only">Soci Senior</span><span class="en-only">Senior Partners</span></span>
+  <span class="tag accent"><span class="it-only">Associati</span><span class="en-only">Associates</span></span>
+  <span class="tag accent"><span class="it-only">Praticanti</span><span class="en-only">Paralegals</span></span>
+  <span class="tag"><span class="it-only">Tirocinanti</span><span class="en-only">Interns</span></span>
+  <span class="tag"><span class="it-only">Segreteria</span><span class="en-only">Reception</span></span>
+
+Then in the <style> block, confirm these rules exist (add if missing):
+  span.it-only { display: inline; }
+  span.en-only { display: none; }
+  .en span.it-only { display: none !important; }
+  .en span.en-only { display: inline !important; }
+
+---
+
+CHANGE 3 — Make Pain Points cards into expandable accordions (drop-downs)
+
+Find the section with class="pain-grid". It contains three .pain-card divs.
+
+Convert each card into an accordion: clicking the card title/icon area toggles the body text visible or hidden.
+
+Add to the <style> block:
+  .pain-card { cursor: pointer; }
+  .pain-card-body { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.16,1,0.3,1); }
+  .pain-card.open .pain-card-body { max-height: 200px; }
+  .pain-card-toggle { float: right; font-size: 1rem; transition: transform 0.3s; }
+  .pain-card.open .pain-card-toggle { transform: rotate(45deg); }
+
+Wrap the existing <p> content of each pain card inside <div class="pain-card-body">…</div>.
+Add <span class="pain-card-toggle">+</span> at the end of each <h3>.
+Add to the <script> block:
+  document.querySelectorAll('.pain-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('open');
+    });
+  });
+
+---
+
+CHANGE 4A — Mark existing services (remove "prossimo sprint" label)
+
+Find the .roadmap-note paragraph at the bottom of the CTA section. It currently reads something like:
+  IT: "Archiviazione cloud · Notifiche email automatiche · PostgreSQL → prossimo sprint"
+  EN: "Cloud storage · Automated email notifications · PostgreSQL → coming next sprint"
+
+Replace the content of both .it-only and .en-only spans with:
+  IT: "✓ Archiviazione cloud · ✓ Notifiche email automatiche · ✓ PostgreSQL · ✓ CRM · ✓ Legal Calendaring"
+  EN: "✓ Cloud storage · ✓ Automated email notifications · ✓ PostgreSQL · ✓ CRM · ✓ Legal Calendaring"
+
+CHANGE 4B — "Prossimo sprint" items → replace with new "coming soon" items
+
+Find any list of upcoming / roadmap features that says "prossimo sprint" or "coming next sprint" with items like archiviazione cloud, email notifications, PostgreSQL.
+
+Replace those "coming soon" items with:
+  IT: "Workflow Automation · Time & Expense Tracking · Payments"
+  EN: "Workflow Automation · Time & Expense Tracking · Payments"
+
+These strings are the same in both languages.
+
+---
+
+CHANGE 5 — Hero visual: add a feature showcase image to the right of the hero text
+
+Find the hero section. After the .hero-cta div (and the .hero-note div), there is a .hero-visual div containing the mock screen (mock-bar, mock-body, etc.).
+
+BEFORE the .hero-visual div, insert a new two-column grid wrapper that places the hero text on the left and an illustrative image block on the right, visible on desktop only, stacked on mobile.
+
+The hero text is currently inside .container > h1 + p.hero-sub + .hero-cta + .hero-note + .hero-visual.
+Wrap h1, p.hero-sub, .hero-cta, .hero-note into a <div class="hero-text-col"> and the .hero-visual into <div class="hero-visual-col">.
+Then wrap both in <div class="hero-split">.
+
+Add to <style>:
+  .hero-split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center; }
+  .hero-feature-img { border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg); width: 100%; }
+  .hero-feature-img img { width: 100%; height: auto; display: block; }
+  @media (max-width: 768px) { .hero-split { grid-template-columns: 1fr; } .hero-visual-col { order: 2; } }
+
+For the image src, use this inline SVG placeholder styled to match the product UI, OR use a feature-list card layout in HTML/CSS that mimics the reference image (a checklist of services like Document & File Management, Case & Matter Management, Billing & Invoicing, Client Intake & CRM, Workflow Automation, Time & Expense Tracking, Payments, Legal Calendaring) — rendered as a styled card with a light blue background and green checkmarks using the existing color tokens.
+Do NOT use a real external image URL. Build it in HTML/CSS.
+
+The feature card should look like:
+- Light-blue-tinted surface card (use var(--color-surface-2) or var(--accent) at 8% opacity)
+- Each row: ✅ [Feature name] in var(--text-base) with a teal checkmark icon
+- Slight shadow, rounded corners (var(--radius-xl))
+
+Use this list:
+  ✅ Document & File Management
+  ✅ Case & Matter Management  
+  ✅ Billing & Invoicing
+  ✅ Client Intake & CRM
+  ✅ Workflow Automation
+  ✅ Time & Expense Tracking
+  ✅ Payments
+  ✅ Legal Calendaring
+
+Label the card header: IT "Tutto incluso nel piano" / EN "Everything included"
+
+---
+
+CHANGE 6 — Add FAQ link to the navigation menu
+
+Find the <div class="nav-links"> block. It contains <a> tags like "Come funziona", "Aree di pratica", "Perché LexFlow".
+
+Add one more link at the end:
+  <a href="#faq" data-it="FAQ" data-en="FAQ">FAQ</a>
+
+This points to the existing section id="faq" (Domande frequenti / Common questions).
+The label is "FAQ" in both languages — no translation needed.
+Make sure it follows the same data-it / data-en pattern as the other nav links so the renderLang() function picks it up.
+
+---
+
+FINAL CHECK:
+After all changes, verify:
+1. No English text leaks into Italian mode and vice versa in the tag pills (Change 2)
+2. The chatbot intro message uses .it-only / .en-only spans correctly (Change 1)
+3. The FAQ nav link is inside .nav-links and uses data-it / data-en (Change 6)
+4. The pain cards toggle open/close on click (Change 3)
+5. The hero feature card is visible on desktop RIGHT side, hidden below on mobile (Change 5)
+6. The roadmap note shows ✓ confirmed features, not "prossimo sprint" (Changes 4A/4B)
+
+Output: the complete corrected index.html file.

@@ -1,0 +1,9 @@
+Item,Obsidian-as-hub path,Airtable-as-hub path
+Core app,Free,Free
+Sync across devices,$4/user/mo (annual) or $5/mo (monthly),Included in paid plans
+Publish (web view),$8/site/mo (annual),Included (shareable views)
+Team/commercial use,"Commercial license required for teams >1, cost not published, contact sales",Team plan ~$20/seat/mo (Business tier for automations/CRM-like features)
+Plugins for tasks/CRM/kanban,Free (community plugins) but manual setup + maintenance,N/A — native
+Bridge to marketing tools (Zapier/Clawify),"$20-30/mo typical Zapier plan, plus setup effort","Native, no bridge cost"
+"Total estimated (solo, Obsidian-as-hub)",~$15-40/mo (Sync + Zapier bridge) + setup time,N/A
+Total estimated (Airtable-as-hub),N/A,~$20-40/mo (Team/Business plan)

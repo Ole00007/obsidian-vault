@@ -1,0 +1,6 @@
+Competitor,Signature Feature,Implementation in aLEXy
+Clio,Unified matter lifecycle (intake to billing to documents) + Manage AI layer,Build a matter_id as the core object everything else links to; layer an AI assistant that surfaces next-actions per matter
+MyCase,Client-facing portal with real-time status and doc sharing,"Add a client portal route in aLEXy - read-only matter status, doc upload, message thread - auth via magic link or OTP"
+Lawmatics,Automated intake nurture flows (CRM-style lead scoring + follow-up sequences),Build a lead_pipeline entity with configurable stages + trigger-based email/SMS sequences via Make.com or Hermes agents
+Checkbox,Visual no-code branching intake questionnaire,Use a JSON-schema-driven form builder - each node in a graph defines branch conditions; Hermes agent can consume the output
+vLex,AI-powered legal research linked directly to matters,"Integrate a legal search API (vLex, CourtListener) as a tool call inside Hermes agent; surface results inside the matter view"

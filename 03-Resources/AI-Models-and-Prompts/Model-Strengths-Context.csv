@@ -1,0 +1,5 @@
+"Model","Strengths","Context"
+"Qwen3 Coder 480B qwen/qwen3-coder-480b-a35b:free","Strongest free coding model — great for generating schema JSON-LD, regex for log analysis, Python scrapers klymentiev","262K"
+"DeepSeek R1 deepseek/deepseek-r1:free","Step-by-step reasoning — ideal for technical audits, crawl logic, redirect chain analysis scribd","128K"
+"Ring 2.6 1T inclusionai/ring-2.6-1t:free","1T-param thinking model, best free agentic model — handles complex multi-step technical tasks youtube","64K"
+"Meta Llama 4 Scout meta-llama/llama-4-scout-17b:free","Massive 10M context — perfect for analyzing full site XML sitemaps or large crawl exports buldrr","10M"

@@ -1,0 +1,11 @@
+Step,Agent,Phase,Task,Timing,Dependency
+1,Installer (Hermes),Setup,"Bootstrap Hermes agent, install missing skills/tools, verify environment",Today AM,None
+2,Installer (Hermes),Setup,Connect Google Search Console API + OAuth for alenakrot.com,Today AM,GSC verified on site
+3,Installer (Hermes),Setup,"Connect ChatSEO (free tier) via GSC login, test query",Today AM,GSC connected
+4,Installer (Hermes),Setup,Resolve Flazio admin access issue (ownership transfer),Today AM,Alena/Flazio support
+5,GSC Analyst (Hermes),Data,"Pull indexing status, top queries, CWV report",Today PM,Task 2 done
+6,ChatSEO Analyst (Hermes),Data,Ask natural-language questions only for gaps GSC can't answer (e.g. content quality diagnosis),Today PM,Task 3 done
+7,Content Strategist (Hermes),Content,Build entity map + topical clusters from GSC queries,Today PM,Task 5 done
+8,Technical Auditor (Hermes),Technical,Run on-page technical checklist against alenakrot.com,Today PM,Flazio access or manual crawl
+9,Scheduler (Hermes),Automation,Create CRON jobs for weekly GSC pull + monthly full audit,Today PM,Tasks 5-8 done
+10,Swarm Orchestrator (Hermes),Automation,Configure SEO Swarm: Researcher + Auditor + Writer + Verifier roles,This week,Tasks 1-9 done

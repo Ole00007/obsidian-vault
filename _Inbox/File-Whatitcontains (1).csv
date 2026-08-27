@@ -1,0 +1,7 @@
+"File","What it contains"
+"src/index.css","Full CSS token set (light/dark palettes, stage colors, font)"
+"tailwind.config.ts","Font family (Inter), Tailwind theme extensions"
+"public/lexflow-logo-dark.svg","Logo lockup dark variant"
+"public/lexflow-logo-light.svg","Logo lockup light variant"
+"public/lexflow-favicon.svg","Favicon"
+"src/components/DMark.tsx","Icon mark component with brand colors"

@@ -1,0 +1,5 @@
+"Item","Time","Gain","Risk","Mitigation"
+"Simplify stack for next MVP","1–2 hours northflank+1","Faster builds, lower break risk northflank","Missing a later-needed feature","Add Supabase only when auth/storage/realtime becomes explicit"
+"Pin models + clean prompts","30–60 min Memory","Predictable credits and behavior Memory","Lower flexibility","Add one deliberate cheap backup only if necessary Memory"
+"Reduce MCP surface","20 min Memory","Easier debugging Memory","Missing a needed tool","Enable tools per project, not globally"
+"Add deploy checklist","30 min","Fewer production regressions railway+1","Team skips it","Keep it in repo and run it every deploy"

@@ -1,0 +1,215 @@
+You are editing a single-file HTML landing page for LexFlow (a legal SaaS).
+File: index.html
+
+RULES — READ BEFORE DOING ANYTHING:
+1. Do NOT rewrite the file. Make ONLY the surgical changes described below.
+2. Do NOT touch ANY existing CSS rules — only ADD new rules where specified.
+3. Do NOT touch ANY existing JavaScript — only APPEND new code where specified.
+4. Do NOT touch the navigation menu (<nav>, .nav-links, .nav-actions) unless a change explicitly says so.
+5. Do NOT touch the Alessia chatbot widget HTML, CSS, or JS — leave it completely unchanged.
+6. After each change, add one HTML comment: <!-- CHANGE N APPLIED -->
+7. Preserve ALL existing IDs, classes, event handlers, and structure.
+8. If a CSS rule you need to ADD already exists, do not duplicate it — skip that rule only.
+9. Output the complete corrected file.
+
+---
+
+CHANGE 1 — Fix bilingual bleed across the Italian landing page
+
+PROBLEM: In multiple sections, both the Italian and English text render simultaneously because
+span-level CSS display rules are missing. Examples of broken output:
+  "Come funzionaHow it works"
+  "Aree di praticaPractice areas"
+  "Soci SeniorSenior Partners" / "AssociatiAssociates" / "PraticantiParalegals" / etc.
+
+This change has TWO steps. Both are required.
+
+── STEP A: CSS FIX ──
+In the <style> block, find the line that contains:
+  .it-only{display:block}
+(it may have spaces: .it-only { display: block; })
+
+Immediately AFTER that line, on a new line, ADD these 4 rules:
+  span.it-only { display: inline; }
+  span.en-only { display: none; }
+  .en span.it-only { display: none !important; }
+  .en span.en-only { display: inline !important; }
+
+Do NOT remove or modify the original .it-only{display:block} rule.
+Do NOT add these rules anywhere else.
+
+── STEP B: HTML STRUCTURE FIX ──
+Scan the entire file for ANY element that contains both Italian and English text
+concatenated inside the same parent without proper .it-only / .en-only span wrapping.
+
+The following sections are known to have this problem. Fix each one:
+
+1. NAV LINKS — inside .nav-links, each <a> uses data-it / data-en attributes and is 
+   rendered by renderLang(). These are correct and must NOT be changed. Skip them.
+
+2. TAG PILLS — inside .forwho-tags, replace the entire content with:
+   <span class="tag accent"><span class="it-only">Soci Senior</span><span class="en-only">Senior Partners</span></span>
+   <span class="tag accent"><span class="it-only">Associati</span><span class="en-only">Associates</span></span>
+   <span class="tag accent"><span class="it-only">Praticanti</span><span class="en-only">Paralegals</span></span>
+   <span class="tag"><span class="it-only">Tirocinanti</span><span class="en-only">Interns</span></span>
+   <span class="tag"><span class="it-only">Segreteria</span><span class="en-only">Reception</span></span>
+
+3. SECTION LABELS — any element with class="section-label" that uses data-it / data-en
+   attributes is already handled by renderLang(). Do NOT change these.
+
+4. SECTION TITLES — any element with class="section-title" that uses data-it / data-en
+   attributes is already handled by renderLang(). Do NOT change these.
+
+5. "COME FUNZIONA" — Find the section with id="how-it-works". Inside it, scan for any
+   <span>, <p>, <h3>, or <li> element where Italian and English text appear concatenated
+   without .it-only / .en-only wrapping. For each such element:
+   - Identify the Italian portion and the English portion.
+   - Wrap the Italian portion in <span class="it-only">…</span>
+   - Wrap the English portion in <span class="en-only">…</span>
+   - Do NOT change any element that already uses .it-only / .en-only correctly.
+
+6. "AREE DI PRATICA" — Find the section with id="practices". Apply the same fix as point 5:
+   scan for concatenated bilingual text, wrap each language in the correct span class.
+
+7. "COSTRUITO PER IL TUO TEAM" / FOR WHO SECTION — Find the section containing .forwho-tags
+   (already handled in point 2 above). Also check the surrounding h3, p, and any other text 
+   elements in this section for concatenated bilingual text. Apply the same fix if found.
+
+PATTERN to look for (bilingual bleed):
+  WRONG: <span>Come funzionaHow it works</span>
+  WRONG: <p>Testo italiano.English text.</p>
+  CORRECT: <span><span class="it-only">Come funziona</span><span class="en-only">How it works</span></span>
+
+SAFETY CHECK for Change 1:
+- The <nav> element must be byte-for-byte identical before and after this change.
+- The .nav-links block must be byte-for-byte identical before and after this change.
+- The toggleLang() and renderLang() JavaScript functions must be untouched.
+- No existing CSS rule may be removed or modified.
+- Only the 4 new span-level CSS rules are added to the stylesheet.
+<!-- CHANGE 1 APPLIED -->
+
+---
+
+CHANGE 2 — Make Pain Points cards expandable (accordion)
+
+SCOPE: Only the .pain-grid section and the last <script> block. Nothing else.
+
+STEP A — APPEND these CSS rules before the closing </style> tag:
+  .pain-card { cursor: pointer; }
+  .pain-card-body { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.16,1,0.3,1); }
+  .pain-card.open .pain-card-body { max-height: 220px; }
+  .pain-card-toggle { float: right; font-size: 1rem; transition: transform 0.3s; margin-left: 8px; }
+  .pain-card.open .pain-card-toggle { transform: rotate(45deg); }
+
+STEP B — In each .pain-card div, make these two changes:
+  1. Add <span class="pain-card-toggle">+</span> immediately before the closing </h3> tag.
+  2. Wrap the <p>…</p> element (the description text) in: <div class="pain-card-body">…</div>
+
+There are exactly 3 .pain-card divs. Apply to all 3. Both Italian and English text
+inside each <p> must remain inside the .pain-card-body wrapper.
+
+STEP C — APPEND this JS snippet just before the closing </script> tag of the LAST script block:
+  document.querySelectorAll('.pain-card').forEach(function(card){
+    card.addEventListener('click', function(){ card.classList.toggle('open'); });
+  });
+<!-- CHANGE 2 APPLIED -->
+
+---
+
+CHANGE 3 — Update roadmap/sprint text
+
+SCOPE: Only the .roadmap-note element inside the CTA section. Nothing else.
+
+Find the element with class="roadmap-note". It currently contains text referencing
+"prossimo sprint" / "coming next sprint" with items like archiviazione cloud, email, PostgreSQL.
+
+Replace ONLY the text content of the Italian span (.it-only) inside .roadmap-note with:
+  🗓 ✓ Archiviazione cloud · ✓ Notifiche email automatiche · ✓ PostgreSQL · ✓ CRM · ✓ Legal Calendaring &nbsp;|&nbsp; Prossimamente: Workflow Automation · Time &amp; Expense Tracking · Payments
+
+Replace ONLY the text content of the English span (.en-only) inside .roadmap-note with:
+  🗓 ✓ Cloud storage · ✓ Automated email notifications · ✓ PostgreSQL · ✓ CRM · ✓ Legal Calendaring &nbsp;|&nbsp; Coming soon: Workflow Automation · Time &amp; Expense Tracking · Payments
+
+If .roadmap-note does not use .it-only / .en-only spans, replace the entire inner content
+with a bilingual span pair using the same pattern used elsewhere in the file.
+<!-- CHANGE 3 APPLIED -->
+
+---
+
+CHANGE 4 — Add feature checklist card to the right of the hero text (desktop only)
+
+SCOPE: Only the hero section content inside .container. Do not touch .hero CSS padding/overflow.
+
+The hero section currently has this structure inside .container:
+  [.hero-top]
+  [h1]
+  [p.hero-sub]
+  [.hero-cta]
+  [.hero-note]
+  [.hero-visual]  ← the mock screen
+
+STEP A — Wrap ONLY these elements: h1, p.hero-sub, .hero-cta, .hero-note
+into a new <div class="hero-text-col">. Do not include .hero-top or .hero-visual.
+
+STEP B — Wrap ONLY .hero-visual into a new <div class="hero-visual-col">.
+
+STEP C — Wrap both .hero-text-col and .hero-visual-col in <div class="hero-split">.
+The .hero-top stays OUTSIDE and ABOVE .hero-split, unchanged.
+
+STEP D — After .hero-visual-col (as a third sibling inside .hero-split), insert:
+<div class="hero-feature-col">
+  <div class="hero-feature-card">
+    <div class="hero-feature-card-header">
+      <span class="it-only">Tutto incluso nel piano</span>
+      <span class="en-only">Everything included</span>
+    </div>
+    <ul class="hero-feature-list">
+      <li><span class="hero-check">✓</span> Document &amp; File Management</li>
+      <li><span class="hero-check">✓</span> Case &amp; Matter Management</li>
+      <li><span class="hero-check">✓</span> Billing &amp; Invoicing</li>
+      <li><span class="hero-check">✓</span> Client Intake &amp; CRM</li>
+      <li><span class="hero-check">✓</span> Workflow Automation</li>
+      <li><span class="hero-check">✓</span> Time &amp; Expense Tracking</li>
+      <li><span class="hero-check">✓</span> Payments</li>
+      <li><span class="hero-check">✓</span> Legal Calendaring</li>
+    </ul>
+  </div>
+</div>
+
+STEP E — APPEND these CSS rules before the closing </style> tag:
+  .hero-split { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--space-8); align-items: start; margin-top: var(--space-8); }
+  .hero-feature-card { background: color-mix(in srgb, var(--accent) 8%, var(--surface)); border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border)); border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: var(--shadow-md); }
+  .hero-feature-card-header { font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .hero-feature-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
+  .hero-feature-list li { font-size: var(--text-sm); color: var(--text); padding: var(--space-2) 0; border-bottom: 1px solid var(--border); }
+  .hero-feature-list li:last-child { border-bottom: none; }
+  .hero-check { color: var(--teal); font-weight: 700; margin-right: var(--space-2); }
+  @media (max-width: 1024px) { .hero-split { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 768px) { .hero-split { grid-template-columns: 1fr; } .hero-feature-col { display: none; } }
+<!-- CHANGE 4 APPLIED -->
+
+---
+
+CHANGE 5 — Add FAQ link to navigation menu
+
+SCOPE: Only the .nav-links div. One line added. Nothing else.
+
+Find the <div class="nav-links"> block. Locate the last <a> tag inside it.
+APPEND this one line immediately before the closing </div> of .nav-links:
+  <a href="#faq" data-it="FAQ" data-en="FAQ">FAQ</a>
+
+The renderLang() function already handles data-it / data-en on nav links — no JS change needed.
+<!-- CHANGE 5 APPLIED -->
+
+---
+
+FINAL VERIFICATION CHECKLIST — verify every point before outputting:
+
+[ ] Change 1: span.it-only/span.en-only CSS rules added after existing .it-only block;
+              tag pills fixed; how-it-works / practices / forwho sections scanned and fixed;
+              nav block byte-identical; toggleLang/renderLang JS untouched
+[ ] Change 2: all 3 pain cards have .pain-card-body wrapper + .pain-card-toggle; JS appended
+[ ] Change 3: .roadmap-note updated — ✓ confirmed services + coming-soon items; no other text changed
+[ ] Change 4: hero-split grid present; .hero-top outside split; feature card visible desktop; hidden mobile
+[ ] Change 5: FAQ <a> added inside .nav-links only; no other nav changes
+
+Output: the complete corrected index.html file.

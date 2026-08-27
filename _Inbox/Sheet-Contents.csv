@@ -1,0 +1,7 @@
+"Sheet","Contents"
+"1. Session Summary","Jul 24 → Jul 27 PM, focus/outcome/lesson per session"
+"2. Lessons Learned","12 rules spanning asset pipeline, file delivery, i18n, interactive elements, debugging process"
+"3. Debugging Deep-Dive","Full forensic trail of the sticky-nav bug: wrong hypothesis → correct root cause → fix → residual risk"
+"4. Sticky Element Checklist","18-item checkbox list covering CSS, vendor prefixes, stacking context, cross-device testing, browser caching"
+"5. Hard Rules (Full)","26 rules across Session Debt, Rendering/CSS, Webhooks, SEO/GEO/AEO, Multi-Page Scalability, Build Speed"
+"6. Historical Asset Rules","Original R1–R7 rules preserved from the Jul 24–25 session for continuity"

@@ -1,0 +1,7 @@
+"Aspect","Docker (single container)","Docker Compose (multi-service)","Native binary"
+"What it is","Hermes in one container","Hermes + dependencies in one YAML","Hermes installed directly on OS"
+"Startup speed","Medium","Slower (starts linked services)","Fastest"
+"Restart speed","Fast (seconds)","Slower unless scoped to one service","Fastest"
+"Overhead","Low-medium","Highest","Lowest"
+"Isolation","High","High + networking","Low, less reproducible"
+"Setup effort","Low","Medium","Higher (manual deps)"

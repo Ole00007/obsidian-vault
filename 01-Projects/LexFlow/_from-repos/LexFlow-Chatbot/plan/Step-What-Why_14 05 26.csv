@@ -1,0 +1,7 @@
+"Step","What","Why"
+"1","Create lexflow-chatbot repo on GitHub","Chatbot backend = separate project, separate deploy on Railway CLAUDE.md"
+"2","Build the chatbot API files locally","app.py or server.js that accepts messages, calls OpenRouter, returns replies"
+"3","Push chatbot to GitHub","Railway will deploy from this repo CLAUDE.md"
+"4","Deploy chatbot on Railway","Gives you a public API URL like https://lexflow-chatbot.up.railway.app/chat Tutor_PowerShell_Prompt-DEBUG_BACK-END_NTFLY.md"
+"5","Edit landing page HTML","Paste that Railway URL into the widget JavaScript"
+"6","Push landing page to GitHub","Netlify auto-deploys the update"

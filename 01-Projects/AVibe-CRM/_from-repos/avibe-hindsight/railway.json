@@ -1,0 +1,11 @@
+{
+  "name": "avibe-hq",
+  "services": [
+    {
+      "name": "avibe-hindsight",
+      "run": "dockerfile",
+      "port": 8000,
+      "healthcheckPath": "/health"
+    }
+  ]
+}

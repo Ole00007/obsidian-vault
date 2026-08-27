@@ -1,0 +1,7 @@
+"Field","Draft Said","Reality"
+"Genova address","""Clinica Visage, Genova"" (no street)","Piazza Piccapietra 73/7, 16121 Genova prenota.alfadocs"
+"Ventimiglia name","""Clinica Visage Ventimiglia""","""Studio medico Visage"", Via Ruffini 10 prenota.alfadocs"
+"Palermo name","""Alena Krot - Palermo"" (standalone)","Hosted inside ""Umanis Polymedical Clinic"", Via Agrigento 25 miodottore"
+"Social links","Placeholder handles","Real: facebook.com/p/Alena-Krot-100006215718904, instagram.com/dr.alena.krot facebook+1"
+"Physician.url","/who-i-am (doesn't exist)","/about (confirmed live) alenakrot"
+"Ventimiglia JSON","Duplicated ""telephone"" keys — invalid JSON","Fixed syntax"

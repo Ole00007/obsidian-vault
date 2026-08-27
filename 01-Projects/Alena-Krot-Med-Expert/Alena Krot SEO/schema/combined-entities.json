@@ -1,0 +1,123 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.alenakrot.com/#organization",
+      "name": "Dott.ssa Alena Krot - Medicina Estetica Naturale",
+      "url": "https://www.alenakrot.com",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://www.alenakrot.com/#logo",
+        "url": "https://www.alenakrot.com/ogfile/images/logo.png",
+        "caption": "Dott.ssa Alena Krot Logo"
+      },
+      "image": {
+        "@id": "https://www.alenakrot.com/#logo"
+      },
+      "sameAs": [
+        "https://www.facebook.com/alenakrot.medecine.esthetique",
+        "https://www.instagram.com/dr_alena_krot/"
+      ]
+    },
+    {
+      "@type": "Physician",
+      "@id": "https://www.alenakrot.com/#physician",
+      "name": "Dott.ssa Alena Krot",
+      "image": "https://www.alenakrot.com/ogfile/images/dr-alena-krot.jpg",
+      "telephone": "+39 345 8302531",
+      "email": "info@alenakrot.com",
+      "medicalSpecialty": "CosmeticProcedure",
+      "knowsAbout": [
+        "Aesthetic Medicine",
+        "Preventive Medicine",
+        "Filler Labbra",
+        "Biorivitalizzazione",
+        "Laser Therapy",
+        "Trichology"
+      ],
+      "memberOf": [
+        {
+          "@type": "MedicalOrganization",
+          "name": "SIME (Società Italiana di Medicina Estetica)"
+        },
+        {
+          "@type": "MedicalOrganization",
+          "name": "Agorà (Società Italiana di Medicina ad Indirizzo Estetico)"
+        },
+        {
+          "@type": "MedicalOrganization",
+          "name": "AITEB (Associazione Italiana Terapia Estetica Botulino)"
+        }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Via Agrigento 25",
+        "addressLocality": "Palermo",
+        "addressRegion": "PA",
+        "postalCode": "90141",
+        "addressCountry": "IT"
+      }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://www.alenakrot.com/#localbusiness-genova",
+      "name": "Dott.ssa Alena Krot - Clinica Visage Genova",
+      "image": "https://www.alenakrot.com/ogfile/images/dr-alena-krot.jpg",
+      "telephone": "+39 345 8302531",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Clinica Visage",
+        "addressLocality": "Genoa",
+        "addressCountry": "IT"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 44.4056,
+        "longitude": 8.9463
+      }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://www.alenakrot.com/#localbusiness-ventimiglia",
+      "name": "Dott.ssa Alena Krot - Clinica Visage Ventimiglia",
+      "image": "https://www.alenakrot.com/ogfile/images/dr-alena-krot.jpg",
+      "telephone": "+39 345 8302531",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Clinica Visage",
+        "addressLocality": "Ventimiglia",
+        "addressCountry": "IT"
+      }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://www.alenakrot.com/#localbusiness-palermo",
+      "name": "Dott.ssa Alena Krot - Palermo",
+      "image": "https://www.alenakrot.com/ogfile/images/dr-alena-krot.jpg",
+      "telephone": "+39 345 8302531",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Via Agrigento 25",
+        "addressLocality": "Palermo",
+        "addressRegion": "PA",
+        "postalCode": "90141",
+        "addressCountry": "IT"
+      }
+    },
+    {
+      "@type": "AggregateRating",
+      "@id": "https://www.alenakrot.com/#aggregaterating",
+      "itemReviewed": {
+        "@id": "https://www.alenakrot.com/#physician"
+      },
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "128"
+    }
+  ]
+}

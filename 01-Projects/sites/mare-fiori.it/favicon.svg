@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Marefiori — flower on the sea">
+  <rect width="64" height="64" rx="14" fill="#FBF6F0"/>
+  <g fill="#E58E78">
+    <ellipse cx="32" cy="19" rx="6" ry="10"/>
+    <ellipse cx="45" cy="32" rx="10" ry="6"/>
+    <ellipse cx="32" cy="45" rx="6" ry="10"/>
+    <ellipse cx="19" cy="32" rx="10" ry="6"/>
+  </g>
+  <circle cx="32" cy="32" r="7" fill="#C97B5A"/>
+  <path d="M8 52 Q32 42 56 52" stroke="#2F6B7A" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M14 57 Q32 49 50 57" stroke="#7FB0BC" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+</svg>

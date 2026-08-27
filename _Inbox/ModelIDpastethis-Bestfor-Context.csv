@@ -1,0 +1,7 @@
+"Model ID (paste this)","Best for","Context"
+"meta-llama/llama-3.3-70b-instruct:free","General agent tasks, writing — already used in LexFlow Chatbot","128K"
+"deepseek/deepseek-r1:free","Reasoning, logic, debugging","64K"
+"deepseek/deepseek-chat-v3-0324:free","Conversation, content, drafting","64K"
+"qwen/qwen3-235b-a22b:free","Coding, analysis, automation","128K"
+"openai/gpt-oss-20b:free","Coding, general tasks","128K"
+"meta-llama/llama-4-maverick:free","Long docs, multimodal","1M"

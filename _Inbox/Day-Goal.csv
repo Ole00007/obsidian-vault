@@ -1,0 +1,6 @@
+"Day","Goal"
+"Day 1 (today)","Fix Hermes model → get agent running → produce FINAL_PREBUILD_CHECK.md"
+"Day 2","Fix .venv, run app locally, confirm Flask starts without errors"
+"Day 3","Run local tests, fix blocking issues, produce LOCAL_TEST_REPORT.md"
+"Day 4","Push to GitHub, verify Railway deploy"
+"Day 5","Buffer for surprises (broken migrations, config issues)"

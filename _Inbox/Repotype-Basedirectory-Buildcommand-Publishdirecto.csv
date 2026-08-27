@@ -1,0 +1,4 @@
+"Repo type","Base directory","Build command","Publish directory"
+"Plain static HTML in repo root","blank answers.netlify","blank answers.netlify",". stackoverflow"
+"Vite app in repo root","blank answers.netlify","npm run build answers.netlify","dist answers.netlify"
+"Site inside frontend/ folder","frontend answers.netlify","depends on project answers.netlify","e.g. frontend/dist or as required by setup stackoverflow"

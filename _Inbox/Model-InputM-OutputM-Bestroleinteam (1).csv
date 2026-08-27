@@ -1,0 +1,7 @@
+"Model","Input $/M","Output $/M","Best role in team"
+"DeepSeek V4 Flash","~$0.03","~$0.29","Researcher / grounding"
+"GLM 5.2 (Zhipu z.ai)","~$0.10","~$1.21","Writer / summariser"
+"Gemini Flash 2.5 (via OR)","~$0.10","~$0.40","Fast reasoning / Cron tasks"
+"Llama 3.3 70B :free","$0","$0","Fallback / low-stakes tasks"
+"Qwen 2.5 72B :free","$0","$0","Fallback / content formatting"
+"openrouter/auto","varies","varies","Smart self-routing (Hermes sets it and OR picks best model per prompt)"

@@ -1,0 +1,6 @@
+"Check","Result"
+"Encryption / password protection","None found"
+"Obfuscation (eval, atob, minified blobs)","Zero occurrences"
+"Encoding","Valid plain UTF-8"
+"Structure","Standard <!doctype html>, fully readable"
+"""password""/""lock"" text matches","All 21 are marketing copy (""nessuna password"", ""no password needed"") or plain CSS (display:block) — not technical locks"

@@ -1,0 +1,8 @@
+Dimension,With Flowise added,Hermes-native only (no Flowise)
+Orchestration engine,Flowise (separate visual canvas) + Hermes runs inside it,"Hermes itself (native agent flows, cron, swarm — zero extra tool)"
+Setup complexity,Two systems to learn and maintain (Flowise UI + Hermes config),"One system — fewer moving parts, less to explain to a client"
+Cost,Extra hosting/run cost for Flowise instance (or cloud plan) on top of model costs,Only model + Hermes hosting cost (Hermes can run on a $5 VPS)
+Multi-agent support,Flowise Agentflow v2 handles chaining visually,"Hermes Agent Swarm handles it natively — multiple agents, one mission"
+Scheduling (cron),Needs Flowise trigger node or external cron,"Built-in Hermes cron — natural language schedules, no code"
+Best for,Teams who want a drag-and-drop visual canvas for non-Hermes users,"Solo/small teams already committed to Hermes — leaner, cheaper, faster"
+Your fit,Optional — adds a layer you may not need,"Recommended — simpler, cheaper, matches your current stack"

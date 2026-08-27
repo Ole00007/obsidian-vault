@@ -1,0 +1,5 @@
+"Cause","Check","Fix"
+"Your Telegram user ID not whitelisted","Most common cause of total silence","Get your ID from @userinfobot, add it to allowed_users"
+"Gateway not actually running","hermes gateway status","hermes gateway start"
+"Wrong or revoked token","Regenerated token after setup?","Update token in Hermes config, restart"
+"Duplicate process polling same bot","Two gateways fighting over one token","ps aux \| grep hermes → kill duplicate"
