@@ -22,12 +22,26 @@ status: active
 
 ## Step-by-step
 
+> ⚠️ **IMPORTANT — authoritative source found:** the vault file
+> `_Inbox/avibe_hindsight_setup_guides.xlsx` (sheet "Guide 1 — Connecting Your Other 3 Devices")
+> contains the OFFICIAL device-setup procedure (via `hermes memory setup` selecting Hindsight,
+> then Obsidian BRAT plugin). That is the canonical per-device Hindsight connection flow —
+> **follow Guide 1 for the Hindsight connection; this runbook covers the vault/profiles layer
+> Guide 1 does not.** It also mirrors the private spreadsheet Ole linked (which returns 401; the
+> xlsx is the readable copy).
+
 ### 1. Get the vault onto the 2nd PC (pick ONE)
-- **(a) Git (recommended):** `cd ~/Obsidian && git init && git add -A && git commit` on this Mac,
-  push to a private repo (or a private GitHub repo), clone on the 2nd PC. Add a `.gitignore`
-  for `.DS_Store`, `.obsidian/workspace*`. **Requires: this Mac git init + Ole approves the repo.**
-- **(b) Manual copy:** copy `~/Obsidian` via USB / cloud drive / `scp`. Simple but no history/conflict merge.
-- **(c) Syncthing / iCloud:** ongoing sync, both directions. More setup, live sync.
+- **(a) Git (DONE on this Mac 2026-08-27):** vault is now a local git repo (commit `88e728d`,
+  1005 files, secrets excluded via `.gitignore`). **Still needs a remote** to clone from —
+  push to a private GitHub repo (requires token/ssh — see below) or copy the `.git` dir.
+- **(b) Manual copy:** copy `~/Obsidian` via USB / cloud drive / `scp`. Simple, no merge history.
+- **(c) Syncthing / iCloud:** ongoing two-way sync (more setup).
+
+### 1b. Push to a private remote (to finish 1a) — needs ONE of:
+- **gh CLI:** `brew install gh && gh auth login` (then `gh repo create vault --private`)
+- **GitHub token:** create a fine-grained PAT → `git remote add origin https://<token>@github.com/<user>/vault.git`
+- **SSH:** `ssh-keygen` + add to GitHub → `git remote add origin git@github.com:<user>/vault.git`
+- (Note: `gh` not installed, no git identity global, no ssh keys on this Mac yet — all set locally only.)
 
 ### 2. Install Hermes + copy profiles on the 2nd PC
 - Install Hermes Agent (docs: hermes-agent.nousresearch.com).
