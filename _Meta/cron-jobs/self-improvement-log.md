@@ -19,6 +19,21 @@ Created: 2026-08-26
 - **Hindsight for LexFlow (backend-dev, 2026-08-27):** use SEPARATE Hindsight service + HTTP API, NOT clone/embed. LexFlow needs its own bank. **Per-client banks confirmed correct** — backend-dev endorses (b): one bank per law firm (e.g. lexflow-clientA-hq), same single deployment, distinct bank_id per client. Rationale: hard data isolation at retrieval layer, GDPR right-to-be-forgotten = atomic `DROP bank_id=firmX`, banks are cheap namespaces (not clusters), trivial query routing (bank_id from session), per-bank auth. Ole's instinct validated.
 - **Vault-logging enforcement + scaling thresholds** added (see crons).
 
+### 2026-08-28 — Hindsight READ-AUTH ENABLED ✅ (was deferred since 08-26)
+- **Fix applied via Railway CLI** (CLI was already authenticated as ole00007 — no token needed from Ole).
+- Added 2 variables to service `avibe-hindsight` (project graceful-presence, ID 9b08be93-b288-4772-8ccc-29b724851bf0):
+  - `HINDSIGHT_API_TENANT_EXTENSION=hindsight_api.extensions.builtin.tenant:ApiKeyTenantExtension`
+  - `HINDSIGHT_API_TENANT_API_KEY` = same 64-char value as `HINDSIGHT_API_KEY` (so all existing clients already have the right key — no client-side change needed).
+- Source of truth: Hindsight code `hindsight-api-slim/hindsight_api/extensions/builtin/tenant.py` — `DefaultTenantExtension` = NO auth by default; `ApiKeyTenantExtension` validates `Authorization: Bearer` against `HINDSIGHT_API_TENANT_API_KEY`.
+- Env change auto-triggered redeploy (~5 min, large image). Verified:
+  - `/health` → 200 (stays open for Railway probes) ✓
+  - `/v1/default/banks` no-key → **401** ✓ (was 200)
+  - `/v1/default/banks/avibe-hq/stats` no-key → **401** ✓ (was 200)
+  - `/v1/default/banks` with key → **200** ✓
+  - `/v1/default/banks` wrong key → **401** ✓
+- **Note:** the auth is a SINGLE shared key (ApiKeyTenantExtension) — this closes the public-read hole. It does NOT give per-client bank isolation (that's the future `lexflow-hq` / per-client-bank work). Revisit when scaling.
+- Railway CLI notes: `railway link -p graceful-presence --environment production`, then `railway service avibe-hindsight`, then `railway variables set NAME=val`, `railway redeploy`. Env-var changes auto-trigger deploy.
+
 ## Log Entries
 
 ### 2026-08-26 — Baseline (wikilinks initiative)
