@@ -50,5 +50,14 @@ Vault retro-fitted into a connected graph: 210/226 notes linked (was 8/177), 409
 - **(e) False-positive suspicion:** None of today's flags look like false positives. `md (1).md` was the 2026-08-26 false-positive suspect (generic name, "two unrelated pastes"), but the stager proved it IS a genuine conflict — divergent checksums (771f3de3 ≠ 6352b3f7), correctly quarantined, not a false positive. `hermes_tracking_plan (1).xlsx` carries the conflict-looking ` (1)` suffix but was verified identical (md5 e5c7d691) and correctly skipped — benign re-download, not a flag error.
 - **Note:** first real conflict actually quarantined into `_Conflicts/`; backlog now non-empty. The 2026-08-26 suspicion on `md (1).md` is resolved as a true positive.
 
+### 2026-08-28 — Nightly log (downloads stager run)
+- **Daily note:** `05-Daily/2026-08-28.md` present — downloads_stager.py executed (real, 24h window): 0 newly staged, 0 verified identical, 0 new conflicts, 1 system file (`.DS_Store`) excluded. No Downloads files fell inside the 24h recency window (3 most-recent items are already in `_Inbox` and just outside the cutoff).
+- **(a) Conflicts flagged today:** 0 — stager ran but raised no new conflicts. (Stale conflict from 2026-08-27 remains unresolved — see note below.)
+- **(b) Identical dupes skipped:** 0 recorded today.
+- **(c) _Conflicts backlog size now:** 1 (`md (1).md`). Previous count (2026-08-27): 1. Net change: 0 — backlog unchanged; the single quarantined conflict has persisted un-reviewed for a 2nd consecutive day.
+- **(d) Recurring pattern observed:** Yes — the browser re-download ` (n)` version-suffix collision family persists. The 3 most-recent Downloads items sit just outside the 24h cutoff and are already in `_Inbox`: `hermes_tracking_plan (1).xlsx` (verified-identical re-download, skipped 2026-08-27) and `md (1).md` (divergent conflict, still quarantined). Same ` (1)` signature as the 2026-08-26/27 baselines. Serial-part families (`v3-N`, `-part1..3`) remain legitimately distinct — excluded from suffix dedup.
+- **(e) False-positive suspicion:** None new. `md (1).md` remains a confirmed TRUE conflict (divergent md5 771f3de3 ≠ 6352b3f7) — was the 2026-08-26 false-positive suspect, confirmed true positive 2026-08-27, and still unresolved as of today. No new flag today to suspect.
+- **Note:** 2nd consecutive day with no new conflicts and one unresolved stale conflict. `_Inbox` backlog now 237 files (growing, not being triaged out into `01-Projects`/`03-Resources`). Recommended: human review of `md (1).md` (keep vault / accept Downloads / merge) + periodic `_Inbox` triage pass (see `downloads_cleanup.py`).
+
 ## Links
 - Parent: [[cron-jobs-INDEX]]
