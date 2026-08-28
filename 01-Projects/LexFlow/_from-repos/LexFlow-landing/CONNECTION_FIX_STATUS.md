@@ -106,7 +106,3 @@ curl https://lexflow-mvp-production.up.railway.app/api/contacts
 ---
 
 **Summary:** Links are NOW correct and deployed. Backend is rebuilding with correct startup commands. Should be fully working within 10 minutes.
-
-## Links
-- Parent: [[LexFlow-landing-INDEX]]
-- Related: [[I Approve. go edit the HTML in one surgical pass]]

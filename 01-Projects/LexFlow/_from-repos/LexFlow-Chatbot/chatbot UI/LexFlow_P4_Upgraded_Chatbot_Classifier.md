@@ -292,6 +292,3 @@ VERIFY before outputting:
 4. Submit → status page link appears in chat
 5. Switch to admin on laptop: purple AI badge already there
 6. *"It read the description, flagged the urgency, and assigned it — before I touched anything."*
-
-## Links
-- Parent: [[chatbot UI-INDEX]]

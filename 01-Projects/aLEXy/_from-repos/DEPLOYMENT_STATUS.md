@@ -59,6 +59,3 @@ cd ~/LexFlow-MVP
 **Frontend:** LexFlow-landing links fixed + Chatbot widget verified
 
 **Status:** Ready for testing once Railway deployment completes.
-## Links
-- Parent: [[_from-repos-INDEX]]
-- Related: [[DEPLOYMENT_STATUS_2026-07-23]]

@@ -320,7 +320,3 @@ Context: Phase 6 — Compliance + Billing
 ---
 
 **Approval required from user before proceeding to build.**
-
-## Links
-- Parent: [[_from-repos-INDEX]]
-- Related: [[FINAL_PREBUILD_CHECK]]

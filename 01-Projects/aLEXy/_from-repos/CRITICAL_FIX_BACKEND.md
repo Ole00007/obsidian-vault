@@ -67,7 +67,3 @@ curl https://lexflow-mvp-production.up.railway.app/api/contacts/999
 **Railway:** Deploying...  
 **Frontend:** LexFlow-landing links ready (waiting for backend)  
 **Next:** Verify `/api/contacts` responds once Railway green
-
-## Links
-- Parent: [[_from-repos-INDEX]]
-- Related: [[PROJECT_STATUS]]

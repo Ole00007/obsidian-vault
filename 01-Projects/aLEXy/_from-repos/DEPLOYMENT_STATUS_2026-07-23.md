@@ -107,6 +107,3 @@ git commit -m "description"
 git push
 # Railway auto-deploys from main branch
 ```
-## Links
-- Parent: [[_from-repos-INDEX]]
-- Related: [[DEPLOYMENT_STATUS]]

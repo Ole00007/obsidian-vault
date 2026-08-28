@@ -715,7 +715,3 @@ You're in good hands. 🤝`,
 google-genai
 anthropic
 ```
-
-## Links
-- Parent: [[Building chatbot Prompts and plan-INDEX]]
-- Related: [[LexFlow_P4_Upgraded_Chatbot_Classifier]]

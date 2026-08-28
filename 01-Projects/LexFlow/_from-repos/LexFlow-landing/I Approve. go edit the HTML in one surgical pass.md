@@ -49,7 +49,3 @@ Animated open/close. Covers: no app, no password, data protection, multi-practic
 
 Privacy link now reads: **GDPR · ISO 27001:2022 · ISO/IEC 27701:2025**
 
-
-## Links
-- Parent: [[LexFlow-landing-INDEX]]
-- Related: [[CONNECTION_FIX_STATUS]]

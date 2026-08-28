@@ -134,7 +134,3 @@ curl https://lexflow-mvp-production.up.railway.app/health
 - [ ] `curl /health` returns 200 + JSON
 - [ ] Database migrations run successfully
 - [ ] Auth endpoint works (JWT login)
-
-## Links
-- Parent: [[_from-repos-INDEX]]
-- Related: [[DEPLOYMENT_STATUS_2026-07-23]]

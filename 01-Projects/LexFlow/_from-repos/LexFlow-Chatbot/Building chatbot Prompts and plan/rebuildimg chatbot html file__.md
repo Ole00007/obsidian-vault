@@ -42,7 +42,3 @@ So: **nothing is wrong, but we are not “done” either**. We are at the “saf
 
 [^4]: LexAleAVATAR.jpg
 
-
-## Links
-- Parent: [[Building chatbot Prompts and plan-INDEX]]
-- Related: [[LexFlow_P4_Upgraded_Chatbot_Classifier]]

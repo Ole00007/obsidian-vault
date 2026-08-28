@@ -15,7 +15,3 @@ Content:
 ```
 web: gunicorn app:app
 ```
-
-## Links
-- Parent: [[_from-repos-INDEX]]
-- Related: [[PREBUILD_CHECK_V1]]

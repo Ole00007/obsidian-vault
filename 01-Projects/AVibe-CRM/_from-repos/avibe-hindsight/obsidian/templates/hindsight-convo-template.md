@@ -26,6 +26,3 @@ source: hindsight
 ## Notes
 
 - 
-
-## Links
-- Parent: [[templates-INDEX]]

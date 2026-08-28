@@ -79,7 +79,3 @@ Railway: ⏳ Detecting changes, rebuilding (2-3 min ETA)
 ```
 
 **All changes are pushed. Waiting for Railway to finish.  Then connection works end-to-end.**
-
-## Links
-- Parent: [[LexFlow-landing-INDEX]]
-- Related: [[I Approve. go edit the HTML in one surgical pass]]

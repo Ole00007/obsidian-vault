@@ -41,6 +41,14 @@ Vault retro-fitted into a connected graph: 210/226 notes linked (was 8/177), 409
 - **(e) False-positive suspicion:** `md (1).md` / `md.md` — generic base name, likely two unrelated pastes rather than a true duplicate. Also flagged: any `-part1/2/3` or `v3-N` family should be excluded from suffix-based dedup heuristics.
 - **Note:** first nightly entry; baseline established.
 
+### 2026-08-27 — Nightly log (downloads stager run)
+- **Daily note:** `05-Daily/2026-08-27.md` present — downloads_stager.py executed (real, 24h window): 0 newly staged, 2 verified identical, 1 conflict quarantined, 1 system file excluded.
+- **(a) Conflicts flagged today:** 1 — `md (1).md`. Vault copy (md5 6352b3f7) preserved; divergent Downloads copy (md5 771f3de3) quarantined to `_Inbox/_Conflicts/md (1).md` for review.
+- **(b) Identical dupes skipped:** 2 — `olesia_state_overview.xlsx` (md5 477fd5d1, verified identical) + `hermes_tracking_plan (1).xlsx` (md5 e5c7d691, verified identical). Both correctly skipped (not staged).
+- **(c) _Conflicts backlog size now:** 1 (`md (1).md`). Previous count: N/A (`~/Obsidian/_Inbox/_Conflicts/` did not exist on 2026-08-26). Net change: dir created, +1 conflict quarantined.
+- **(d) Recurring pattern observed:** Yes — browser re-download ` (n)` version-suffix collisions continue. Today's instances: `hermes_tracking_plan (1).xlsx` (verified-identical, skipped) and `md (1).md` (divergent, quarantined). Same ` (1)` signature seen in the 2026-08-26 baseline (`nous_models_purpose_first (1).xlsx`, `md (1).md`, `industry-competitive-analyst-skill (1)`). Serial-part families (`v3-N`, `-part1..3`) remain legitimately distinct — still excluded from suffix dedup.
+- **(e) False-positive suspicion:** None of today's flags look like false positives. `md (1).md` was the 2026-08-26 false-positive suspect (generic name, "two unrelated pastes"), but the stager proved it IS a genuine conflict — divergent checksums (771f3de3 ≠ 6352b3f7), correctly quarantined, not a false positive. `hermes_tracking_plan (1).xlsx` carries the conflict-looking ` (1)` suffix but was verified identical (md5 e5c7d691) and correctly skipped — benign re-download, not a flag error.
+- **Note:** first real conflict actually quarantined into `_Conflicts/`; backlog now non-empty. The 2026-08-26 suspicion on `md (1).md` is resolved as a true positive.
 
 ## Links
 - Parent: [[cron-jobs-INDEX]]

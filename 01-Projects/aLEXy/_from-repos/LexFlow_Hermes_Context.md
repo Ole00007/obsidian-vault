@@ -194,7 +194,3 @@ git commit -m "Phase X complete: description"
 
 Saved at:
 `/Users/olesiarasing/Desktop/LexFlow/LexFlow Review Build/LexFlow_Hermes_Context.md`
-
-## Links
-- Parent: [[_from-repos-INDEX]]
-- Related: [[HERMES_SESSION_HANDOFF]]

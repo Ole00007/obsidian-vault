@@ -166,7 +166,3 @@ That is safer because the chatbot is directly tied to intake and client support,
 
 [^3]: Tutor_PowerShell_Prompt-DEBUG_BACK-END_NTFLY.md
 
-
-## Links
-- Parent: [[Building chatbot Prompts and plan-INDEX]]
-- Related: [[LexFlow_P4_Upgraded_Chatbot_Classifier]]

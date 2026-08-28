@@ -154,7 +154,3 @@ Only pause for: GitHub push, deploy, destructive deletes, irreversible DB operat
 - To switch Hermes model: run `hermes model` in Terminal, pick new provider/model, start new VS Code session
 - To check Nous Portal usage: https://portal.nousresearch.com/
 - To monitor Copilot usage: https://github.com/settings/billing
-
-## Links
-- Parent: [[_from-repos-INDEX]]
-- Related: [[LexFlow_Hermes_Context]]

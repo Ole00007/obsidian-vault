@@ -30,6 +30,3 @@ Do not modify the existing Railway deployment structure (services, TLS/domain, P
 
 ## Rule 6 — Failover script
 `scripts/model_failover.sh` is the single source of truth for LLM fallback logic. Keep it and Rule 2 in sync.
-## Links
-- Parent: [[avibe-hindsight-INDEX]]
-- Related: [[README]]
