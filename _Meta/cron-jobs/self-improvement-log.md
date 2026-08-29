@@ -74,5 +74,14 @@ Vault retro-fitted into a connected graph: 210/226 notes linked (was 8/177), 409
 - **(e) False-positive suspicion:** None new. `md (1).md` remains a confirmed TRUE conflict (divergent md5 771f3de3 ≠ 6352b3f7) — was the 2026-08-26 false-positive suspect, confirmed true positive 2026-08-27, and still unresolved as of today. No new flag today to suspect.
 - **Note:** 2nd consecutive day with no new conflicts and one unresolved stale conflict. `_Inbox` backlog now 237 files (growing, not being triaged out into `01-Projects`/`03-Resources`). Recommended: human review of `md (1).md` (keep vault / accept Downloads / merge) + periodic `_Inbox` triage pass (see `downloads_cleanup.py`).
 
+### 2026-08-29 — Nightly log (NO stager run detected)
+- **Daily note:** `05-Daily/2026-08-29.md` does NOT exist — no downloads_stager.py run captured for today (no [STAGED]/[CONFLICT]/dedup lines to read).
+- **(a) Conflicts flagged today:** 0 (no stager run detected).
+- **(b) Identical dupes skipped:** 0 recorded.
+- **(c) _Conflicts backlog size now:** 0. Previous count (2026-08-28): 1. **Net change: -1** — the single long-lived `md (1).md` conflict (quarantined 2026-08-27, unresolved 2026-08-27 and 2026-08-28) is GONE. Global vault search for `md (1)` returns 0 hits, so it was **deleted/removed wholesale, not merged or relocated** into the vault. Backlog now empty.
+- **(d) Recurring pattern observed:** No new instance today (no stager run). The browser re-download ` (n)` version-suffix collision family remains the dominant recurring signature historically (seen 2026-08-26/27/28: `nous_models_purpose_first (1).xlsx`, `md (1).md`, `industry-competitive-analyst-skill (1)`, `hermes_tracking_plan (1).xlsx`, `image (2).jpg`). Serial-part families (`v3-N`, `-part1..3`) remain legitimately distinct and excluded from suffix dedup.
+- **(e) False-positive suspicion:** None new. **Flag for Ole:** the previously-confirmed TRUE conflict `md (1).md` (divergent md5 771f3de3 ≠ 6352b3f7) vanished from `_Conflicts/` with no merge record anywhere in the vault — its removal looks like a hard delete rather than an intentional resolution. Confirm intent (was the divergence reviewed and the right copy kept?) before assuming it was correctly cleared.
+- **Note:** 1st day of empty `_Conflicts/` backlog since the directory was created (2026-08-27). Stale-conflict watch: resolved. Outstanding: `_Inbox` triage (237 files) and the recurring ` (n)` re-download pattern prevention still unaddressed.
+
 ## Links
 - Parent: [[cron-jobs-INDEX]]

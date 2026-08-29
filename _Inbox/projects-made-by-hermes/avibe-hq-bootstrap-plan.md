@@ -22,12 +22,13 @@
 - **Distributed the real API key via `config.json` `apiKey`** (NOT `.env` — `.env` is write-protected, and the plugin reads `apiKey` from `config.json`, which takes precedence over the broken `.env` `***`). This also fixes the `operator-installer` regression my earlier bulk `>>` may have caused.
 - Left `memory-curator` on `supermemory` (its curation backend) — flagged. `tester` is a stray empty dir.
 
-## Still pending / recommendations
-- **Clean the `.env` `***` lines** (harmless now, since config.json wins, but should be removed). Terminal-write to `.env` is gated; needs an in-app approve OR manual edit.
-- **Automate the Obsidian re-ingest** as a cron job (currently manual → goes stale). Add a cron running `obsidian_reingest.py` with the real key.
-- **One-time backfill** of the 20 local-profile memories into avibe-hq (optional, if you want history unified).
-- **Verify end-to-end**: run `hermes -p <non-operator-profile> chat -q "retain test"`, then confirm a new record appears via `/v1/default/banks/avibe-hq/memories/list`.
-- Decide on `memory-curator` (flip to avibe-hq?) and clean up `tester`.
+## Decisions & status (updated 2026-08-29)
+- **`.env` cleanup — DONE.** Removed the `HINDSIGHT_API_KEY=***` placeholder (and a corrupted shell-fragment line) from all 24 `.env` files (default + 23 profiles). `email-digest-agent/.env` was fully corrupted (leaked `awk`/`printf`/`else` fragments, 0 valid keys) and is now empty. The real key lives only in each profile's `hindsight/config.json`, which takes precedence — nothing was lost. Terminal-write to `.env` was approved by Ole for this cleanup.
+- **Obsidian re-ingest cron — DECLINED (on-demand only).** No scheduled cron. Run `obsidian_reingest.py` only when actual vault changes are made, not on a timer.
+- **`memory-curator` flip — DEFERRED.** Stays on `supermemory` (its curation backend) for now.
+- **Backfill of 20 local-profile memories — DEFERRED.** Not done; avibe-hq keeps the 8,895 operator-installer units. Optional later.
+- **Verify end-to-end** (still open): run `hermes -p <non-operator-profile> chat -q "retain test"`, confirm a new record via `/v1/default/banks/avibe-hq/memories/list`.
+- `tester` stray dir: still present, untouched.
 
 ## New-laptop bootstrap (what a fresh device still needs beyond avibe-hq)
 `avibe-hq` is **memory-only**. A fresh laptop cannot bootstrap LexFlow from it alone. It also needs:
@@ -36,11 +37,11 @@
 3. The real `HINDSIGHT_API_KEY` (now encoded in each profile's `hindsight/config.json`).
 4. Runbook: clone profiles + vault, set real keys in `.env`, restart Hermes, verify one profile retains + recalls.
 
-## Open questions
-1. Approve terminal `.env` cleanup (or do it manually)?
-2. Add the Obsidian re-ingest cron job?
-3. Flip `memory-curator` to avibe-hq too?
-4. Backfill the 20 local-profile memories into avibe-hq?
+## Open questions — resolved (2026-08-29)
+1. Terminal `.env` cleanup → **APPROVED & DONE** (all 24 `.env` files cleaned; real key only in config.json).
+2. Obsidian re-ingest cron → **DECLINED** — re-ingest on-demand only when actual changes are made, not on a schedule.
+3. Flip `memory-curator` to avibe-hq → **DEFERRED** (kept on `supermemory`).
+4. Backfill 20 local-profile memories → **DEFERRED** (not done).
 
 ## Links
 [[Hindsight]] [[AGENT_RULES]] [[LexFlow]]
