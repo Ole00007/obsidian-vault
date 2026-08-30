@@ -1,0 +1,6 @@
+"Item","Status"
+"Railway deploy","❌ 502 — app crashing on startup"
+"GitHub latest commit","38e5728 — old app.py, missing submit route"
+"New app.py (code_file:417)","✅ built, but never successfully committed"
+"requirements.txt","⚠️ unknown if resend is in it"
+"Railway Variables","✅ all correct"
