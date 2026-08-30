@@ -25,11 +25,8 @@ Verify health with `hermes gateway status`, `lsof -iTCP:8642`, or `curl` — nev
 assume a browser page loading means the service is fully healthy.
 
 ## Rule 2 — LLM Provider: Ollama Cloud Only
-
-`HINDSIGHT_API_LLM_PROVIDER=ollama-cloud`. No other provider unless the user 
-explicitly asks. Never set `HINDSIGHT_API_LLM_BASE_URL` to `localhost:11434` or 
-any local address — inside a Railway container, `localhost` refers to the 
-container itself, not any machine running Ollama.
+## Rule 2 — LLM Provider: OpenRouter, FREE-ONLY
+`HINDSIGHT_API_LLM_PROVIDER=openai` with `HINDSIGHT_API_LLM_BASE_URL=https://openrouter.ai/api/v1` (OpenRouter's OpenAI-compatible endpoint), key `OPENROUTER_API_KEY`/`HINDSIGHT_API_LLM_API_KEY`. **NO paid models — free-tier only until we scale and generate real revenue.** Free fallback chain: `nvidia/nemotron-3-ultra-550b-a55b:free` → `nvidia/nemotron-3.5-lightning:free` → `nvidia/nemotron-3-super-120b-a12b:free` → `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`. Never set `HINDSIGHT_API_LLM_BASE_URL` to `localhost` — inside a Railway container, `localhost` refers to the container itself.
 
 ## Rule 3 — No Hardcoded Model Names
 
@@ -38,13 +35,13 @@ hardcoded into a Dockerfile, docker-compose file, or script logic. The model
 will change; nothing else should need to change when it does.
 
 ## Rule 4 — Validate Model Name Before Every Deploy That Changes It
-
-Never rely on manually browsing ollama.com/library. Run this instead, and block 
-the deploy if the model isn't in the response:
-
+Never rely on manually browsing model libraries. Run this instead, and block 
+the deploy if the model isn't present / not $0 (free):
+```bash
+curl -H "Authorization: Bearer $OPENROUTER_API_KEY" https://openrouter.ai/api/v1/models \
+  | jq -r '.data[] | select(.id=="<model-id>") | "\(.id) prompt=\(.pricing.prompt)"'
 ```
-curl https://ollama.com/api/tags -H "Authorization: Bearer $OLLAMA_API_KEY"
-```
+
 
 ## Rule 5 — Auth Secret Is Off-Limits
 

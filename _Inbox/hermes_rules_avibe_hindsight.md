@@ -15,21 +15,21 @@ If the current working context is any other project, IGNORE all rules
 in this block and defer to that project's own configuration.
 ```
 
-## Rule 2 — LLM Provider: Ollama Cloud Only (avibe-hindsight scope ONLY)
+## Rule 2 — LLM Provider: OpenRouter, FREE-ONLY (avibe-hindsight scope ONLY)
 
-```
 Within avibe-hindsight scope only:
 - All LLM calls for Hindsight fact extraction and Reflect synthesis
-  MUST use Ollama Cloud (api.ollama.com), authenticated via
-  OLLAMA_API_KEY. No other provider (OpenAI, Anthropic, DeepSeek
-  direct API, etc.) may be substituted within this scope.
-- Model fallback order is fixed and MUST be attempted in this order:
-    1) deepseek-v4-flash:0731   (primary)
-    2) gpt-oss:20b              (fallback 1)
-    3) gemma4:31b               (fallback 2)
-- If all three models fail or are rate-limited, HALT and alert the
-  user. Do NOT silently fall back to any paid API or non-Ollama
-  provider.
+  MUST use OpenRouter (`https://openrouter.ai/api/v1`), authenticated via
+  `OPENROUTER_API_KEY` (= `HINDSIGHT_API_LLM_API_KEY`). No other provider
+  may be substituted within this scope.
+- **NO paid models** — free-tier only until we scale and generate real revenue.
+- Free fallback chain (all $0, validated 2026-08-30):
+    1) nvidia/nemotron-3-ultra-550b-a55b:free   (primary)
+    2) nvidia/nemotron-3.5-lightning:free        (fallback 1)
+    3) nvidia/nemotron-3-super-120b-a12b:free    (fallback 2)
+    4) nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free (fallback 3)
+- If all models fail or are rate-limited, HALT and alert the user. Do NOT
+  silently fall back to any paid API.
 - This rule does not restrict, override, or reference the
   model/provider configuration of any other Hermes agent or project.
 ```
@@ -55,7 +55,7 @@ Within avibe-hindsight scope only:
   vendor dashboard). If it already exists in Railway env vars or
   local config, REUSE it. Do not regenerate unless the user
   explicitly requests rotation.
-- HINDSIGHT_API_LLM_API_KEY refers to OLLAMA_API_KEY per Rule 2.
+- HINDSIGHT_API_LLM_API_KEY = OPENROUTER_API_KEY per Rule 2.
 - Never print, log, or commit either key value in plaintext to
   GitHub, chat output, or any file that is not .gitignore'd.
 ```
