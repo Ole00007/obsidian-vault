@@ -1,0 +1,6 @@
+"Criterion","flask-rls"
+"Install","pip install flask-rls — one line, real PyPI package"
+"Stack fit","Requires exactly Python 3.10+, SQLAlchemy 2.0+, Flask 2.2+, PostgreSQL 12+ — matches your CLAUDE.md stack"
+"Maturity","v0.1.1, released Aug 1 2026, has dedicated docs at flask-rls.com including a ""migrating-existing-app"" guide, a security-model doc, and SECURITY.md"
+"Author track record","Same author maintains sibling django-rls and fastapi-rls — a deliberate cross-framework RLS product line, not a one-off script"
+"Approach","Policies enforced inside PostgreSQL itself, filtering every query at the database layer — exactly the ""second enforcement layer"" you want on top of workspace_filter()"

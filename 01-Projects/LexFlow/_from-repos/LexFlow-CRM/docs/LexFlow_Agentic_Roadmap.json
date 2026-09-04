@@ -1,0 +1,560 @@
+{
+  "project": "LexFlow MVP",
+  "file_purpose": "Agentic master tracking file — machine-readable for Hermes agents (Operator-Installer, backend-dev, frontend-dev, LexFlow Head Admin). Designed to mirror Kanban structure for direct rendering inside the CRM UI (next to /kanban).",
+  "schema_version": "1.0",
+  "last_updated": "2026-09-03",
+  "report_rule": "Every status update MUST include deploy_status: 'local' (with local_preview_url) or 'deployed' (with prod_url + commit_hash). Never report done without one of these two.",
+  "process_rules": {
+    "cross_audit": "Before EVERY local test and before any deploy, operator_installer and backend_dev cross-audit each other's code changes: operator reviews backend_dev's code, backend_dev reviews operator's code. Then report to user, then deploy. Applies to all code changes, no exceptions.",
+    "implementation_plan_gate": "backend_dev submits an implementation plan for sign-off BEFORE code ONLY when the user explicitly requests it OR when operator_installer has a genuine doubt. Not a routine gate — most tasks proceed to implementation directly.",
+    "report_gate": "Every 'fixed'/'done' must state LOCAL (preview link) or DEPLOYED (URL + commit hash). Permanent global rule."
+  },
+  "kanban_columns": [
+    "backlog",
+    "in_progress",
+    "blocked",
+    "awaiting_confirmation",
+    "local_verified",
+    "deployed",
+    "done"
+  ],
+  "tenants": {
+    "ws7": {
+      "name": "LexFlow",
+      "type": "primary",
+      "sub_tenants": []
+    },
+    "ws9": {
+      "name": "Pagliano",
+      "type": "client",
+      "sub_tenants": []
+    },
+    "ws10": {
+      "name": "Romanelli Studio",
+      "type": "client",
+      "sub_tenants": [
+        "cl1",
+        "cl2"
+      ]
+    }
+  },
+  "agents": {
+    "operator_installer": {
+      "role": "orchestration, deploy gate, infra, local testing",
+      "status": "active"
+    },
+    "backend_dev": {
+      "role": "audit, RLS, API logic, Contacts redesign backend",
+      "status": "active"
+    },
+    "frontend_dev": {
+      "role": "UI implementation, pulled in by backend_dev when needed",
+      "status": "on_call"
+    },
+    "lexflow_head_admin": {
+      "role": "Resend/email integration, historical docs owner",
+      "status": "active"
+    }
+  },
+  "tasks": [
+    {
+      "id": "T-001",
+      "title": "Intake page: manual name entry (remove autofill lock)",
+      "column": "done",
+      "assigned_agent": "operator_installer",
+      "deploy_status": "deployed",
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10",
+        "cl1",
+        "cl2"
+      ],
+      "priority": "P1",
+      "depends_on": [],
+      "notes": "Confirmed fixed by user."
+    },
+    {
+      "id": "T-002",
+      "title": "Cross-section data reflection (intake -> Contacts/Kanban/Calendar, status-driven)",
+      "column": "awaiting_confirmation",
+      "assigned_agent": "operator_installer",
+      "deploy_status": "local",
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10",
+        "cl1",
+        "cl2"
+      ],
+      "priority": "P1",
+      "depends_on": [],
+      "notes": "Reflection table drafted and refined against Clio Grow/HubSpot/Lawmatics. Awaiting explicit go before code.",
+      "reflection_rules_ref": "see reflection_rules[]"
+    },
+    {
+      "id": "T-003",
+      "title": "Conflict-check gate (legal-specific hard gate before engagement letter)",
+      "column": "backlog",
+      "assigned_agent": "operator_installer",
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws10",
+        "cl1",
+        "cl2",
+        "ws9"
+      ],
+      "priority": "P2",
+      "depends_on": [
+        "T-002"
+      ],
+      "notes": "Phase 2. Do not auto-progress past this gate."
+    },
+    {
+      "id": "T-004",
+      "title": "Drip follow-up sequence (24h/72h/7d) with suppression rules",
+      "column": "backlog",
+      "assigned_agent": "backend_dev",
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10",
+        "cl1",
+        "cl2"
+      ],
+      "priority": "P2",
+      "depends_on": [
+        "T-002",
+        "T-009"
+      ],
+      "notes": "Requires scheduled_actions table (T-009) first. Event-driven delayed task, not simple cron."
+    },
+    {
+      "id": "T-005",
+      "title": "WhatsApp Business API integration (client + avvocato notifications)",
+      "column": "backlog",
+      "assigned_agent": null,
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10",
+        "cl1",
+        "cl2"
+      ],
+      "priority": "P2",
+      "depends_on": [],
+      "notes": "Needs scoping + agent assignment. New channel, parallel-safe once scoped."
+    },
+    {
+      "id": "T-006",
+      "title": "Client portal notifications on case status change",
+      "column": "backlog",
+      "assigned_agent": "backend_dev",
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10",
+        "cl1",
+        "cl2"
+      ],
+      "priority": "P3",
+      "depends_on": [
+        "T-004"
+      ],
+      "notes": "Phase 4."
+    },
+    {
+      "id": "T-007",
+      "title": "Contacts redesign: two-model split (Internal staff directory + Client-Facing lifecycle/consent/tags)",
+      "column": "done",
+      "assigned_agent": "backend_dev",
+      "deploy_status": "deployed",
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10",
+        "cl1",
+        "cl2"
+      ],
+      "priority": "P3",
+      "depends_on": [],
+      "notes": "USER CONFIRMED 2026-09-03: full two-model split (Internal staff directory, workspace-filtered + Client-Facing with lifecycle/consent/tags). operator_installer's firm_team.py draft is the starting point for the Internal side. Cross-audit applies: operator reviews backend_dev code, backend_dev reviews operator code, before every local test. Implementation plan only if user requests or operator has doubt (per process_rules)."
+    },
+    {
+      "id": "T-008",
+      "title": "Full read-only app audit + proactive improvement suggestions",
+      "column": "in_progress",
+      "assigned_agent": "backend_dev",
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10",
+        "cl1",
+        "cl2"
+      ],
+      "priority": "P1",
+      "depends_on": [],
+      "notes": "Two-part mandate: (A) find gaps operator_installer missed, (B) proactive incremental improvement suggestions (UI/UX, security, isolation, architecture) with time+priority estimates."
+    },
+    {
+      "id": "T-009",
+      "title": "scheduled_actions table + Railway worker poll (event-driven delay engine)",
+      "column": "backlog",
+      "assigned_agent": "backend_dev",
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10",
+        "cl1",
+        "cl2"
+      ],
+      "priority": "P2",
+      "depends_on": [],
+      "notes": "Foundation for all delayed/drip automation. Design schema extensible for future AI agent decision layer (T-013)."
+    },
+    {
+      "id": "T-010",
+      "title": "Resend email integration fact-check + test (Pagliano only)",
+      "column": "awaiting_confirmation",
+      "assigned_agent": "lexflow_head_admin",
+      "deploy_status": "local",
+      "tenant_scope": [
+        "ws9"
+      ],
+      "priority": "P1",
+      "depends_on": [],
+      "notes": "FACT-CHECK DONE 2026-09-04: code live in notification_service.py (views.py:26,739; auth.py:56); email_service.py dead code. API key re_... validated (domains 200). ⚠️ DELIVERY BLOCKED: EMAIL_FROM=onboarding@resend.dev only delivers to account owner (olesya00007@yahoo.com); Resend 403 'verify a domain' for alegra_007@proton.me/ms.okuneva@internet.ru. REMAINING: add verified Resend domain + set EMAIL_FROM=no-reply@<domain> in Railway, then real send test. Also: upload notify (attachment_uploaded, commit pending) emails owner + client on file upload."
+    },
+    {
+      "id": "T-011",
+      "title": "Full inventory (all tenants: deploy platform, URLs, credentials, commit, local repo path, GitHub repo, connected services)",
+      "column": "awaiting_confirmation",
+      "assigned_agent": "operator_installer",
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10",
+        "cl1",
+        "cl2"
+      ],
+      "priority": "P1",
+      "depends_on": [],
+      "notes": "Must precede any further fix. Future shortcut command target: 'inventory'."
+    },
+    {
+      "id": "T-012",
+      "title": "cl1-cl10 local mock test under Romanelli (full cycle: intake -> contact -> reflection)",
+      "column": "backlog",
+      "assigned_agent": "operator_installer",
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws10",
+        "cl1",
+        "cl2",
+        "cl3",
+        "cl4",
+        "cl5",
+        "cl6",
+        "cl7",
+        "cl8",
+        "cl9",
+        "cl10"
+      ],
+      "priority": "P2",
+      "depends_on": [
+        "T-002"
+      ],
+      "notes": "LOCAL ONLY, always. Command convention: 'operator test locally'. Never deploy without explicit user go."
+    },
+    {
+      "id": "T-013",
+      "title": "AI adaptive/reflective email agent (behavior-based follow-up)",
+      "column": "backlog",
+      "assigned_agent": null,
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10",
+        "cl1",
+        "cl2"
+      ],
+      "priority": "P4",
+      "depends_on": [
+        "T-009"
+      ],
+      "notes": "Target: end of September. Architecture (T-009) must be built to support this as a plug-in decision layer, not require rewrite."
+    },
+    {
+      "id": "T-014",
+      "title": "RLS merge (feat/rls branch)",
+      "column": "blocked",
+      "assigned_agent": "backend_dev",
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10",
+        "cl1",
+        "cl2"
+      ],
+      "priority": "P1",
+      "depends_on": [],
+      "notes": "BLOCKED until: 18 tests pass on real (non-sqlite) Postgres AND ALTER ROLE ... NOBYPASSRLS confirmed on Railway DATABASE_URL role."
+    },
+    {
+      "id": "T-015",
+      "title": "Uploads persistence (Railway Volume web-uploads)",
+      "column": "awaiting_confirmation",
+      "assigned_agent": "operator_installer",
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10",
+        "cl1",
+        "cl2"
+      ],
+      "priority": "P1",
+      "depends_on": [],
+      "notes": "Plan confirmed: volume name web-uploads, mount /app/uploads, UPLOAD_FOLDER env set. Awaiting final go for redeploy."
+    },
+    {
+      "id": "T-016",
+      "title": "A1 - LexFlow landing repoint (ab54f -> 031a6)",
+      "column": "deployed",
+      "assigned_agent": "operator_installer",
+      "deploy_status": "deployed",
+      "tenant_scope": [
+        "ws7"
+      ],
+      "priority": "P1",
+      "depends_on": [],
+      "notes": "Repoint pushed (da19b36), Netlify auto-deploy triggered. Visual redesign (52f1bc6) held separately on visual-redesign-hold branch, NOT merged."
+    },
+    {
+      "id": "T-017",
+      "title": "SEAT_LIMIT_DEFAULT config value (5 seats/tenant, DB-configurable, no redeploy)",
+      "column": "backlog",
+      "assigned_agent": "operator_installer",
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10",
+        "cl1",
+        "cl2"
+      ],
+      "priority": "P4",
+      "depends_on": [],
+      "notes": "Confirmed in v2 roadmap §4: 5 seats/tenant decided, reconfigure later via SEAT_LIMIT_DEFAULT config value — DB-configurable, no redeploy needed. Small config task."
+    },
+    {
+      "id": "T-018",
+      "title": "Agentic AI-personalized email automation spec (missing backlog item)",
+      "column": "backlog",
+      "assigned_agent": null,
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10",
+        "cl1",
+        "cl2"
+      ],
+      "priority": "P4",
+      "depends_on": [
+        "T-009"
+      ],
+      "notes": "Confirmed missing in v2 roadmap §5 — needs its own spec. Distinct from T-013 (adaptive follow-up): AI-personalized content generation per client. Spec before code."
+    },
+    {
+      "id": "T-019",
+      "title": "Design/UX audit: CRM + landing vs 2025 legal-SaaS standards (WCAG 2.2/ISO 40500, mobile parity, role dashboards, trust bar, AI-native)",
+      "column": "local_verified",
+      "assigned_agent": "frontend_developer",
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10"
+      ],
+      "priority": "P3",
+      "depends_on": [],
+      "notes": "Ole 2026-09-03: compare LexFlow CRM + LP design against 2025 official standards — LexFlux-Legal-SaaS-UX-UI-Design-Research-Report.md (WCAG 2.2 = ISO 40500:2025, EU EAA Law 11/2023; mobile nav patterns; role-based dashboards; trust bar; AI-native context-first UX; touch targets 44x44/24x24; reduced-motion; semantic HTML/ARIA). AUDIT DONE 2026-09-04: gap matrix + top-10 fix list (frontend_developer, read-only) in docs/UX-Test-Report-2026-09-04.md + LexFlux-UX-UI-Design-Research-Report-2025.md in Obsidian. Contrast quick-fix APPLIED locally (commit 3aaea16, --text-faint -> #7E90A9, btn text var(--bg); calendar/tasks white-on-accent still ~4.1:1 — pending). IMPLEMENTATION ORDER (Ole 2026-09-04): Pagliano (least populated) first -> verify locally -> Lexflow -> Romanelli. Hard rule: no design deploy before Ole's human review of local preview."
+    },
+    {
+      "id": "T-020",
+      "title": "i18n: CRM English -> Italian (+ Russian optional) — bilingual by end of week",
+      "column": "backlog",
+      "assigned_agent": null,
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10"
+      ],
+      "priority": "P2",
+      "depends_on": [],
+      "notes": "Ole 2026-09-04: keep CRM English for now (tester lawyers speak English); landings stay Italian. Plan translation to Italian (and possibly Russian) for NEXT WEEK — bilingual by end of week. Do NOT touch language now. Reminder: operator-installer must remind Ole about this."
+    },
+    {
+      "id": "T-021",
+      "title": "Diagram view of task/case execution (n8n/Obsidian-graph style) on roadmap",
+      "column": "backlog",
+      "assigned_agent": null,
+      "deploy_status": null,
+      "tenant_scope": [
+        "ws7",
+        "ws9",
+        "ws10"
+      ],
+      "priority": "P3",
+      "depends_on": [
+        "T-019"
+      ],
+      "notes": "Ole 2026-09-04: add a visual architecture-style diagram of task execution to the roadmap (like Obsidian graph / n8n nodes) — native, clear who has what. Spec first, then local implementation on Pagliano, then replicate."
+    }
+  ],
+  "reflection_rules": [
+    {
+      "trigger": "intake_submitted",
+      "condition": "status=New Lead",
+      "appears_in": [
+        "Contacts",
+        "Kanban:New Lead"
+      ],
+      "action": "auto_ack_email+whatsapp, task:review_lead+1d",
+      "suppression": "none"
+    },
+    {
+      "trigger": "no_response_24h",
+      "condition": "no reply 24h",
+      "appears_in": [
+        "Activity log"
+      ],
+      "action": "followup_email_1+whatsapp_nudge",
+      "suppression": "if replied"
+    },
+    {
+      "trigger": "no_response_72h",
+      "condition": "no reply 72h",
+      "appears_in": [
+        "Activity log"
+      ],
+      "action": "followup_email_2",
+      "suppression": "if replied or status changed"
+    },
+    {
+      "trigger": "no_response_7d",
+      "condition": "no reply 7d",
+      "appears_in": [
+        "Activity log"
+      ],
+      "action": "final_checkin_email+whatsapp, flag_owner",
+      "suppression": "if replied; mark Cold if none"
+    },
+    {
+      "trigger": "consult_booked",
+      "condition": "status=Consult Scheduled",
+      "appears_in": [
+        "Calendar",
+        "Kanban"
+      ],
+      "action": "calendar_invite+email_reminder_24h+whatsapp_reminder_2h",
+      "suppression": "none"
+    },
+    {
+      "trigger": "conflict_check_required",
+      "condition": "status=Pending Conflict Check",
+      "appears_in": [
+        "Kanban:gated"
+      ],
+      "action": "BLOCK engagement_letter until manual clear",
+      "suppression": "hard_gate"
+    },
+    {
+      "trigger": "retainer_sent",
+      "condition": "status=Retainer Out",
+      "appears_in": [
+        "Matters",
+        "Kanban"
+      ],
+      "action": "engagement_letter_autogen+whatsapp_doc_sent",
+      "suppression": "none"
+    },
+    {
+      "trigger": "retainer_signed",
+      "condition": "status=Signed/Active Client",
+      "appears_in": [
+        "Contacts:promoted",
+        "Matters",
+        "dashboard"
+      ],
+      "action": "welcome_email+whatsapp+portal_access",
+      "suppression": "lock_lead_nurture"
+    },
+    {
+      "trigger": "case_status_change",
+      "condition": "any transition",
+      "appears_in": [
+        "Kanban",
+        "Activity timeline"
+      ],
+      "action": "portal_notification+whatsapp_optin+log_entry",
+      "suppression": "only_real_transitions"
+    },
+    {
+      "trigger": "task_deadline_created",
+      "condition": "linked to case",
+      "appears_in": [
+        "Tasks",
+        "Calendar"
+      ],
+      "action": "calendar_event+email+whatsapp_to_avvocato",
+      "suppression": "none"
+    },
+    {
+      "trigger": "hearing_approaching",
+      "condition": "48h before",
+      "appears_in": [
+        "Calendar",
+        "Dashboard alert"
+      ],
+      "action": "email+whatsapp to avvocato and client",
+      "suppression": "if date changed/cancelled"
+    },
+    {
+      "trigger": "document_uploaded",
+      "condition": "new file attached",
+      "appears_in": [
+        "Matters",
+        "Activity timeline"
+      ],
+      "action": "whatsapp+email notice",
+      "suppression": "internal-only docs excluded"
+    }
+  ],
+  "architecture_notes": {
+    "stack": "One Flask app (Railway web-production-031a6) + one Postgres (perceptive-achievement), row-level tenant isolation via workspace_id + workspace_filter(). RLS built on feat/rls, not merged.",
+    "known_gaps": [
+      "RLS not merged - app-level filter is only enforcement layer",
+      "Resend/email integration exact wiring status unconfirmed - pending fact-check",
+      "CDN/edge cache headers on authenticated API responses unverified"
+    ],
+    "automation_tech_decision": {
+      "instant_email": "direct Resend API call in request handler",
+      "delayed_followup": "Postgres scheduled_actions + Railway worker (MVP) -> Celery+Redis if >500 tasks/day",
+      "recurring_reminders": "Railway worker cron (correct model, no change needed)",
+      "whatsapp": "WhatsApp Business API (Twilio or Meta Cloud API)",
+      "future_ai_agent": "reads activity_log + notifications, decision layer on top of scheduled_actions, planned end of September"
+    }
+  },
+  "integration_note_for_hermes": "Render this file's 'tasks' array as Kanban cards using 'column' as the board column and 'id' as card ID. Suggested location: new tab/panel next to /kanban route, e.g. /kanban/roadmap, reading this JSON directly. Update this file (not just chat replies) whenever task status changes, so it stays the single source of truth alongside chat reports."
+}

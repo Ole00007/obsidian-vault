@@ -1,0 +1,63 @@
+TICKET: Add PostgreSQL Row-Level Security (RLS) to LexFlow CRM — second-layer tenant isolation
+
+CONTEXT
+Current tenant isolation is app-level only (workspace_filter() applied per query). This ticket
+adds database-enforced isolation as a second layer, so isolation holds even if a future query
+bypasses the ORM filter. Not a replacement for workspace_filter() — both layers stay active.
+
+LIBRARY TO USE
+flask-rls — https://github.com/kdpisda/flask-rls
+Docs: https://flask-rls.com/docs/installation/
+Requires: Python 3.10+, SQLAlchemy 2.0+, Flask 2.2+, PostgreSQL 12+ (confirm our stack meets this
+before starting).
+
+WORK ON: a local or Railway staging branch database. Do not touch production DATABASE_URL.
+
+STEP 1 — Install
+pip install flask-rls
+Add to requirements.txt. Resolve any version conflicts with existing Flask/SQLAlchemy pins before
+continuing.
+
+STEP 2 — Create the non-owner Postgres role
+Postgres table owners bypass RLS by default. Create a dedicated app role WITHOUT the BYPASSRLS
+attribute, per flask-rls's setup docs, on the staging database first.
+
+STEP 3 — Wire flask-rls into apps/api
+Initialize it in the app factory alongside existing extensions (Flask-Login, Flask-Migrate).
+Configure it to filter on our tenant column (workspace_id) and session variable (app.current_tenant),
+per flask-rls's config API in the docs.
+
+STEP 4 — List every table currently filtered by workspace_filter()
+Produce the exact list. This is the scope of tables that need RLS policies — no estimating.
+
+STEP 5 — Follow flask-rls's "migrating-existing-app" guide
+https://flask-rls.com/docs/ — start with whichever table caused the earlier tenant-isolation leak.
+Add one table at a time, not all at once.
+
+STEP 6 — Verify each table before moving to the next
+For each table, on the staging database:
+1. Seed two rows under two different workspace_id values.
+2. Log in as Tenant A, attempt to read/write Tenant B's row through the app — must be blocked.
+3. Run a raw SQL query bypassing workspace_filter() directly — RLS must still block cross-tenant
+   access at the database level. This is the exact failure mode we're closing.
+Do not proceed to the next table until both checks pass.
+
+STEP 7 — Write regression tests
+For every table touched, add an automated test proving Tenant A cannot read or write Tenant B's
+rows, following flask-rls's own test pattern from its docs.
+
+STEP 8 — Add composite index
+Add a composite index on (workspace_id, ...) for each table touched, to offset any RLS query
+overhead.
+
+STEP 9 — Note any Alembic migration friction
+RLS policies applied via ALTER TABLE inside Alembic migrations have known community-reported
+issues with policy versioning and upgrade/downgrade symmetry. Flag anything encountered.
+
+DELIVERABLE
+Per table: policy added (yes/no), test passed (yes/no), migration notes. Submit as a PR against
+a feature branch — do not merge to main.
+
+BUDGET: 1–2 days implementation + 0.5 day test suite.
+
+OUT OF SCOPE: schema-per-tenant, physical DB-per-customer, RBAC within a tenant.

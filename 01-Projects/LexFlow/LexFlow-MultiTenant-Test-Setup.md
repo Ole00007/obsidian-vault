@@ -1,23 +1,23 @@
 ---
-title: LexFlow — Multi-tenant test setup (Pagliano + Romanelli + Gmail login)
+title: LexFlow — Multi-tenant test setup (Avv.Pagl + Romanelli + Gmail login)
 created: 2026-08-29
 updated: 2026-08-29
 tags: [lexflow, crm, multitenant, test, pagliano]
 status: READY FOR TESTING ✅
 ---
 
-# LexFlow — Multi-tenant test setup (Pagliano + Romanelli + Gmail login)
+# LexFlow — Multi-tenant test setup (Avv.Pagl + Romanelli + Gmail login)
 
 ## Goal (Ole, 2026-08-29 night)
-Verify the CRM is REALLY multi-tenant: entering from different landing pages / websites of different customers feeds each into its **own isolated workspace** in the shared Postgres. Test with: (a) own Gmail login, (b) Pagliano LP button, (c) Romanelli studio LP.
+Verify the CRM is REALLY multi-tenant: entering from different landing pages / websites of different customers feeds each into its **own isolated workspace** in the shared Postgres. Test with: (a) own Gmail login, (b) Avv.Pagl LP button, (c) Romanelli studio LP.
 
 ## What was wrong (root cause — wiring, not credentials)
-- Pagliano LP on Netlify (`verdant-crumble-021449`) pointed to the **legacy** Railway app `web-production-ab54f.up.railway.app` (old LexFlow-MVP backend) for both the **Login button** and the **intake fetch**. That's why Ole could not log in.
+- Avv.Pagl LP on Netlify (`verdant-crumble-021449`) pointed to the **legacy** Railway app `web-production-ab54f.up.railway.app` (old LexFlow-MVP backend) for both the **Login button** and the **intake fetch**. That's why Ole could not log in.
 - The correct multi-tenant CRM is `web-production-031a6.up.railway.app` (project `perceptive-achievement`, branch `lexflow_hermes_v1`) — 5 workspaces.
 - Also: test user `olesya00007@gmail.com` did NOT exist on the CRM yet (401).
 
 ## Fixes applied (all deployed)
-1. **Pagliano LP source** (`~/Desktop/projects/services/LEGAL/LexFlow-MVP/pagliano/`):
+1. **Avv.Pagl LP source** (`~/Desktop/projects/services/LEGAL/LexFlow-MVP/pagliano/`):
    - `index.html` + `templates/pagliano.html`: Login button → `web-production-031a6.up.railway.app/kanban`; intake fetch → `/api/intake/pagliano` (multi-tenant slug)
    - `static/chat-widget.js`: intake fetch → `/api/intake/pagliano` (payload matches CRM). NOTE: `/api/appointments` still points to ab54f (legacy) — CRM has no such endpoint yet; follow-up.
 2. **Netlify**: deployed `pagliano/` dir to site `verdant-crumble-021449` (site b060d5c1...) — verified live: 031a6 present, ab54f gone.
@@ -51,9 +51,11 @@ Verify the CRM is REALLY multi-tenant: entering from different landing pages / w
 ## Open follow-ups
 - [x] ~~Chat-widget `/api/appointments` still → legacy ab54f~~ — **BUILT** `/api/appointments` on CRM (2026-08-30): public endpoint, creates Contact+Case+CalendarEvent in pagliano workspace, logs activity, sends booking notifications. Chat-widget repointed → `web-production-031a6.up.railway.app/api/appointments` (commit f8d11db) + Netlify redeploy (e558028).
 - [x] ~~Superadmin visibility~~ — fixed: read routes now use `workspace_filter()` so superadmin sees all workspaces (commit c36cae9). Verified: superadmin sees ws9+ws10; pagliano admin only ws2; romanelli only ws3.
-- [ ] Main landing `poetic-kleicha-28d058.netlify.app` still points at ab54f (9 refs) — not part of this test; fix when the main landing is adopted.
+- [x] Main landing `poetic-kleicha-28d058.netlify.app` repointed ab54f → 031a6 (commit da19b36, deployed; verified 8 refs → 031a6, 0 ab54f).
+- [x] Romanelli LP entry buttons → AREA RISERVATA (`/login?ws=romanelli-studio&back=<site>`), login `preview@romanelli.test` / `Romanelli0826`.
 - [ ] Test user is superadmin (sees all); to demo per-client isolation login as the workspace admin users (e.g. `pagliano@lexflow.test`) once seeded.
+- [ ] aLEXy (tenant 6) heritage LP: leave on ab54f for now (future chatbot/AI workspace).
 
 ## Links
 - Parent: [[LexFlow-INDEX]]
-- Related: [[LexFlow-Surgical-Additions-2-3]]
+- Related: [[LexFlow-Surgical-Additions-2-3]] · [[LexFlow-Workspace-2026-08-31-Inventory]]

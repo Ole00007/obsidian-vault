@@ -1,0 +1,20 @@
+PROJECT PLAN INSERT — Elisa (LexFlow PA) & Stefano Dev Access Controls
+
+Context: Elisa is a pretrained Personal Assistant agent already available on GitHub. Stefano's task is integration/wiring into LexFlow, not ground-up development. This plan governs the integration through to production approval.
+
+Access Policy:
+Elisa's integration proceeds through four gated phases (Isolated Sandbox -> Read-Only Validation -> Staging -> Production). No phase transition occurs without explicit written approval from Olesia (project owner). Read access and write/trigger access are separate approval gates - approving one does not imply the other.
+
+Standing Rules:
+1. Elisa's integration code lives in an isolated module (e.g. agents/elisa) with zero imports from existing routes/models until explicitly merged.
+2. No production credentials are shared directly; all access uses scoped, time-bound API keys (crm:read only during validation/staging).
+3. Read-only enforcement happens at both the API layer AND the database layer (Postgres role with GRANT SELECT only).
+4. All keys are stored in a secrets manager; none appear in code, commits, or Telegram messages.
+5. Telegram is used only for status/task/deployment tracking - never for exchanging real tenant data, credentials, or PII.
+6. Every key has a hard expiration date; renewal requires explicit re-approval, not automatic continuation.
+7. Phase 3 (Staging) cannot begin until the feat/rls branch is merged and its 18-test Postgres run passes - app-level workspace_filter() alone is not sufficient isolation for an AI agent.
+8. Elisa's write/trigger permissions (e.g. auto-updating tasks, sending notifications) require a separate, additional approval beyond read-only access.
+9. All of Elisa's actions (not just queries) are logged with a clear agent-identity tag for audit purposes.
+10. Upon completion of Stefano's engagement, all keys and repo access tied to Elisa's integration are revoked immediately.
+
+Risk Register: see attached JSON (elisa_dev_access_plan.json) for phase-by-phase risks and mitigations.

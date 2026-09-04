@@ -75,7 +75,7 @@ Both subagents fully tested their endpoints locally (201/200/404/401/413/400 ver
 - **calendar.py**: real actor from JWT (was hardcoded 1) + event_created/updated/deleted logging
 - Local 12/12 tests pass → pushed (5f35a49) → Railway auto-deployed (03c76257) → prod `db:ok`, `/api/intake/pagliano` responds (workspace exists), `/pagliano` 200
 
-## Pagliano LP reconnect — COMPLETE (2026-08-29)
+## Avv.Pagl LP reconnect — COMPLETE (2026-08-29)
 - `pagliano.html` fetch pointed at **legacy** `web-production-ab54f.up.railway.app/api/intake` → changed to relative `/api/intake/pagliano` (LexFlow CRM, workspace slug `pagliano` exists in prod)
 - Login link → `/dashboard` (was ab54f root)
 - No ab54f references remain in templates

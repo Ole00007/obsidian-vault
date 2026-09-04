@@ -1,0 +1,83 @@
+{
+  "project": "LexFlow - Elisa (PA Agent) Dev Access Plan",
+  "context_note": "Elisa already exists as a pretrained Personal Assistant agent, available on GitHub. Stefano's task is integration/wiring into LexFlow (not building from scratch). Phase 1 therefore covers isolated integration testing, not raw development.",
+  "last_updated": "2026-09-03",
+  "phases": [
+    {
+      "phase": "Phase 1 - Isolated Integration Sandbox",
+      "data_access": "None - Elisa's existing pretrained model connects only to seeded/anonymized dummy data mirroring the LexFlow schema (workspaces, cases, contacts, tasks, notifications)",
+      "api_key_scope": "No production key issued; no access to Railway Postgres (perceptive-achievement) or any live workspace (ws7/ws9/ws10/cl1/cl2)",
+      "duration_guidance": "Until Elisa's trigger events (new intake, task due, etc.) are defined and tested end-to-end in sandbox, and until RLS (feat/rls) is merged",
+      "risks": [
+        "Elisa's pretrained model was trained/fine-tuned externally and may have hardcoded assumptions about data structure that clash with LexFlow's actual schema",
+        "Stefano's integration module could accidentally import a shared route or model file, breaking the 'not touching existing routes' isolation rule",
+        "Elisa's GitHub repo/dependencies may pull unreviewed third-party packages into the LexFlow codebase",
+        "No defined trigger events yet, so testing may proceed on ad hoc assumptions rather than the real intake/task workflow"
+      ],
+      "mitigations": [
+        "Clone Elisa's repo into a separate branch/module (e.g. agents/elisa) with zero imports from apps/api routes or models - enforce via code review before merge",
+        "Audit Elisa's GitHub repo dependencies (requirements.txt / package.json) before integration; pin versions and scan for known vulnerabilities",
+        "Seed a dedicated sandbox database (or SQLite copy) with anonymized data matching the exact schema (workspaces, cases, contacts, tasks, notifications)",
+        "Finalize and document trigger events (new intake, task due, conflict-check gate, etc.) as a checklist before Stefano begins wiring Elisa to any event source",
+        "Confirm this work is 'safe in parallel' status only while Elisa's module remains isolated - any change touching shared code paths (intake logic, contact model, RLS) must stop and go sequential"
+      ]
+    },
+    {
+      "phase": "Phase 2 - Validation (Read-Only, Time-Boxed)",
+      "data_access": "Read-only via scoped key against a real data subset or read replica, once sandbox testing passes",
+      "api_key_scope": "crm:read only, expires in 7-30 days, scoped to a single workspace only (e.g. ws9 Pagliano, isolated per current parallel-track rules)",
+      "duration_guidance": "Until Elisa demonstrates safe, correct trigger behavior against real data shapes with zero write attempts",
+      "risks": [
+        "Elisa's agent logic could misfire and attempt a write despite being wired read-only, if trigger logic assumes it can update task/notification status",
+        "Read-only key scope creep if Elisa's integration accidentally uses the same credentials as backend-dev's audit agent",
+        "Testing against Pagliano (ws9) data without clear tenant consent/awareness"
+      ],
+      "mitigations": [
+        "Enforce read-only at the Postgres role level (GRANT SELECT only) in addition to API scoping, so a misfiring write attempt fails safely rather than corrupting data",
+        "Issue Elisa's integration a dedicated key, separate from backend-dev's audit credentials, named distinctly (e.g. elisa-ws9-readonly)",
+        "Confirm test scope with whoever owns the Pagliano/Romanelli test relationship before running Elisa against their live data, even read-only"
+      ]
+    },
+    {
+      "phase": "Phase 3 - Staging",
+      "data_access": "Read-only against a staging replica mirroring production schema and (once merged) RLS policies",
+      "api_key_scope": "Staging-labeled key, same crm:read scope",
+      "duration_guidance": "After feat/rls is merged and the 18-test Postgres run passes; before Elisa is wired to any live tenant",
+      "risks": [
+        "RLS merge (feat/rls) is still pending - testing Elisa before RLS lands means she's only protected by app-level workspace_filter(), a weaker isolation boundary",
+        "Staging replica drifting from production if schema changes (e.g. Contacts redesign, internal vs. client-facing contact models) land after replica creation"
+      ],
+      "mitigations": [
+        "Block Phase 3 start until feat/rls is merged and its 18-test Postgres run is confirmed green - do not rely on workspace_filter() alone for an AI agent with broader reach",
+        "Refresh the staging replica schema whenever a schema-affecting decision (like the internal-contacts model) ships"
+      ]
+    },
+    {
+      "phase": "Phase 4 - Production (Post-Approval)",
+      "data_access": "Read-only, audited, explicitly approved by Olesia (project owner) - full write/event-trigger access only after separate sign-off",
+      "api_key_scope": "crm:read, time-bound, logged, rotated regularly; write/event-trigger permissions require an additional, separate approval step from read access",
+      "duration_guidance": "Ongoing post-launch, subject to periodic review; only after Ferro's workspace and seat-limit decisions are finalized",
+      "risks": [
+        "Elisa going live with write/trigger actions (e.g. auto-updating tasks, sending notifications) without a distinct approval gate from read-only access",
+        "No audit trail on an AI agent's autonomous actions, making it hard to trace why a record changed",
+        "Agent persists with access after Stefano's engagement ends"
+      ],
+      "mitigations": [
+        "Treat 'read access' and 'write/trigger access' as two separate approval gates - do not bundle them; Olesia must explicitly approve each",
+        "Log every action Elisa takes (not just queries) with a clear agent-identity tag in the activity_log table, reviewed periodically",
+        "Add Elisa/Stefano to the offboarding checklist: revoke keys and repo access immediately if the collaboration ends"
+      ]
+    }
+  ],
+  "telegram_tracking": {
+    "scope": "Status updates, task tracking, deployment alerts only - never raw tenant data",
+    "risks": [
+      "Sensitive data pasted into Telegram chat by mistake during Elisa integration debugging",
+      "Bot token leaked, allowing unauthorized posting/reading in the tracking channel"
+    ],
+    "mitigations": [
+      "Explicit rule: no real tenant data, credentials, or PII in Telegram messages - only IDs/status/logs, consistent with the existing 'action titles only' visibility rule used for Dima/Kirill",
+      "Store bot token in secrets manager; restrict bot to a single private channel with limited membership"
+    ]
+  }
+}

@@ -32,7 +32,7 @@ Rule: passwords are reset ONLY when still at a known default (never overwrite a 
 - Non-superadmin redirected away / 403 — verified.
 
 ### 4. Shared nav + workspace badge (all base.html pages)
-- Workspace badge (e.g. 🏢 Avvocato Pagliano) from user.workspace.name.
+- Workspace badge (e.g. 🏢 Avv. Pagl) from user.workspace.name.
 - Active-nav highlighting, Settings + Logout links, 🛡 Super Admin link (superadmin only), ← Return to main website (per-workspace site map).
 - kanban.html got the same shared nav + ws chip + return-to-site; init now loads `/api/auth/me` so reloads show real user.
 
@@ -41,7 +41,7 @@ Rule: passwords are reset ONLY when still at a known default (never overwrite a 
 (existing cards keep old statuses; filter works per-column).
 
 ### 6. LP login → CRM root home
-- Pagliano LP Login button → `/` (root). `/` redirects logged-in users to their workspace dashboard. Isolation: each client sees only their own sector; no cross-client data visible to non-superadmins.
+- Avv.Pagl LP Login button → `/` (root). `/` redirects logged-in users to their workspace dashboard. Isolation: each client sees only their own sector; no cross-client data visible to non-superadmins.
 
 ## Repo ↔ Vault sync gap (FOUND + FIXED)
 - Compared `~/Desktop/projects/services/LEGAL/lexflow-crm` (1,934 tracked files, ~26 docs) vs Obsidian `01-Projects/LexFlow/_from-repos/LexFlow-CRM/` (1 stale file) vs project folder.
