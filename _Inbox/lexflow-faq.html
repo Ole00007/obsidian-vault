@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>FAQ — LexFlow</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"><style>
+:root{--gold:#D4AF37;--gold-deep:#C5A55A;--navy:#152238;--navy-2:#1C2C48;--surface:#0F1826;--surface-2:#18243A;--border:rgba(212,175,55,0.18);--text:#F2EFE9;--text-dim:#B9C2D0;--text-faint:#7C8AA0;--radius-lg:14px;--radius-xl:20px;--radius-md:10px;--shadow-sm:0 2px 10px rgba(0,0,0,0.25);--shadow-md:0 8px 30px rgba(0,0,0,0.35);}
+[data-theme="light"]{--surface:#FBF9F4;--surface-2:#F2EEE3;--navy:#152238;--text:#1C2333;--text-dim:#4B5568;--text-faint:#8891A0;--border:rgba(21,34,56,0.12);--shadow-sm:0 2px 10px rgba(0,0,0,0.06);--shadow-md:0 8px 30px rgba(0,0,0,0.10);}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);line-height:1.5;transition:background .3s,color .3s}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);z-index:20;backdrop-filter:blur(8px)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px;letter-spacing:.02em}
+.logo-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--navy),#0B1220);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:'Instrument Serif',serif;font-size:16px}
+.nav-links{display:flex;gap:26px;font-size:14px;color:var(--text-dim)}
+.nav-links a.active{color:var(--gold)}
+.nav-cta{display:flex;gap:10px;align-items:center;position:relative}
+.btn{padding:10px 20px;border-radius:999px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid transparent;min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.btn-gold{background:linear-gradient(135deg,var(--gold-deep),var(--gold));color:#1B1608;border:none}
+.btn-ghost{border:1px solid var(--border);color:var(--text)}
+.icon-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px}
+.lang-wrap{position:relative}
+.lang-menu{position:absolute;top:52px;right:0;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-md);min-width:170px;padding:6px;display:none;flex-direction:column;z-index:30}
+.lang-menu.open{display:flex}
+.lang-menu button{background:none;border:none;color:var(--text);text-align:left;padding:10px 12px;border-radius:8px;font-size:14px;cursor:pointer;min-height:44px;display:flex;align-items:center;gap:10px}
+.lang-menu button:hover,.lang-menu button:focus-visible{background:rgba(212,175,55,0.1)}
+.lang-menu button.active-lang{color:var(--gold);font-weight:600}
+.page-hero{padding:56px 0 32px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:6px 14px;border-radius:999px;margin-bottom:18px}
+h1{font-family:'Instrument Serif',serif;font-size:40px;font-weight:400;line-height:1.15;margin-bottom:14px}
+h1 em{font-style:italic;color:var(--gold)}
+p.lede{color:var(--text-dim);font-size:16px;max-width:600px}
+.section{padding:48px 0}
+.section-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+h2{font-family:'Instrument Serif',serif;font-size:30px;font-weight:400;margin-bottom:14px}
+.section-sub{color:var(--text-dim);max-width:560px;margin-bottom:32px;font-size:15px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px}
+.card .icon{width:44px;height:44px;border-radius:var(--radius-md);background:rgba(212,175,55,0.1);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+.card h3{font-size:16px;font-weight:600;margin-bottom:8px}
+.card p{font-size:14px;color:var(--text-dim)}
+.premium-visual{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-md);aspect-ratio:4/3;background:linear-gradient(160deg,var(--navy) 0%,#0B1220 60%),repeating-linear-gradient(45deg, rgba(212,175,55,0.05) 0 2px, transparent 2px 12px);position:relative;display:flex;align-items:flex-end;padding:18px}
+.premium-visual .tag{background:rgba(212,175,55,0.12);border:1px solid var(--gold);color:var(--gold);font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.dash-card{position:absolute;top:18px;right:18px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px;width:150px;box-shadow:var(--shadow-sm)}
+.dash-card .kpi{font-family:'Instrument Serif',serif;font-size:26px;color:var(--gold)}
+.dash-card .kpi-label{font-size:11px;color:var(--text-faint);margin-top:2px}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center}
+.stat-card{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:26px}
+.stat-num{font-family:'Instrument Serif',serif;font-size:36px;color:var(--gold)}
+.stat-label{font-size:13px;color:var(--text-dim);margin-top:6px}
+.compliance-band{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
+.badge{border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;color:var(--text-dim)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.testi-card{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px}
+.stars{color:var(--gold);font-size:13px;margin-bottom:12px;letter-spacing:2px}
+.testi-quote{font-size:14px;color:var(--text-dim);margin-bottom:18px}
+.testi-person{display:flex;align-items:center;gap:12px}
+.testi-avatar{width:44px;height:44px;border-radius:50%;background:var(--navy-2);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--gold);font-weight:600;flex-shrink:0}
+.testi-name{font-size:14px;font-weight:600}
+.testi-role{font-size:12px;color:var(--text-faint)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.price-card{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;display:flex;flex-direction:column}
+.price-card.featured{border-color:var(--gold);box-shadow:var(--shadow-md);position:relative}
+.price-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#1B1608;font-size:11px;font-weight:700;letter-spacing:.05em;padding:4px 14px;border-radius:999px;text-transform:uppercase}
+.price-tier{font-size:14px;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.price-amount{font-family:'Instrument Serif',serif;font-size:40px;margin-bottom:4px}
+.price-amount span{font-size:14px;color:var(--text-faint);font-family:'Inter',sans-serif}
+.price-desc{font-size:13px;color:var(--text-dim);margin-bottom:20px}
+.price-features{list-style:none;font-size:14px;color:var(--text-dim);display:flex;flex-direction:column;gap:10px;margin-bottom:24px;flex:1}
+.price-features li{display:flex;gap:8px;align-items:flex-start}
+.price-features li .tick{color:var(--gold);flex-shrink:0}
+.compare-table{width:100%;border-collapse:collapse;margin-top:40px;font-size:14px}
+.compare-table th,.compare-table td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border)}
+.compare-table th{color:var(--gold);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+.compare-table td.hl{color:var(--gold);font-weight:600}
+.compare-note{font-size:12px;color:var(--text-faint);margin-top:12px}
+.faq-list{display:flex;flex-direction:column;gap:12px;max-width:760px}
+.faq-item{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden}
+.faq-q{width:100%;text-align:left;padding:18px 20px;background:none;border:none;color:var(--text);font-size:15px;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center;min-height:44px}
+.faq-q .chev{color:var(--gold);transition:transform .25s}
+.faq-item.open .faq-q .chev{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a p{padding:0 20px 18px;color:var(--text-dim);font-size:14px}
+.practice-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.practice-card{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px;text-align:center}
+.practice-card .icon{width:48px;height:48px;border-radius:var(--radius-md);background:rgba(212,175,55,0.1);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 14px}
+.practice-card h3{font-size:15px;font-weight:600;margin-bottom:6px}
+.practice-card p{font-size:13px;color:var(--text-dim)}
+.cta-band{background:linear-gradient(135deg,var(--navy),#0B1220);border:1px solid var(--gold);border-radius:var(--radius-xl);padding:44px;text-align:center;margin:0 24px}
+.cta-band h2{color:var(--text)}
+.cta-band p{color:var(--text-dim);margin-bottom:22px}
+footer{padding:36px 24px;border-top:1px solid var(--border);margin-top:44px}
+.footer-inner{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.footer-social{display:flex;gap:14px}
+.footer-social a{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:16px}
+.footer-social a:hover{color:var(--gold);border-color:var(--gold)}
+.footer-credit{font-size:12px;color:var(--text-faint)}
+.footer-text{font-size:13px;color:var(--text-faint)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* WHATSAPP + CHATBOT WIDGETS */
+.wa-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:var(--shadow-md);z-index:50;border:none;cursor:pointer}
+.chat-float{position:fixed;bottom:24px;right:92px;width:56px;height:56px;border-radius:50%;background:var(--gold);color:#1B1608;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:var(--shadow-md);z-index:50;border:none;cursor:pointer}
+.chat-panel{position:fixed;bottom:92px;right:24px;width:300px;max-width:calc(100vw - 48px);background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);display:none;flex-direction:column;overflow:hidden;z-index:50}
+.chat-panel.open{display:flex}
+.chat-header{background:var(--navy);color:#fff;padding:14px 16px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px}
+.chat-body{padding:14px;font-size:13px;color:var(--text-dim);min-height:80px}
+.chat-input-row{display:flex;border-top:1px solid var(--border)}
+.chat-input-row input{flex:1;border:none;background:none;padding:12px;font-size:13px;color:var(--text);min-height:44px}
+.chat-input-row button{border:none;background:none;color:var(--gold);padding:0 14px;cursor:pointer;font-size:14px;min-height:44px}
+
+@media(max-width:860px){
+  .nav-links{display:none}
+  h1{font-size:30px}
+  .grid-3,.pricing-grid,.stats-grid,.testi-grid{grid-template-columns:1fr}
+  .practice-grid{grid-template-columns:repeat(2,1fr)}
+  .compare-table{font-size:12px}
+  .chat-float{right:88px}
+}
+</style></head>
+<body>
+<!-- WEBHOOK: id=WH-01 | endpoint: https://hook.example.com/lexflow/demo-request | trigger: CTA button click "Book a Demo" -->
+<nav>
+  <div class="logo"><span class="logo-mark">LF</span> LexFlow</div>
+  <div class="nav-links">
+    <a class="" href="lexflow-index.html" data-i18n="nav_features">Features</a>
+    <a class="" href="lexflow-pricing.html" data-i18n="nav_pricing">Pricing</a>
+    <a class="" href="lexflow-practice-areas.html" data-i18n="nav_practice">Practice Areas</a>
+    <a class=" active" href="lexflow-faq.html" data-i18n="nav_faq">FAQ</a>
+  </div>
+  <div class="nav-cta">
+    <button class="icon-btn" id="themeBtn" aria-label="Toggle dark/light theme">◐</button>
+    <div class="lang-wrap">
+      <button class="icon-btn" id="langBtn" aria-label="Change language" aria-haspopup="true">🌐<span id="langLabel" style="font-size:10px;margin-left:2px">EN</span></button>
+      <div class="lang-menu" id="langMenu" role="menu">
+        <button data-lang="en" role="menuitem">🇬🇧 English</button>
+        <button data-lang="it" role="menuitem">🇮🇹 Italiano</button>
+        <button data-lang="ru" role="menuitem">🇷🇺 Русский</button>
+      </div>
+    </div>
+    <a class="btn btn-ghost" href="#login" data-i18n="nav_signin">Sign in</a>
+    <a class="btn btn-gold" data-webhook="demo-request-nav" href="#demo" data-i18n="nav_demo">Book a Demo</a>
+  </div>
+</nav>
+<!-- /WEBHOOK -->
+
+<header class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="faq_eyebrow">Questions & Answers</span>
+    <h1 data-i18n="faq_title">Frequently asked questions</h1>
+    <p class="lede" data-i18n="faq_lede">Everything you need to know about LexFlow, pricing, security, and languages.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq_q1">Q1</span><span class="chev">▾</span></button>
+        <div class="faq-a"><p data-i18n="faq_a1">A1</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq_q2">Q2</span><span class="chev">▾</span></button>
+        <div class="faq-a"><p data-i18n="faq_a2">A2</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq_q3">Q3</span><span class="chev">▾</span></button>
+        <div class="faq-a"><p data-i18n="faq_a3">A3</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq_q4">Q4</span><span class="chev">▾</span></button>
+        <div class="faq-a"><p data-i18n="faq_a4">A4</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq_q5">Q5</span><span class="chev">▾</span></button>
+        <div class="faq-a"><p data-i18n="faq_a5">A5</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq_q6">Q6</span><span class="chev">▾</span></button>
+        <div class="faq-a"><p data-i18n="faq_a6">A6</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq_q7">Q7</span><span class="chev">▾</span></button>
+        <div class="faq-a"><p data-i18n="faq_a7">A7</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq_q8">Q8</span><span class="chev">▾</span></button>
+        <div class="faq-a"><p data-i18n="faq_a8">A8</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq_q9">Q9</span><span class="chev">▾</span></button>
+        <div class="faq-a"><p data-i18n="faq_a9">A9</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq_q10">Q10</span><span class="chev">▾</span></button>
+        <div class="faq-a"><p data-i18n="faq_a10">A10</p></div>
+      </div>
+      <!-- NEW: additional Q&A sourced from live product FAQ -->
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq_q11">Q11</span><span class="chev">▾</span></button>
+        <div class="faq-a"><p data-i18n="faq_a11">A11</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq_q12">Q12</span><span class="chev">▾</span></button>
+        <div class="faq-a"><p data-i18n="faq_a12">A12</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq_q13">Q13</span><span class="chev">▾</span></button>
+        <div class="faq-a"><p data-i18n="faq_a13">A13</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="demo">
+  <div class="cta-band">
+    <h2 data-i18n="cta_title">See LexFlow in your firm</h2>
+    <p data-i18n="cta_lede">Get a tailored walkthrough — no obligation.</p>
+    <a class="btn btn-gold" href="lexflow-index.html#demo" data-webhook="faq-cta-demo" data-i18n="cta_button">Request Demo</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-text" data-i18n="footer_text">LexFlow © 2026 — Lightweight design preview artefact. Not for production deployment.</span>
+    <div class="footer-social">
+      <a href="https://linkedin.com/company/lexflow" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>
+      <a href="https://instagram.com/lexflow" aria-label="Instagram" target="_blank" rel="noopener">◎</a>
+    </div>
+    <span class="footer-credit" data-i18n="footer_credit">Designed by AVibe Agency</span>
+  </div>
+</footer>
+<!-- WEBHOOK: id=WH-03 | endpoint: https://wa.me/390000000000 | trigger: WhatsApp float button click -->
+<a class="wa-float" href="https://wa.me/390000000000" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" data-webhook="whatsapp-float">💬</a>
+<!-- /WEBHOOK -->
+<!-- WEBHOOK: id=WH-04 | endpoint: https://hook.example.com/lexflow/chatbot-message | trigger: chatbot message send -->
+<button class="chat-float" id="chatToggle" aria-label="Open chat assistant" data-webhook="chatbot-toggle">💭</button>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header"><span data-i18n="chatbot_name">Alessia — Online Support</span></div>
+  <div class="chat-body"><p data-i18n="chatbot_greeting">Hi! How can I help you today?</p></div>
+  <div class="chat-input-row">
+    <input type="text" data-i18n-placeholder="chatbot_placeholder" placeholder="Type your message..." aria-label="Chat message">
+    <button data-webhook="chatbot-send" onclick="return false;">➤</button>
+  </div>
+</div>
+<!-- /WEBHOOK -->
+<script>
+document.getElementById('themeBtn').addEventListener('click', function(){
+  var html = document.documentElement;
+  html.setAttribute('data-theme', html.getAttribute('data-theme')==='dark'?'light':'dark');
+});
+var langBtn=document.getElementById('langBtn'), langMenu=document.getElementById('langMenu');
+langBtn.addEventListener('click', function(e){ e.stopPropagation(); langMenu.classList.toggle('open'); });
+document.addEventListener('click', function(){ langMenu.classList.remove('open'); });
+var I18N = {"en": {"nav_features": "Features", "nav_pricing": "Pricing", "nav_faq": "FAQ", "nav_practice": "Practice Areas", "nav_signin": "Sign in", "nav_demo": "Book a Demo", "cta_title": "See LexFlow in your firm", "cta_lede": "Get a tailored walkthrough — no obligation.", "cta_button": "Request Demo", "footer_text": "LexFlow © 2026 — Lightweight design preview artefact. Not for production deployment.", "chatbot_name": "Alessia — Online Support", "chatbot_greeting": "Hi! How can I help you today?", "chatbot_placeholder": "Type your message...", "whatsapp_label": "Chat on WhatsApp", "footer_credit": "Designed by AVibe Agency", "faq_eyebrow": "Questions & Answers", "faq_title": "Frequently asked questions", "faq_lede": "Everything you need to know about LexFlow, pricing, security, and languages.", "faq_q1": "What is LexFlow?", "faq_q2": "How much does LexFlow cost?", "faq_q3": "Does LexFlow integrate with existing case management tools?", "faq_q4": "Is my client data secure with LexFlow?", "faq_q5": "Can I use LexFlow in Italian or Russian?", "faq_q6": "Do you offer a free trial?", "faq_q7": "What is the LexFlow AI Add-on and how is it priced?", "faq_q8": "Which practice areas does LexFlow support?", "faq_q9": "Is LexFlow accessible (WCAG compliant)?", "faq_q10": "How do I migrate my existing data to LexFlow?", "faq_q11": "Does the client need to install anything?", "faq_q12": "Does the client need to create an account or login?", "faq_q13": "Is LexFlow suitable for a firm of 5–20 people?", "faq_a1": "LexFlow is an AI-native legal practice management platform that unifies case management, document intelligence, billing, and client communication in one role-aware workspace.", "faq_a2": "LexFlow starts at a Starter tier for solo practitioners, with Professional and Enterprise tiers scaling up in automation and AI capability. See the Pricing page for a full breakdown and market comparison.", "faq_a3": "Yes. LexFlow supports 300+ integrations including email, calendar, accounting, and e-signature providers, with guided data migration for firms switching from another platform.", "faq_a4": "LexFlow uses bank-grade 256-bit encryption, zero-knowledge document storage, and SOC2-aligned security practices so client data stays confidential at every stage.", "faq_a5": "Yes. Use the globe icon in the navigation bar to switch the interface between English, Italian, and Russian at any time.", "faq_a6": "Yes, LexFlow offers a no-obligation free trial with no credit card required so your firm can evaluate the platform risk-free.", "faq_a7": "The AI Add-on layers legal research, contract analysis, and litigation intelligence workflows on top of any plan. Because usage varies widely by firm size, AI Add-on pricing is quoted individually — contact sales for a tailored quote.", "faq_a8": "LexFlow supports Civil, Corporate, Family, Criminal, Real Estate, Intellectual Property, Immigration, and Labor & Employment law, with configurable workflows for each area.", "faq_a9": "Yes. LexFlow is designed to WCAG 2.2 AA standards, including 44px minimum touch targets, visible focus states, and full keyboard navigation.", "faq_a10": "Our onboarding team provides guided or white-glove data migration depending on your plan, importing matters, contacts, documents, and billing history from your current system.", "faq_a11": "No. LexFlow runs entirely in the browser. Clients receive a link by email and open it on any device. No download or installation required.", "faq_a12": "No. Each client receives a unique, token-secured URL — no registration, no password.", "faq_a13": "Yes — it was built exactly for this. Structured enough for real matter volume, simple enough to need no IT department."}, "it": {"nav_features": "Funzionalità", "nav_pricing": "Prezzi", "nav_faq": "Domande e Risposte", "nav_practice": "Aree di Pratica", "nav_signin": "Accedi", "nav_demo": "Prenota una Demo", "cta_title": "Scopri LexFlow nel tuo studio", "cta_lede": "Ottieni una dimostrazione su misura — senza impegno.", "cta_button": "Richiedi una Demo", "footer_text": "LexFlow © 2026 — Artefatto di anteprima design leggero. Non per il rilascio in produzione.", "chatbot_name": "Alessia — Assistenza Online", "chatbot_greeting": "Ciao! Come posso aiutarti oggi?", "chatbot_placeholder": "Scrivi il tuo messaggio...", "whatsapp_label": "Scrivici su WhatsApp", "footer_credit": "Progettato da AVibe Agency", "faq_eyebrow": "Domande e Risposte", "faq_title": "Domande frequenti", "faq_lede": "Tutto ciò che devi sapere su LexFlow, prezzi, sicurezza e lingue.", "faq_q1": "Cos'è LexFlow?", "faq_q2": "Quanto costa LexFlow?", "faq_q3": "LexFlow si integra con gli strumenti di gestione dei casi esistenti?", "faq_q4": "I dati dei miei clienti sono sicuri con LexFlow?", "faq_q5": "Posso usare LexFlow in italiano o russo?", "faq_q6": "Offrite una prova gratuita?", "faq_q7": "Cos'è il componente aggiuntivo IA di LexFlow e come viene calcolato il prezzo?", "faq_q8": "Quali aree di pratica supporta LexFlow?", "faq_q9": "LexFlow è accessibile (conforme WCAG)?", "faq_q10": "Come posso migrare i miei dati esistenti su LexFlow?", "faq_q11": "Il cliente deve installare qualcosa?", "faq_q12": "Il cliente deve creare un account o fare login?", "faq_q13": "LexFlow è adatto a uno studio da 5–20 persone?", "faq_a1": "LexFlow è una piattaforma di gestione degli studi legali nativa per l'IA che unifica gestione dei casi, intelligenza documentale, fatturazione e comunicazione con i clienti in un unico spazio di lavoro basato sui ruoli.", "faq_a2": "LexFlow parte da un piano Starter per i liberi professionisti, con piani Professional ed Enterprise che aumentano in automazione e capacità IA. Consulta la pagina Prezzi per il dettaglio completo e il confronto di mercato.", "faq_a3": "Sì. LexFlow supporta oltre 300 integrazioni tra cui email, calendario, contabilità e firma elettronica, con migrazione dati assistita per gli studi che cambiano piattaforma.", "faq_a4": "LexFlow utilizza crittografia a 256 bit di livello bancario, archiviazione documentale a conoscenza zero e pratiche di sicurezza allineate a SOC2, così i dati dei clienti restano riservati in ogni fase.", "faq_a5": "Sì. Usa l'icona del globo nella barra di navigazione per cambiare la lingua dell'interfaccia tra inglese, italiano e russo in qualsiasi momento.", "faq_a6": "Sì, LexFlow offre una prova gratuita senza impegno e senza carta di credito, così il tuo studio può valutare la piattaforma senza rischi.", "faq_a7": "Il componente aggiuntivo IA aggiunge flussi di lavoro di ricerca legale, analisi contrattuale e intelligence sul contenzioso a qualsiasi piano. Poiché l'utilizzo varia molto in base alle dimensioni dello studio, il prezzo viene calcolato individualmente — contatta il team commerciale per un preventivo su misura.", "faq_a8": "LexFlow supporta diritto civile, societario, di famiglia, penale, immobiliare, proprietà intellettuale, immigrazione e diritto del lavoro, con flussi di lavoro configurabili per ciascuna area.", "faq_a9": "Sì. LexFlow è progettato secondo gli standard WCAG 2.2 AA, inclusi target di tocco minimi di 44px, stati di focus visibili e navigazione completa da tastiera.", "faq_a10": "Il nostro team di onboarding fornisce una migrazione dati assistita o completa a seconda del piano, importando pratiche, contatti, documenti e cronologia di fatturazione dal tuo sistema attuale.", "faq_a11": "No. LexFlow funziona interamente dal browser, senza download né installazione.", "faq_a12": "No. Ogni cliente riceve un URL unico protetto da token — nessuna registrazione, nessuna password.", "faq_a13": "Sì — costruito esattamente per questo. Strutturato ma senza bisogno di un reparto IT."}, "ru": {"nav_features": "Возможности", "nav_pricing": "Тарифы", "nav_faq": "Вопросы и ответы", "nav_practice": "Направления практики", "nav_signin": "Войти", "nav_demo": "Заказать демо", "cta_title": "Узнайте, как LexFlow работает в вашей фирме", "cta_lede": "Получите индивидуальную демонстрацию — без обязательств.", "cta_button": "Запросить демо", "footer_text": "LexFlow © 2026 — облегчённый превью-артефакт дизайна. Не для промышленного использования.", "chatbot_name": "Алесия — Онлайн поддержка", "chatbot_greeting": "Привет! Как я могу вам помочь?", "chatbot_placeholder": "Введите сообщение...", "whatsapp_label": "Написать в WhatsApp", "footer_credit": "Разработано AVibe Agency", "faq_eyebrow": "Вопросы и ответы", "faq_title": "Часто задаваемые вопросы", "faq_lede": "Всё, что нужно знать о LexFlow, тарифах, безопасности и языках.", "faq_q1": "Что такое LexFlow?", "faq_q2": "Сколько стоит LexFlow?", "faq_q3": "Интегрируется ли LexFlow с существующими системами управления делами?", "faq_q4": "Безопасны ли данные моих клиентов в LexFlow?", "faq_q5": "Могу ли я использовать LexFlow на итальянском или русском языке?", "faq_q6": "Предлагаете ли вы бесплатную пробную версию?", "faq_q7": "Что такое ИИ-дополнение LexFlow и как оно оценивается?", "faq_q8": "Какие направления практики поддерживает LexFlow?", "faq_q9": "Доступен ли LexFlow (соответствует ли WCAG)?", "faq_q10": "Как перенести мои данные в LexFlow?", "faq_q11": "Нужно ли клиенту что-то устанавливать?", "faq_q12": "Нужно ли клиенту создавать аккаунт?", "faq_q13": "Подходит ли LexFlow для фирмы из 5–20 человек?", "faq_a1": "LexFlow — это ИИ-платформа для управления юридической практикой, объединяющая управление делами, интеллектуальную обработку документов, биллинг и общение с клиентами в едином рабочем пространстве на основе ролей.", "faq_a2": "LexFlow начинается с тарифа Starter для частных юристов, а тарифы Professional и Enterprise расширяют автоматизацию и возможности ИИ. Полную разбивку и сравнение с рынком смотрите на странице тарифов.", "faq_a3": "Да. LexFlow поддерживает более 300 интеграций, включая почту, календарь, бухгалтерию и электронную подпись, с сопровождаемой миграцией данных для фирм, переходящих с другой платформы.", "faq_a4": "LexFlow использует 256-битное шифрование банковского уровня, хранение документов с нулевым разглашением и практики безопасности, соответствующие SOC2, чтобы данные клиентов оставались конфиденциальными на каждом этапе.", "faq_a5": "Да. Используйте значок глобуса в панели навигации, чтобы в любой момент переключить интерфейс между английским, итальянским и русским языками.", "faq_a6": "Да, LexFlow предлагает бесплатную пробную версию без обязательств и без банковской карты, чтобы ваша фирма могла оценить платформу без риска.", "faq_a7": "ИИ-дополнение добавляет к любому тарифу процессы юридических исследований, анализа договоров и аналитики судебных споров. Поскольку использование сильно варьируется в зависимости от размера фирмы, цена ИИ-дополнения рассчитывается индивидуально — свяжитесь с отделом продаж для расчёта.", "faq_a8": "LexFlow поддерживает гражданское, корпоративное, семейное, уголовное право, недвижимость, интеллектуальную собственность, иммиграционное и трудовое право с настраиваемыми процессами для каждого направления.", "faq_a9": "Да. LexFlow разработан в соответствии со стандартами WCAG 2.2 AA, включая минимальные зоны нажатия 44px, видимые состояния фокуса и полную навигацию с клавиатуры.", "faq_a10": "Наша команда внедрения обеспечивает сопровождаемую или полную миграцию данных в зависимости от тарифа, перенося дела, контакты, документы и историю биллинга из вашей текущей системы.", "faq_a11": "Нет. LexFlow работает полностью в браузере, без установки.", "faq_a12": "Нет. Клиент получает уникальную защищённую ссылку — без регистрации и пароля.", "faq_a13": "Да — платформа создана именно для этого, без необходимости в IT-отделе."}};
+function setLang(lang){
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k=el.getAttribute('data-i18n');
+    if(I18N[lang]&&I18N[lang][k]){el.textContent=I18N[lang][k];} else if(I18N['en']&&I18N['en'][k]){el.textContent=I18N['en'][k];}
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){
+    var k=el.getAttribute('data-i18n-placeholder');
+    if(I18N[lang]&&I18N[lang][k]){el.setAttribute('placeholder',I18N[lang][k]);}
+  });
+  document.querySelectorAll('.lang-menu button').forEach(function(b){b.classList.toggle('active-lang', b.getAttribute('data-lang')===lang);});
+  document.getElementById('langLabel').textContent=lang.toUpperCase();
+  document.documentElement.setAttribute('lang', lang);
+  localStorage.setItem('lexflow-lang', lang);
+  langMenu.classList.remove('open');
+}
+document.querySelectorAll('.lang-menu button').forEach(function(b){ b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); }); });
+setLang(localStorage.getItem('lexflow-lang')||'en');
+document.querySelectorAll('.faq-item').forEach(function(item){
+  var q=item.querySelector('.faq-q');
+  if(q){ q.addEventListener('click', function(){ item.classList.toggle('open'); }); }
+});
+var chatToggle=document.getElementById('chatToggle'), chatPanel=document.getElementById('chatPanel');
+if(chatToggle){ chatToggle.addEventListener('click', function(){ chatPanel.classList.toggle('open'); }); }
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is LexFlow?","acceptedAnswer":{"@type":"Answer","text":"LexFlow is an AI-native legal practice management platform that unifies case management, document intelligence, billing, and client communication in one role-aware workspace."}},
+{"@type":"Question","name":"Does the client need to create an account or login?","acceptedAnswer":{"@type":"Answer","text":"No. Each client receives a unique, token-secured URL — no registration, no password."}}
+]}
+</script>
+</body></html>
