@@ -1,0 +1,14 @@
+Decision_Item,Status,Decision,Next_Step
+Matters cap per tenant,Closed for now,Unlimited,Hermes to define usage-tracking mechanism + threshold
+Memory/storage cap per tenant,Closed for now,Unlimited,Same tracking mechanism as matters cap
+Seat limit per tenant,Closed,5 seats/tenant,"Reconfigure later via SEAT_LIMIT_DEFAULT config value, no redeploy needed"
+Contact models,"Closed, approved as-is",Two separate models: internal staff directory + client-facing marketing-ready,Implementation plan required from backend-dev before code
+Elisa access,Closed,"4-phase gated plan, no production access yet",See Elisa Access Plan phases
+Elisa provenance,Open - new flag,Unconfirmed pretrained vs framework-based,Confirm with Stefano before Phase 1 sign-off
+Reporting rule: local vs deployed,Closed,"Global, permanent, not just-this-once",Applies to every future report
+RLS merge timing,Open - reminder only,Do not merge until 18 tests pass on real Postgres + NOBYPASSRLS confirmed,Also gates Elisa Phase 3
+Ferro/AVIBE/aLEXy workspace status,Open,"Reportedly exist, unconfirmed build status",Ask Hermes to confirm in inventory
+QA/Debug agent adoption,Closed,"QASkills.sh approved, install now","Verified safe, skill-file install only"
+Memory-curator delegation,Open,To be delegated by Operator-Installer,Confirm Obsidian vault path + local folder path first
+Agentic AI-personalized email automation,Open - new item,Not yet scoped as of last session,Now being scoped in this session as Phases 2-5 drip campaign plan
+Celery/RQ adoption,Open - new item this session,Not yet evaluated,Hermes to report price/time estimate

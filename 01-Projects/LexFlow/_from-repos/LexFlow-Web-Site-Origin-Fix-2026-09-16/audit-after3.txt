@@ -1,0 +1,25 @@
+pages scanned: 59
+pages with an inline JSON-LD url field: 48
+
+PLACEHOLDER lexflow.example.com STILL PRESENT
+  in canonical   : 0
+  in og:url      : 0
+  in JSON-LD url : 0
+  in any field   : 0
+
+PAGES WITH NO CANONICAL AT ALL (5):
+    404.html
+    lexflow-faq (1).html
+    lexflow-index (1).html
+    lexflow-practice-areas (1).html
+    lexflow-pricing (1).html
+
+PAGES WITH MULTIPLE CANONICAL TAGS (0):
+
+CANONICAL DOES NOT MATCH OWN PATH (6):
+    _h2check-before.html  ->  https://lexflow-site.netlify.app/lexflow-article-matter-tracker.html
+    _probe-after.html  ->  https://lexflow-site.netlify.app/lexflow-article-matter-tracker.html
+    _probe-before.html  ->  https://lexflow-site.netlify.app/lexflow-article-matter-tracker.html
+    _probe-tmp.html  ->  https://lexflow-site.netlify.app/lexflow-article-matter-tracker.html
+    probe-after.html  ->  https://lexflow-site.netlify.app/lexflow-article-matter-tracker.html
+    probe-before.html  ->  https://lexflow-site.netlify.app/lexflow-article-matter-tracker.html

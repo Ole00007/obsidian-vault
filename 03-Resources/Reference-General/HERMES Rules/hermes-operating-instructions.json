@@ -1,0 +1,144 @@
+{
+  "doc_type": "hermes_operating_instructions",
+  "version": "5.0",
+  "created": "2026-09-16",
+  "owner_execution": "Hermes agent",
+  "owner_approval": "Olesia (human-in-the-loop, required before any billing change, install, clone into a working folder, or code change)",
+  "purpose": "Machine-readable ruleset for Hermes covering: (1) skill/tool substitution priority, (2) model/task routing across providers, (3) the human-only AI Studio prototyping handoff, (4) roster rules-file check, (5) Kanban board separation, (6) mandatory pre-install safety scan, (7) named third-party skill source to evaluate under the same rules.",
+  "step_0_substitution_rule": {
+    "description": "Applies before shortlisting any candidate skill/tool, including every item inside the named skill source below.",
+    "check": "For each candidate, determine if it links to, requires, or upsells a PAID product (subscription, paid API tier, paid starter kit, etc.).",
+    "if_paid_detected": "Actively search for a free/open-source equivalent OR check if the same job can be done with something already in use.",
+    "already_in_use_inventory": [
+      "Canva (Pro)",
+      "Penpot",
+      "Railway",
+      "Resend",
+      "Cloudflare",
+      "Gemini API (Free tier)",
+      "Nous Hermes",
+      "OpenRouter (free models)",
+      "Ollama",
+      "Obsidian",
+      "GitHub",
+      "VS Code",
+      "Hindsight (agent-memory)"
+    ],
+    "priority_order": [
+      "1. Something already in use / already subscribed to",
+      "2. Free or open-source alternative",
+      "3. New paid product — only if 1 and 2 genuinely cannot do the job, with written justification"
+    ],
+    "reporting_requirement": "Report the substitution reasoning for every flagged item, even if the original paid one is ultimately recommended."
+  },
+  "named_skill_source_to_evaluate": {
+    "author": "Michael Shimeles",
+    "youtube_handle": "@rasmic (Ras Mic)",
+    "github_profile": "https://github.com/michaelshimeles",
+    "skills_repo": "https://github.com/michaelshimeles/skills",
+    "reference_repo": "https://github.com/michaelshimeles/nextjs-starter-kit",
+    "note": "Human-identified, not auto-discovered. No exemption from step_5_safety_rule. Some of this author's repos link to paid starter-kit products — apply step_0_substitution_rule to every individual skill found inside the repo, not just the repo as a whole.",
+    "output_required": "List each relevant skill sub-path found inside the repo (e.g. .../skills/tree/main/code-structure), not just the repo root."
+  },
+  "step_1_model_task_routing_rule": {
+    "description": "Mandatory. Applies to every task Hermes runs, not just installs. Never override without explicit human approval.",
+    "routes": [
+      {
+        "task": "Nightly cron digest (LexFlow/AVibe)",
+        "route_to": "Nous Hermes (self-hosted/free)",
+        "forbidden_provider": "Gemini API",
+        "why": "Repetitive/unattended job; already free on existing runtime, no shared quota to protect."
+      },
+      {
+        "task": "Long legal-document summarization",
+        "route_to": "Nous Hermes (self-hosted/free)",
+        "forbidden_provider": "Gemini API",
+        "why": "High-volume/privacy-sensitive; keep on own runtime."
+      },
+      {
+        "task": "Swarm / multi-agent orchestration",
+        "route_to": "OpenRouter (free tier)",
+        "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+        "why": "Built for long-horizon agents/orchestration, 1M context, free."
+      },
+      {
+        "task": "Agentic coding (multi-file autonomous edits)",
+        "route_to": "OpenRouter (free tier)",
+        "model": "poolside/laguna-m.1:free",
+        "fallback_model": "poolside/laguna-xs-2.1:free (lighter/faster tasks)",
+        "why": "Agentic-coding flagship free model, 262K context."
+      },
+      {
+        "task": "Private/sensitive CRM code review",
+        "route_to": "Ollama (local)",
+        "model": "qwen3:8b",
+        "why": "Code never leaves the MacBook; no API key, no cost."
+      },
+      {
+        "task": "Design copy / copywriting / SEO-GEO content / light single-function code review",
+        "route_to": "Gemini API",
+        "usage_tier_required": "Free (NO Cloud Billing linked)",
+        "constraint": "Low-volume, occasional calls only. Confirm project shows usage tier 'Free' before every call.",
+        "why": "Fits comfortably within free daily request limits when not looped."
+      }
+    ],
+    "hard_rule": "Never route high-volume, repetitive, or unattended jobs through the Gemini Free-tier API key. It has daily request limits that reset once per day and will be exhausted quickly by loops or batch jobs."
+  },
+  "step_2_ai_studio_handoff": {
+    "description": "Human-only step. Hermes does not execute this step.",
+    "process": [
+      "Olesia opens Google AI Studio in a browser and confirms the Pro badge is active.",
+      "Olesia drafts and iterates a prompt or function-calling schema in the Playground, using the Pro subscription's higher UI-only quota.",
+      "Olesia copies the finalized prompt text.",
+      "Olesia hands the finalized text to Hermes.",
+      "Hermes embeds that exact text in a normal Gemini API call on the Free usage tier — Hermes must NOT redesign or re-iterate the prompt itself."
+    ],
+    "why_this_matters": "Google AI Pro/Ultra quota benefits apply only inside the AI Studio web interface, never to direct API key usage, which is billed and managed separately."
+  },
+  "step_3_rules_file_check": {
+    "mandatory": true,
+    "instruction": "Locate and read the general rules file that applies to the whole agent roster (e.g. HERMES.md, CLAUDE.md, or equivalent root-level rules file in this repo). Summarize any rule that restricts installs, network calls, credential handling, or unattended writes.",
+    "if_missing": "Tell Olesia explicitly instead of assuming there are no rules."
+  },
+  "step_4_kanban_separation": {
+    "mandatory": true,
+    "board_name": "Learning & Skill Acquisition",
+    "columns": [
+      "Backlog",
+      "Researching (GitHub search)",
+      "Safety scan pending",
+      "Approved - implementing",
+      "Done - logged in Obsidian"
+    ],
+    "rule": "Do NOT add any card from this task to the existing LexFlow CRM build board. Cross-link only via a text tag (e.g. 'blocks: CRM-upgrade') — never merge the boards.",
+    "confirmation_required": "Confirm back the exact board name and column list created."
+  },
+  "step_5_safety_rule": {
+    "mandatory": true,
+    "non_negotiable": true,
+    "applies_to": "Every dependency/skill proposed, whether from GitHub, a package manager, or the named_skill_source_to_evaluate above.",
+    "scanner": {
+      "name": "Microsoft Application Inspector",
+      "repo_url": "https://github.com/microsoft/ApplicationInspector",
+      "install_command_mac": "dotnet tool install --global Microsoft.CST.ApplicationInspector.CLI",
+      "run_command_example": "appinspector analyze -s <path-to-shallow-clone> -f json"
+    },
+    "rule": "Never download or run any third-party code before it has been scanned. Run the scanner against a throwaway shallow clone before cloning into any real project folder.",
+    "stop_condition": "If the scan flags unexplained network calls, shell/OS execution, or obfuscated code, STOP and report it — do not proceed automatically."
+  },
+  "step_6_reporting_requirements": {
+    "no_auto_implement": true,
+    "for_each_tool_or_skill_report": [
+      "Exact GitHub repo URL (and sub-path if inside a larger repo)",
+      "Exact local path it WOULD be cloned/installed to (do not create it yet)",
+      "Application Inspector scan summary from the throwaway temp clone",
+      "Which Kanban card (from step_4) this item is tracked under",
+      "Step 0 substitution verdict (already-have / free-alternative / new-paid + why)",
+      "Which model/provider (per step_1_model_task_routing_rule) this task should run on, and why"
+    ]
+  },
+  "step_7_wait_for_approval": {
+    "mandatory": true,
+    "instruction": "Present everything above to Olesia and her tutor for review before any real install, clone into a working folder, billing change, or code change happens."
+  }
+}

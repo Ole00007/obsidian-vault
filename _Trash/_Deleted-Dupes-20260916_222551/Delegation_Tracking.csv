@@ -1,0 +1,13 @@
+Task,Assigned_To,Status,Tested_On,Notes
+Backend-dev report review,backend-dev,Pending,N/A,"Wait for clean report first; if bugs found, audit weak spots before commit+deploy"
+Intake name field manual entry,Operator-Installer,Pending,"ws7, ws9, ws10+cl1+cl2",Must allow manual override of autofill
+Cross-section reflection: intake to Contacts/Kanban/Calendar,Operator-Installer,DONE per Hermes report,All active tenants,Base layer confirmed done - verify evidence before trusting
+Conflict-check gate + first drip email (24h),Operator-Installer,Phase 2 - to define,Romanelli first,"New this session, real marketing value for law firms"
+Multi-step drip (24h/72h/7d) + suppression rules,Operator-Installer,Phase 3 - to define,"Romanelli first, then replicate",Suppression rules must prevent spamming responders
+Client portal notifications (case status visible to client),Operator-Installer,Phase 4 - to define,Romanelli first,Depends on Phases 2-3 being stable
+Full Contacts segmentation + bulk email,Operator-Installer + backend-dev,Phase 5 - to define,Romanelli first,Integrates with Contacts redesign already delegated to backend-dev
+RLS merge (feat/rls),backend-dev,On hold,N/A,18 tests on real Postgres + NOBYPASSRLS required first
+Contact model implementation plan,backend-dev,Pending approval before code,Romanelli first,
+Celery/RQ price/time evaluation,Operator-Installer,New ask this session,N/A,Needed to support multi-step drip scheduling reliably
+Agentic work JSON location in CRM,Operator-Installer,New ask this session,N/A,"Clarify where this currently lives, if at all"
+Architecture vs local repo audit,Operator-Installer,"New ask this session, READ-ONLY",N/A,Compare current build against repo directory; identify plusses/minuses per feature

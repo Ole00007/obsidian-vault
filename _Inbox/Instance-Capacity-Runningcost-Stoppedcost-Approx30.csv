@@ -1,0 +1,3 @@
+"Instance","Capacity","Running cost","Stopped cost","Approx. 30-day always-on hosting*"
+"Medium","4 vCPU, 2 GB RAM, 10 concurrent sessions","$0.56/day","$0.03/day","$16.80 + inference/tools nousresearch"
+"Large","8 vCPU, 4 GB RAM, 20 concurrent sessions","$1.09/day","$0.03/day","$32.70 + inference/tools nousresearch"

@@ -1,0 +1,15 @@
+Name,Category,Role,Status,Workspace_ID,Access_Notes
+Olesia (owner),Owner,Superadmin,Active,ws7 (LexFlow),Full access all tenants
+Romanelli Studio,Testing customer,Law firm tenant,"Active, live","ws10 + cl1, cl2 (client-of-client)",Needs internal users added (staff directory model)
+Pagliano,Testing customer,Law firm tenant,"Active, live",ws9,
+Tommaso Ferro,Testing customer,Law firm tenant,Status to confirm,Reportedly exists,Confirm with Hermes: built vs still TODO
+AVIBE Agency,Testing customer,Tenant,Not tested,TBD,Confirm with Hermes
+aLEXy,Testing customer/own product,Tenant,Not tested,TBD,Confirm with Hermes
+Dima,Collaborator,Backend developer,Partially wired,ws7,"Separate LexFlow access, audits/fixes"
+Kirill,Collaborator,Design and content,Not yet wired,ws7 Kanban only,"Action titles only, not internal notes"
+Stefano,Collaborator,AI agent integration (Elisa),Active,Isolated sandbox,See Elisa Access Plan
+Elisa,AI Agent,LexFlow PA assistant,Phase 1 sandbox,"Isolated, no real data",Provenance unverified - confirm with Stefano
+backend-dev,AI Agent,"Backend audits, cron",Already running,Cross-tenant read/audit,
+Operator-Installer (Hermes),AI Agent,"Central orchestrator, project owner",Already running,Cross-tenant full deploy,Should pass memory/skills to orchestrator profile for future projects
+QA/Test-Debug Agent (QASkills.sh),AI Agent,"Test generation, evidence-based debugging","Approved, install now",N/A,
+Memory-Curator Agent,AI Agent,Obsidian + local folder sync,"Proposed, not installed",N/A,Confirm vault + local path before writing

@@ -1,0 +1,8 @@
+Phase,Use Case,Recommended Runtime,Schedule,Hosting Model,Model/Tool Budget,Estimated Hosting Cost,Security Level,Success Metric,Decision Rule
+Now,LexFlow debugging and deployment,Local Hermes,Supervised sessions,Local computer,Use existing credits,0 cloud hosting,High,Stable deployment and tested rollback,Keep local
+Now,AVibe content and landing-page iteration,Local Hermes,Supervised sessions,Local computer,Use existing credits,0 cloud hosting,Medium,Approved assets or page changes per session,Keep local
+Pilot,Nightly LexFlow and AVibe digest,Hermes Cloud Medium,7 nights,Start for scheduled job then stop,Set fixed token/tool cap,"About $0.03 stopped daily plus metered running time",Read-only,Useful morning digest; no missed alerts,Keep only if it saves 2+ hours monthly
+Pilot,Competitor and lead research,Hermes Cloud Medium,On demand batch,Start-stop per batch,Per-job token cap,Metered uptime; stop after export,Low,Qualified leads or actionable research per euro,Use only for repeatable batches
+Later,Production health monitor,Hermes Cloud Medium,24/7 only after validation,Always on,Low-cost model + strict tool limits,"About $16.80/month hosting if always on, plus usage",Read-only,Detected issue before manual discovery,Run 24/7 only when commercial value exceeds total cost
+Later,Legal client document workflows,Controlled self-hosted environment,Event-driven,Private deployment,Per-matter budget,Depends on host,Very high,No unauthorized access; auditable workflow,Do not use generic Cloud agent initially
+Later,Autonomous code changes,Local or isolated cloud CI,Job queue with approval,Ephemeral tasks,Fixed task budget,Time-boxed,High,Tests pass; human approves merge/deploy,Never grant unattended production write access

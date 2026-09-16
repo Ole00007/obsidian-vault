@@ -1,0 +1,5 @@
+"Original agent","Merged into","Why this merge is safe"
+"SEO/AEO/GEO Agent","Growth & Visibility Agent","Both SEO/AEO/GEO and SMM/outreach are content-and-visibility tasks feeding the same channel goal (get found, get clicked); splitting them added coordination overhead without different reasoning modesredwerk"
+"SMM & Outreach Agent","Growth & Visibility Agent","Same rationale — outreach messaging and SEO content both draw from the same brand-voice and offer inputs, so one agent with two playbooks is more coherent than two agents handing off constantly"
+"Sales Funnel & CRM Agent","Sales Funnel & CRM Agent (unchanged)","Kept separate because CRM/funnel logic requires transactional, structured reasoning distinct from content generation — the exact ""genuinely different reasoning"" test for keeping agents apartredwerk"
+"QA & Reporting Agent","QA & Critic Agent (unchanged, scope tightened)","Kept as its own agent deliberately — this is the one merge to avoid, explained below"

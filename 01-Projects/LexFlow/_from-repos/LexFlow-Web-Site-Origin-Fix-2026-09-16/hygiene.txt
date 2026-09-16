@@ -1,0 +1,89 @@
+TRACKED files: 141   UNTRACKED: 8
+
+TRACKED files a root-deploy would serve but must NOT be public (53):
+    (1).html
+    (1).html
+    (1).html
+    (1).html
+    -File-Type-Turncreated.csv
+    .DS_Store
+    .gitignore
+    ENRICHMENT-REPORT-2026-09-13.md
+    ID-Trigger-Endpoint-Status.csv
+    Perplexity/lexflow-7-articles-en-ru-it.md
+    Perplexity/lexflow-blog-articles-03-05-en-ru-it.md
+    Perplexity/lexflow-client-intake-en-ru-it.md
+    Perplexity/lexflow-client-matter-tracker-en-ru-it.md
+    README.md
+    articles_corrections_w
+    articles_corrections_w
+    articles_corrections_w
+    articles_corrections_w
+    blog
+    blog
+    blog
+    blog
+    claims-register.csv
+    i18n-audit-hardcoded-strings.csv
+    lexflow-cookie-consent-specification.md
+    lexflow-faq
+    lexflow-index
+    lexflow-local-dir.md
+    lexflow-practice-areas
+    lexflow-pricing
+    lexflow-session-brief.md
+    templates/apply-elisa-widget.py
+    templates/article_content.py
+    templates/build-lang-sites.py
+    templates/kanban-artefact.html
+    templates/lexflow-faq.html
+    templates/lexflow-how-it-works.html
+    templates/lexflow-index.html
+    templates/lexflow-practice-areas.html
+    templates/lexflow-pricing.html
+    templates/pre-enrich-20260913/alessia-widget.html
+    templates/pre-enrich-20260913/alessia-widget.js
+    templates/pre-enrich-20260913/i18n.js
+    templates/pre-enrich-20260913/lexflow-blog.html
+    templates/pre-enrich-20260913/lexflow-faq.html
+    templates/pre-enrich-20260913/lexflow-how-it-works.html
+    templates/pre-enrich-20260913/lexflow-index.html
+    templates/pre-enrich-20260913/lexflow-practice-areas.html
+    templates/pre-enrich-20260913/lexflow-pricing.html
+    templates/pre-enrich-20260913/privacy.html
+    templates/pre-enrich-20260913/style.css
+    templates/pre-enrich-20260913/terms.html
+    verification-plan.md
+
+UNTRACKED files a working-dir deploy would serve (8):
+    _h2check-before.html
+    _probe-after.html
+    _probe-before.html
+    _probe-tmp.html
+    probe-after.html
+    probe-before.html
+    templates/__pycache__/
+    templates/pre-h2-promotion-20260915/
+
+DUPLICATE-CONTENT pages (filename contains '(1)') : 4
+    (1).html
+    (1).html
+    (1).html
+    (1).html
+
+templates/ HTML copies (crawlable duplicates of live pages): 15
+    templates/kanban-artefact.html
+    templates/lexflow-faq.html
+    templates/lexflow-how-it-works.html
+    templates/lexflow-index.html
+    templates/lexflow-practice-areas.html
+    templates/lexflow-pricing.html
+    templates/pre-enrich-20260913/alessia-widget.html
+    templates/pre-enrich-20260913/lexflow-blog.html
+    templates/pre-enrich-20260913/lexflow-faq.html
+    templates/pre-enrich-20260913/lexflow-how-it-works.html
+    templates/pre-enrich-20260913/lexflow-index.html
+    templates/pre-enrich-20260913/lexflow-practice-areas.html
+    templates/pre-enrich-20260913/lexflow-pricing.html
+    templates/pre-enrich-20260913/privacy.html
+    templates/pre-enrich-20260913/terms.html

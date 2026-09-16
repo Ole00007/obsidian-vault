@@ -1,0 +1,194 @@
+{
+  "doc_type": "skill_gap_and_github_acquisition_tracker",
+  "version": "2.0",
+  "created": "2026-09-16",
+  "owner_execution": "Hermes agent",
+  "owner_approval": "Olesia (human-in-the-loop, required before any download/implementation step)",
+  "purpose": "Tracks what skills/knowledge are missing or partial, and defines the pipeline Hermes follows to find, safety-check, and (only after approval) acquire them from GitHub.",
+  "companion_file": "hermes-operating-instructions.json (contains the detailed safety-scan, model-routing, Kanban, and substitution rules referenced below by name — this file does not duplicate them).",
+  "safety_tool": {
+    "name": "Microsoft Application Inspector",
+    "publisher": "Microsoft (Customer Security and Trust team)",
+    "what_it_does": "Static source-code analyzer that scans an open-source repo BEFORE you use it and reports what the code actually does: crypto usage, network calls, shell/OS operations, cloud API calls, and other risk signals.",
+    "repo_url": "https://github.com/microsoft/ApplicationInspector",
+    "install_command_mac": "dotnet tool install --global Microsoft.CST.ApplicationInspector.CLI",
+    "run_command_example": "appinspector analyze -s /path/to/downloaded-repo -f json",
+    "decision_rule": "If flagged with unexplained network calls, shell execution, or obfuscated code, STOP and ask Olesia before proceeding.",
+    "full_ruleset_reference": "See hermes-operating-instructions.json -> step_5_safety_rule"
+  },
+  "acquisition_pipeline": [
+    {
+      "step": 1,
+      "name": "Detect gap",
+      "action": "Hermes compares current project requirements against Olesia's known skill/tool inventory (see skill_gap_assessment below) and flags anything marked 'missing' or 'partial' that blocks the current task."
+    },
+    {
+      "step": 2,
+      "name": "Substitution check",
+      "action": "Apply hermes-operating-instructions.json -> step_0_substitution_rule before searching GitHub: prefer already-in-use tools, then free/open-source, then new paid only with justification."
+    },
+    {
+      "step": 3,
+      "name": "Search GitHub",
+      "action": "If still needed, search GitHub for a repo/library that fills the specific gap."
+    },
+    {
+      "step": 4,
+      "name": "Shortlist",
+      "action": "Propose 1-3 candidate repos with: stars, last commit date, license, 1-line description. Present to Olesia before downloading anything."
+    },
+    {
+      "step": 5,
+      "name": "MANDATORY safety scan",
+      "action": "Run Microsoft Application Inspector against the shortlisted repo (shallow clone to a throwaway temp folder) before any real download.",
+      "blocking": true
+    },
+    {
+      "step": 6,
+      "name": "Human review of scan",
+      "action": "Summarize findings in plain language. Olesia approves or rejects before proceeding.",
+      "blocking": true
+    },
+    {
+      "step": 7,
+      "name": "Download",
+      "action": "Only after approval: clone/download the repo into the correct project folder."
+    },
+    {
+      "step": 8,
+      "name": "Implement",
+      "action": "Integrate the code, run it in an isolated/test branch first, never directly on production or the main branch."
+    },
+    {
+      "step": 9,
+      "name": "Log",
+      "action": "Log the acquired skill/tool in Obsidian (Daily Log) and update the skill_gap_assessment status from 'missing' to 'have'."
+    }
+  ],
+  "skill_gap_assessment": [
+    {
+      "skill": "Flask backend upgrades (CRM)",
+      "current_level": "intermediate",
+      "target_level": "advanced",
+      "status": "partial",
+      "blocks": "CRM upgrade project"
+    },
+    {
+      "skill": "Git branching/merge conflict resolution",
+      "current_level": "beginner",
+      "target_level": "intermediate",
+      "status": "in_progress",
+      "blocks": "Safe collaborative deploys",
+      "learning_plan_ref": "GitHub PR/branching sessions, Sept 21"
+    },
+    {
+      "skill": "MCP (Model Context Protocol) client setup for Hermes",
+      "current_level": "none",
+      "target_level": "intermediate",
+      "status": "missing",
+      "blocks": "Connecting Hermes to Penpot directly",
+      "note": "Verify whether current Hermes runtime supports an MCP client at all before further work"
+    },
+    {
+      "skill": "Cron scheduling for agent jobs",
+      "current_level": "beginner",
+      "target_level": "intermediate",
+      "status": "partial",
+      "blocks": "Nightly LexFlow/AVibe digest pilot",
+      "note": "Digest itself now routed to Nous Hermes, not Gemini — see model routing"
+    },
+    {
+      "skill": "Multi-agent orchestration (handoff patterns)",
+      "current_level": "none",
+      "target_level": "beginner",
+      "status": "missing",
+      "blocks": "Splitting Agency Growth agent into Technical SEO + Content agents",
+      "note": "Route to OpenRouter free Nemotron-3 once implemented, per model routing rule"
+    },
+    {
+      "skill": "Penpot design-system usage",
+      "current_level": "none",
+      "target_level": "beginner",
+      "status": "in_progress",
+      "blocks": "Wireframing CRM screens without Figma",
+      "learning_plan_ref": "Design session, Sept 25"
+    },
+    {
+      "skill": "SQLAlchemy schema migrations (Alembic/Flask-Migrate)",
+      "current_level": "beginner",
+      "target_level": "intermediate",
+      "status": "in_progress",
+      "blocks": "Safe CRM database changes",
+      "learning_plan_ref": "Database session, Sept 28"
+    },
+    {
+      "skill": "Open-source repo safety vetting",
+      "current_level": "none",
+      "target_level": "beginner",
+      "status": "missing",
+      "blocks": "Any GitHub skill/tool acquisition (this document's own pipeline)"
+    },
+    {
+      "skill": "Railway deployment (connect repo, env vars, managed DB)",
+      "current_level": "none",
+      "target_level": "beginner",
+      "status": "missing",
+      "blocks": "Getting CRM live at a real URL",
+      "learning_plan_ref": "Deploy session, Sept 29"
+    },
+    {
+      "skill": "Resend transactional email integration",
+      "current_level": "none",
+      "target_level": "beginner",
+      "status": "missing",
+      "blocks": "Lead-notification emails from CRM",
+      "learning_plan_ref": "Email session, Sept 29"
+    },
+    {
+      "skill": "OpenRouter free-model routing setup",
+      "current_level": "none",
+      "target_level": "beginner",
+      "status": "missing",
+      "blocks": "Running swarm/agentic-coding tasks on free models instead of Gemini",
+      "note": "No dedicated learning session yet — flagged as open item"
+    },
+    {
+      "skill": "Ollama local model setup",
+      "current_level": "none",
+      "target_level": "beginner",
+      "status": "missing",
+      "blocks": "Private CRM code review without sending code to a cloud API",
+      "note": "No dedicated learning session yet — flagged as open item"
+    },
+    {
+      "skill": "Hindsight (agent-memory) integration with Hermes",
+      "current_level": "none",
+      "target_level": "beginner",
+      "status": "in_progress",
+      "blocks": "Persistent agent memory across Hermes sessions",
+      "learning_plan_ref": "Hindsight session, Sept 24",
+      "note": "CONFIRMED: agent-memory tool (vectorize-io/hindsight), not the time-tracker app"
+    }
+  ],
+  "external_skill_sources_flagged_for_review": [
+    {
+      "author": "Michael Shimeles (@rasmic)",
+      "github": "https://github.com/michaelshimeles/skills",
+      "status": "pending_safety_scan",
+      "note": "Subject to full hermes-operating-instructions.json pipeline (step_0 substitution check + step_5 safety scan) before anything is adopted."
+    }
+  ],
+  "kanban_separation": {
+    "principle": "Learning tasks must never mix with LexFlow CRM build tasks on the same board.",
+    "board_name": "Learning & Skill Acquisition",
+    "columns": [
+      "Backlog",
+      "Researching (GitHub search)",
+      "Safety scan pending",
+      "Approved - implementing",
+      "Done - logged in Obsidian"
+    ],
+    "review_cadence": "Weekly, during the 'Final review: checkpoint' session already in the Learning Plan sheet.",
+    "full_ruleset_reference": "See hermes-operating-instructions.json -> step_4_kanban_separation"
+  }
+}

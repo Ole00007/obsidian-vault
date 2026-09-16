@@ -1,0 +1,142 @@
+{
+  "doc_type": "skill_gap_and_github_acquisition_tracker",
+  "version": "1.0",
+  "created": "2026-09-16",
+  "owner_execution": "Hermes agent",
+  "owner_approval": "Olesia (human-in-the-loop, required before any download/implementation step)",
+  "purpose": "Machine-readable checklist for Hermes to (1) detect missing skills/knowledge, (2) search GitHub for candidate open-source solutions, (3) run a mandatory safety scan before touching any code, (4) only then download and implement, with human approval gates.",
+  "safety_tool": {
+    "name": "Microsoft Application Inspector",
+    "publisher": "Microsoft (Customer Security and Trust team)",
+    "what_it_does": "Static source-code analyzer that scans an open-source repo BEFORE you use it and reports what the code actually does: crypto usage, network calls, shell/OS operations, cloud API calls, and other risk signals. Designed specifically to vet third-party open-source components before adoption.",
+    "platform": "Cross-platform (.NET Core / .NET 6), works on macOS",
+    "repo_url": "https://github.com/microsoft/ApplicationInspector",
+    "install_command_mac": "dotnet tool install --global Microsoft.CST.ApplicationInspector.CLI",
+    "run_command_example": "appinspector analyze -s /path/to/downloaded-repo -f json",
+    "decision_rule": "If Application Inspector flags unexplained network calls, shell execution, or obfuscated code in a repo you did not expect that from, STOP and do not run it. Ask a human (Olesia) before proceeding.",
+    "related_tools_optional": [
+      {
+        "name": "GitHub CodeQL",
+        "note": "GitHub's (Microsoft-owned) static analysis engine; more focused on finding vulnerabilities than characterizing behavior. Good second layer for actively maintained repos with GitHub Actions enabled."
+      },
+      {
+        "name": "Microsoft Defender for Cloud - agentless code scanning",
+        "note": "Enterprise-tier scanning for repos/pipelines; likely overkill for a solo builder, mentioned for completeness only."
+      }
+    ]
+  },
+  "acquisition_pipeline": [
+    {
+      "step": 1,
+      "name": "Detect gap",
+      "action": "Hermes compares current project requirements against Olesia's known skill/tool inventory (see skill_gap_assessment below) and flags anything marked 'missing' or 'partial' that blocks the current task."
+    },
+    {
+      "step": 2,
+      "name": "Search GitHub",
+      "action": "Hermes searches GitHub for a repo/library that fills the specific gap (not a generic keyword search — must match the exact blocking need)."
+    },
+    {
+      "step": 3,
+      "name": "Shortlist",
+      "action": "Hermes proposes 1-3 candidate repos with: stars, last commit date, license, and 1-line description. Presents to Olesia before downloading anything."
+    },
+    {
+      "step": 4,
+      "name": "MANDATORY safety scan",
+      "action": "Before any code from the shortlisted repo is downloaded to Olesia's MacBook, run Microsoft Application Inspector against the repo (can be run against the GitHub URL after a shallow clone to a throwaway temp folder).",
+      "blocking": true
+    },
+    {
+      "step": 5,
+      "name": "Human review of scan",
+      "action": "Hermes summarizes Application Inspector's findings in plain language. Olesia approves or rejects before proceeding.",
+      "blocking": true
+    },
+    {
+      "step": 6,
+      "name": "Download",
+      "action": "Only after approval: clone/download the repo into the correct project folder."
+    },
+    {
+      "step": 7,
+      "name": "Implement",
+      "action": "Integrate the code, run it in an isolated/test branch first, never directly on production or the main branch."
+    },
+    {
+      "step": 8,
+      "name": "Log",
+      "action": "Hermes logs the acquired skill/tool in Obsidian (Daily Log) and updates the skill_gap_assessment status from 'missing' to 'have'."
+    }
+  ],
+  "skill_gap_assessment": [
+    {
+      "skill": "Flask backend upgrades (CRM)",
+      "current_level": "intermediate",
+      "target_level": "advanced",
+      "status": "partial",
+      "blocks": "CRM upgrade project"
+    },
+    {
+      "skill": "Git branching/merge conflict resolution",
+      "current_level": "beginner",
+      "target_level": "intermediate",
+      "status": "in_progress",
+      "blocks": "Safe collaborative deploys"
+    },
+    {
+      "skill": "MCP (Model Context Protocol) client setup for Hermes",
+      "current_level": "none",
+      "target_level": "intermediate",
+      "status": "missing",
+      "blocks": "Connecting Hermes to Penpot/design tools"
+    },
+    {
+      "skill": "Cron scheduling for agent jobs",
+      "current_level": "beginner",
+      "target_level": "intermediate",
+      "status": "partial",
+      "blocks": "Nightly LexFlow/AVibe digest pilot"
+    },
+    {
+      "skill": "Multi-agent orchestration (handoff patterns)",
+      "current_level": "none",
+      "target_level": "beginner",
+      "status": "missing",
+      "blocks": "Splitting Agency Growth agent into Technical SEO + Content agents"
+    },
+    {
+      "skill": "Penpot design-system usage",
+      "current_level": "none",
+      "target_level": "beginner",
+      "status": "missing",
+      "blocks": "Wireframing CRM screens without Figma"
+    },
+    {
+      "skill": "SQLAlchemy schema migrations (Alembic)",
+      "current_level": "beginner",
+      "target_level": "intermediate",
+      "status": "partial",
+      "blocks": "Safe CRM database changes"
+    },
+    {
+      "skill": "Open-source repo safety vetting",
+      "current_level": "none",
+      "target_level": "beginner",
+      "status": "missing",
+      "blocks": "Any GitHub skill/tool acquisition (this document's own pipeline)"
+    }
+  ],
+  "kanban_separation": {
+    "principle": "Learning tasks must never mix with LexFlow CRM build tasks on the same board, so daily CRM progress tracking stays clean.",
+    "instruction_to_hermes": "Create a NEW, separate project/board in the CRM tool called 'Learning & Skill Acquisition'. Do not add its cards to the existing LexFlow CRM build Kanban. Cross-link only by adding a reference tag (e.g. 'blocks: CRM-upgrade') on relevant cards so the two boards stay linked without merging.",
+    "suggested_columns": [
+      "Backlog",
+      "Researching (GitHub search)",
+      "Safety scan pending",
+      "Approved - implementing",
+      "Done - logged in Obsidian"
+    ],
+    "review_cadence": "Weekly, during the 'Final review: checkpoint' session already in the Learning Plan sheet."
+  }
+}

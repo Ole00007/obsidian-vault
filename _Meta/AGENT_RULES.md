@@ -139,6 +139,32 @@ goal: an emergent, connected knowledge graph — not a flat reference store.
 - The vault rule above applies to notes/knowledge tasks.
 - Additionally permitted, without per-instance approval: local install/deploy paths needed for DevOps work (package managers, Railway CLI config, `.env` files, infra tooling directories).
 
+---
+
+## 8. Repo Root Rule (hard, v1.0 — 2026-09-16, Ole)
+
+### 8.1 The single code root
+- ALL code repositories live at **`/Users/olesiarasing/projects/<repo>`** (lowercase `projects`).
+- The strict rule for every agent that writes code: create, clone and edit repos **only** under that path.
+- `~/Desktop/projects` is **frozen legacy** — read-only. No new repo, folder or file is created there.
+- Do not use the casing `~/Projects`: APFS is case-insensitive, so `~/projects` and `~/Projects`
+  resolve to the same directory and mixed casing breaks path matching in scripts and configs.
+
+### 8.2 Migration status (staged, Ole-approved 2026-09-16)
+Legacy repos under `~/Desktop/projects/services/*` are migrated to `~/projects/<repo>` one vertical
+at a time, LEGAL first, with `git status` + `git log` checked before and after each move, and a
+temporary symlink left behind for a grace week. Agents must not move repos themselves — the move is
+run by `operator-installer` with Ole's go for each batch.
+
+### 8.3 Why (evidence, not preference)
+- `~/Desktop` is TCC-protected on macOS: reads/writes under `~/Desktop/projects` intermittently fail
+  with `Operation not permitted` for agent tooling.
+- `~/Desktop/projects/services/<vertical>/<project>` is a 4-level convention with no technical meaning.
+- `~/Desktop` is a UI surface (Finder drag/drop), not a storage layer.
+
+### 8.4 Exceptions
+None. If a tool hard-codes another path, fix the tool; do not create the repo somewhere else.
+
 ## Links
 - Parent: [[Obsidian-INDEX]]
 

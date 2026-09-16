@@ -1,0 +1,8 @@
+"Dimension","Local Hermes","Hermes Cloud"
+"Direct hosting cost","No Hermes hosting bill; you use your computer/electricity","Metered instance + storage from Nous credits nousresearch"
+"Availability","Stops if your laptop sleeps, restarts, loses network, or is closed","Can stay online continuously and run independently nousresearch"
+"Iterative coding","Usually best: fast access to local repo, terminal, browser, and files","Useful only if the repo/secrets/environment are safely deployed remotely"
+"Heavy parallel work","Limited by your laptop’s CPU/RAM and active applications","Medium/Large have reserved resources and concurrent-session capacity nousresearch"
+"Sensitive client data","Easier to keep inside your controlled machine/network","Requires stricter handling of secrets, customer documents, and access keys"
+"Cost control","Most predictable","Can grow quickly if left on or paired with expensive models/tools"
+"Agent quality","Same configured model can produce comparable reasoning","Same configured model can produce comparable reasoning; Cloud does not automatically make the model smarter"

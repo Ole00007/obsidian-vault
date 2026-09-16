@@ -1,0 +1,134 @@
+--- /Users/olesiarasing/Desktop/projects/services/LEGAL/LEXFLOW Production/LEXFLOW Web-Site/templates/build-lang-sites.py	2026-09-15 13:04:31
++++ site-test3/templates/build-lang-sites.py	2026-09-16 18:08:21
+@@ -34,12 +34,28 @@
+ Usage:  python3 templates/build-lang-sites.py
+ """
+ import json
++import os
+ import pathlib
+ import re
+ import sys
+ 
+ ROOT = pathlib.Path(__file__).resolve().parent.parent
+-ORIGIN = "https://lexflow.example.com"
++
++# The origin the site is published under. Configuration, not code: the swap to
++# the real domain must never require editing this file.
++ORIGIN = os.environ.get("ORIGIN", "https://lexflow.example.com").rstrip("/")
++
++# Origins that may still be baked into the sources/output from earlier builds.
++# Every occurrence of these is rewritten to ORIGIN on each build, so canonicals,
++# og:url, JSON-LD, hreflang, robots.txt, llms.txt and the .well-known files can
++# never be left pointing at a host that no longer serves the site.
++OLD_ORIGINS = [
++    o.rstrip("/")
++    for o in os.environ.get("OLD_ORIGINS", "https://lexflow.example.com").split(",")
++    if o.strip()
++]
++
++TEXT_SUFFIXES = {".html", ".txt", ".xml", ".json", ".yaml", ".yml", ".webmanifest", ".js", ".css"}
+ 
+ # Pages that have full EN/IT/RU translations and therefore get localised copies.
+ CONTENT_PAGES = [
+@@ -556,9 +572,74 @@
+         html = re.sub(r'(<ul class="related">).*?(</ul>)',
+                       lambda m: m.group(1) + "\n        " + art["related"] + "\n      " + m.group(2),
+                       html, flags=re.S)
++    return html
++
++
++def set_self_canonical(html: str, url: str) -> str:
++    """Force the single canonical (and its og:url twin) to this page's own URL.
++
++    English pages are rewritten in place and never pass through rewrite_head, so
++    whatever canonical the source file happened to carry survives to the deploy.
++    A previous article build stamped every article's canonical with the
++    matter-tracker URL; without this pass seven articles would ask Google to
++    treat them as duplicates of one other page.
++    """
++    html = re.sub(r'(<link rel="canonical" href=")[^"]*(")',
++                  lambda m: m.group(1) + url + m.group(2), html, count=1)
++    html = re.sub(r'(<meta property="og:url" content=")[^"]*(")',
++                  lambda m: m.group(1) + url + m.group(2), html, count=1)
++    # The JSON-LD block carries the page URL too. On the article pages it was
++    # stamped with the matter-tracker URL by the article build, so schema.org
++    # consumers were told eight different pages are the same page.
++    html = re.sub(r'("url":\s*")[^"]*(")',
++                  lambda m: m.group(1) + url + m.group(2), html, count=1)
+     return html
+ 
+ 
++def rotate_origins() -> int:
++    """Rewrite every stale origin in the published files to ORIGIN.
++
++    Canonicals, og:url, JSON-LD url/logo/@id, hreflang, the `back=` parameter on
++    the Sign-in links, robots.txt's Sitemap line, llms.txt and the .well-known
++    files all embed an absolute origin. Several of them are hand-maintained and
++    no template touches them, so a build-time rotation is the only way the
++    published tree can be guaranteed consistent after a host swap.
++    """
++    targets = [ROOT / "robots.txt", ROOT / "llms.txt", ROOT / "sitemap.xml", ROOT / "site.webmanifest"]
++    for folder in ("it", "ru", "assets", ".well-known"):
++        d = ROOT / folder
++        if d.is_dir():
++            targets += [p for p in d.rglob("*") if p.is_file() and p.suffix in TEXT_SUFFIXES]
++    targets += [p for p in ROOT.glob("*.html")]
++    targets += [p for p in ROOT.glob("*.js")]
++
++    changed = 0
++    for p in targets:
++        if not p.is_file() or p.suffix not in TEXT_SUFFIXES:
++            continue
++        text = p.read_text(encoding="utf-8", errors="replace")
++        new = text
++        for old in OLD_ORIGINS:
++            if old in new:
++                new = new.replace(old, ORIGIN)
++        if new != text:
++            p.write_text(new, encoding="utf-8")
++            changed += 1
++    return changed
++
++
++def verify_no_origin_drift() -> None:
++    """Refuse to publish a tree that points anywhere but ORIGIN."""
++    offenders = {}
++    for p in list(ROOT.glob("*.html")) + list((ROOT / "it").glob("*.html")) + list((ROOT / "ru").glob("*.html")):
++        text = p.read_text(encoding="utf-8", errors="replace")
++        hits = {old: text.count(old) for old in OLD_ORIGINS if old in text}
++        if hits:
++            offenders[str(p.relative_to(ROOT))] = hits
++    if offenders:
++        raise SystemExit("ABORT: pages still point at a retired origin:\n" + json.dumps(offenders, indent=2))
++
++
+ def main():
+     # Snapshot every English page's title. A previous bug overwrote all English
+     # pages with the last localised page because a loop reused a stale variable;
+@@ -590,6 +671,7 @@
+             html = nest_paths(html)
+             html = stamp_whatsapp(html)
+             html = install_tags(html, page, depth=1, lang=lang)
++            html = set_self_canonical(html, f"{ORIGIN}/{lang}/{page}")
+             out = ROOT / lang / page
+             out.parent.mkdir(exist_ok=True)
+             out.write_text(html, encoding="utf-8")
+@@ -604,6 +686,7 @@
+         html = p.read_text(encoding="utf-8")
+         html = stamp_whatsapp(html)
+         html = install_tags(html, page, depth=0, lang="en")
++        html = set_self_canonical(html, f"{ORIGIN}/{page}")
+         p.write_text(html, encoding="utf-8")
+ 
+         # guard: confirm the file still holds its own title and English lang
+@@ -643,6 +726,10 @@
+         print("every data-i18n key had a translation in both languages")
+     print(f"rewrote {len(rewritten)} English pages with hreflang + language URLs")
+     write_sitemap()
++    rotated = rotate_origins()
++    verify_no_origin_drift()
++    print(f"origin rotation: {rotated} files rewritten to {ORIGIN}")
++    print(f"origin drift guard: PASS (no page mentions {', '.join(OLD_ORIGINS)})")
+ 
+ 
+ if __name__ == "__main__":

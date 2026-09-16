@@ -1,0 +1,11 @@
+generated 30 localised pages
+localised elements per page (text/placeholder), first few:
+  it/lexflow-index.html: text=108 placeholder=8 missing=0
+  ru/lexflow-index.html: text=108 placeholder=8 missing=0
+  it/lexflow-how-it-works.html: text=52 placeholder=0 missing=0
+  ru/lexflow-how-it-works.html: text=52 placeholder=0 missing=0
+every data-i18n key had a translation in both languages
+rewrote 18 English pages with hreflang + language URLs
+sitemap.xml written with 48 URLs
+origin rotation: 28 files rewritten to https://lexflow-site.netlify.app
+origin drift guard: PASS (no page mentions https://lexflow.example.com)
