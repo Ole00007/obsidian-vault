@@ -70,18 +70,27 @@ Not changed: the vault path, the bank name, the 06:00 schedule, and the plist
 ## Verification note
 
 `_Inbox/hindsight-sync-verification-20260916.md` (marker
-`HINDSIGHT-SYNC-MARKER-7f3a91c2-20260916`) is the retrieval test note; it can be
-deleted once the marker is confirmed recallable.
+`HINDSIGHT-SYNC-MARKER-7f3a91c2-20260916`) was ingested and **retrieved from the
+bank** the same day: `POST /v1/default/banks/avibe-hq/memories/recall` returns a
+`world` fact for document `_Inbox/hindsight-sync-verification-20260916.md`
+carrying the exact marker string (`memory_unit_count: 6`), and the same recall
+path returns facts for `05-Daily/2026-09-15.md` and
+`01-Projects/LexFlow/LexFlow-Public-Intake-Contract-2026-09-15.md` — the notes
+from the historical gap. The note is disposable; it can be deleted once you no
+longer need it.
 
 ## Open items
 
-- The bank materialises queued documents asynchronously (LLM extraction); the
-  vault backlog was still draining after the fix, so marker retrieval confirms
-  with a lag, not instantly.
+- The bank materialises retained documents asynchronously (LLM extraction, free
+  model): ~370 vault documents queued at the fix took ~1 h to become retrievable
+  and `pending_operations` peaked near 1300. Correctness is unaffected; only
+  retrieval latency. Watch `pending_operations` if the bank ever looks "empty"
+  right after a sync.
 - Decision to ratify: skipping that one template file via `--exclude` (the file
-  is a placeholder skeleton with no knowledge content). Alternatives: fix the
-  placeholder in the vault mirror + source repo, or exclude the whole
-  `_from-repos` mirror tree from the sync.
+  is a placeholder skeleton with no knowledge content; it stays untouched in the
+  vault). Alternatives: fix the placeholder in the vault mirror + source repo, or
+  exclude the whole `_from-repos` mirror tree from the sync. Revert = drop the
+  `--exclude` line from the script.
 - Standing rule: an unresolvable vault file must never be able to kill the whole
   reconcile silently — the rolling log + exit-code check now surface it.
 
