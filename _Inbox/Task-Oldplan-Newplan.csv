@@ -1,0 +1,7 @@
+"Task","Old plan","New plan"
+"Nightly cron digest","Gemini","Nous Hermes (already free)"
+"Long legal-doc summarization","Gemini","Nous Hermes (already free)"
+"Swarm/multi-agent orchestration","—","OpenRouter free: nemotron-3-ultra-550b-a55b:free — 1M context, built specifically for long-horizon agents/orchestration buldrr"
+"Agentic coding (multi-file edits)","—","OpenRouter free: poolside/laguna-m.1:free — 262K context, agentic-coding flagship buldrr"
+"Private CRM code review","—","Ollama local: qwen3:8b — code never leaves your Mac aimadetools"
+"Design copy, SEO/GEO content, light single-function code review","Gemini","Gemini Free tier only, no billing — low-volume tasks that fit daily limits"

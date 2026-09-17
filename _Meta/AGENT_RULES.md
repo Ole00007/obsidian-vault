@@ -1,6 +1,6 @@
 # Obsidian Vault — Agent Rules of Engagement
 
-> **Version:** 2.2  
+> **Version:** 2.3  
 > **Scope:** All Hermes agents operating on Ole's workspace  
 > **Location of this document:** `~/Obsidian/AGENT_RULES.md` (symlink → `~/Obsidian/_Meta/AGENT_RULES.md`)  
 > **Sanction:** Any agent that bypasses these rules is operating outside its authority.
@@ -164,6 +164,55 @@ run by `operator-installer` with Ole's go for each batch.
 
 ### 8.4 Exceptions
 None. If a tool hard-codes another path, fix the tool; do not create the repo somewhere else.
+
+## 9. Single Source of Truth — No Parallel Truths, No Duplicate Registries (hard, v1.0 — 2026-09-17, Ole)
+
+### 9.1 The rule
+- **One authoritative source per fact/artifact.** Two copies that can drift is a bug, not a backup.
+- **NO PARALLEL SOURCE OF TRUTH** unless it is vitally necessary. When it genuinely is necessary, the
+  reason MUST be stated in the report and flagged to operator-installer, and exactly one copy MUST be
+  declared the authority — the other is explicitly *derived* (read-only, regenerated, never written back).
+- **NO DUPLICATE REGISTRIES.** Never stand up a second registry / config system / cron / job board /
+  status file for something that already has one. Extend the existing one instead.
+- **Before creating any file, table, config, index, or scheduled job: search for the existing one.**
+  Found it → update it in place. Not found → create it, and say in the report which registry it belongs to.
+
+### 9.2 Known canonical sources (examples — extend, never fork)
+- Agent-wide rules → `~/Obsidian/_Meta/AGENT_RULES.md` (symlink `~/Obsidian/AGENT_RULES.md`). This file.
+- LexFlow project status / task board → `docs/LexFlow_Agentic_Roadmap.json` in the CRM repo
+  (rendered inside the CRM superadmin UI, next to /kanban). Not a second tracker in a note or chat.
+- Cross-agent work queue → the Hermes Kanban board (`~/.hermes/kanban.db`), one card per unit of work.
+- Scheduled jobs → the cron store of the **owning profile only** (see §10.3). Never mirror a job into a
+  second profile.
+- Code repositories → one root and one repository per project (§8).
+- Secrets → the vault / Railway variables. Never a copy in a note, repo, or memory file (store references only).
+
+### 9.3 Enforcement
+- A derived copy must be labelled as derived at the top of the file.
+- If you find an existing parallel source or duplicate registry, do NOT quietly populate both: report it,
+  name the authority, and flag the duplicate for removal to operator-installer.
+
+---
+
+## 10. Reporting Chain & Daily Project Status (hard, v1.0 — 2026-09-17, Ole)
+
+### 10.1 Chain of command
+- **operator-installer is the orchestrator.** Every agent working on the project reports to
+  operator-installer and treats them as orchestrator. **Only Ole may overrule operator-installer.**
+- operator-installer may reason and flag risks on a task, but does **NOT** overrule Ole's direct task.
+
+### 10.2 Direct instruction from Ole
+- If Ole gives a direct instruction to an agent: that agent **completes it**, then **reports to
+  operator-installer** with an explicit note that it was done on Ole's direct request.
+
+### 10.3 Daily status mechanism
+- **operator-installer updates the LexFlow project status in the CRM (superadmin) DAILY** — i.e. the
+  canonical `docs/LexFlow_Agentic_Roadmap.json`, with `last_updated` and per-task status, plus the
+  vault project-status note.
+- **operator-installer schedules unfinished tasks** onto the Kanban board (one card, right specialist,
+  parents set) rather than letting them live in prose.
+- The daily run is a cron job owned by the `operator-installer` profile:
+  `lexflow-daily-status-crm`, 09:00 daily, delivering to Ole on Telegram.
 
 ## Links
 - Parent: [[Obsidian-INDEX]]

@@ -11,6 +11,8 @@ Hub note for the `LexFlow` folder. Links to every note here.
 
 ## Notes
 
+- [[LexFlow-Web-Site-Quality-Debt-Register-2026-09-17]] — **[OVERRIDE] debt register**: prod deploy `bd4b683` with 14/15 DoD checks failing; all 15 re-verified + 3 new findings (hook.example.com placeholder ×45 pages, repo outside the §8 repo root, committed `dist/`); blocked on Ole's rebuild-vs-patch call (kanban `t_3c7158f8`)
+- [[LexFlow-Web-Site-CRM-Repoint-2026-09-17]] — CRM repointed to the new site (`6ef25da`, local, unpushed: ole's direct request). Found the site **root `/` 404s** and clean URLs 308 the `.html`; CRM now targets `/lexflow-index#hero`. Follow-up `t_b92d36cc`
 - [[LexFlow-Web-Site-Cross-Test-PreDeploy-2026-09-16]] — independent cross-test of build `3b9cc41`+`23678b7`: 6 PASS / 1 FAIL (FAQ calendar alt regresses to a "team" description in EN/IT/RU), not deployed
 - [[LexFlow-Ecosystem-Index-v3-2026-09-16]] — **ecosystem inventory v3**: complete inventory + live-probed endpoints (2026-09-16), correct Netlify/Railway hosts
 - [[LexFlow-Web-Site-Agent-Surface-2026-09-15]] — WebMCP tools, ai-plugin.json, openapi.yaml, llms.txt, JSON-LD upgrade, 48-URL sitemap

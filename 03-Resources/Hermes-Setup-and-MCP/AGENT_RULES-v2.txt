@@ -1,3 +1,9 @@
+SUPERSEDED — DO NOT USE AS A RULE SOURCE (2026-09-17). Stale v2 draft.
+The one authoritative rulebook is ~/Obsidian/_Meta/AGENT_RULES.md (symlink ~/Obsidian/AGENT_RULES.md, v2.3).
+Per AGENT_RULES section 9 (single source of truth / no duplicate registries) this file is derived+obsolete.
+Kept for history only; proposed for archive.
+----------------------------------------------------------------------------------------------------
+
 AGENT_RULES.md — v2 (Corrected & Expanded)
 Location: ~/Obsidian/AGENT_RULES.md — plain markdown, read by Hermes and any other local agent.
 

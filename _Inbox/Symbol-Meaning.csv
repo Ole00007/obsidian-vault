@@ -1,0 +1,5 @@
+"Symbol","Meaning"
+"M","Modified: a tracked file changed"
+"A","Added: a new file is staged for saving"
+"D","Deleted: Git sees a tracked file as removed"
+"??","Untracked: a new file Git is not following yet"

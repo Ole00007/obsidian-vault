@@ -1,0 +1,6 @@
+"Task","Model to use","Why it fits the budget"
+"Prototyping prompts/schemas","Do this in AI Studio UI (Pro quota), not the API","Doesn't touch the $10 credit at all google"
+"Lead-form data extraction → structured JSON for CRM","Gemini 2.5 Flash ($0.15/$0.60 per 1M tokens)","Cheap, high-value, short inputs pecollective"
+"CRM code review / small function generation","Gemini 2.5 Flash, escalate to Pro only if Flash fails","Pro costs ~8x more input, 16x more output than Flash pecollective"
+"Long legal-document summarization (LexFlow)","Gemini 2.5 Pro, but only for genuinely long/complex docs","This is the ""fit task"" for the smart model — reserve it, don't default to it"
+"Nightly digest job (cron)","Flash only, hard token cap","Repetitive + unattended = biggest risk of silent overrun"
