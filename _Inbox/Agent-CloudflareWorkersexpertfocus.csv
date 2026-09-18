@@ -1,0 +1,5 @@
+"Agent","Cloudflare Workers expert focus"
+"Admy","Workers-for-Platforms multi-project patterns, Service Bindings, cross-account cost/quota governance, AI Gateway policy, production security sign-off"
+"Smoothy","Wrangler CLI, Workers Builds CI/CD, Durable Objects lifecycle, Queues+Workflows durability, Turnstile+rate limiting, Observability, rollback"
+"Backy","Workers runtime fundamentals, D1, Hyperdrive, KV, R2, Queues, Workflows, MCP servers, Agents SDK, Workers AI bindings"
+"Fronty","Workers Static Assets, Pages-to-Workers migration, HTMLRewriter, Cache API, Turnstile widgets, SSR adapters, asset config"

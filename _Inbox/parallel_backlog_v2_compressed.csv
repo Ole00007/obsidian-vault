@@ -1,0 +1,22 @@
+task_id,track,task,lead_agent,supporting_agents,start,finish,depends_on,priority,status,notes
+LF3-001,Audit,"Brief audit: confirm known Flask models, routes, permissions (already done many times — confirm, don't re-derive)",Admy,Backy;Fronty,2026-09-17,2026-09-17,,P0,not_started,"Same-day, half-day cap"
+LF3-002,Audit,"Brief audit: confirm current Cloudflare Pages/Workers config, domains, bindings",Smoothy,Fronty,2026-09-17,2026-09-17,,P0,not_started,Runs in parallel with LF3-001
+LF3-003,Audit,Resolve INTEROP_CONTRACTS placeholders with real field names,Admy,Backy,2026-09-17,2026-09-18,LF3-001,P0,not_started,Closes same day or next morning at latest
+LF3-004,Activation,Smoothy activates the full roster for the build phase,Smoothy,Admy,2026-09-18,2026-09-18,LF3-002;LF3-003,P0,not_started,NEW — no idle gap between audit close and build start
+LF3-005,Gateway,"Expose + secure Flask endpoint (Bearer/API key/HMAC — TBD), curl-verify before handoff",Backy,Admy,2026-09-17,2026-09-18,LF3-001,P0,not_started,NEW — Step 1 of the revised 4-step flow; can start as soon as LF3-001 confirms the target endpoint
+LF3-010,Gateway,Scaffold staging Worker gateway using starter template (fetch → transform → return JSON),Smoothy,Backy;Fronty,2026-09-18,2026-09-20,LF3-004;LF3-005;LF3-003,P0,not_started,Starts immediately once LF3-004/005 close — no waiting period
+LF3-011,Gateway,Add Turnstile + rate limiting + schema validation on gateway,Fronty,Crunchy,2026-09-18,2026-09-20,LF3-004,P1,not_started,Concurrent with LF3-010
+LF3-012,Gateway,Wire staging lead form to gateway using existing intake endpoint,Backy,Sally,2026-09-19,2026-09-21,LF3-005;LF3-010,P1,not_started,Uses real endpoint only
+LF3-020,MCP,Define narrow-but-not-too-narrow MCP tools mapped to real endpoints,Backy,Admy;Crunchy,2026-09-19,2026-09-21,LF3-003,P1,not_started,Grouped by business action
+LF3-021,MCP,Read-only MCP tools for Daty/Sally in test workspace,Fronty,Daty;Sally,2026-09-20,2026-09-22,LF3-020,P1,not_started,Parallel with LF3-022
+LF3-022,MCP,Guarded write tool: activity.log with idempotency + audit,Backy,Crunchy;Memo,2026-09-20,2026-09-23,LF3-020,P1,not_started,First guarded write tool
+LF3-030,CRM Workflow,Sally: chatbot + lead capture + segmentation via existing intake flow,Sally,Backy;Daty,2026-09-21,2026-09-24,LF3-012;LF3-021,P1,not_started,Parallel with LF3-031/032
+LF3-031,Marketing,Daty: UTM attribution + CTA experiment via edge KV,Daty,Fronty;Mr. Beast,2026-09-20,2026-09-23,LF3-011,P1,not_started,Edge-only state
+LF3-032,Content,Mr. Beast: content/copy pipeline on site Worker+Assets preview,Mr. Beast,Fronty,2026-09-18,2026-09-21,LF3-002,P2,not_started,No CRM data involved; can start right after LF3-002
+LF3-040,Personalization,Sally + Daty: personalized follow-up draft workflow (draft-only),Sally,Daty;Crunchy,2026-09-23,2026-09-26,LF3-030;LF3-031,P1,not_started,No send permission by default
+LF3-041,Governance,Memo: continuous audit/event sync,Memo,Admy,2026-09-20,2026-09-26,LF3-022;LF3-030,P1,not_started,"Runs alongside everything, continuously"
+LF3-050,Legal,Smarty: regulatory/PII review of intake + agent tool data flows,Smarty,Admy;Crunchy,2026-09-18,2026-09-22,LF3-001,P1,not_started,Parallel with build tracks
+LF3-051,Business,Smarty + Admy: P&L visibility and investment-pitch prep,Smarty,Admy,2026-09-18,2026-09-25,,P2,not_started,Independent of technical tracks
+LF3-060,QA Gate,Crunchy: independent review of gateway + MCP + workflows before merge,Crunchy,Backy,2026-09-23,2026-09-27,LF3-012;LF3-022;LF3-030;LF3-031,P0,not_started,5/5 confidence required
+LF3-061,Approval,Admy + Smoothy: staging cutover decision (final plan pending),Admy,Smoothy;Crunchy,2026-09-27,2026-09-27,LF3-060;LF3-050,P0,not_started,Human approval gate
+LF3-070,Site Hybrid,Fronty: Workers+Static Assets preview parity vs current Pages,Fronty,Backy;Crunchy,2026-09-19,2026-09-24,LF3-002,P2,not_started,Parallel; no cutover yet

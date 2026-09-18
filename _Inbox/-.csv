@@ -1,0 +1,4 @@
+"Сценарий","Что делать"
+"Есть аналитика / маркетинг / трекинг (GA, Meta Pixel, Hotjar, Calendly embed, YouTube embed, Chat widget…)","Отдельная Cookie Policy страница ОБЯЗАТЕЛЬНА + баннер с granular consent + ссылка на неё."
+"Только strictly necessary cookies (session, csrf, load balancer, consent record)","Cookie Policy не обязательна как отдельная страница, но в Privacy Policy должен быть раздел «Cookies» с перечнем именно этих necessary cookies. Баннер не нужен (или только информационный «X»)."
+"Хотите один документ","Сделайте Privacy Policy с полноценным разделом «Cookie Policy» внутри + якорь #cookie-policy. В баннере ссылка: privacy.html#cookie-policy. Garante принимает это, если раздел полный."

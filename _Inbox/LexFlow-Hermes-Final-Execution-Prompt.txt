@@ -1,0 +1,1080 @@
+# FINAL EXECUTION TASK — Finish, Push and Deploy LexFlow Today
+
+Date:
+2026-09-16
+
+Repository:
+ /Users/olesiarasing/Desktop/projects/services/LEGAL/LEXFLOW Production/LEXFLOW Web-Site
+
+Current branch:
+ feat/heading-align-cta-merge
+
+Reported HEAD:
+ fd2d5f1
+
+Legacy landing page:
+ https://poetic-kleicha-28d058.netlify.app/
+
+Primary objective:
+
+Finish the LexFlow website, verify the real deploy artefact, push the repository safely to a private GitHub repository, connect it to Cloudflare Pages through native Git integration, and deploy the website today.
+
+This is an execution task, not a standards-research task.
+
+Do not create:
+
+- new development standards;
+- Golden Standard documents;
+- new Obsidian rules;
+- new agent skills;
+- a second route registry;
+- a second asset manifest;
+- a second configuration system;
+- a parallel source of truth;
+- cron jobs;
+- scheduled tasks;
+- unrelated architecture proposals.
+
+Use and improve the existing authoritative sources only.
+
+At the end of your final response, remind me tomorrow to update the entire ecosystem index manually. Do not create or install a cron job.
+
+---
+
+## 1. Establish the actual repository state
+
+Before editing or deploying, verify rather than assume:
+
+- repository path;
+- current branch;
+- current HEAD;
+- working-tree status;
+- staged files;
+- modified files;
+- untracked files;
+- ignored files;
+- existing remotes;
+- recent commits;
+- current root HTML;
+- generated EN/IT/RU pages;
+- build scripts;
+- current dist contents.
+
+Report any difference from:
+
+    branch: feat/heading-align-cta-merge
+    HEAD: fd2d5f1
+
+Do not reset, discard, stash or overwrite user work.
+
+If the working tree contains changes created after fd2d5f1, inspect and preserve them. Do not assume that fd2d5f1 is still the final state.
+
+---
+
+## 2. Preserve the authoritative build flow
+
+Determine and use the existing authoritative pipeline.
+
+Expected structure:
+
+    templates / content / configuration
+      → language-site generation
+      → generated root + it/ + ru/ pages
+      → clean dist build
+      → Cloudflare Pages
+
+Any durable correction must be made in the existing authoritative source that generates the affected output.
+
+Do not use any of the following as the permanent editing layer:
+
+- generated HTML;
+- dist/;
+- compiled output;
+- copied language pages;
+- temporary preview files;
+- browser-edited files;
+- Cloudflare deployment output.
+
+If a required fix currently exists only in generated HTML:
+
+1. identify it;
+2. locate the real existing upstream source;
+3. reproduce the correction there;
+4. regenerate the affected files;
+5. verify the rebuilt output;
+6. ensure the next clean build retains the correction.
+
+Do not introduce a new source system if an existing source already owns the value.
+
+Do not create parallel configuration, route, content or asset ownership.
+
+---
+
+## 3. Resolve the production origin
+
+The current placeholder origin must not ship:
+
+    https://lexflow.example.com
+
+Use the final approved Cloudflare/custom-domain hostname if it is already available in the project, prior instructions or authenticated Cloudflare account.
+
+Do not invent a domain.
+
+Use the existing configuration mechanism where possible.
+
+If ORIGIN is still directly hard-coded in:
+
+    templates/build-lang-sites.py
+
+replace it at the authoritative configuration level with a required build-time value.
+
+A production build must fail clearly when the production origin is absent. It must never silently fall back to:
+
+- lexflow.example.com;
+- localhost;
+- a legacy Netlify URL;
+- an unrelated Railway URL;
+- an arbitrary Cloudflare preview hostname.
+
+Apply the resolved origin consistently to:
+
+- canonical URLs;
+- hreflang URLs;
+- sitemap.xml;
+- robots.txt Sitemap declaration;
+- llms.txt;
+- JSON-LD;
+- Open Graph URLs;
+- social-sharing URLs;
+- ai-plugin.json;
+- OpenAPI URLs;
+- other absolute website links.
+
+After the final build, report exact counts for:
+
+- lexflow.example.com;
+- localhost;
+- poetic-kleicha-28d058.netlify.app;
+- stale Railway hostnames used as website URLs;
+- unresolved domain placeholders;
+- unintended preview URLs in production metadata.
+
+Each count must be zero unless an explicitly justified operational CRM endpoint remains.
+
+Do not confuse a valid CRM endpoint with the canonical website origin.
+
+---
+
+## 4. Replace the CRM legacy backlink
+
+The LexFlow CRM currently points back to this obsolete marketing landing page:
+
+    https://poetic-kleicha-28d058.netlify.app/
+
+That destination must be replaced with the hero of the new canonical LexFlow website.
+
+Search the complete CRM codebase and relevant configuration for:
+
+- https://poetic-kleicha-28d058.netlify.app/
+- poetic-kleicha-28d058.netlify.app
+- encoded or normalized variants;
+- logo links;
+- Home links;
+- Back to website links;
+- marketing links;
+- footer links;
+- help links;
+- authentication-screen links;
+- logout-screen links;
+- error-page links;
+- client-portal links;
+- staff-dashboard links;
+- notification and email-template links.
+
+Before changing anything, report every match with:
+
+- repository;
+- file;
+- line or component;
+- visible UI element;
+- runtime context;
+- whether the match is source or generated output.
+
+Use the CRM's existing authoritative application configuration. Do not create a second configuration source if the marketing-site URL already has an owner.
+
+The required navigation result is:
+
+    CRM website/home/logo link
+      → canonical new LexFlow website
+      → homepage hero
+
+Preferred destination:
+
+    https://<canonical-lexflow-domain>/#hero
+
+Verify that the website contains exactly one stable:
+
+    id="hero"
+
+If it is absent, add it in the authoritative website template and regenerate all dependent pages.
+
+Do not add it only to generated HTML or dist/.
+
+If the homepage hero is already the default landing position and using /#hero creates unnecessary navigation or scroll behavior, use:
+
+    https://<canonical-lexflow-domain>/
+
+Explain and verify that decision.
+
+After the change, confirm:
+
+- legacy Netlify references in CRM source: 0;
+- legacy Netlify references in CRM generated output: 0;
+- CRM website/home link reaches the new website;
+- hero anchor works if used;
+- duplicate hero IDs: 0;
+- no marketing link points to internal /admin;
+- no broken cross-application links.
+
+Do not modify or redirect the legacy Netlify deployment during this task unless access is available and I have already explicitly authorized that exact action.
+
+The old Netlify page may remain online temporarily, but the CRM must stop using it as its website destination.
+
+---
+
+## 5. Confirm CTA destinations
+
+Audit every primary and repeated CTA across EN, IT and RU.
+
+At minimum, verify:
+
+- Request a Demo;
+- Start Free Trial;
+- Client Login;
+- Staff Login;
+- Website/Home;
+- logo backlink;
+- contact CTA;
+- blog CTA;
+- pricing CTA;
+- footer CTA;
+- mobile navigation CTA.
+
+Required separation:
+
+- Website/Home/logo → canonical LexFlow website hero or homepage;
+- Request a Demo → public demo or intake flow;
+- Start Free Trial → public signup or onboarding flow;
+- Client Login → authenticated client entry;
+- Staff Login → authenticated staff entry;
+- Admin/Superadmin → protected internal destination only.
+
+Do not point a public marketing CTA to `/admin`.
+
+Do not expose Superadmin as a public marketing action.
+
+For every CTA return:
+
+- label;
+- source file/template;
+- EN/IT/RU behavior;
+- destination;
+- relative or absolute URL;
+- public/authenticated/internal classification;
+- webhook or tracking identifier, if present;
+- test result.
+
+Preserve existing approved CTA copy unless a correction is necessary for accuracy, navigation or security.
+
+---
+
+## 6. Investigate the previous PNG issue
+
+Confirm the exact cause of the previous case where a PNG or visual artefact appeared on multiple pages.
+
+Do not assume that PNG format was the cause.
+
+Check:
+
+- shared templates;
+- global partials;
+- global CSS backgrounds;
+- broad selectors;
+- global variables;
+- page template conditions;
+- language-generation logic;
+- broad search-and-replace changes;
+- stale dist files;
+- duplicated image markup.
+
+Report:
+
+- root cause;
+- authoritative source location;
+- pages/locales affected;
+- fixing commit if identifiable;
+- current expected page-to-image mapping;
+- how recurrence was tested.
+
+Verify specifically that:
+
+- calendar visual appears only where intended;
+- blog team visual appears only where intended;
+- kanban visual appears only where intended;
+- hero visual appears only where intended;
+- no page-specific image is injected globally;
+- image paths work in root, `/it/` and `/ru/`;
+- desktop, tablet and mobile layouts preserve the intended ratio;
+- no current image causes horizontal overflow.
+
+Do not redesign or optimize all images unless necessary for today's deployment.
+
+Large PNG optimization is not a deployment blocker by itself. Record it as follow-up if the images load correctly and do not violate an existing performance gate.
+
+---
+
+## 7. Resolve legal and factual placeholders
+
+Search the complete deployable site for:
+
+- Studio Legale X;
+- [REGISTERED ADDRESS];
+- bracketed legal placeholders;
+- placeholder Partita IVA;
+- placeholder contact details;
+- inconsistent addresses;
+- unsupported certification claims;
+- unsupported beta-test claims;
+- statements claiming production features that are not actually available;
+- names or testimonials without confirmed authorization;
+- mojibake or broken UTF-8 text.
+
+Do not invent missing legal details.
+
+For each match classify it as:
+
+- confirmed;
+- corrected;
+- removed;
+- intentionally retained;
+- production blocker;
+- legacy-only and outside the new deployment.
+
+Production may proceed only if the deployable Cloudflare artefact contains no unresolved legal placeholder that could misrepresent the business.
+
+If a non-essential unsupported claim cannot be verified today, remove or neutralize the claim in the authoritative source rather than inventing evidence.
+
+Do not alter approved legal text beyond what is required to eliminate an obvious placeholder, contradiction or unsupported statement.
+
+---
+
+## 8. Audit UTF-8 and visible text
+
+Check every deployed EN, IT and RU HTML file for:
+
+- incorrect encoding;
+- mojibake patterns;
+- replacement characters;
+- broken emoji;
+- malformed HTML entities;
+- incorrectly mixed language text;
+- missing charset declaration.
+
+Every HTML document must contain a valid UTF-8 charset declaration.
+
+Do not rewrite marketing copy as part of the encoding fix.
+
+Correct encoding at the authoritative source and rebuild.
+
+---
+
+## 9. Clean the deploy artefact
+
+Ensure `templates/build-dist.py` produces a clean and repeatable `dist/`.
+
+Before rebuilding:
+
+- remove the previous dist safely;
+- recreate it from approved source;
+- include only allowlisted production files;
+- exclude all development-only files.
+
+Verify that `dist/` excludes:
+
+- templates/;
+- backups;
+- probe files;
+- pycache;
+- source reports;
+- Markdown documents;
+- CSV working files;
+- local environment files;
+- credentials;
+- session data;
+- repository metadata;
+- standards-review packages;
+- test fixtures not needed in production;
+- obsolete preview artefacts;
+- unrelated legacy duplicates.
+
+Verify that `dist/` includes all required:
+
+- HTML pages;
+- EN/IT/RU pages;
+- CSS;
+- JavaScript;
+- images;
+- partials actually loaded at runtime;
+- `.well-known` files;
+- `404.html`;
+- robots.txt;
+- sitemap.xml;
+- site.webmanifest;
+- llms.txt.
+
+Report the final:
+
+- file count;
+- directory count;
+- total size;
+- HTML page count;
+- asset count;
+- excluded-file check.
+
+---
+
+## 10. Document external integrations already present
+
+Before modifying an HTML file, identify any existing:
+
+- webhook;
+- form endpoint;
+- API call;
+- analytics integration;
+- CRM endpoint;
+- email endpoint;
+- external script;
+- scheduling link;
+- Railway link;
+- Cloudflare integration.
+
+Do not create a second integration registry if the project already contains one.
+
+Ensure existing integration points are documented using the project's required markers where applicable:
+
+    <!-- WEBHOOK: id=WH-XX | endpoint: [URL] | trigger: [event] -->
+    ...
+    <!-- /WEBHOOK -->
+
+Maintain one current webhook/integration registry for the project.
+
+Do not expose secrets in HTML, JavaScript, reports, commits or deployment logs.
+
+Verify that public browser code contains only public endpoints and identifiers.
+
+---
+
+## 11. Complete deploy validation
+
+Serve the newly generated `dist/` as a standalone site.
+
+Do not validate only the source tree.
+
+Test every deployed HTML page and every referenced public asset.
+
+Required validation:
+
+- every deployed EN page;
+- every deployed IT page;
+- every deployed RU page;
+- every article;
+- homepage;
+- pricing;
+- FAQ;
+- how it works;
+- practice areas;
+- blog;
+- privacy;
+- terms;
+- cookie policy;
+- 404;
+- manifest;
+- robots;
+- sitemap;
+- llms;
+- `.well-known` files;
+- CSS;
+- JavaScript;
+- images;
+- language switcher;
+- navigation;
+- breadcrumbs;
+- footer;
+- CTA links;
+- forms;
+- internal anchors;
+- external links relevant to the product.
+
+Report the full denominator, not only successful samples.
+
+Required checks:
+
+- HTTP success count;
+- failed endpoints;
+- broken internal links;
+- broken external product links;
+- missing assets;
+- missing anchors;
+- duplicate IDs;
+- orphan pages;
+- redirecting internal links;
+- sitemap URLs not internally reachable;
+- internally linked pages missing from sitemap;
+- incorrect canonical;
+- incorrect or non-reciprocal hreflang;
+- language-switch mismatches;
+- unresolved placeholders;
+- legacy domain references;
+- source-only files leaked into dist;
+- console errors;
+- horizontal overflow at common widths;
+- basic keyboard navigation;
+- visible focus;
+- missing image alt text;
+- missing form labels;
+- invalid HTML severe enough to affect rendering or navigation.
+
+Test at least:
+
+- desktop;
+- tablet;
+- mobile.
+
+Do not claim "all pages passed" unless all deployed pages were included in the denominator.
+
+---
+
+## 12. Perform the pre-push Git audit
+
+Before creating or using a GitHub remote, inspect:
+
+- tracked files;
+- untracked files;
+- ignored files;
+- all commits in the repository;
+- binary and large files;
+- `.gitignore`;
+- repository history.
+
+Scan both the current tree and commit history for:
+
+- Cloudflare tokens;
+- GitHub tokens;
+- OpenRouter keys;
+- API keys;
+- passwords;
+- private keys;
+- `.env` values;
+- cookies;
+- local session databases;
+- credentials;
+- personal confidential data;
+- accidental production data.
+
+The previously rejected Cloudflare token must not exist in tracked files or Git history.
+
+Do not print secret values in the report. If a match is found, report only:
+
+- category;
+- file or commit;
+- whether remediation is required;
+- whether history cleaning is required.
+
+Confirm that `.gitignore` excludes local and generated clutter but does not exclude required build sources.
+
+Required build sources must be tracked, including the existing authoritative:
+
+- templates;
+- build scripts;
+- content data;
+- assets;
+- configuration templates;
+- source HTML where applicable.
+
+Perform a clean-copy or clean-clone simulation using only files that will exist in GitHub.
+
+From that clean state:
+
+1. install or confirm required tools;
+2. set only documented environment values;
+3. generate language pages;
+4. build dist;
+5. run the complete validation;
+6. compare the result with the locally approved artefact.
+
+The build must not depend on untracked files.
+
+---
+
+## 13. Preserve generated-file policy
+
+Determine the current intended policy for root, `it/` and `ru/` generated HTML.
+
+Do not redesign the repository today unless necessary.
+
+Document one clear operational answer:
+
+- generated HTML is tracked intentionally; or
+- generated HTML is rebuilt in Cloudflare and not tracked.
+
+Whichever current approach is used, prove that:
+
+- authoritative source changes survive rebuilds;
+- generated output can be reproduced;
+- deployment does not depend on untracked local files;
+- stale output cannot survive a clean build;
+- developers know which files must not be hand-edited.
+
+Do not create a second content pipeline.
+
+---
+
+## 14. Prepare GitHub safely
+
+Use a private GitHub repository.
+
+If a suitable private repository and remote already exist, verify them and use them.
+
+If no remote exists and authenticated GitHub access is available, create one private repository for this website.
+
+Preferred repository name:
+
+    lexflow-website
+
+If that name is unavailable or an existing approved naming convention applies, use the approved existing convention and report the final name.
+
+Do not initialize the GitHub repository with an independent README, `.gitignore` or license if that would create an unrelated initial commit.
+
+Before push, show:
+
+- remote URL without credentials;
+- visibility: private;
+- branch to be pushed;
+- commit range;
+- exact changed-file list;
+- secret-scan result;
+- clean-build result.
+
+You are authorized to:
+
+- create the private GitHub repository;
+- add the `origin` remote;
+- commit the verified source-level corrections;
+- push the current feature branch;
+- establish `main` from the approved verified state if no valid `main` exists;
+- push `main`;
+- connect that private repository to Cloudflare Pages;
+- create preview and production deployments today.
+
+Do not make the repository public.
+
+Do not use a token embedded in the remote URL.
+
+Do not force-push or rewrite history unless a secret is found and history remediation is necessary. If history rewriting is necessary, stop and explain before executing it.
+
+---
+
+## 15. Configure native Cloudflare Git deployment
+
+Use native Cloudflare Pages Git integration rather than a permanent Direct Upload workflow.
+
+Do not create a separate Direct Upload Pages project if the intended long-term project is Git-integrated.
+
+Configure:
+
+    Production branch:
+    main
+
+    Preview branches:
+    feat/* and Pull Request branches
+
+    Build output directory:
+    dist
+
+Use the verified build command required by the existing project. Expected command:
+
+    python3 templates/build-lang-sites.py &&
+    python3 templates/build-dist.py
+
+If environment preparation is required, include it explicitly and minimally.
+
+Set the required environment values in Cloudflare, not in committed source files.
+
+Do not expose any secret in chat or reports.
+
+Authenticate through an approved secure method:
+
+- existing valid Cloudflare session;
+- interactive browser/OAuth flow;
+- securely supplied environment secret.
+
+Do not reuse the rejected token.
+
+Do not request that a token be pasted into chat.
+
+If Cloudflare authentication is unavailable, complete GitHub push and all local checks, then report the exact authentication blocker. Do not claim deployment succeeded.
+
+---
+
+## 16. Create and verify preview
+
+Push the verified feature branch and allow Cloudflare to create a preview deployment.
+
+Verify the actual preview URL, not only local output.
+
+Check:
+
+- build succeeded from GitHub source;
+- correct commit was built;
+- correct build command ran;
+- correct output directory was deployed;
+- all critical pages load;
+- EN/IT/RU work;
+- CSS, JavaScript and images load;
+- CTA destinations are correct;
+- CRM backlink reaches the new website;
+- hero anchor works if used;
+- canonical and hreflang do not use placeholder domains;
+- preview is not unintentionally indexable;
+- forms do not expose secrets;
+- no `/admin` marketing link was introduced;
+- no legal placeholder is visible;
+- no mojibake is visible;
+- no severe console error occurs;
+- mobile navigation works;
+- 404 behavior works.
+
+Capture the preview URL and Cloudflare deployment ID.
+
+Do not call local testing a Cloudflare preview test.
+
+---
+
+## 17. Deploy production today
+
+After preview verification succeeds, publish the same reviewed source state to the production branch today.
+
+Do not make unrelated changes between preview approval and production release.
+
+Preferred release flow:
+
+    verified feature commit
+      → merge into main
+      → Cloudflare automatic production build
+      → production verification
+
+Before merge, ensure:
+
+- all critical checks pass;
+- production ORIGIN is correct;
+- deployable legal placeholders are resolved;
+- no secrets are present;
+- GitHub is private;
+- the feature preview corresponds to the commit being merged.
+
+You are authorized to merge the verified feature work into `main` and allow the configured Cloudflare Git integration to deploy production today.
+
+Do not deploy an older local dist manually after validating a newer Git commit.
+
+Production must be traceable to:
+
+- repository;
+- branch;
+- commit;
+- Cloudflare deployment;
+- build command;
+- validation result.
+
+If an unavoidable blocker prevents production today, do everything that is safely possible and return:
+
+    PRODUCTION DEPLOYMENT BLOCKED
+
+with the exact blocker, the completed steps and the shortest required user action.
+
+Do not describe preview deployment as production.
+
+---
+
+## 18. Verify production
+
+After Cloudflare reports success, test the live production URL independently.
+
+Verify at minimum:
+
+- homepage;
+- hero;
+- pricing;
+- FAQ;
+- blog;
+- one article;
+- how it works;
+- practice areas;
+- privacy;
+- terms;
+- cookie policy;
+- EN homepage;
+- IT homepage;
+- RU homepage;
+- language switcher;
+- sitemap;
+- robots;
+- llms;
+- manifest;
+- `.well-known` files;
+- 404;
+- CRM → website backlink;
+- all major CTA destinations;
+- critical images;
+- mobile navigation.
+
+Confirm:
+
+- production hostname;
+- production deployment ID;
+- Git commit;
+- Cloudflare project name;
+- production branch;
+- SSL status;
+- canonical origin;
+- placeholder-domain count;
+- legacy-Netlify reference count in the new website and CRM;
+- failed production checks.
+
+If a custom domain is not yet available, clearly state whether the production deployment currently uses the stable Cloudflare `pages.dev` hostname.
+
+Do not claim a custom domain is active unless DNS and HTTPS are verified.
+
+---
+
+## 19. Keep edits surgical
+
+Touch only files required to:
+
+- correct authoritative website sources;
+- correct generated-site production output through rebuilding;
+- correct the CRM backlink;
+- resolve build/deployment blockers;
+- ensure GitHub safety;
+- support Cloudflare Git deployment;
+- fix verified broken links, assets, encoding or placeholders.
+
+Do not redesign the site.
+
+Do not rewrite unrelated copy.
+
+Do not restructure the full application.
+
+Do not change CRM business logic unrelated to the backlink.
+
+Do not replace images merely for optimization.
+
+Do not create speculative architecture.
+
+Mark HTML edits using the project-required format:
+
+    <!-- EDIT:2026-09-16-label -->
+    ...
+    <!-- /EDIT -->
+
+Maintain exactly one unified plan/track/verify/debug table for this work.
+
+The table must contain:
+
+| Date | Plan | Location (marker/section) | Action taken | Verification | Debug notes / lessons | Status |
+|---|---|---|---|---|---|---|
+
+Use only:
+
+- Done;
+- Pending;
+- Blocked;
+- Needs review.
+
+Do not create separate duplicated tracking tables.
+
+---
+
+## 20. Pre-share file integrity audit
+
+Before sharing any modified files or reports, run and report:
+
+| Check | Required result |
+|---|---|
+| Encryption/password | None found |
+| Obfuscation: eval, atob, blobs | Zero unexplained occurrences |
+| Encoding | Valid UTF-8 |
+| Structure | Standard, readable and editable |
+| Secrets | None |
+| Generated-output-only fixes | Zero |
+| Undocumented webhooks/integrations | Zero |
+| Unintended files in dist | Zero |
+
+State exactly:
+
+    File-lock audit — confirmed clean
+
+only if every applicable check passes.
+
+---
+
+## 21. Final response format
+
+Return one concise but complete execution report containing:
+
+### Repository
+
+- repository path;
+- initial branch and HEAD;
+- final branch and HEAD;
+- working-tree status;
+- remote URL without credentials;
+- GitHub visibility;
+- commits created;
+- branches pushed.
+
+### Authoritative changes
+
+- exact source files changed;
+- exact generated files regenerated;
+- exact dist result;
+- confirmation that no durable fix exists only in generated HTML.
+
+### Website and CRM linking
+
+- old legacy URL;
+- every old reference found;
+- authoritative CRM file changed;
+- final CRM backlink;
+- hero ID result;
+- remaining legacy URL count.
+
+### Origin and SEO
+
+- final ORIGIN;
+- placeholder-domain counts;
+- canonical result;
+- hreflang result;
+- sitemap result;
+- robots result;
+- llms result;
+- `.well-known` result.
+
+### CTA matrix
+
+For every major CTA:
+
+- label;
+- destination;
+- public/authenticated/internal status;
+- verification result.
+
+### PNG investigation
+
+- verified root cause;
+- files/pages affected;
+- fix status;
+- regression result.
+
+### Validation
+
+- total deployed pages;
+- total endpoints/assets tested;
+- passed;
+- failed;
+- broken links;
+- missing assets;
+- orphan pages;
+- unresolved placeholders;
+- console errors;
+- accessibility-critical failures;
+- desktop/tablet/mobile result.
+
+### GitHub
+
+- push readiness;
+- secret scan;
+- clean-build result;
+- private repository result;
+- feature branch push result;
+- main branch result.
+
+### Cloudflare
+
+- Git integration result;
+- project name;
+- preview URL;
+- preview deployment ID;
+- preview commit;
+- production URL;
+- production deployment ID;
+- production commit;
+- production verification result.
+
+### Remaining work
+
+Separate only:
+
+- true blockers;
+- non-blocking follow-up improvements;
+- decisions requiring user input.
+
+### Required final status block
+
+Use this exact structure:
+
+    SOURCE-LEVEL FIXES COMPLETE: YES/NO
+    CLEAN BUILD PASSED: YES/NO
+    COMPLETE DIST VALIDATION PASSED: YES/NO
+    CRM LEGACY BACKLINK REMOVED: YES/NO
+    CRM POINTS TO NEW LEXFLOW WEBSITE: YES/NO
+    PRIVATE GITHUB REPOSITORY READY: YES/NO
+    FEATURE BRANCH PUSHED: YES/NO
+    MAIN PUSHED: YES/NO
+    CLOUDFLARE GIT INTEGRATION ACTIVE: YES/NO
+    PREVIEW DEPLOYED: YES/NO
+    PREVIEW VERIFIED: YES/NO
+    PRODUCTION DEPLOYED: YES/NO
+    PRODUCTION VERIFIED: YES/NO
+    LEGACY NETLIFY SITE MODIFIED: YES/NO
+    UNRESOLVED BLOCKERS: [count]
+
+At the very end, add this reminder and nothing automated:
+
+    Reminder for tomorrow: update the entire ecosystem index.
+
+Do not create a cron job or scheduled task.
+
+Do not create or modify permanent development standards.
+
+Do not create a parallel source of truth.
+
+Do not stop after analysis if safe execution is possible.
+
+Complete the website, GitHub push and Cloudflare deployment today.
+
+---
+
+## STANDING USER PREFERENCE (must be honored in every related task)
+
+Do not propose or create a parallel source of truth unless explicitly requested.
+Do not create cron jobs, scheduled tasks, or new permanent rules for this task.
+Ask Hermes only to remind the user tomorrow to update the ecosystem index manually.
+Confirm compliance with these constraints in every relevant progress report until this task is completed or explicitly overridden by the user.
+
+Required confirmation block to repeat in every relevant report:
+
+    PARALLEL SOURCE OF TRUTH PROPOSED: NO
+    CRON OR SCHEDULED TASK CREATED: NO
+    PERMANENT RULES MODIFIED: NO
+    TOMORROW REMINDER REQUESTED: YES
+    USER OVERRIDE RECEIVED: NO

@@ -1,0 +1,8 @@
+"#","Question","Already answered by the plan?"
+"1","Which CRM","Yes — self-hosted Flask on Railway, PostgreSQL, existing models unchanged"
+"2","Pages Function or standalone Worker","Yes — standalone Worker (lexflow-edge-api), decided in ARCHITECTURE.md"
+"3","Auth pattern (Bearer/API key/HMAC)","Open — needs your call. Nothing in the plan picks one yet"
+"4","Caching/rate-limiting/retries","Partially — Turnstile + rate limiting is LF3-011, but KV caching of Flask responses isn't scoped"
+"5","Single vs. multiple Flask endpoints (Durable Objects/Workflows)","Yes — plan already uses Workflows for multi-step orchestration (LF3-041 etc.), so this scales correctly"
+"6","CORS needed","Open — needs your call, depends on whether front-end JS calls the Worker directly or only server-to-server"
+"7","Deployment method","Yes — Smoothy's profile specifies Wrangler CLI + Workers Builds (Git integration), matching your preference for PR previews"

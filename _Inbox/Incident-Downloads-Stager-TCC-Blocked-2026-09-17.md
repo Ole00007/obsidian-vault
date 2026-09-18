@@ -1,10 +1,11 @@
 ---
 title: Downloads Stager blocked — TCC permission lost (2026-09-17)
 type: incident
-status: open — needs Ole (GUI)
+status: resolved 2026-09-18 18:03 CEST (stager green again; backfill run)
 date: 2026-09-17
+resolved: 2026-09-18
 owner: memory-curator
-severity: medium (no data loss; daily staging blind)
+severity: medium (no data loss; daily staging blind 09-16 → 09-18)
 ---
 
 # Downloads Stager blocked — TCC permission lost
@@ -74,6 +75,31 @@ Consistent with the missing manifests for 09-16 and 09-17.
 
 Per **archive-never-delete**, the `(1)` copy should be archived, not deleted — proposed, not
 done, pending Ole's confirmation of which name is canonical.
+
+## RESOLUTION (2026-09-18 18:00–18:05 CEST)
+
+The Download TCC grant was re-established (by Ole, out of band). Verified by real runs:
+
+- 18:00:24 daily cron run — `downloads_stager.py --hours 24` **succeeded**, 10 files staged, 0 errors, manifest written.
+- 18:02:54 manual backfill — `downloads_stager.py --hours 72` staged **8 gap files** that the blind window (09-16 → 09-18) had missed:
+  `-.csv`, `-bestshotever.csv`, `-bestshotever (1).csv`, `CANDIDATE-full-stack-rules-v0.2 (1).md`,
+  `LexFlow-Hermes-Final-Execution-Prompt.txt`, `avibe_agency_legal_site_package.zip`,
+  `hermes-cloud-plan (1).csv`, `lexflow_crm_cloudflare_plan.csv` — all md5-verified byte-identical to source.
+- 18:03:48 vault-side dedupe (`inbox_dedupe_archive_only.py`, archive-only) — 3 byte-identical duplicate
+  groups moved to `_Trash/_Deleted-Dupes-20260918_180348/_Inbox/`, canonical names kept.
+  `_Inbox`: 93 → 101 → **98** files.
+
+### Correction to the duplicate finding above
+The 09-17 note claimed `hermes-cloud-plan.csv` **and** `hermes-cloud-plan (1).csv` were both in `_Inbox`.
+Re-checked 2026-09-18: only `hermes-cloud-plan.csv` was in `_Inbox`; the `(1)` twin was still in
+`~/Downloads`. The pair is byte-identical (`2634759c8c8968479aceb4d0a2d4473d`), so staging the `(1)`
+copy just re-created a duplicate — it was archived again by the dedupe step. The 09-17 count
+(81 files / 1 group) was therefore a stale reading of the `(1)`-suffix family, not of `_Inbox` itself.
+
+### Residual risk (unchanged, NOT actioned — tier-2, needs Ole)
+The app is still an **ad-hoc-signed** bundle at a versioned release path, so the next in-place rebuild
+will silently revoke Downloads access again. Steps 1–4 under "Proposed fix" above are still the
+recommendation; only step 1/3 were effectively done for this round.
 
 ## Links
 - Parent: [[Obsidian-INDEX]]
