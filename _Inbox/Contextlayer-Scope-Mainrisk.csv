@@ -1,0 +1,6 @@
+"Context layer","Scope","Main risk"
+"Project instructions","Every thread in this Project","Permanent token overhead; conflicting rules"
+"Project files","Project-wide and searchable","Wrong or outdated passages may be retrieved"
+"Conversation history","Mainly the current thread/session","Long threads accumulate noise and old assumptions"
+"Agent/subagent context","Usually one agent execution","Depends on what the orchestrator passes to it"
+"Project Brain","Shared across the Project in Computer sessions","Search sessions do not currently access Brain perplexity"

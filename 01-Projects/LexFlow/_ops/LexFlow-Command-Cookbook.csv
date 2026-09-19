@@ -1,0 +1,22 @@
+category,command,purpose,when_to_use,caveat,last_used
+deploy,python3 templates/build-lang-sites.py,Regenerate it/ + ru/ + sitemap from EN source,after any EN source edit,Run before build-dist,2026-09-17
+deploy,python3 templates/build-dist.py,Build clean dist/ (88 files) from allowlist,always before deploying,Clean rebuild; excludes templates/strays,2026-09-17
+deploy,npx --yes wrangler@4.132.0 pages deploy dist/ --project-name lexflow-site --branch main --commit-hash <SHA>,Deploy to production,on approved deploy,Use --branch main = production,2026-09-17
+deploy,npx --yes wrangler@4.132.0 pages deployment list --project-name lexflow-site,List deployments + env classification,verify prod vs preview,2026-09-17
+deploy,npx wrangler login,Interactive OAuth login for Cloudflare,when auth expires / whoami not authenticated,Opens browser; approve promptly,2026-09-17
+deploy,npx wrangler whoami,Check Cloudflare auth status,before any wrangler cmd,2026-09-17
+deploy,npx wrangler pages project create lexflow-site --production-branch main,Create Pages project (once),initial setup,2026-09-17
+git,git checkout -b <branch> && git push -u origin <branch>,New branch + push,new workstream,2026-09-17
+git,git add -u && git commit -m "<msg>",Stage+commit tracked changes,after edits,-u excludes new untracked; add them explicitly,2026-09-17
+github,gh repo view Ole00007/lexflow-website --json name,visibility,url,Confirm public repo,pre-push,2026-09-17
+hermes,hermes -p <profile>,Open a profile session in a new terminal,drive another agent,One session per profile at a time,2026-09-17
+hermes,hermes kanban list | grep -E "=== " ,list open/blocked tasks,see task board,2026-09-17
+hermes,hermes kanban create \"<title>\" --body \"<body>\" --assignee <profile> --priority <int>,Hand work to another agent,--priority takes int,2026-09-17
+hermes,hermes mcp list,List MCP servers for current/ given profile,verify MCP connected,2026-09-17
+composio,node ~/.hermes/composio-refresh/refresh.mjs,Refresh Composio tool-router session URL (writes config.yaml),when session URL goes stale,Run wrapper first; verify hermes mcp list,2026-09-17
+composio,node test4.mjs,Manual refresh of Composio session URL (from /tmp/composio-test),when refresh.mjs not set up,prints new url+header,2026-09-17
+ops,open -n -a \"Hermes\",Open a second Hermes app window,run two agents side by side,One profile per window,2026-09-17
+ops,osascript -e 'tell app \"Terminal\" to do script \"hermes -p <profile>\"',Open new Terminal window for a profile,drive another agent,2026-09-17
+ops,python3 -m hermes_cli.main -p default dashboard --port 9119 --host 127.0.0.1 --open-profile <profile>,Restart web dashboard,tomorrow if dashboard hangs,kill old PID first,2026-09-17
+obs,ps aux | grep -iE \"hermes|node|python\",Inspect running processes,decide safe closes,2026-09-17
+obs,osascript -e 'tell application \"Terminal\" to get name of every window',List Terminal windows,identify closable shells,2026-09-17
