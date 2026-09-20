@@ -1,7 +1,7 @@
 ---
 title: LexFlow — Project Status
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-09-20
 tags: [lexflow, status, orchestration]
 status: active
 ---
@@ -13,12 +13,13 @@ daily status cron (`lexflow-daily-status-crm`, 09:00). The **authority for task 
 is `docs/LexFlow_Agentic_Roadmap.json`** in the CRM repo; this note is the human-readable
 mirror and is never written back into that file.
 
-## Snapshot — 2026-09-19
+## Snapshot — 2026-09-20
 
-- **Canonical tracker:** `~/Desktop/projects/services/LEGAL/LEXFLOW Production/lexflow-crm/docs/LexFlow_Agentic_Roadmap.json` — `last_updated` now `2026-09-19`.
-- **Product/health:** `https://web-production-031a6.up.railway.app/health` = 200.
-- **Repo:** branch `lexflow_hermes_v1`, local commit `3eff4e4` (docs-only, **unpushed** — a push triggers a Railway deploy and is gated on Ole). Previous code commit `6ef25da` (2026-09-17).
-- **Moved today:** nothing. No CRM code change, no deploy, no push since 2026-09-17.
+- **Canonical tracker:** `~/Desktop/projects/services/LEGAL/LEXFLOW Production/lexflow-crm/docs/LexFlow_Agentic_Roadmap.json` — `last_updated` now `2026-09-20`.
+- **Product/health:** `https://web-production-031a6.up.railway.app/health` = 200 (`db: ok`, `environment: production`).
+- **Repo:** branch `lexflow_hermes_v1`, local commit `d8c9fde` (docs-only, **unpushed** — a push triggers a Railway deploy and is gated on Ole). Previous commit `3eff4e4` (2026-09-19), last code commit `6ef25da` (2026-09-17).
+- **Moved today:** nothing (Sunday). No CRM commit, no deploy, no push. All task columns carried over unchanged from the 2026-09-19 run.
+- **Kanban:** 51 cards on the board; all 18 unfinished roadmap tasks still hold exactly one open card → 0 new cards created on 2026-09-20.
 - **§8 Repo Root Rule:** the CRM repo still sits under the legacy `~/Desktop/projects/...` path. Migration is staged and Ole-approved but not yet run for LEGAL; `~/projects/lexflow-crm` does not exist.
 
 ## What is open (by roadmap id)
