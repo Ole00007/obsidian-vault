@@ -63,6 +63,23 @@ Currently only `operator-installer` and `memory-curator` use hindsight; the prof
 - Locking reads is reversible: remove the proxy/flag and reads return to open.
 - This is a **tier-2 infra change** → requires Ole's explicit approval before executing.
 
+## Verification probes (read-only, no deployment change)
+
+| Date | `/v1/default/banks` no key | `/v1/default/banks` with key | Verdict |
+|---|---|---|---|
+| 2026-08-26 (baseline) | 200 ⚠️ | — | open |
+| 2026-08-31 | 401 | n/a (stats also 401) | not open |
+| 2026-09-21 | **401** | **200** | reads require auth; key reads work |
+
+2026-09-21: key-based reads confirmed working end-to-end (a keyed recall returned 30 facts), so
+nothing depends on the open-read state. Bank size at this probe: **15,267 facts / 500 documents**.
+
 ## Decision log
 
 - 2026-08-26 — Ole deferred execution until scaling (operator-installer busy with urgent job). Runbook written for when we scale. Reminder set to flag at that point.
+- 2026-09-21 — Scaling reminder fired. **Two thresholds already met**: A) facts 15,267 > 15,000 (B not met: 6 client folders vs 20) and C) live client PII confirmed in the bank (clinic addresses + phone numbers, Romanelli test credentials, client sub-tenant emails). Reads currently return 401 without a key, so the specific exposure described in §What to change appears closed — status still labelled `pending` because nobody has confirmed the cause (option-1 fix vs. another layer). Awaiting Ole's call: mark resolved, or re-scope to the remaining items (content-level PII in the bank, failed consolidations).
+
+## Links
+- Parent: [[Hermes-Setup-and-MCP-INDEX]]
+- Related: [[Hindsight-Vault-Sync-Fix-2026-09-16]]
+- Related: [[hindsight-sync-verification-20260916]]
