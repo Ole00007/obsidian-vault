@@ -144,6 +144,73 @@ Optimising egress here is chasing 5 cents. The lever is **memory** (worker stats
 - **Status oddity:** `railway status` reports avibe-hindsight as `● Completed` while its worker logs stream live — cosmetic; the service is healthy.
 - **Single shared DB secret:** the same password appears in `DATABASE_URL`, `PGPASSWORD` and `POSTGRES_PASSWORD`; the DB is only reachable over the private network, so blast radius is contained.
 
+## Changelog — rev 2 (2026-09-21, same day)
+
+Scope narrowed by Ole's condensed prompt: memory regulation + cost verification + project classification. Read-only; nothing executed. Deferred: AVIBE Ecosystem master-table rewrite from `AVIBE_Muzloto_Chatbot_Master_Index.xlsx` → **next time**.
+
+### Cost verification — the "$27.60" is a projection, not extra spend
+
+Single workspace usage query (`railway usage --json` + `railway usage projects`), billing period **2026-09-15 → 2026-10-15**:
+
+| Metric | USD | EUR @0.8706 |
+|---|---|---|
+| **To-date usage** | $10.4718 | €9.12 |
+| **Projected bill for the period** | **$27.4997** | **€23.94** |
+
+The figure Ole saw (~$27.6) is `estimatedBillDollars` — Railway's **end-of-period projection**, not spend stacked on top of graceful-presence's $9.46. Composition of real to-date usage:
+
+| Category | USD | EUR | Share |
+|---|---|---|---|
+| **Memory** | **$10.2968** | **€8.96** | **98.33%** |
+| CPU | $0.0886 | €0.08 | 0.85% |
+| Egress | $0.0515 | €0.04 | 0.49% |
+| Volume | $0.0403 | €0.04 | 0.38% |
+| Backup | $0.0008 | €0.00 | 0.01% |
+
+**Egress is 0.5% — it was never the problem. Memory is 98.3%.** All figures are Railway-reported (verified); the *projected* figures are Railway's own estimate and are **not** broken down per category by the API → per-category projection is **未验证 / not verified** (derived by applying the to-date memory share).
+
+### Railway usage limits — overrun risk (needs Ole's decision)
+
+| Setting | Value | State |
+|---|---|---|
+| Soft limit | $5 | **breached** (usage $10.47) |
+| Hard limit | $15 | **will be breached** — projection $27.50 > $15 |
+
+A hard limit breach can suspend services. This is the real "overrun", and it is a limits problem first and an RSS problem second.
+
+### Memory thresholds proposed (advise-only, nothing set)
+
+Observed `rss_mb=1976` avg / `peak_rss_mb=2655` single worker. Proposed watch bands: **warn 1.8 GB · soft cap 2.2 GB · hard cap 2.6 GB**.
+
+### Three ranked memory options (estimated, not executed)
+
+| # | Option | Mechanism | Est. RSS | Est. saving / period |
+|---|---|---|---|---|
+| 1 | **Stop loading ML models in-process** — remote embeddings + disable/remote reranker, or the slim image | removes `torch`+`transformers`+`sentence-transformers`+model residency (224 MB weights + runtime) | −45–55% | **€10.59–12.95** ($12.17–14.87) |
+| 2 | **Keep local models, drop torch** — ONNX Runtime path instead of PyTorch/CUDA stack | removes `torch 2.13` + nvidia CUDA libs from runtime | −25–35% | €5.89–8.24 ($6.76–9.46) |
+| 3 | **Cap the ceiling** — set Railway usage limits + memory alerts, no code change | bounds worst case, stops the hard-limit breach | ~0% | €0.00–1.18 |
+
+Method: savings = % reduction applied to the projected memory line ($27.04, derived from the 98.3% to-date share of the $27.50 projection). **Estimates, not measured** — the RSS deltas are inferred from what the image installs, not from a test run.
+
+### Project classification — all six are Railway *projects*
+
+None is a branch, container or session; each project contains services (containers) in one `production` environment. `railway list --json` does not carry last-deployment timestamps → **last-deploy = not verified** except where previously fetched.
+
+| Project | Type | Services | Status | Last deploy | Project ID |
+|---|---|---|---|---|---|
+| graceful-presence | Railway project | avibe-hindsight, Postgres | ✅ online | 2026-08-28 21:11Z (SUCCESS, verified) | 9b08be93… |
+| perceptive-achievement | Railway project | web, LexFlow-Chatbot, Postgres | ✅ live — **LexFlow CRM production** (`web-production-031a6`, health 200 today) | not verified | 1fe25c7a… |
+| precious-rejoicing | Railway project | web, Postgres, function-bun | idle (last touched 2026-07-21) | not verified | 9c6f87e9… |
+| dependable-vitality | Railway project | outstanding-connection | idle (last touched 2026-07-19) | 2026-07-19 19:01Z (SUCCESS, verified) | cea51701… |
+| flask-EMPTY-Postgres | Railway project | web, Postgres | idle (empty scaffold; touched 2026-08-03) | not verified | 70cd9252… |
+| compassionate-trust | Railway project | web | idle (touched 2026-05-09) | not verified | 5fb4dd26… |
+
+To fill the last-deploy column needs one `railway api` call per project → **blocked by the 1-query budget**; reported rather than exceeded.
+
+### Blocker for the master table
+
+Google Drive is **not authorised** on this profile — `setup.py --check` → `NOT_AUTHENTICATED` (no `google_token.json`, no `google_client_secret.json`), and `gws` is not installed. `AVIBE_Muzloto_Chatbot_Master_Index.xlsx` is not present in the vault or `~/Downloads` either. Creating the "AVIBE Ecosystem" master table needs Drive OAuth (one-time, Ole-driven) and the base xlsx located.
+
 ## Links
 - Parent: [[AVibe-CRM-INDEX]]
 - Related: [[Hindsight-Read-Auth-Runbook]]

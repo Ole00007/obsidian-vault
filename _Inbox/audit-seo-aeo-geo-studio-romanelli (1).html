@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit SEO · AEO · GEO — Studio Legale Associato Romanelli | AVIBE Agency</title>
+<style>
+  :root{
+    --navy:#152238;
+    --navy-2:#1f3352;
+    --gold:#b08d57;
+    --gold-light:#e8dcc4;
+    --paper:#faf8f4;
+    --paper-2:#f2ede4;
+    --ink:#20211f;
+    --ink-muted:#5c5a54;
+    --ink-faint:#918f88;
+    --line: rgba(21,34,56,0.12);
+    --ok:#3f6b3f;
+    --warn:#a8641f;
+    --bad:#9c3b3b;
+    --radius: 6px;
+    --shadow: 0 2px 10px rgba(21,34,56,0.06), 0 10px 30px rgba(21,34,56,0.05);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family: 'Georgia','Iowan Old Style','Times New Roman',serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.65;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sans{font-family:'Helvetica Neue',Arial,sans-serif;}
+  a{color:var(--navy);}
+  img,svg{display:block;max-width:100%;}
+  .container{max-width:1040px;margin:0 auto;padding:0 32px;}
+
+  /* ===== Top bar ===== */
+  .topbar{
+    background:var(--navy);
+    color:#f2ede4;
+    padding:14px 0;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .topbar .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+  .topbar .brandmark{display:flex;align-items:center;gap:10px;}
+  .topbar .brandmark span{color:var(--gold-light);}
+
+  /* ===== Cover ===== */
+  .cover{
+    background:
+      linear-gradient(180deg, rgba(21,34,56,0.94), rgba(21,34,56,0.88)),
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 40px);
+    color:#f7f4ee;
+    padding: 90px 0 70px;
+  }
+  .cover .container{display:flex;flex-direction:column;gap:26px;}
+  .cover-eyebrow{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--gold-light);
+    display:flex;align-items:center;gap:10px;
+  }
+  .cover-eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);display:inline-block;}
+  .cover h1{
+    font-size:clamp(2.1rem, 4vw, 3.2rem);
+    font-weight:400;
+    line-height:1.15;
+    max-width:16ch;
+  }
+  .cover h1 em{font-style:italic;color:var(--gold-light);}
+  .cover-sub{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:15px;
+    color:#cfd6e2;
+    max-width:60ch;
+  }
+  .cover-meta{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:18px;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:13px;
+    border-top:1px solid rgba(255,255,255,0.15);
+    padding-top:22px;
+  }
+  .cover-meta div span{display:block;color:var(--gold-light);text-transform:uppercase;letter-spacing:.08em;font-size:10.5px;margin-bottom:5px;}
+
+  /* ===== Section shell ===== */
+  section.block{padding:56px 0;border-bottom:1px solid var(--line);}
+  section.block:nth-of-type(even){background:var(--paper-2);}
+  .sec-label{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  h2.sec-title{
+    font-size:clamp(1.5rem,2.6vw,2rem);
+    font-weight:400;
+    color:var(--navy);
+    max-width:24ch;
+    margin-bottom:20px;
+  }
+  .lede{font-size:1.05rem;color:var(--ink-muted);max-width:75ch;margin-bottom:28px;}
+  p{margin-bottom:14px;max-width:75ch;}
+  h3{font-family:'Helvetica Neue',Arial,sans-serif;font-size:1rem;color:var(--navy);margin:22px 0 10px;font-weight:700;}
+
+  /* ===== Grid cards ===== */
+  .grid{display:grid;gap:18px;margin-top:10px;}
+  .grid-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+  .grid-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+  .card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 22px;
+    box-shadow:var(--shadow);
+  }
+  .card h4{font-family:'Helvetica Neue',Arial,sans-serif;font-size:.98rem;color:var(--navy);margin-bottom:8px;}
+  .card p{font-size:.94rem;color:var(--ink-muted);margin-bottom:0;}
+
+  /* ===== Status badges ===== */
+  .badge{
+    display:inline-block;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    padding:3px 10px;
+    border-radius:999px;
+    margin-bottom:8px;
+  }
+  .badge.ok{background:#e7efe3;color:var(--ok);}
+  .badge.warn{background:#f6ead9;color:var(--warn);}
+  .badge.bad{background:#f2dede;color:var(--bad);}
+
+  /* ===== Tables ===== */
+  table{width:100%;border-collapse:collapse;margin:18px 0 6px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:.9rem;}
+  th{
+    background:var(--navy);
+    color:#f2ede4;
+    text-align:left;
+    padding:10px 12px;
+    font-weight:600;
+    font-size:.78rem;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+  td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink);}
+  tr:nth-child(even) td{background:rgba(21,34,56,0.02);}
+
+  /* ===== Numbered list / roadmap ===== */
+  .steps{counter-reset:step;margin-top:10px;}
+  .step{
+    display:grid;grid-template-columns:56px 1fr;gap:18px;
+    padding:20px 0;border-top:1px solid var(--line);
+  }
+  .step:first-child{border-top:none;}
+  .step-num{
+    counter-increment:step;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:1.6rem;color:var(--gold);font-weight:700;
+  }
+  .step-num::before{content:counter(step,decimal-leading-zero);}
+  .step h4{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--navy);margin-bottom:6px;font-size:1rem;}
+  .step p{font-size:.94rem;color:var(--ink-muted);margin-bottom:0;}
+
+  /* ===== Score panel ===== */
+  .score-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:16px;}
+  .score{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px;text-align:center;box-shadow:var(--shadow);
+  }
+  .score .num{font-family:'Helvetica Neue',Arial,sans-serif;font-size:2rem;font-weight:700;color:var(--navy);}
+  .score .num small{font-size:1rem;color:var(--ink-faint);font-weight:400;}
+  .score .label{font-family:'Helvetica Neue',Arial,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-muted);margin-top:6px;}
+  .bar{height:5px;background:var(--paper-2);border-radius:3px;margin-top:10px;overflow:hidden;}
+  .bar i{display:block;height:100%;background:var(--gold);}
+
+  /* ===== Quote / callout ===== */
+  .callout{
+    border-left:3px solid var(--gold);
+    background:#fff;
+    padding:18px 24px;
+    margin:22px 0;
+    font-style:italic;
+    color:var(--ink-muted);
+    box-shadow:var(--shadow);
+  }
+
+  /* ===== Footer / contact ===== */
+  footer{background:var(--navy);color:#eae6dc;padding:60px 0 40px;}
+  footer .container{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;}
+  footer h3{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--gold-light);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;}
+  footer p{color:#c7cddb;font-size:.92rem;max-width:50ch;}
+  .contact-list{list-style:none;font-family:'Helvetica Neue',Arial,sans-serif;font-size:.92rem;}
+  .contact-list li{padding:8px 0;border-top:1px solid rgba(255,255,255,0.12);display:flex;gap:10px;align-items:flex-start;}
+  .contact-list li:first-child{border-top:none;}
+  .contact-list a{color:#f2ede4;text-decoration:none;}
+  .contact-list a:hover{text-decoration:underline;}
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,0.12);
+    margin-top:36px;padding-top:20px;
+    font-family:'Helvetica Neue',Arial,sans-serif;font-size:.78rem;color:#9aa4b8;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  /* ===== WhatsApp floating button ===== */
+  .wa-fab{
+    position:fixed;right:22px;bottom:22px;z-index:999;
+    display:flex;align-items:center;gap:10px;
+    background:#1fb855;color:#fff;
+    font-family:'Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:14px;
+    padding:13px 20px 13px 14px;border-radius:999px;
+    box-shadow:0 8px 24px rgba(31,184,85,0.4);
+    text-decoration:none;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .wa-fab:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(31,184,85,0.5);}
+  .wa-fab svg{width:22px;height:22px;flex-shrink:0;}
+
+  @media (max-width:720px){
+    footer .container{grid-template-columns:1fr;}
+    .cover{padding:64px 0 50px;}
+    .step{grid-template-columns:40px 1fr;}
+  }
+  @media print{
+    .wa-fab{display:none;}
+    section.block{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="brandmark">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12 L12 3 L21 12 L18 12 L18 21 L6 21 L6 12 Z" stroke="#e8dcc4" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      AVIBE <span>Agency</span>
+    </div>
+    <div>Audit riservato · Preparato per Studio Legale Associato Romanelli</div>
+  </div>
+</div>
+
+<header class="cover">
+  <div class="container">
+    <div class="cover-eyebrow">Audit SEO · AEO · GEO</div>
+    <h1>Visibilità organica e visibilità <em>nei motori di risposta AI</em>.</h1>
+    <p class="cover-sub">Analisi tecnica e strategica del sito studio-romanelli.it: architettura, indicizzabilità, dati strutturati, presenza locale e prontezza per la ricerca generativa (Google AI Mode, ChatGPT, Perplexity, Gemini, Copilot).</p>
+    <div class="cover-meta">
+      <div><span>Cliente</span>Studio Legale Associato Romanelli — Genova</div>
+      <div><span>Dominio</span>studio-romanelli.it</div>
+      <div><span>Data audit</span>9 Agosto 2026</div>
+      <div><span>Preparato da</span>AVIBE Agency</div>
+    </div>
+  </div>
+</header>
+
+<!-- 00 — Punteggio sintetico -->
+<section class="block">
+  <div class="container">
+    <div class="sec-label">00 — In sintesi</div>
+    <h2 class="sec-title">Fondamenta solide, potenziale in gran parte inespresso.</h2>
+    <p class="lede">Il sito presenta una struttura pulita e una buona base tecnica (protocollo sitemap corretto, architettura a due livelli, HTTPS). Tuttavia, mancano quasi tutti gli elementi che oggi determinano la visibilità nei motori di risposta AI e un posizionamento locale competitivo: dati strutturati, contenuti in formato domanda/risposta, una scheda Google Business Profile attiva e una presenza editoriale continuativa.</p>
+
+    <div class="score-wrap">
+      <div class="score">
+        <div class="num">6<small>/10</small></div>
+        <div class="label">SEO tecnico</div>
+        <div class="bar"><i style="width:60%"></i></div>
+      </div>
+      <div class="score">
+        <div class="num">3<small>/10</small></div>
+        <div class="label">Local SEO / GEO</div>
+        <div class="bar"><i style="width:30%"></i></div>
+      </div>
+      <div class="score">
+        <div class="num">2<small>/10</small></div>
+        <div class="label">AEO / Ricerca AI</div>
+        <div class="bar"><i style="width:20%"></i></div>
+      </div>
+      <div class="score">
+        <div class="num">4<small>/10</small></div>
+        <div class="label">Contenuti &amp; autorevolezza</div>
+        <div class="bar"><i style="width:40%"></i></div>
+      </div>
+    </div>
+    <p style="font-size:.82rem;color:var(--ink-faint);margin-top:14px;">Punteggi qualitativi assegnati da AVIBE Agency sulla base dell'analisi diretta del sito, della sitemap e della presenza esterna rilevata. Non sostituiscono un audit con strumenti a pagamento (Semrush, Search Console verificata) che AVIBE può eseguire in una fase successiva.</p>
+  </div>
+</section>
+
+<!-- 01 — Architettura e sitemap -->
+<section class="block">
+  <div class="container">
+    <div class="sec-label">01 — Architettura del sito e Sitemap</div>
+    <h2 class="sec-title">28 pagine, struttura chiara, priorità non differenziate.</h2>
+    <p class="lede">Il sito conta 28 URL indicizzabili organizzati in una struttura piatta a due livelli (Home → Hub → Sotto-pagina), corretta per un sito di queste dimensioni.</p>
+
+    <div class="grid grid-3">
+      <div class="card"><h4>1 Homepage</h4><p>Presenta chi siamo, aree di expertise, riconoscimenti e contatti.</p></div>
+      <div class="card"><h4>6 pagine principali</h4><p>Professionisti, Aree di attività, News, Contatti, Consulenza a distanza, Privacy &amp; Cookie Policy.</p></div>
+      <div class="card"><h4>12 aree di attività</h4><p>Da reati contro la persona a contrattualistica software — tutte raggiungibili in un click dalla home.</p></div>
+      <div class="card"><h4>7 schede professionisti</h4><p>Bio individuali per soci, collaboratori e consulenti dello studio.</p></div>
+      <div class="card"><h4>2 articoli di news</h4><p>Sezione editoriale ancora molto limitata rispetto al potenziale.</p></div>
+      <div class="card"><h4>Hub-and-spoke a 2 livelli</h4><p>Nessuna pagina orfana rilevata: tutte le 28 URL sono raggiungibili dalla navigazione.</p></div>
+    </div>
+
+    <h3>Anomalie riscontrate nella sitemap XML</h3>
+    <table>
+      <tr><th>Osservazione</th><th>Dettaglio</th><th>Impatto</th></tr>
+      <tr><td>Priorità identica</td><td>Tutte le 28 URL hanno <code>priority 1.0</code>, inclusa la Privacy Policy</td><td>Nessun segnale reale di importanza relativa per Google</td></tr>
+      <tr><td>Changefreq identica</td><td>Tutte le pagine dichiarano <code>monthly</code>, incluse pagine statiche che non cambiano mai</td><td>Segnale non informativo per il crawler</td></tr>
+      <tr><td>lastmod identica</td><td>Tutte le 28 URL riportano la stessa data (2025-04-01)</td><td>Indica generazione massiva automatica, non aggiornamento reale dei contenuti</td></tr>
+      <tr><td>Nessuna estensione immagine</td><td>Assenza di tag <code>&lt;image:image&gt;</code> nonostante foto professionisti presenti</td><td>Occasione persa per la ricerca immagini</td></tr>
+      <tr><td>Nessun hreflang</td><td>Sito monolingua, coerente con il pubblico target</td><td>Nessuna azione richiesta salvo espansione internazionale</td></tr>
+    </table>
+
+    <div class="callout">Una sitemap tecnicamente valida ma "piatta" nei segnali: oggi funziona come un semplice elenco di URL, non come uno strumento strategico di prioritizzazione del crawl.</div>
+  </div>
+</section>
+
+<!-- 02 — SEO tecnico -->
+<section class="block">
+  <div class="container">
+    <div class="sec-label">02 — SEO Tecnico e Performance</div>
+    <h2 class="sec-title">Le fondamenta ci sono; mancano le rifiniture che fanno la differenza.</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <span class="badge ok">Verificato</span>
+        <h4>HTTPS attivo</h4>
+        <p>Il dominio è servito correttamente in HTTPS, requisito minimo di fiducia per Google.</p>
+      </div>
+      <div class="card">
+        <span class="badge ok">Verificato</span>
+        <h4>Sitemap XML pubblica</h4>
+        <p>Raggiungibile su /sitemap.xml e conforme al protocollo sitemaps.org 0.9.</p>
+      </div>
+      <div class="card">
+        <span class="badge warn">Da verificare</span>
+        <h4>Google Search Console</h4>
+        <p>Non è possibile confermare da remoto se la proprietà è verificata e la sitemap inviata: va controllato lato cliente/agenzia con accesso all'account.</p>
+      </div>
+      <div class="card">
+        <span class="badge warn">Da verificare</span>
+        <h4>robots.txt</h4>
+        <p>Il file non è risultato raggiungibile durante l'analisi: va controllato che esista e che non blocchi involontariamente crawler utili (incluso i bot dei motori AI).</p>
+      </div>
+      <div class="card">
+        <span class="badge warn">Da migliorare</span>
+        <h4>Core Web Vitals</h4>
+        <p>Non misurati con strumenti dedicati (PageSpeed/CrUX) in questa sessione: raccomandato un test formale prima di ogni intervento di sviluppo.</p>
+      </div>
+      <div class="card">
+        <span class="badge bad">Assente</span>
+        <h4>Dati strutturati (schema.org)</h4>
+        <p>Nessuno schema Organization, LegalService, Attorney o FAQPage rilevato nelle pagine analizzate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 — Local SEO / GEO -->
+<section class="block">
+  <div class="container">
+    <div class="sec-label">03 — Local SEO e Presenza Territoriale (GEO)</div>
+    <h2 class="sec-title">Un nome noto sulla carta, quasi invisibile nelle directory digitali.</h2>
+    <p class="lede">Lo Studio Romanelli ha una storia solida (fondato nel 1973) e riconoscimenti autorevoli, ma la presenza digitale locale — la base della visibilità su Google Maps e nelle risposte AI geolocalizzate — è largamente incompleta.</p>
+
+    <table>
+      <tr><th>Fonte</th><th>Stato rilevato</th><th>Nota</th></tr>
+      <tr><td>Il Sole 24 Ore / Statista — "Studi Legali dell'Anno"</td><td><span class="badge ok">Confermato</span></td><td>Presenza verificata nelle classifiche 2021 e 2023; il sito dichiara anche 2022 e 2024</td></tr>
+      <tr><td>PagineGialle.it</td><td><span class="badge bad">Scheda non rivendicata</span></td><td>Profilo al 20% di completamento, nessuna recensione, orari non impostati</td></tr>
+      <tr><td>PagineBianche.it</td><td><span class="badge warn">Presente, dati minimi</span></td><td>Indirizzo e numeri di telefono presenti, nessun altro dettaglio</td></tr>
+      <tr><td>Google Business Profile</td><td><span class="badge warn">Non verificabile da remoto</span></td><td>Nessuna scheda Google Maps rilevata pubblicamente collegata al dominio durante la ricerca; da verificare/creare con accesso diretto</td></tr>
+      <tr><td>Directory di settore (avvocati-italia.com)</td><td><span class="badge ok">Presente</span></td><td>Listato con descrizione base dello studio</td></tr>
+      <tr><td>LinkedIn</td><td><span class="badge ok">Presente</span></td><td>Profili personali di due soci (Rinaldo ed Enrico Romanelli) citano lo studio</td></tr>
+    </table>
+
+    <div class="callout">Senza una scheda Google Business Profile attiva e coerente, lo studio è sostanzialmente assente dal Local Pack di Google Maps e dalle risposte locali generate dagli assistenti AI — un problema più urgente di qualsiasi ottimizzazione on-page.</div>
+  </div>
+</section>
+
+<!-- 04 — AEO / GEO -->
+<section class="block">
+  <div class="container">
+    <div class="sec-label">04 — AEO e Ricerca Generativa</div>
+    <h2 class="sec-title">Il sito non è ancora scritto per essere citato dall'AI.</h2>
+    <p class="lede">Google AI Mode, ChatGPT, Perplexity, Gemini e Copilot privilegiano contenuti con risposte dirette, entità chiare e struttura estraibile. Le pagine attuali dello Studio Romanelli sono descrittive ma non strutturate per questo tipo di lettura automatica.</p>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>Formato domanda/risposta assente</h4>
+        <p>Le 12 pagine di aree di attività (es. "Reati Tributari") descrivono l'ambito ma non rispondono a domande dirette del tipo "Cosa fare in caso di contestazione per reati tributari?".</p>
+      </div>
+      <div class="card">
+        <h4>Nessun FAQPage schema</h4>
+        <p>Anche se venissero aggiunte FAQ testuali, senza markup strutturato il vantaggio per l'estrazione AI resterebbe parziale.</p>
+      </div>
+      <div class="card">
+        <h4>Entità professionali poco strutturate</h4>
+        <p>Le 7 bio degli avvocati sono in prosa; credenziali, anno di iscrizione all'Albo e specializzazioni andrebbero evidenziati in modo scansionabile.</p>
+      </div>
+      <div class="card">
+        <h4>Autorevolezza editoriale limitata</h4>
+        <p>Solo 2 articoli in tutta la sezione news: insufficiente per costruire il segnale di autorevolezza che i motori generativi premiano nel tempo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 — Roadmap -->
+<section class="block">
+  <div class="container">
+    <div class="sec-label">05 — Piano di Intervento Prioritario</div>
+    <h2 class="sec-title">Da dove cominciare, in ordine di impatto.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div>
+          <h4>Attivare e completare Google Business Profile</h4>
+          <p>Creare o rivendicare la scheda, con NAP coerente, orari, categorie corrette e foto reali. È la base di ogni visibilità locale e GEO.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div>
+          <h4>Implementare i dati strutturati essenziali</h4>
+          <p>Organization, LegalService, Attorney (per ogni socio) e FAQPage sulle pagine di area di attività.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div>
+          <h4>Differenziare la sitemap</h4>
+          <p>Assegnare priority e changefreq realistici; aggiornare i lastmod solo quando il contenuto cambia davvero.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div>
+          <h4>Riscrivere le pagine di area in formato risposta diretta</h4>
+          <p>Aprire ogni pagina con una risposta sintetica alla domanda implicita dell'utente, seguita da approfondimento e FAQ.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div>
+          <h4>Rivendicare e completare le directory locali</h4>
+          <p>PagineGialle, PagineBianche e directory di settore: dati coerenti, descrizione completa, raccolta recensioni reali.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div>
+          <h4>Avviare un piano editoriale continuativo</h4>
+          <p>Pubblicazione regolare di contenuti legali originali per costruire autorevolezza tematica nel tempo, sia per Google sia per i motori AI.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 — Nota metodologica -->
+<section class="block">
+  <div class="container">
+    <div class="sec-label">06 — Nota metodologica</div>
+    <h2 class="sec-title">Come è stato condotto questo audit.</h2>
+    <p>L'analisi è stata condotta tramite ispezione diretta del sito pubblico, della sitemap XML, delle pagine di contatto e delle principali directory italiane (PagineGialle, PagineBianche, avvocati-italia.com), oltre a fonti pubbliche come Il Sole 24 Ore / Statista e LinkedIn. Non sono stati utilizzati strumenti di misurazione a pagamento (Semrush, Search Console verificata, PageSpeed Insights) né dati proprietari del cliente: alcuni indicatori (Core Web Vitals, stato reale di Google Search Console e Google Business Profile) andranno confermati con accesso diretto agli account del cliente in fase di scoping.</p>
+  </div>
+</section>
+
+<footer id="contatti">
+  <div class="container">
+    <div>
+      <h3>AVIBE Agency</h3>
+      <p>Analisi e ottimizzazione SEO, AEO e GEO per studi professionali e piccole-medie imprese locali. Questo documento è riservato e preparato esclusivamente per Studio Legale Associato Romanelli.</p>
+      <p style="margin-top:18px;">Genova, Italia</p>
+    </div>
+    <div>
+      <h3>Contatti</h3>
+      <ul class="contact-list">
+        <li>📞 <a href="tel:+393450234084">+39 345 023 4084</a> — Alessia, AVIBE Agency</li>
+        <li>✉️ <a href="mailto:info@avibeagency.it">info@avibeagency.it</a></li>
+        <li>🌐 <a href="#" target="_blank" rel="noopener noreferrer">avibeagency.it</a></li>
+      </ul>
+    </div>
+    <div class="foot-bottom" style="grid-column:1/-1;">
+      <span>Documento riservato — AVIBE Agency © 2026</span>
+      <span>Audit realizzato il 9 Agosto 2026</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-fab" href="https://wa.me/393450234084?text=Ciao%20Alessia%2C%20ho%20visto%20l%27audit%20SEO%2FAEO%2FGEO%20per%20Studio%20Romanelli%20e%20vorrei%20parlarne." target="_blank" rel="noopener noreferrer">
+  <svg viewBox="0 0 32 32" fill="#fff" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.7.8 5.2 2.3 7.3L4 29l6.4-1.7c2 1.1 4.3 1.7 6.6 1.7 7 0 12.7-5.6 12.7-12.5S23 3 16 3zm0 22.9c-2.1 0-4.1-.6-5.8-1.6l-.4-.2-3.8 1 1-3.7-.3-.4c-1.2-1.9-1.8-4-1.8-6.2C4.9 9.6 9.9 4.9 16 4.9c6.1 0 11.1 4.7 11.1 10.6S22.1 25.9 16 25.9zm6.1-8c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.7-1.7-1-.9-1.7-2-1.9-2.3-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2.1-.4 0-.6-.1-.2-.8-1.9-1-2.6-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.8 5.1.8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 2-.8 2.3-1.6.3-.8.3-1.4.2-1.6-.1-.1-.3-.2-.6-.4z"/></svg>
+  Scrivi su WhatsApp
+</a>
+
+</body>
+</html>
