@@ -1,7 +1,7 @@
 ---
 title: LexFlow — Project Status
 created: 2026-09-19
-updated: 2026-09-21
+updated: 2026-09-23
 tags: [lexflow, status, orchestration]
 status: active
 ---
@@ -13,13 +13,15 @@ daily status cron (`lexflow-daily-status-crm`, 09:00). The **authority for task 
 is `docs/LexFlow_Agentic_Roadmap.json`** in the CRM repo; this note is the human-readable
 mirror and is never written back into that file.
 
-## Snapshot — 2026-09-21
+## Snapshot — 2026-09-23
 
-- **Canonical tracker:** `~/Desktop/projects/services/LEGAL/LEXFLOW Production/lexflow-crm/docs/LexFlow_Agentic_Roadmap.json` — `last_updated` now `2026-09-21`.
+- **Canonical tracker:** `~/Desktop/projects/services/LEGAL/LEXFLOW Production/lexflow-crm/docs/LexFlow_Agentic_Roadmap.json` — `last_updated` now `2026-09-23`.
 - **Product/health:** `https://web-production-031a6.up.railway.app/health` = 200 (`db: ok`, `environment: production`).
-- **Repo:** branch `lexflow_hermes_v1`, local commit `404247e` (docs-only, **unpushed** — a push triggers a Railway deploy and is gated on Ole). Previous commit `d8c9fde` (2026-09-20), last code commit `6ef25da` (2026-09-17). Remote branch still at `8c17456`.
-- **Moved today:** nothing (Monday, first run of the week). No CRM commit, no deploy, no push, no Kanban card activity (`kanban.db` untouched since 2026-09-19 19:45). All task columns carried over unchanged from the 2026-09-20 run.
-- **Kanban:** 51 cards on the board; all 18 unfinished roadmap tasks still hold exactly one open card → 0 new cards created on 2026-09-21.
+- **Repo:** branch `lexflow_hermes_v1`, local HEAD `86a9641` (2026-09-23 docs-status commit, **unpushed** — a push triggers a Railway deploy and is gated on Ole); previous `404247e` (2026-09-21), last code commit `6ef25da` (2026-09-17). Remote branch still at `8c17456`.
+- **Moved today:** nothing — no CRM commit, no deploy, no push, no Kanban card activity since the 2026-09-21 run. All task columns carried over unchanged.
+- **⚠ Missed day (2026-09-22):** the 2026-09-22 10:24 run of cron job `cda5f6d4a18a` **failed** — `RuntimeError: Hermes can't reach the model provider` (provider outage). No 2026-09-22 status stamp, commit, or vault update exists; the tracker simply jumps 09-21 → 09-23. No catch-up commit was written on purpose.
+- **Kanban:** 51 cards; newest card created 2026-09-19 19:45 → no card activity since. All 18 unfinished roadmap tasks still hold exactly one open card → 0 new cards created on 2026-09-23.
+- **Repo index warning:** the CRM working tree carries a large **pre-existing staged** index state (4122 staged deletions, mostly `.venv/**` and `uploads/**`) plus an unstaged `.gitignore` edit (adds `uploads/`, `.venv/`, `node_modules/`, `.DS_Store`, `backups/.env*`). Not created by the status run, which committed only its own tracker path. Anyone running a blanket `git commit -a` would sweep ~1.48M deletions into a commit — needs a deliberate decision.
 - **§8 Repo Root Rule:** the CRM repo still sits under the legacy `~/Desktop/projects/...` path. Migration is staged and Ole-approved but not yet run for LEGAL; `~/projects/lexflow-crm` does not exist.
 
 ## What is open (by roadmap id)
