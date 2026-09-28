@@ -1,0 +1,117 @@
+{
+  "meta": {
+    "purpose": "Consolidated index of all documents/artifacts Hermes needs, grouped by project board, for registration inside LexFlow superadmin.",
+    "target_profiles": ["operator-installer", "memory-curator", "Smothy"],
+    "prerequisite": "Stage -1 reconciliation required before board creation: check with Smothy and cross-reference lexflow_handoff_v3.md, hermes_rules_avibe_hindsight.md, existing PROJECT_STATUS notes, and kanban_* tool protocol before creating/modifying any board.",
+    "known_blocker": "LexFlow/aLEXy reported in deploy-failed state (3 documented blockers each) since Jun/Jul 2026 per olesia_state_overview.xlsx — flag before assuming kanban surface is reachable.",
+    "hard_boundary_rule": "Separazione board (Board 1) data must NEVER surface on or be retrievable from client-facing boards (5, 6, 7). Different trust domains.",
+    "note_excluded": "This JSON intentionally excludes the sensitive family PII dataset for Separazione (minors' passport/health-card numbers, financial narrative) — that consolidated JSON remains ON HOLD pending Olesia's final approval of the brogliaccio, per prior agreement.",
+    "generated": "2026-09-24"
+  },
+  "boards": [
+    {
+      "id": 1,
+      "name": "Separazione",
+      "status": "active, bozza stage",
+      "documents": [
+        {"name": "lettera-Rasing-Rasing.pdf", "source": "GDrive: Separazione folder", "note": "correspondence, content not reviewed"},
+        {"name": "certificato-residenza_Eugene-Rasing.pdf", "source": "GDrive: Separazione folder", "note": "confirm storico vs current-only"},
+        {"name": "certificato-residenza_Olesia-Rasing_260922.pdf", "source": "GDrive: Separazione folder", "note": "confirm storico vs current-only"},
+        {"name": "brogliaccio_v4_IT.md", "source": "session / rasing_dossier_v4.zip", "note": "pending final approval"},
+        {"name": "brogliaccio_v4_ZH.md", "source": "session / rasing_dossier_v4.zip", "note": "pending final approval"},
+        {"name": "bozza_ricorso_separazione_tribunale_genova_v2.md", "source": "session / rasing_dossier_v4.zip", "note": "needs Avv. completion"},
+        {"name": "olesia_raw_chronological_memory_letter.md", "source": "session file panel", "note": "pending Olesia's corrections"},
+        {"name": "anagrafe_email_drafts_lerici_firenze_v2.md", "source": "session file panel", "note": "ready to send after contact info fill-in"},
+        {"name": "cost-of-living CSVs (Firenze/Lerici/Genova) + family data CSV", "source": "rasing_dossier_v4.zip", "note": "several lines still da confermare"}
+      ],
+      "open_items": [
+        "awaiting certificati storici di residenza (~26/09/2026)",
+        "awaiting Avv. review and sign-off before filing",
+        "consolidated JSON for this project ON HOLD pending Olesia's approval"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Forfetario Registry",
+      "status": "planned",
+      "registration_target": "December 2026 or January 2027 (unresolved, do not assume)",
+      "documents": [],
+      "open_items": [
+        "confirm exact registration month",
+        "confirm ATECO code(s) covering Avibe agency + LexFlow CRM",
+        "blocking dependency for Board 4"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Private CF Billing",
+      "status": "active, closes out when Board 4 goes live (Jan-Feb 2027)",
+      "documents": [
+        {"name": "PF-01_2026_notula_pro_forma.docx", "source": "GDrive: Legal & Accountancy folder"},
+        {"name": "PF-02_2026_notula_pro_forma.docx", "source": "GDrive: Legal & Accountancy folder"},
+        {"name": "PF-03_2026_notula_pro_forma.docx", "source": "GDrive: Legal & Accountancy folder"},
+        {"name": "PF-04_2026_notula_pro_forma.docx", "source": "GDrive: Legal & Accountancy folder"},
+        {"name": "PF-05_2026_notula_pro_forma.docx", "source": "GDrive: Legal & Accountancy folder"},
+        {"name": "PF-06_2026_notula_pro_forma.docx", "source": "GDrive: Legal & Accountancy folder"},
+        {"name": "R-01_2026_ricevuta.docx", "source": "GDrive: Legal & Accountancy folder"},
+        {"name": "R-02_2026_ricevuta.docx", "source": "GDrive: Legal & Accountancy folder"},
+        {"name": "R-03_2026_ricevuta.docx", "source": "GDrive: Legal & Accountancy folder"},
+        {"name": "R-04_2026_ricevuta.docx", "source": "GDrive: Legal & Accountancy folder"},
+        {"name": "R-05_2026_ricevuta.docx", "source": "GDrive: Legal & Accountancy folder"},
+        {"name": "R-06_2026_ricevuta.docx", "source": "GDrive: Legal & Accountancy folder"}
+      ],
+      "open_items": [
+        "confirm which ricevute have incasso date, signature, marca da bollo (EUR2, if amount > EUR77.47)",
+        "maintain running ritenuta d'acconto (20%) total for 2026 dichiarazione dei redditi reclaim"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Forfetario Billing Transition",
+      "status": "future, usage begins January-February 2027",
+      "depends_on": "Board 2 (Forfetario Registry) completing first",
+      "documents": [],
+      "open_items": [
+        "draft forfetario invoice template (no ritenuta, no IVA)",
+        "confirm one vs. two partita IVA for Avibe agency + LexFlow CRM",
+        "confirm coefficiente di redditivita and INPS gestione separata rate once ATECO finalized"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "2Di CRM (2DI Carrozzeria)",
+      "status": "active client project",
+      "documents": [
+        {"name": "avibe-preventivo-crm-officina-v5.pdf", "source": "GDrive", "note": "confirmed by Olesia as belonging to this project"},
+        {"name": "2DI_Carrozzeria_Verbale_Riunione.xlsx", "source": "GDrive"},
+        {"name": "2DI_Carrozzeria_Verbale_Riunione_v4_IT_RU.md", "source": "GDrive"}
+      ],
+      "open_items": [
+        "reconcile preventivo v5 against latest verbale riunione"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Alena Krot",
+      "status": "active client project",
+      "documents": [
+        {"name": "Alena_Krot_Competitor_Analysis_2026.xlsx", "source": "GDrive"},
+        {"name": "Alena-Krot-Audit.pdf", "source": "GDrive"},
+        {"name": "AlenaKrot-Space-MasterPrompt.md", "source": "GDrive", "note": "authoritative brand/style reference — do not override"}
+      ],
+      "open_items": [
+        "none requested this pass — tracked for continuity"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "MTA Group (Alessandro Acri)",
+      "status": "assigned to Hermes for discovery and documentation — no documents located by Perplexity's search",
+      "documents": [],
+      "open_items": [
+        "Hermes to find and document Alessandro Acri / MTA Group materials across its own accessible sources (repos, Obsidian vault, Drive locations Perplexity cannot reach)",
+        "once found, populate this board's document list and reconcile with Boards 5/6 naming conventions"
+      ]
+    }
+  ]
+}
