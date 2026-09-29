@@ -358,4 +358,12 @@ Vault retro-fitted into a connected graph: 210/226 notes linked (was 8/177), 409
 - **Needs Ole (tier-2, not touched):** re-bind the `avibe-hindsight` domain in the Railway `graceful-presence` project, or confirm the service still exists. Repro: `curl -s https://avibe-hindsight-production.up.railway.app/health` → 404.
 
 - **Reminder for the roster (unchanged, §V3):** every knowledge-producing task must (a) write a vault note and (b) append a one-line summary to `05-Daily/YYYY-MM-DD.md`. Telegram delivery is not a substitute for either.
+### 2026-09-29 — Nightly log (no stager run; backlog unchanged; no significant activity)
+- **(a) Conflicts flagged today:** 0 (no stager run detected; daily note `05-Daily/2026-09-29.md` carries no [STAGED]/[CONFLICT] markers).
+- **(b) Identical dupes skipped:** 0 recorded (no stager run → no dedup log).
+- **(c) _Conflicts backlog size now:** 49 files (same as yesterday 2026-09-28). Net change: 0 — backlog unchanged.
+- **(d) Recurring pattern observed:** No stager run detected today. Historical dominant signatures (per prior logs) include ` (n)` browser re-download collision family and serial-part families (`v3-N`, `-partN`, `PointN`), which are legitimately distinct and excluded from suffix dedup.
+- **(e) False-positive suspicion:** N/A — no stager run, no flags raised.
+- **Note:** No downloads stager run captured for 2026-09-29. _Conflicts/ backlog remains at 49 tracked + 0 untracked files. Same count as 2026-09-27 logged entry.
+
 - **Links:** Parent: [[cron-jobs-INDEX]] · Related: [[05-Daily-INDEX]] · Related: [[2026-09-27]] · Related: [[LexFlow-Project-Status]] · Related: [[AGENT_RULES]] · log file: [[self-improvement-log]]
