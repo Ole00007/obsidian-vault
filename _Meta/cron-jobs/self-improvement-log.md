@@ -367,3 +367,11 @@ Vault retro-fitted into a connected graph: 210/226 notes linked (was 8/177), 409
 - **Note:** No downloads stager run captured for 2026-09-29. _Conflicts/ backlog remains at 49 tracked + 0 untracked files. Same count as 2026-09-27 logged entry.
 
 - **Links:** Parent: [[cron-jobs-INDEX]] · Related: [[05-Daily-INDEX]] · Related: [[2026-09-27]] · Related: [[LexFlow-Project-Status]] · Related: [[AGENT_RULES]] · log file: [[self-improvement-log]]
+
+### 2026-09-30 — Nightly log (no stager run; no daily note; backlog unchanged)
+- **(a) Conflicts flagged today:** 0 — no downloads stager run detected for 2026-09-30; daily note `05-Daily/2026-09-30.md` does not exist, so no [STAGED]/[CONFLICT]/dedup lines were captured.
+- **(b) Identical dupes skipped:** 0 recorded (no stager run → no dedup log).
+- **(c) _Conflicts backlog size now:** 49 files. Previous count (2026-09-29): 49. **Net change: 0** — backlog completely unchanged, no new quarantines, no resolutions.
+- **(d) Recurring pattern observed:** No stager run detected today. Historical dominant signatures (per prior logs) include ` (n)` browser re-download collision family and serial-part families (`v3-N`, `-partN`, `PointN`), which are legitimately distinct and excluded from suffix dedup. The ` (n)` suffix family remains the dominant recurring signature across this log (08-26 baseline through 09-29), with serial-part families (`v3-N`, `-partN`, `PointN`, RU/EN pairs) correctly excluded from suffix-based dedup heuristics.
+- **(e) False-positive suspicion:** N/A — no stager run, no flags raised. Carried forward from prior weeks: the ` (n)` suffix on genuinely distinct same-timestamp content (e.g. 6/6 distinct WhatsApp images at 09-23, 2 distinct `Ptt` voice notes at 09-24, same-timestamp image pairs at 09-25/09-26) continues to demonstrate that suffix-based heuristics are unsafe in both directions.
+- **Note:** No downloads stager run captured for 2026-09-30. _Conflicts/ backlog remains at 49 tracked + 0 untracked files. Same count as 2026-09-27 logged entry. Auto-sync commit gap: HEAD still at `44d39f6` (2026-09-24 22:32), no 09-25/09-26/09-27 auto-sync commits — tracked baseline may start under-reporting unless the 22:30 sync mechanism is repaired.
