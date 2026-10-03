@@ -1,0 +1,84 @@
+{
+  "task_batch": "LexFlow_Rollout_v6",
+  "global_rules": [
+    "PERMANENT (not just-this-once): every 'fixed'/'done' report must state explicitly LOCAL (with clickable preview link) or DEPLOYED (with live URL + commit hash). Never state 'fixed' without one of these two.",
+    "No parallel writes to shared code paths. Sequential only for anything touching intake logic, contact model, RLS, or Kanban shared code: audit -> local test -> Romanelli -> replicate to others -> approve -> deploy.",
+    "Test every fix on ALL active tenants individually (ws7 LexFlow, ws9 Pagliano, ws10+cl1+cl2 Romanelli, plus Ferro/AVIBE/aLEXy once confirmed). Report per-tenant results, never a generic PASS."
+  ],
+  "priority_1_process_gate": {
+    "step": "Take backend-dev report first.",
+    "if_clean": "Request local preview link only after confirming zero bugs found.",
+    "if_bugs_found": "Pick the flagged weak/conflict spots and audit those specifically before any commit or deploy request."
+  },
+  "priority_2_scope_confirmation": {
+    "test_order": "Romanelli (ws10) first, then replicate/correct for Pagliano (ws9) and Ferro.",
+    "access": "Grant Dima and Kirill separate access inside LexFlow (ws7). Kirill sees action titles only in the shared LexFlow Kanban, not internal notes.",
+    "inventory_request": "CONFIRM whether Tommaso Ferro's workspace ID is already built/provisioned, or still a TODO/planned task. Same confirmation needed for AVIBE Agency and aLEXy. Websites are not linked and workspaces are not tested for any of the three regardless of build status."
+  },
+  "priority_3_limits": {
+    "seat_limit": "DECIDED: 5 seats/tenant, effective now. To reconfigure later (e.g. 15 seats/tenant): implement SEAT_LIMIT_DEFAULT as a DB-configurable per-workspace setting, not hardcoded, so no redeploy is needed to change it.",
+    "matters_cap": "UNLIMITED for now.",
+    "memory_storage_cap": "UNLIMITED for now.",
+    "congestion_tracking_requirement": "Propose HOW usage (matters count, storage/memory) will be tracked (dashboard/query/alert) and AT WHAT threshold a limit would be triggered. Required deliverable, not optional."
+  },
+  "priority_4_contact_model": {
+    "decision": "Build TWO separate contact models: internal (staff directory: lawyers/assistant/office phone, workspace-filtered) and client-facing (marketing-ready, includes client-of-client contacts).",
+    "romanelli_requirement": "Romanelli admin/paralegal must see BOTH internal staff directory and client-facing contacts.",
+    "marketing_readiness": "Client-facing contact table must support bulk actions (email campaigns, segmentation) later -- may need a per-tenant JSON schema config and a lightweight web plugin for agent navigation.",
+    "approval_gate": "Table structure approved as-is (see Contact_Model sheet). Backend-dev must submit an implementation plan (migration steps, affected files, rollback path) for sign-off BEFORE Operator-Installer writes any code."
+  },
+  "priority_5_missing_backlog_item": {
+    "item": "Agentic AI-personalized email automation",
+    "status": "Confirmed missing from current plan -- not implicitly covered by Contacts redesign.",
+    "action": "Scope as its own backlog item: trigger logic, template engine, per-contact personalization, Resend integration."
+  },
+  "priority_6_qa_debug_agent": {
+    "decision": "APPROVED \u2014 install now.",
+    "verification": "Confirmed safe: QASkills.sh (qaskills.sh) only installs .md skill instruction files into the agent; it does not alter app runtime dependencies or touch production code.",
+    "install_command": "npx @qaskills/cli add <skill> (e.g. playwright-e2e for E2E test generation)",
+    "complementary_skill": "Also install the standalone 'debug' skill enforcing hypothesize -> reproduce with a failing test -> fix workflow, to stop 'fixed but not proven' reports."
+  },
+  "priority_7_parallel_tracking": {
+    "safe_in_parallel": [
+      "QASkills.sh install + skill onboarding (read-only skill file install)",
+      "Human collaboration: Dima's audits/reads, Kirill's isolated Kanban/design work",
+      "User testing: Olesia + testing customers (Romanelli, Pagliano, Ferro) doing read/click-through validation on already-deployed features",
+      "Elisa Phase 1 (fully isolated sandbox, zero shared code imports)",
+      "Backend-dev RLS test runs on an isolated Postgres instance (read/test only, not the merge itself)"
+    ],
+    "NOT_safe_in_parallel": [
+      "Any fix touching intake logic, contact model, or Kanban shared code -- must be sequential, one tenant confirmed before the next",
+      "RLS merge into feat/rls -- sequential, gated on 18/18 tests passing on real Postgres + NOBYPASSRLS confirmed",
+      "Testers triggering writes during an active deploy window"
+    ]
+  },
+  "priority_8_elisa_access_plan": {
+    "context_note": "Elisa is presented as a pretrained Personal Assistant agent already available on GitHub. Stefano's task is integration/wiring into LexFlow, not ground-up development.",
+    "PROVENANCE_FLAG_MUST_CONFIRM": "Could not independently verify a distinct pretrained legal-PA agent literally named 'Elisa' on GitHub. Publicly documented is ElizaOS/Eliza -- a general-purpose open-source agent FRAMEWORK, not a legal-CRM PA. CONFIRM with Stefano before Phase 1 sign-off: is Elisa (a) a finished pretrained agent integrated as-is, or (b) built on a framework (possibly ElizaOS) with custom training/wiring? This changes dependency review and IP/licensing scope -- 'integration only' assumes (a).",
+    "access_policy": "Four gated phases (Isolated Sandbox -> Read-Only Validation -> Staging -> Production). No phase transition without explicit written approval from Olesia. Read access and write/trigger access are SEPARATE approval gates -- approving one does not imply the other.",
+    "standing_rules": [
+      "Elisa's integration code lives in an isolated module (e.g. agents/elisa) with zero imports from existing routes/models until explicitly merged.",
+      "No production credentials shared directly; all access uses scoped, time-bound API keys (crm:read only during validation/staging).",
+      "Read-only enforcement happens at BOTH the API layer AND the database layer (Postgres role with GRANT SELECT only).",
+      "All keys stored in a secrets manager; none appear in code, commits, or Telegram messages.",
+      "Telegram used only for status/task/deployment tracking -- never for real tenant data, credentials, or PII.",
+      "Every key has a hard expiration date; renewal requires explicit re-approval, not automatic continuation.",
+      "Phase 3 (Staging) cannot begin until feat/rls is merged and its 18-test Postgres run passes -- app-level workspace_filter() alone is not sufficient isolation for an AI agent.",
+      "Elisa's write/trigger permissions require a separate, additional approval beyond read-only access.",
+      "All of Elisa's actions (not just queries) are logged with a clear agent-identity tag for audit purposes.",
+      "Upon completion of Stefano's engagement, all keys and repo access tied to Elisa's integration are revoked immediately."
+    ],
+    "phase_risk_register": "See attached elisa_dev_access_plan.json for full phase-by-phase data access, key scope, risks, and mitigations (Phases 1-4)."
+  },
+  "priority_9_memory_curator": {
+    "action": "Delegate to a memory-curator agent: save the tester-debugger profile and QASkills.sh/debug-skill links into Obsidian vault notes AND into Olesia's local working folders (mirrored, not vault-only).",
+    "requirement": "Confirm exact vault path and local folder path with Olesia before writing anything."
+  },
+  "deliverables_requested_from_hermes": [
+    "Updated inventory table for ALL tenants (LexFlow, Pagliano, Romanelli+cl1+cl2, Ferro, AVIBE, aLEXy) with workspace IDs, build status (built vs TODO), credentials location, deploy status.",
+    "Confirmation of Elisa provenance (pretrained vs framework+custom) from Stefano.",
+    "Congestion tracking mechanism proposal (matters + memory).",
+    "Backend-dev implementation plan for the two-model contact structure.",
+    "Confirmation of Obsidian vault path + local folder path where tester-debugger profile will be saved."
+  ]
+}

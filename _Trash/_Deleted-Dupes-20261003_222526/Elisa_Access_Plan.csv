@@ -1,0 +1,5 @@
+Phase,Data_Access,Key_Scope,Status
+Phase 1 - Isolated Sandbox,"None, seeded/anonymized dummy data only",No production key issued,Current
+Phase 2 - Validation Read-Only,"Scoped key, one workspace","crm:read only, expires 7-30 days",Not started
+Phase 3 - Staging,Read-only staging replica,Staging-labeled key,Blocked on RLS merge
+Phase 4 - Production,"Read-only audited, write/trigger separate approval","crm:read, time-bound, logged",Not started

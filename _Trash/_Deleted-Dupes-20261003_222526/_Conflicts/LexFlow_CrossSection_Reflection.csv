@@ -1,0 +1,13 @@
+Trigger Event,Status/Condition,Appears In,Action Triggered,Suppression Rule
+New intake submitted,status = New Lead,"Contacts, Kanban (New Lead column)","Auto-acknowledgment email + WhatsApp confirmation to client; internal task 'review lead' (owner, +1 day)",None (first-touch)
+No response,"24h since last touch, no reply","Kanban stays, Activity log",Follow-up email #1 (24h) + optional WhatsApp nudge,Suppress if client replied
+No response,72h since last touch,Activity log,Follow-up email #2 (72h),Suppress if replied or status changed
+No response,7 days since last touch,Activity log,Final check-in email + WhatsApp message + flag to owner,Suppress if replied; mark 'Cold' if no reaction
+Consultation booked,status = Consult Scheduled,"Calendar (event created), Kanban column move",Calendar invite to client + email reminder 24h before + WhatsApp reminder 2h before,None
+"Case opens, conflict check needed",status = Pending Conflict Check,"Kanban (gated column, cannot skip)",BLOCK engagement letter generation until manually cleared,Hard gate — no auto-progress
+"Conflict cleared, retainer sent",status = Retainer Out,"Matters, Kanban",Engagement letter auto-generated with case variables + WhatsApp 'document sent' notice,None
+Retainer signed,status = Signed / Active Client,"Contacts (promoted to 'Client'), Matters, dashboard stats",Welcome email + WhatsApp welcome message + client portal access notification,Lock — no more 'lead nurture' emails
+Case status changes,any -> In Progress / Completed etc.,"Kanban column move, Activity timeline",Client portal notification + WhatsApp status update (opt-in) + activity log entry,"Only fire on real transitions, not re-saves"
+Task/deadline created,linked to case,Tasks + Calendar (if due date set),Calendar event + email reminder + WhatsApp reminder to assigned avvocato,None
+Hearing/court date approaching,48h before hearing,"Calendar, Dashboard alert",Email + WhatsApp reminder to avvocato AND client (if client-facing),Suppress if date changed/cancelled
+Document uploaded to case,new file attached,"Matters, Activity timeline",WhatsApp/email notice to relevant party that a new document is available,Suppress for internal-only docs
