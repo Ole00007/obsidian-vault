@@ -389,3 +389,11 @@ Vault retro-fitted into a connected graph: 210/226 notes linked (was 8/177), 409
 - (e) False-positive suspicion: HIGH — per the log's extensive history, (1)-suffixed files are frequently byte-identical re-downloads that should be skipped, not quarantined (08-27: `md (1).md` verified divergent and quarantined; 09-16: 2 of 5 provably identical; 09-22/09-23/09-24/09-25: 100% of new quarantines were byte-identical false positives). Without md5 verification in the daily note, cannot confirm today's divergence, but the historical precedent strongly suggests these are benign re-downloads subject to false-positive quarantine.
 
 Note: No downloads stager `downloads_stager.py` run captured for 2026-10-04 (TCC denial on ~/Downloads); the daily note's [STAGED] items and [DUPLICATE]/[FLAGGED] lines originate from `obsidian-staging.sh` @05:00 chain, which continues to key identity on basename-in-`_Inbox` only — the same defect class attributed to one script on 09-23, still unportioned to the 05:00 chain 31 days later. The 18:00 `downloads_stager.py` whole-vault md5 fix (09-23) is active but did not run today.
+
+### 2026-10-05 — Nightly self-improvement log (no significant activity)
+- **(a) Conflicts flagged today:** 0 (no stager run detected; daily note `05-Daily/2026-10-05.md` carries no [STAGED]/[CONFLICT] markers).
+- **(b) Identical dupes skipped:** 0 recorded (no stager run → no dedup log).
+- **(c) _Conflicts backlog size now:** 50 files. Previous count (2026-10-04): 52. Net change: -2 — two files cleared from backlog (archive-never-delete; base copies remain live in _Inbox/).
+- **(d) Recurring pattern observed:** No stager run detected today; historical dominant signatures include ` (n)` browser re-download collision family and serial-part families (`v3-N`, `-partN`, `PointN`), which are legitimately distinct and excluded from suffix dedup per AGENT_RULES §3/§7.
+- **(e) False-positive suspicion:** N/A — no stager run, no flags raised.
+- **Note:** No downloads stager run captured for 2026-10-05. _Conflicts/ backlog at 50 files (tracked). Same count pattern as 2026-09-27 logged entry.
