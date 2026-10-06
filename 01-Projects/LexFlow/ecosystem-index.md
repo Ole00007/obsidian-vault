@@ -46,7 +46,7 @@ seo-swarm-agent · smoothy_op_dir · telegram-utility-agent · tester
 | # | Surface | Local path | Repo / remote | Current HEAD (verified) | Deploy target | Conflation trap |
 |---|---|---|---|---|---|---|
 | A | **Single-page LP** (this upgrade brief's target) | `~/projects/LEGAL_backup/LexFlow-landing` (branch `main`; migrated from old `~/LexFlow-landing` which **no longer exists**) | `github.com/Ole00007/LexFlow-landing.git` | `55d5488` (2026-09-16: every CRM entry link → `/admin/panel`) | Netlify `poetic-kleicha-28d058` (deploy coordinated by operator-installer) | Brief at `lexflow-landing-upgrade-brief.md` named operator-installer's path but file lives under `smoothy_op_dir` profile |
-| B | **Multi-page site** (deployed) | `/Users/olesiarasing/Desktop/projects/services/LEGAL/LEXFLOW Production/LEXFLOW Web-Site` | (not git-tracked 1:1 — untracked only; Cloudflare `wrangler.toml` + `_redirects`) | `4e526a0` (add `_redirects` 301 `/ -> /lexflow-index`) | Cloudflare Pages `lexflow-site` → `lexflow-site.pages.dev` | Has duplicate `(1)` backups (e.g. `lexflow-faq (1).html`) — those are stale backups, not the served files |
+| B | **Multi-page site** (deployed) | `/Users/olesiarasing/Desktop/projects/Products & Services/LEGAL/LEXFLOW Production/LEXFLOW Web-Site` | `github.com/Ole00007/LEXFLOW-Web-Site` (branch `feat/heading-align-cta-merge`; last commit 2026-09-17) | `4e526a0` (add `_redirects` 301 `/ -> /lexflow-index`) | Cloudflare Pages `lexflow-site` → `lexflow-site.pages.dev` | Has duplicate `(1)` backups (e.g. `lexflow-faq (1).html`) — those are stale backups, not the served files; git has tracked files + modified/untracked assets |
 
 **Verified 2026-09-19 from live repo state:** Single-page LP has **0 legacy `web-production-ab54f` refs, 8 current `web-production-031a6` refs**, Romanelli premium style committed (`52f1bc6`), all 3 post-freeze Sept-16 fixes present. Multi-page site `git status` = **untracked-only** (probes, `wrangler.toml`, `src/`, `templates/` pre-deploy backups); **all tracked pages untouched** — no edits/deploys made by any agent since Sept 8. Both opened locally :8090 (LP) and :8091 (multi-page), all pages HTTP 200.
 
@@ -93,8 +93,9 @@ seo-swarm-agent · smoothy_op_dir · telegram-utility-agent · tester
 ## Renewal log
 | Date | Renewed by | Key changes |
 |---|---|---|
-| 2026-09-17 | frontend-developer-lovable_react | Initial; Composio resolved; prod @0a6f5bd; daily status cron added |
-| 2026-09-19 | frontend-developer-lovable_react | Added §2a — precise split of the TWO frontend surfaces (single-page LP vs multi-page site), live paths/HEADs/refs verified; noted LP repo relocated to `~/projects/LEGAL_backup/` |
+|| 2026-09-17 | frontend-developer-lovable_react | Initial; Composio resolved; prod @0a6f5bd; daily status cron added |
+|| 2026-09-19 | frontend-developer-lovable_react | Added §2a — precise split of the TWO frontend surfaces (single-page LP vs multi-page site), live paths/HEADs/refs verified; noted LP repo relocated to `~/projects/LEGAL_backup/` |
+|| 2026-10-06 | memory-curator | Corrected §2a: fixed Surface B path (`Products & Services` not `services`), updated repo/remote and git state description; surfaced 'two surfaces, don't conflate' fact into memory curation |
 
 ## Links
 - Parent: [[LexFlow]]

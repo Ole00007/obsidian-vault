@@ -11,6 +11,7 @@ Hub note for the `LexFlow` folder. Links to every note here.
 
 ## Notes
 
+- [[LexFlow-T021-Diagram-View-Spec-2026-10-06]] — **T-021 spec (Obsidian Canvas style, NO n8n)**: diagram view of task/case execution, spec-first, card `t_f0f709f5`
 - [[LexFlow-Project-Status]] — **live project status (refreshed daily by the 09:00 cron)**: roadmap tracker `last_updated: 2026-09-19`, local commit `3eff4e4` (unpushed), the 7 items blocked on Ole, all 18 unfinished tasks mapped to Kanban cards, and the flagged duplicate roadmap copy
 - [[LexFlow-Web-Site-Scope-2026-09-17]] — **current scope/status**: deployed to production (`1cba771c`, source `0a6f5bd`), consent UI + privacy disclosure + `id=hero` live, pushed to public GitHub, content export (3038 blocks), CRM repoint + hard rule + daily cron handed to operator; legal identity + Cloudflare Git integration pending
 - [[LexFlow-Web-Site-Quality-Debt-Register-2026-09-17]] — **[OVERRIDE] debt register**: prod deploy `bd4b683` with 14/15 DoD checks failing; all 15 re-verified + 3 new findings (hook.example.com placeholder ×45 pages, repo outside the §8 repo root, committed `dist/`); blocked on Ole's rebuild-vs-patch call (kanban `t_3c7158f8`)

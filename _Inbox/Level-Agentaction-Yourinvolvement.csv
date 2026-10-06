@@ -1,0 +1,4 @@
+"Level","Agent action","Your involvement"
+"Green","Organise notes, tag, deduplicate, research, run tests, prepare drafts","None"
+"Yellow","Open PR, update documentation, prepare client proposal, create deployment plan","Daily digest only"
+"Red","Merge, deploy production, delete data, change subscriptions, spend money, contact clients","Explicit approval"

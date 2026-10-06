@@ -1,0 +1,8 @@
+"Item","Included access?","How you pay"
+"Web search/extraction","Yes","Deducted from included Nous credits per use"
+"Image generation","Yes","Deducted from credits; cost varies by model"
+"Text-to-speech","Yes","Deducted from credits per use"
+"Cloud browser","Yes","Deducted from credits per session/use"
+"Model inference","Yes","Tokens deducted from credits"
+"Hermes Cloud hosting","No bundled hosting allowance","Separate compute/storage charge deducted from credits"
+"Modal cloud sandbox","Optional add-on","Separate metered usage"

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" role="img" aria-labelledby="it-flag-title">
+  <title id="it-flag-title">Italian flag</title>
+  <rect width="1" height="2" fill="#008c45"/>
+  <rect x="1" width="1" height="2" fill="#ffffff"/>
+  <rect x="2" width="1" height="2" fill="#cd212a"/>
+</svg>

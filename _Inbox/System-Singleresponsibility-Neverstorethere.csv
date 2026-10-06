@@ -1,0 +1,7 @@
+"System","Single responsibility","Never store there"
+"GitHub/local repositories","Code, tests, technical docs, AGENTS.md","Personal research, sales notes"
+"Obsidian","Decisions, knowledge, briefs, meeting notes","Copies of repositories, generated caches"
+"Airtable/CRM","Leads, accounts, next actions, delivery status","Long research documents or code"
+"Hindsight","Retrieval across agents/devices","Source-of-truth files or secrets"
+"Hermes","Execution and automation","Irreplaceable information existing only in a session"
+"Perplexity","Research and strategic reasoning","Final operational state without an Obsidian handoff"
