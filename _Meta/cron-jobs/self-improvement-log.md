@@ -397,3 +397,19 @@ Note: No downloads stager `downloads_stager.py` run captured for 2026-10-04 (TCC
 - **(d) Recurring pattern observed:** No stager run detected today; historical dominant signatures include ` (n)` browser re-download collision family and serial-part families (`v3-N`, `-partN`, `PointN`), which are legitimately distinct and excluded from suffix dedup per AGENT_RULES §3/§7.
 - **(e) False-positive suspicion:** N/A — no stager run, no flags raised.
 - **Note:** No downloads stager run captured for 2026-10-05. _Conflicts/ backlog at 50 files (tracked). Same count pattern as 2026-09-27 logged entry.
+
+### 2026-10-06 — Nightly log (no stager run; daily note missing; backlog unchanged)
+- **(a) Conflicts flagged today:** 0 — no downloads_stager.py run detected (daily note `05-Daily/2026-10-06.md` does not exist; no [STAGED]/[CONFLICT]/dedup lines to read).
+- **(b) Identical dupes skipped:** 0 recorded (no stager run → no dedup log).
+- **(c) _Conflicts backlog size now:** 50 files. Previous count (2026-09-29): 49. **Net change: +1** — single new arrival, no triage performed today.
+- **(d) Recurring pattern observed:** Yes — the browser re-download ` (n)` version-suffix collision family persists as the dominant signature (historical baseline 08-26 → 09-29). Serial-part families (`v3-N`, `-partN`, `PointN`, RU/EN pairs) remain legitimately distinct and excluded from suffix dedup. No new instances observed today beyond the unchanged historical patterns.
+- **(e) False-positive suspicion:** N/A — no stager run detected, so no flags were raised. Carried forward from prior logs: suffix-based dedup heuristics remain unsafe on ` (n)` content, as demonstrated by 09-23 through 09-29 evidence that ` (n)` suffixes can mark genuinely distinct captures (same-timestamp images with different hashes, sizes).
+- **Note:** No downloads stager run captured for 2026-10-06. _Conflicts/ backlog now 50 tracked + 0 untracked files. Same count as 2026-09-27 logged entry (49) plus one new file with no triage action.
+
+### 2026-10-07 — Nightly log (no stager run; backlog unchanged; no significant activity)
+- **(a) Conflicts flagged today:** 0 (no stager run detected; daily note `05-Daily/2026-10-07.md` does not exist, so no [STAGED]/[CONFLICT]/dedup lines were captured.)
+- **(b) Identical dupes skipped:** 0 recorded (no stager run → no dedup log).
+- **(c) _Conflicts backlog size now:** 51 files. Previous count (2026-10-06): 50. Net change: +1 — one new arrival, no triage performed today.
+- **(d) Recurring pattern observed:** Yes — the browser re-download ` (n)` version-suffix collision family persists as the dominant signature (historical baseline 08-26 → 10-06). Serial-part families (`v3-N`, `-partN`, `PointN`, RU/EN pairs) remain legitimately distinct and excluded from suffix dedup. No new instances observed today beyond the unchanged historical patterns.
+- **(e) False-positive suspicion:** N/A — no stager run detected, so no flags were raised. Carried forward from prior logs: suffix-based dedup heuristics remain unsafe on ` (n)` content, as demonstrated by evidence that ` (n)` suffixes can mark genuinely distinct captures (same-timestamp images with different hashes, sizes).
+- **Note:** No downloads stager run captured for 2026-10-07. _Conflicts/ backlog now 51 tracked + 0 untracked files. Same count pattern as 2026-10-06 logged entry (50) plus one new file with no triage action.
