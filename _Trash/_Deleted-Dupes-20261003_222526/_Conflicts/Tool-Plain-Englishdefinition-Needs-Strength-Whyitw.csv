@@ -1,4 +1,0 @@
-"Tool","Plain-English definition","Needs","Strength","Why it was considered"
-"Celery","A mature Python distributed-task system","Usually Redis or RabbitMQ + worker process","Powerful scheduling, retries, multiple workers, high volume","Good if LexFlow eventually runs many email, document, AI, and notification jobs"
-"RQ","Redis Queue — a simpler Python task queue","Redis + worker process","Easier to understand and operate than Celery","Good if you need reliable delayed jobs without Celery's complexity"
-"Railway worker + Postgres jobs table","Your own small worker that reads scheduled jobs from your existing database","Railway worker service + Postgres","Fewest new moving parts; strongest fit with tenant/RLS rules","Best first option for LexFlow now"

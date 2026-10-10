@@ -1,4 +1,0 @@
-"Files","Safe to delete?"
-"agent.log.1/.2/.3, desktop.log.1/.2/.3, errors.log.1/.2","Yes. These are old rotated copies (about 70 MB in total), and the older ones aren't useful for today's problem."
-"agent.log, errors.log, desktop.log (today, 16:14)","Keep until the gateway is fixed. They hold the error from your failed start."
-"bootstrap…, gateway…, gui.log, mcp-stderr.log, tui_gate…crash.log","Keep for now. The crash.log and mcp-stderr.log could be relevant."

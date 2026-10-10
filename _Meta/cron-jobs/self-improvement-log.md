@@ -413,3 +413,19 @@ Note: No downloads stager `downloads_stager.py` run captured for 2026-10-04 (TCC
 - **(d) Recurring pattern observed:** Yes — the browser re-download ` (n)` version-suffix collision family persists as the dominant signature (historical baseline 08-26 → 10-06). Serial-part families (`v3-N`, `-partN`, `PointN`, RU/EN pairs) remain legitimately distinct and excluded from suffix dedup. No new instances observed today beyond the unchanged historical patterns.
 - **(e) False-positive suspicion:** N/A — no stager run detected, so no flags were raised. Carried forward from prior logs: suffix-based dedup heuristics remain unsafe on ` (n)` content, as demonstrated by evidence that ` (n)` suffixes can mark genuinely distinct captures (same-timestamp images with different hashes, sizes).
 - **Note:** No downloads stager run captured for 2026-10-07. _Conflicts/ backlog now 51 tracked + 0 untracked files. Same count pattern as 2026-10-06 logged entry (50) plus one new file with no triage action.
+
+### 2026-10-09 — Nightly log (no stager run; daily note missing; backlog unchanged)
+- **(a) Conflicts flagged today:** 0 — no downloads_stager.py run detected (daily note `05-Daily/2026-10-09.md` does not exist; no [STAGED]/[CONFLICT]/dedup lines to read).
+- **(b) Identical dupes skipped:** 0 recorded (no stager run → no dedup log).
+- **(c) _Conflicts backlog size now:** 50 files. Previous count (2026-10-07): 51. **Net change: -1** — one file cleared from backlog (archive-never-delete; base copies remain live in _Inbox/).
+- **(d) Recurring pattern observed:** No stager run detected today; historical dominant signatures include ` (n)` browser re-download collision family and serial-part families (`v3-N`, `-partN`, `PointN`), which are legitimately distinct and excluded from suffix dedup per AGENT_RULES §3/§7.
+- **(e) False-positive suspicion:** N/A — no stager run, no flags raised.
+- **Note:** No downloads stager run captured for 2026-10-09. _Conflicts/ backlog at 50 files (tracked). Same count pattern as 2026-10-07 logged entry (51) minus one file with no triage action.
+
+
+### 2026-10-10 — Nightly log (stager ran; 1 staged; 0 conflicts; backlog 0)
+- **(a) Conflicts flagged today:** 0 — no [CONFLICT] markers in daily note `05-Daily/2026-10-10.md`; `_Conflicts/` empty; `[STAGED] Hermes_LexFlow_Gantt_Master_Prompt (1).md` staged to `_Inbox/` with no corresponding conflict.
+- **(b) Identical dupes skipped:** 0 — no dedup lines in daily note; no verified-identical duplicates logged.
+- **(c) _Conflicts backlog size now:** 0 files (verified: `search_files` target='files' in `_InBox/_Conflicts/` returned 0 count, compared to yesterday's 50).
+- **(d) Recurring pattern observed:** `(1)`-suffixed filename `Hermes_LexFlow_Gantt_Master_Prompt (1).md` appeared in [STAGED] entry but caused no conflict; benign re-download with no divergence, pattern noted for awareness but not flagged.
+- **(e) False-positive suspicion:** N/A — no conflict was flagged, so no false-positive suspicion; the `(1)` suffix appeared on a staged file with no corresponding quarantine.

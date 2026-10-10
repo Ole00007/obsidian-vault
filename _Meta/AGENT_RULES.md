@@ -214,8 +214,38 @@ None. If a tool hard-codes another path, fix the tool; do not create the repo so
 - The daily run is a cron job owned by the `operator-installer` profile:
   `lexflow-daily-status-crm`, 09:00 daily, delivering to Ole on Telegram.
 
-## Links
-- Parent: [[Obsidian-INDEX]]
+## 11. Repo Path & Deploy Source Rule (hard, v1.0 — 2026-10-10, Ole)
+
+### 11.1 One working copy, one path
+- Every agent **reads, writes, and saves code only under `/Users/olesiarasing/projects/<repo>`** (§8).
+  No work in the home root, no work in `~/Desktop`.
+- **Exactly one working copy per repo.** A second clone of the same remote is a duplicate registry
+  (§9) — delete or archive it, never work in both.
+
+### 11.2 Deployed source is declared, not guessed
+- The **deployed source for LexFlow** is branch `lexflow_hermes_v1` of
+  `github.com/Ole00007/lexflow-crm`. The canonical working copy is
+  `/Users/olesiarasing/projects/lexflow-crm`.
+- `main` is **not** the deploy branch. Before any commit, an agent states the repo path, the branch,
+  and the HEAD SHA it is working from. Working on the wrong branch is a stop condition.
+
+### 11.3 Forbidden paths
+- `~/Desktop` is TCC-protected and intermittently unreadable — it is **never** a storage location
+  for code, and no repo is created, cloned, or edited there.
+- Any tool that hard-codes another path is fixed at the tool, not accommodated with a stray repo.
+
+### 11.4 Derived copies
+- A mirror or export of repo content (vault `_from-repos/`, `Downloads`, `_Inbox/_Conflicts`) is
+  **derived**: label it `derived` at the top, never write back to it, and treat the live repo file
+  as the authority.
+
+### 11.5 Push gate for code (strengthened 2026-10-10, Ole)
+- **Never push new or untested work to GitHub.** Before any push of code the agent must have:
+  **4 cross-tests + 1 smoke local test**, performed by Ole (or by an agent with his explicit
+  approval), **and Ole's explicit authorization for that specific GitHub push**.
+- Passing tests do **not** substitute for his authorization. Authorization for one push is never
+  authorization for the next. When in doubt: commit locally, stop, ask.
 
 ## Links
-- Parent: [[_Meta-INDEX]]
+- Parent: [[Obsidian-INDEX]]
+- Related: [[AGENT_RULES]]
