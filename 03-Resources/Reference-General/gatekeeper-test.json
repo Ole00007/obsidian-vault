@@ -1,0 +1,29 @@
+{
+  "ok": true,
+  "task": "OPS-001",
+  "phase": "score",
+  "risk": "medium",
+  "score": "5/5",
+  "gates": {
+    "scope": true,
+    "technical": true,
+    "operational": true,
+    "safety": true,
+    "delivery": true
+  },
+  "crossTest": {
+    "reviewer": "independent-reviewer",
+    "passed": true,
+    "blockingFindings": 0
+  },
+  "humanApproval": {
+    "approved": false,
+    "approvedBy": null,
+    "approvedAt": null
+  },
+  "outcome": {
+    "action": "AWAIT_HUMAN_APPROVAL",
+    "mergeReady": true,
+    "deployReady": false
+  }
+}
