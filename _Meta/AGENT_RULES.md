@@ -1,6 +1,6 @@
 # Obsidian Vault — Agent Rules of Engagement
 
-> **Version:** 2.3  
+> **Version:** 2.4  
 > **Scope:** All Hermes agents operating on Ole's workspace  
 > **Location of this document:** `~/Obsidian/AGENT_RULES.md` (symlink → `~/Obsidian/_Meta/AGENT_RULES.md`)  
 > **Sanction:** Any agent that bypasses these rules is operating outside its authority.
@@ -245,6 +245,38 @@ None. If a tool hard-codes another path, fix the tool; do not create the repo so
   approval), **and Ole's explicit authorization for that specific GitHub push**.
 - Passing tests do **not** substitute for his authorization. Authorization for one push is never
   authorization for the next. When in doubt: commit locally, stop, ask.
+
+## 12. No Hardcoded Models in Automation (hard, v1.0 — 2026-10-12, Ole)
+
+### 12.1 The rule
+- **Never hardcode a model or provider into any automation artifact** — cron jobs, kanban/swarm
+  tasks, delegated subagents, skills, scripts, prompts, configs, or generated code.
+- A model may be **suggested in prose** ("this step wants a strong reasoning model") but must never
+  be **bound as a literal value** the automation executes on.
+- The **maximum** permitted inside a document is a clearly-marked **placeholder / suggestion**, e.g.
+  `model: <SUGGESTED — resolve at runtime>` next to the marker
+  `# SUGGESTED MODEL ONLY — not binding`.
+- **Flag it:** whenever an agent writes or reviews such a file, it must state that the file names a
+  model *as a suggestion only*, so nobody mistakes it for a pin.
+
+### 12.2 Why (this is a real incident, not a preference)
+- A pinned model silently guarantees the job dies the moment that model is retired, renamed,
+  unfunded, or unreachable. Observed 2026-10: three jobs carried `model_snapshot` /
+  `provider_snapshot` pins — the LexFlow status cron (`cda5f6d4a18a`) **failed 8 consecutive days**
+  (2026-10-05…12) on OpenRouter `HTTP 402 — requires more credits`, and one job was pinned to a
+  model id that **does not exist in the Hermes catalog at all**
+  (`meituan/longcat-2.5-preview:free` — 0 matches across both shipped providers).
+- Model choice belongs to the **operator's live config**, so it can be changed once and every job,
+  skill and agent follows automatically.
+
+### 12.3 What to do instead
+- Jobs, tasks and skills **inherit** the effective model from the profile/global config. Leave the
+  model axis **unpinned**: never set a `model`/`provider` field, and strip any pre-existing
+  `model_snapshot` / `provider_snapshot` you find.
+- Switching models is a **config action** (`hermes config set …` or the `hermes model` picker) —
+  never a per-job, per-skill or per-script literal.
+- On review, treat a literal model id inside any automated artifact as a **defect**: remove it and
+  report it.
 
 ## Links
 - Parent: [[Obsidian-INDEX]]

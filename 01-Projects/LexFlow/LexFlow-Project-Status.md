@@ -1,7 +1,7 @@
 ---
 title: LexFlow — Project Status
 created: 2026-09-19
-updated: 2026-10-10
+updated: 2026-10-12
 tags: [lexflow, status, orchestration]
 status: active
 ---
@@ -13,7 +13,42 @@ daily status cron (`lexflow-daily-status-crm`, 09:00). The **authority for task 
 is `docs/LexFlow_Agentic_Roadmap.json`** in the CRM repo; this note is the human-readable
 mirror and is never written back into that file.
 
-## Snapshot — 2026-10-10
+## Snapshot — 2026-10-12
+
+- **🔴 P0 REOPENED — production went back down.** `https://web-production-031a6.up.railway.app`
+  returns **404** on `/` (0.49s), `/health` (0.33s), `/login?ws=lexflow` (0.41s) and
+  `/login?ws=romanelli-studio` (0.36s) at 12:41 CEST. **Day 17.** The 2026-10-10 fix was applied
+  and verified **200**, then **removed again by the platform** — the same reversion behaviour
+  observed that night. The 08:36 `lexflow-try-demo-daily-check` got `000` instead of 404, so the
+  edge is **flapping between fast-404 and no-response**, not holding a steady state. Root cause is
+  **outside the repo** — no code change fixes it; it needs Ole's Railway account.
+- **The 2026-10-10 "P0 RESOLVED / LIVE again" claim below is SUPERSEDED** — it was true for a few
+  hours that night, but it did not stick. Treat the section below as history, not current state.
+- **Repo/tracker:** `~/projects/lexflow-crm` @ `lexflow_hermes_v1`, HEAD **`2189902`**
+  (`docs(roadmap): daily status 2026-10-12`), working tree clean, **17 commits ahead of `origin`** —
+  all docs/tracker, **unpushed** (a push here triggers a Railway deploy → Ole's gate).
+  Tracker `last_updated: 2026-10-12`, 21 nodes.
+- **⚠️ The status run itself was broken for 8 days.** Cron `cda5f6d4a18a` (`lexflow-daily-status-crm`)
+  failed **2026-10-05 → 2026-10-12**: six runs with OpenRouter `HTTP 402 — requires more credits`
+  (requesting up to 131072 tokens) and two with "Hermes can't reach the model provider". Today is the
+  first run since 2026-10-10 that reached the provider. Cause is a **per-job model pin**
+  (`model_snapshot=deepseek/deepseek-v4.1-flash`, `provider_snapshot=openrouter`) that overrides the
+  profile default — see the model note below.
+- **Nothing moved:** no CRM commit, no deploy, no push, no Kanban activity (`~/.hermes/kanban.db`
+  mtime still 2026-10-10 22:23). All 21 nodes unchanged; **0 new cards** (every unfinished task still
+  holds exactly one open card — no duplicate registry, §9/§10.3).
+- **One clone, one tracker — VERIFIED holding.** Exactly one LexFlow clone and one
+  `LexFlow_Agentic_Roadmap.json` on disk. The 2026-10-10 dedupe did not regress: no `~/lexflow-crm`,
+  no second tracker. (A `find` may print the path under the casing `Projects` — `~/projects` and
+  `~/Projects` are the same APFS directory, not two copies.)
+- **PATH DRIFT resolved on disk, still open in the job text.** The §8 migration **has now run** for
+  LexFlow: the canonical repo is `~/projects/lexflow-crm` and the legacy
+  `~/Desktop/.../LEXFLOW Production/lexflow-crm` clone is **gone from disk** (so the 2026-10-10
+  recovery source no longer exists — its objects are preserved here as remote `legacy-recovered`).
+  The cron job's **prompt still points at the dead `~/Desktop/projects/services/LEGAL/...` path** —
+  needs Ole's go to rewrite.
+
+## Snapshot — 2026-10-10 (superseded; retained as history)
 
 - **🟢 P0 RESOLVED — production is LIVE again after 15 days.** `https://web-production-031a6.up.railway.app`
   returns **200** on `/`, `/health` and `/login?ws={lexflow,romanelli-studio,orasing,pagliano}`; `/health`
@@ -123,10 +158,27 @@ see `_Inbox/LexFlow-Gantt-GateA-Preflight-2026-10-10.md`.
 - **Owner-profile drift (§10.3):** the `lexflow-*` / `obsidian-*` cron jobs live in
   `smoothy_op_dir`'s cron store while §10.3 names `operator-installer` as owner.
 
+## Model / cron health note (2026-10-12) — why the daily run kept falling over
+
+- The TUI/chat header shows the **session's effective model**, not the file you edit. The daily job
+  carries a **per-job pin**: `model_snapshot: deepseek/deepseek-v4.1-flash`,
+  `provider_snapshot: openrouter`. That snapshot **overrides** the profile `config.yaml` default —
+  so changing `config.yaml` alone does not change what this job (or an already-started session) runs on.
+- **The chosen replacement is not a real model.** `meituan/longcat-2.5-preview:free` appears **0 times**
+  in the Hermes model catalog (`https://hermes-agent.nousresearch.com/docs/api/model-catalog.json`,
+  updated 2026-09-21), which ships exactly two providers — `openrouter` (64 models) and `nous` (47).
+  No `meituan/*` and no `longcat` in either. It also mixes provider `nous` with an
+  OpenRouter-style id (`meituan/…:free`) — a mismatch. `deepseek/deepseek-v4.1-flash` **is** in the
+  catalog and is valid.
+- **Action for Ole:** re-pin the job to a catalog model on a funded provider
+  (`hermes config set` / the `hermes model` picker — never hand-edit `config.yaml`), and check the
+  OpenRouter balance: the 402s are *credits*, not reachability. Nothing here is fixed from the repo side.
+
 ## Links
 
 - Parent: [[LexFlow-INDEX]]
 - Related: [[LexFlow-2026-09-16-Stack-Decision-and-Task-Board]]
 - Related: [[LexFlow-T021-Diagram-View-Spec-2026-10-06]]
 - Related: [[LexFlow-Audit-Checklist]]
+- Related: [[2026-10-12]]
 - Related: [[2026-10-10]]
