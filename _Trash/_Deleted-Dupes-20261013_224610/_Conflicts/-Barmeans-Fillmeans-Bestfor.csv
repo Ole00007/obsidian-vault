@@ -1,0 +1,6 @@
+"","Bar means","Fill means","Best for"
+"A","Case open to expected close","Case checklist %","Partner overview"
+"B","Task start to due date","Status: To do 0, Doing 50, Done 100","Daily staff planning, matches the Kanban"
+"C (recommended)","Task start to hard legal deadline","Status progress, with a red outline if overdue or behind expected progress","Legal risk, court dates"
+"D","One case phase, linked by arrows","Phase progress","Client-facing timeline"
+"E","Task colored by assignee","Status","Capacity planning (needs extra CSS, no native swimlanes)"
