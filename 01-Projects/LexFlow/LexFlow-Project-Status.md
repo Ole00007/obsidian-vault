@@ -1,7 +1,7 @@
 ---
 title: LexFlow — Project Status
 created: 2026-09-19
-updated: 2026-10-12
+updated: 2026-10-14
 tags: [lexflow, status, orchestration]
 status: active
 ---
@@ -13,7 +13,37 @@ daily status cron (`lexflow-daily-status-crm`, 09:00). The **authority for task 
 is `docs/LexFlow_Agentic_Roadmap.json`** in the CRM repo; this note is the human-readable
 mirror and is never written back into that file.
 
-## Snapshot — 2026-10-12
+## Snapshot — 2026-10-14
+
+- **🔴 P0 STILL DOWN — production day 19.** `https://web-production-031a6.up.railway.app`
+  returns **404** on `/` (0.27s), `/health` (0.25s), `/login?ws=lexflow` (1.67s) and
+  `/api/health` (0.24s) at 09:00 CEST. Same Railway-edge fallback signature. Root cause is
+  **outside the repo** — needs Ole's Railway account.
+- **Repo/tracker:** `~/projects/lexflow-crm` @ `lexflow_hermes_v1`, HEAD **`82d1f09`**
+  (`docs(roadmap): daily status 2026-10-14`), working tree has untracked `.DS_Store` +
+  `Frappe-Gantt/`. **19 commits ahead of `origin`** — all docs/tracker/tooling, **unpushed**
+  (a push here triggers a Railway deploy → Ole's gate). Tracker `last_updated: 2026-10-14`,
+  21 nodes.
+- **Nothing moved:** no CRM commit, no deploy, no push, no Kanban activity (`~/.hermes/kanban.db`
+  mtime still 2026-10-10 22:23:25). All 21 nodes unchanged; **0 new cards** (every unfinished task
+  still holds exactly one open card — no duplicate registry, §9/§10.3).
+- **Validator first run:** `docs/tools/validate_roadmap.py` (added 2026-10-12) ran for the first
+  time. Exits **1** with 8 violations — all pre-existing, none corrected (no evidence):
+  - **[A] report_rule gaps (4):** T-001, T-007 done/deployed without prod_url+commit_hash;
+    T-008 done/local without local_preview_url; T-016 deployed without prod_url+commit_hash.
+  - **[B] card↔roadmap drift (3):** T-005 card=done vs roadmap=backlog; T-009 card=done vs
+    roadmap=backlog; T-020 card=blocked vs roadmap=backlog.
+  - **[C] multiple trackers (1):** 3 tracker files on disk — canonical + 2 stale copies under
+    `~/Desktop/.../LEXFLOW Production/`. The 2026-10-12 "one tracker" claim missed them (that
+    run's find did not search ~/Desktop). Deletion gated on Ole.
+- **⚠️ P0 Kanban card (t_8cbc766e) is marked done but production is still 404.** The card was
+  closed 2026-10-10 22:23 when a fix was briefly verified 200, but the platform reverted it.
+  Card status does not reflect reality — flagged for Ole.
+- **Status run health:** last successful run was 2026-10-12; no run on 2026-10-13 (provider
+  failure). The job carries `model_snapshot=deepseek/deepseek-v4.1-flash` /
+  `provider_snapshot=openrouter`, which overrides the profile `config.yaml` default.
+
+## Snapshot — 2026-10-12 (superseded; retained as history)
 
 - **🔴 P0 REOPENED — production went back down.** `https://web-production-031a6.up.railway.app`
   returns **404** on `/` (0.49s), `/health` (0.33s), `/login?ws=lexflow` (0.41s) and
@@ -180,5 +210,6 @@ see `_Inbox/LexFlow-Gantt-GateA-Preflight-2026-10-10.md`.
 - Related: [[LexFlow-2026-09-16-Stack-Decision-and-Task-Board]]
 - Related: [[LexFlow-T021-Diagram-View-Spec-2026-10-06]]
 - Related: [[LexFlow-Audit-Checklist]]
+- Related: [[2026-10-14]]
 - Related: [[2026-10-12]]
 - Related: [[2026-10-10]]

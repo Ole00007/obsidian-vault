@@ -444,3 +444,11 @@ Note: No downloads stager `downloads_stager.py` run captured for 2026-10-04 (TCC
 - **(d) Recurring pattern observed:** No stager run detected today; historical dominant signatures include ` (n)` browser re-download collision family and serial-part families (`v3-N`, `-partN`, `PointN`), which are legitimately distinct and excluded from suffix dedup per AGENT_RULES §3/§7.
 - **(e) False-positive suspicion:** N/A — no stager run, no flags raised. Carried forward from prior weeks: the ` (n)` suffix on genuinely distinct same-timestamp content continues to demonstrate that suffix-based heuristics are unsafe in both directions.
 - **Note:** No downloads stager run captured for 2026-10-13. _Conflicts/ backlog at 51 files (verified). Same count pattern as 2026-10-11 logged entry (49) plus two new files with no triage action.
+
+### 2026-10-14 — Nightly log (no stager run; backlog unchanged)
+- (a) Conflicts flagged today: 0 (no stager run detected; daily note `05-Daily/2026-10-14.md` carries no [STAGED]/[CONFLICT] markers; work was mobile audit, hospital-site build, and operator-installer daily-status run).
+- (b) Identical dupes skipped: 0 recorded (no stager run → no dedup log).
+- (c) _Conflicts backlog size now: 51 files (same as 2026-10-13; net change: 0 — backlog unchanged from previous night).
+- (d) Recurring pattern observed: Yes — ` (n)` browser re-download collision family persists as dominant signature; serial-part families (`v3-N`, `-partN`, `PointN`, RU/EN language pairs) remain legitimately distinct and excluded from suffix dedup.
+- (e) False-positive suspicion: N/A — no stager run, no flags raised. Historical dominant signatures per prior logs include ` (n)` browser re-download collision family and serial-part families, which are legitimately distinct.
+- Note: No downloads stager run captured for 2026-10-14. _Conflicts/ backlog remains at 51 tracked files. Same count as 2026-10-13 logged entry.
