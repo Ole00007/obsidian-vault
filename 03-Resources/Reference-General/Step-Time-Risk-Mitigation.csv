@@ -1,0 +1,3 @@
+"Step","Time","Risk","Mitigation"
+"Read the logs","1 min","None, read-only",""
+"Stop, install, status","1 min","Brief downtime of all bots","Backup is in ~/hermes-lean-backup"

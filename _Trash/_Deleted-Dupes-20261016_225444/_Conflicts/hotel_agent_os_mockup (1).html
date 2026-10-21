@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hotel Agent OS — Liguria (MOCKUP)</title>
+<style>
+:root{--bg:#f6f7f9;--ink:#14213d;--acc:#0b6e69;--mut:#5b6573}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--ink);color:#fff;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+header b{font-size:18px}.lang button{background:transparent;border:1px solid #fff6;color:#fff;padding:5px 10px;border-radius:6px;cursor:pointer;margin-left:4px}
+.lang button.on{background:#fff;color:var(--ink)}
+.hero{max-width:980px;margin:36px auto 12px;padding:0 20px}.hero h1{font-size:34px;margin:0 0 10px}.hero p{color:var(--mut);font-size:18px;max-width:720px}
+.grid{max-width:980px;margin:0 auto;padding:0 20px 40px;display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 1px 4px #0001}
+label{display:block;font-size:13px;font-weight:600;margin:12px 0 4px}
+input,select,textarea{width:100%;padding:10px;border:1px solid #cfd5dd;border-radius:8px;font:inherit}
+.chk{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;margin-top:6px}.chk label{font-weight:400;margin:0;display:flex;gap:6px;align-items:center}.chk input{width:auto}
+button.send{margin-top:18px;background:var(--acc);color:#fff;border:0;padding:13px 20px;border-radius:8px;font-size:16px;cursor:pointer;width:100%}
+.contact a{color:var(--acc);font-weight:600;text-decoration:none}.contact p{margin:8px 0}
+ul{padding-left:18px;color:var(--mut)}.tag{display:inline-block;background:#e6f2f1;color:var(--acc);padding:3px 8px;border-radius:12px;font-size:12px;margin:2px}
+.note{font-size:12px;color:var(--mut);margin-top:10px}
+</style></head><body>
+<header><b>Hotel Agent OS · Liguria</b><div class="lang"><button data-l="en" class="on">EN</button><button data-l="it">IT</button><button data-l="ru">RU</button></div></header>
+<section class="hero"><h1 data-i="h1"></h1><p data-i="sub"></p>
+<span class="tag">AI agents</span><span class="tag">IoT</span><span class="tag">Smart vending</span><span class="tag">Lockers</span><span class="tag">Identity layer</span></section>
+<div class="grid">
+<form class="card" id="f">
+<h2 data-i="ft"></h2>
+<label data-i="n"></label><input name="name" required>
+<label data-i="h"></label><input name="hotel" required>
+<label data-i="t"></label><select name="type"><option>Hotel</option><option>B&amp;B</option><option>Boutique hotel</option><option>Residence / Agriturismo</option></select>
+<label data-i="r"></label><input name="rooms" type="number" min="1">
+<label data-i="p"></label><input name="pms" placeholder="Slope, WuBook, Octorate, Mews, Cloudbeds, Passepartout...">
+<label data-i="i"></label>
+<div class="chk">
+<label><input type="checkbox" name="int" value="AI agent">AI agent</label>
+<label><input type="checkbox" name="int" value="GuestNode">GuestNode</label>
+<label><input type="checkbox" name="int" value="Smart Travel Wall">Smart Travel Wall</label>
+<label><input type="checkbox" name="int" value="Rental lockers">Rental lockers</label>
+<label><input type="checkbox" name="int" value="Energy IoT">Energy IoT</label>
+<label><input type="checkbox" name="int" value="Smart access">Smart access</label>
+<label><input type="checkbox" name="int" value="Vape/tobacco vending (licensed partner)">Vape vending (licensed)</label>
+<label><input type="checkbox" name="int" value="Robots">Robots</label></div>
+<label data-i="ph"></label><input name="phone" type="tel">
+<label data-i="em"></label><input name="email" type="email" required>
+<label data-i="m"></label><textarea name="msg" rows="3"></textarea>
+<label class="chkl" style="display:flex;gap:8px;font-weight:400"><input type="checkbox" required style="width:auto"><span data-i="c"></span></label>
+<button class="send" type="submit" data-i="s"></button>
+<p class="note" data-i="mk"></p>
+</form>
+<aside class="card contact"><h2 data-i="ct"></h2>
+<p>📞 <a href="tel:+393450234084">+39 345 023 4084</a></p>
+<p>✉️ <a href="mailto:alegra_007@proton.me">alegra_007@proton.me</a></p>
+<p>📍 Genova · Liguria · Italia</p><hr style="border:0;border-top:1px solid #e5e8ec;margin:18px 0">
+<ul><li data-i="b1"></li><li data-i="b2"></li><li data-i="b3"></li></ul></aside></div>
+<script>
+const T={
+en:{h1:"AI agents + smart hardware for independent hotels",sub:"One layer on top of your existing PMS: guest communication, check-in compliance, housekeeping, energy, vending and lockers.",ft:"Request a pilot",n:"Your name",h:"Property name",t:"Property type",r:"Number of rooms",p:"Current PMS / channel manager",i:"Interested in",ph:"Phone",em:"Email",m:"Message",c:"I agree to the processing of my data to be contacted about this request (GDPR).",s:"Send request",mk:"MOCKUP: the button opens your email client. Replace with a real endpoint before launch.",ct:"Contact",b1:"Pilot in 3–5 rooms",b2:"Works with your current PMS",b3:"Human approval for sensitive actions"},
+it:{h1:"Agenti AI + hardware smart per hotel indipendenti",sub:"Un unico livello sopra il vostro PMS: comunicazione con gli ospiti, check-in e adempimenti, housekeeping, energia, vending e locker.",ft:"Richiedi un pilota",n:"Il tuo nome",h:"Nome della struttura",t:"Tipo di struttura",r:"Numero di camere",p:"PMS / channel manager attuale",i:"Interessato a",ph:"Telefono",em:"Email",m:"Messaggio",c:"Acconsento al trattamento dei dati per essere ricontattato in merito a questa richiesta (GDPR).",s:"Invia richiesta",mk:"MOCKUP: il pulsante apre il client email. Sostituire con un endpoint reale prima del lancio.",ct:"Contatti",b1:"Pilota in 3–5 camere",b2:"Compatibile con il PMS esistente",b3:"Approvazione umana per le azioni sensibili"},
+ru:{h1:"AI-агенты + умное оборудование для независимых отелей",sub:"Единый слой поверх вашей PMS: общение с гостями, check-in и отчётность, housekeeping, энергия, vending и lockers.",ft:"Заявка на пилот",n:"Ваше имя",h:"Название объекта",t:"Тип объекта",r:"Количество номеров",p:"Текущая PMS / channel manager",i:"Интересует",ph:"Телефон",em:"Email",m:"Сообщение",c:"Согласен на обработку данных для связи по этой заявке (GDPR).",s:"Отправить заявку",mk:"MOCKUP: кнопка открывает почтовый клиент. Перед запуском заменить на реальный endpoint.",ct:"Контакты",b1:"Пилот в 3–5 номерах",b2:"Работает с вашей PMS",b3:"Человек подтверждает чувствительные действия"}};
+function setL(l){document.documentElement.lang=l;document.querySelectorAll('[data-i]').forEach(e=>e.textContent=T[l][e.dataset.i]);document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l))}
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setL(b.dataset.l));setL('en');
+document.getElementById('f').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);
+const body=['Name: '+f.get('name'),'Property: '+f.get('hotel'),'Type: '+f.get('type'),'Rooms: '+f.get('rooms'),'PMS: '+f.get('pms'),'Interest: '+f.getAll('int').join(', '),'Phone: '+f.get('phone'),'Email: '+f.get('email'),'Message: '+f.get('msg')].join('\n');
+location.href='mailto:alegra_007@proton.me?subject='+encodeURIComponent('Pilot request — '+f.get('hotel'))+'&body='+encodeURIComponent(body)};
+</script></body></html>

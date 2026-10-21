@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hotel Agent OS — Forms mockup</title><style>
+:root{--ink:#14213d;--gold:#b08d57;--bg:#f7f5f1;--line:#ddd6c8}
+*{box-sizing:border-box}body{margin:0;font-family:Georgia,serif;background:var(--bg);color:var(--ink)}
+header{background:var(--ink);color:#fff;padding:18px 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+header b{letter-spacing:.12em;text-transform:uppercase;font-size:14px}.lang button{background:none;border:1px solid #ffffff55;color:#fff;padding:6px 12px;margin-left:6px;cursor:pointer;font:inherit}
+.lang button.on{background:var(--gold);border-color:var(--gold)}
+main{max-width:980px;margin:0 auto;padding:36px 20px}h1{font-weight:400;font-size:34px;margin:0 0 6px}.sub{color:#5b6475;margin:0 0 28px}
+.card{background:#fff;border:1px solid var(--line);padding:26px;margin-bottom:26px}.card h2{font-weight:400;font-size:22px;margin:0 0 4px;border-bottom:2px solid var(--gold);display:inline-block;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}.full{grid-column:1/-1}
+label{display:block;font:600 13px Arial,sans-serif;margin-bottom:5px}input,select,textarea{width:100%;padding:10px;border:1px solid var(--line);font:15px Arial,sans-serif;background:#fff}
+.chk{display:flex;gap:8px;align-items:flex-start;font:14px Arial,sans-serif;margin:5px 0}.chk input{width:auto;margin-top:3px}
+button.go{background:var(--ink);color:#fff;border:0;padding:12px 26px;font:600 14px Arial,sans-serif;letter-spacing:.06em;cursor:pointer;margin-top:10px}button.go:hover{background:var(--gold)}
+.contact{background:var(--ink);color:#fff;padding:20px 26px;display:flex;gap:30px;flex-wrap:wrap;align-items:center}.contact a{color:#e6cfa3;text-decoration:none}
+.note{font:12px Arial,sans-serif;color:#7a8190;margin-top:10px}@media(max-width:640px){.grid{grid-template-columns:1fr}}
+</style></head><body>
+<header><b data-k="brand"></b><div class="lang"><button data-l="en">EN</button><button data-l="it">IT</button><button data-l="ru">RU</button></div></header>
+<main><h1 data-k="h"></h1><p class="sub" data-k="sub"></p>
+<form class="card" onsubmit="return mock(event)"><h2 data-k="f1"></h2><div class="grid">
+<div><label data-k="name"></label><input required></div><div><label data-k="prop"></label><input required></div>
+<div><label data-k="ptype"></label><select id="types"></select></div><div><label data-k="rooms"></label><input type="number" min="1"></div>
+<div><label data-k="city"></label><input></div><div><label data-k="pms"></label><input></div>
+<div><label data-k="email"></label><input type="email" required value="alegra_007@proton.me"></div><div><label data-k="phone"></label><input type="tel" value="345 023 4084"></div>
+<div class="full"><label data-k="mods"></label><div id="mods"></div></div>
+<div class="full"><label data-k="lang"></label><input value="IT, EN, DE, FR, ES, RU, ZH"></div>
+<div class="full"><label data-k="msg"></label><textarea rows="3"></textarea></div>
+<div class="full chk"><input type="checkbox" required><span data-k="consent"></span></div></div>
+<button class="go" data-k="send"></button><div class="note" data-k="ok"></div></form>
+<form class="card" onsubmit="return mock(event)"><h2 data-k="f2"></h2><p class="sub" data-k="f2s"></p><div class="grid">
+<div><label data-k="phone"></label><input type="tel" required value="345 023 4084"></div><div><label data-k="best"></label><select id="times"></select></div></div>
+<button class="go" data-k="cb"></button></form>
+<form class="card" onsubmit="return mock(event)"><h2 data-k="f3"></h2><div class="grid">
+<div><label data-k="co"></label><input required></div><div><label data-k="web"></label><input type="url"></div>
+<div><label data-k="cat"></label><select id="cats"></select></div><div><label data-k="email"></label><input type="email" value="alegra_007@proton.me"></div>
+<div class="full"><label data-k="det"></label><textarea rows="3"></textarea></div></div><button class="go" data-k="send"></button></form>
+<div class="contact"><b data-k="contact"></b><a href="tel:+393450234084">345 023 4084</a><a href="mailto:alegra_007@proton.me">alegra_007@proton.me</a></div>
+</main><script>
+const T={"en": {"brand": "Hotel Agent OS · Liguria", "h": "Request a pilot", "sub": "Tell us about your property. We reply within one business day.", "f1": "Pilot request for hotels & B&B", "name": "Contact name", "prop": "Property name", "ptype": "Property type", "types": ["Hotel", "B&B", "Residence", "Agriturismo", "Other"], "rooms": "Number of rooms", "city": "City / area (Liguria)", "pms": "Current PMS / CRM", "email": "Email", "phone": "Phone / WhatsApp", "mods": "Modules of interest", "m": ["Agentic reception & WhatsApp", "GuestNode (lobby / room)", "Smart Travel Wall (vending)", "Rental & luggage lockers", "Energy IoT kit", "Smart access / check-in kiosk", "Regulated vending (age-verified, licensed partner)", "Delivery / cleaning robot"], "lang": "Guest languages needed", "msg": "Notes", "consent": "I agree to the processing of my data to be contacted about this request (GDPR).", "send": "Send request", "f2": "Quick callback", "f2s": "Leave a number and the best time.", "best": "Best time to call", "times": ["Morning", "Afternoon", "Evening"], "cb": "Call me back", "f3": "Supplier / integration partner", "co": "Company", "web": "Website", "cat": "What do you offer?", "cats": ["PMS / CRM API", "IoT / hardware", "Vending / lockers", "Payments", "Other"], "det": "Short description", "contact": "Direct contact", "ok": "Mockup only — nothing is sent."}, "it": {"brand": "Hotel Agent OS · Liguria", "h": "Richiedi un pilota", "sub": "Racconta la tua struttura. Rispondiamo entro un giorno lavorativo.", "f1": "Richiesta pilota per hotel e B&B", "name": "Nome e cognome", "prop": "Nome della struttura", "ptype": "Tipo di struttura", "types": ["Hotel", "B&B", "Residence", "Agriturismo", "Altro"], "rooms": "Numero di camere", "city": "Città / zona (Liguria)", "pms": "PMS / CRM attuale", "email": "Email", "phone": "Telefono / WhatsApp", "mods": "Moduli di interesse", "m": ["Reception agentica e WhatsApp", "GuestNode (lobby / camera)", "Smart Travel Wall (distributori)", "Armadietti noleggio e bagagli", "Kit IoT energia", "Accessi smart / kiosk check-in", "Distribuzione regolamentata (verifica età, partner autorizzato)", "Robot consegna / pulizia"], "lang": "Lingue degli ospiti", "msg": "Note", "consent": "Acconsento al trattamento dei dati per essere ricontattato su questa richiesta (GDPR).", "send": "Invia richiesta", "f2": "Richiamata rapida", "f2s": "Lascia un numero e l'orario preferito.", "best": "Orario migliore", "times": ["Mattina", "Pomeriggio", "Sera"], "cb": "Richiamatemi", "f3": "Fornitore / partner di integrazione", "co": "Azienda", "web": "Sito web", "cat": "Cosa offri?", "cats": ["API PMS / CRM", "IoT / hardware", "Vending / armadietti", "Pagamenti", "Altro"], "det": "Breve descrizione", "contact": "Contatto diretto", "ok": "Solo mockup — non viene inviato nulla."}, "ru": {"brand": "Hotel Agent OS · Лигурия", "h": "Заявка на пилот", "sub": "Расскажите об объекте. Ответим в течение одного рабочего дня.", "f1": "Заявка на пилот для отелей и B&B", "name": "Имя контактного лица", "prop": "Название объекта", "ptype": "Тип объекта", "types": ["Отель", "B&B", "Резиденция", "Агритуризм", "Другое"], "rooms": "Количество номеров", "city": "Город / район (Лигурия)", "pms": "Текущая PMS / CRM", "email": "Email", "phone": "Телефон / WhatsApp", "mods": "Интересующие модули", "m": ["Агентная reception и WhatsApp", "GuestNode (lobby / номер)", "Smart Travel Wall (vending)", "Lockers: аренда и багаж", "Energy IoT kit", "Smart access / kiosk check-in", "Регулируемый vending (проверка возраста, лицензированный партнёр)", "Робот доставки / уборки"], "lang": "Языки гостей", "msg": "Комментарий", "consent": "Согласен на обработку данных для связи по этой заявке (GDPR).", "send": "Отправить заявку", "f2": "Быстрый звонок", "f2s": "Оставьте номер и удобное время.", "best": "Удобное время", "times": ["Утро", "День", "Вечер"], "cb": "Перезвоните мне", "f3": "Поставщик / партнёр по интеграции", "co": "Компания", "web": "Сайт", "cat": "Что вы предлагаете?", "cats": ["PMS / CRM API", "IoT / hardware", "Vending / lockers", "Платежи", "Другое"], "det": "Краткое описание", "contact": "Прямой контакт", "ok": "Только mockup — ничего не отправляется."}};
+function setLang(l){const t=T[l];document.documentElement.lang=l;
+document.querySelectorAll('[data-k]').forEach(e=>e.textContent=t[e.dataset.k]);
+const fill=(id,a)=>document.getElementById(id).innerHTML=a.map(x=>'<option>'+x+'</option>').join('');
+fill('types',t.types);fill('times',t.times);fill('cats',t.cats);
+document.getElementById('mods').innerHTML=t.m.map(x=>'<label class="chk" style="font-weight:400"><input type="checkbox"><span>'+x+'</span></label>').join('');
+document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));}
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+function mock(e){e.preventDefault();alert(T[document.documentElement.lang].ok);return false}
+setLang('en');
+</script></body></html>

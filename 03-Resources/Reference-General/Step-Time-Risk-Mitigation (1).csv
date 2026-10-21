@@ -1,0 +1,4 @@
+"Step","Time","Risk","Mitigation"
+"Find the active profile","30 s","None, read-only",""
+"Switch to default","10 s","Other terminals still use the old profile","Open a new tab"
+"Start the host gateway","1 min","Port conflict","The foreground run shows the exact error"
