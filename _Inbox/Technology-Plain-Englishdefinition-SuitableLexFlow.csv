@@ -1,0 +1,6 @@
+"Technology","Plain-English definition","Suitable LexFlow role","Compatibility","Main danger"
+"React","Browser user-interface library","CRM screens and components","Calls Flask or Node APIs","Business/database logic leaking into UI"
+"Next.js","React framework that provides application routing, rendering and optional server functions","Main CRM frontend","Works with a Flask API or Node API","Its server routes could accidentally become a third backend"
+"Node.js","Runtime for executing JavaScript/TypeScript outside the browser","Long-term API or bounded worker","Natural fit with Next.js and PostgreSQL","Duplicating the existing Flask API"
+"Flask","Python framework for web APIs","Current MVP backend on Railway","Works normally with React/Next.js","Maintaining it and Node as competing general backends"
+"PostgreSQL","Relational database and system of record","Shared LexFlow data","Accessible from either backend","Two migration owners changing the same schema"
