@@ -1,0 +1,4 @@
+"Priority","Model","Use"
+"Main","Claude Sonnet 5","Balanced full-stack coding, repo comprehension and moderate strategic reasoning"
+"Fallback 1","GPT-5.4","Terminal-heavy setup, difficult debugging, deployment and configuration work"
+"Fallback 2","Gemini 3.7 Flash","Fast routine edits, tests, documentation and inexpensive repeated passes"

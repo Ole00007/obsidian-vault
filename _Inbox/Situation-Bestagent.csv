@@ -1,0 +1,6 @@
+"Situation","Best agent"
+"Configure Hermes to use Obsidian as crew memory","Hermes lead/setup agent"
+"Hermes is broken after an update","VS Code fallback agent"
+"Repair local Node.js, MCP or filesystem configuration","VS Code agent"
+"Make selected Obsidian notes available to Perplexity","Google Drive/Dropbox shared folder first; custom MCP later"
+"Change Obsidian note organization or memory policy","Hermes, with your approval"

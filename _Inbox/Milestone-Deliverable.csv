@@ -1,0 +1,6 @@
+"Milestone","Deliverable"
+"0. One legal job","Pick one narrow workflow, such as intake-to-case summary, contract playbook review or matter chronology"
+"1. Technical spike","Compare a LexFlow-native build, separate OpenContracts service and selective component reuse"
+"2. Legal Hermes vertical","Matter-scoped lead legal agent, specialists, citations, approval gates and auditable outputs"
+"3. Evaluation harness","Synthetic matters, expert rubrics, isolated runs, evaluator feedback and human disagreement tracking"
+"4. CRM pilot","Launch from one case screen behind a feature flag, initially on staging with synthetic documents"
