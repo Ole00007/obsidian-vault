@@ -1,0 +1,8 @@
+"Check","Observed result","Action"
+"Homepage availability","Root homepage returned HTTP 200","Pass for this availability check"
+"URL consolidation","/home, HTTP and www redirected to the HTTPS root","Preserve; update internal links still pointing to /home"
+"Title and canonical","Genova-focused title and root canonical were present","Preserve; review against actual GSC queries"
+"Mobile viewport","width=1024; the mobile test used a 1024px layout viewport despite a 390px device configuration","Priority investigation: review Flazio mobile configuration and rendered usability"
+"Sitemap access","Sitemap index returned 200, but both listed child sitemaps returned 403 to this audit client","Priority verification: test in GSC and another client before concluding Google is blocked"
+"Content rendering","Main copy, headings and navigation were absent from the initial HTML but appeared after JavaScript rendering","Check rendered indexing in GSC; do not misreport these elements as simply “missing”"
+"Booking journey","A visible consultation CTA linked to an external AlfaDocs booking page","Verify successful-booking measurement and cross-domain attribution"

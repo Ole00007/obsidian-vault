@@ -1,0 +1,1 @@
+timestamp_utc,session_id,strategy_version,mode,instrument,venue,data_source,quote_age_s,decision,reason,thesis_counterargument,entry_price,stop_price,target_plan,qty,planned_risk_pct,fees_est,client_order_id,fill_price,fill_qty,exit_reason,net_pnl,r_multiple,rule_breach,notes

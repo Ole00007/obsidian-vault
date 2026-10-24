@@ -1,0 +1,100 @@
+{
+ "pack": "hermes-trader-pack",
+ "version": "3.0",
+ "date": "2026-10-24",
+ "mode": "ANALYSIS_ONLY",
+ "note": "Prose in hermes-trader-pack.md; tables in hermes-trader-pack.csv.",
+ "layout": [
+  "profile/SOUL.md",
+  "profile/memories/MEMORY.md",
+  "skills/trading-risk-governor/SKILL.md",
+  "skills/crypto-analytics-trading/SKILL.md",
+  "skills/shares-analytics-trading/SKILL.md",
+  "docs/profit-targets-nov-dec-2026.md",
+  "docs/platform-selection.md",
+  "docs/blueprints-and-evidence.md",
+  "prompts/day-trading-test.md",
+  "prompts/swing-trading-test.md",
+  "prompts/setup-trader.md",
+  "templates/strategy-manifest.md",
+  "templates/weekly-review.md",
+  "templates/decision-journal.csv",
+  "scripts/risk_calc.py",
+  "scripts/test_risk_calc.py"
+ ],
+ "targets_net_nov_dec_2026": {
+  "intraday": {
+   "floor_pct": 0,
+   "credible_pct": [
+    0,
+    1.0
+   ],
+   "stretch_pct": 2.0
+  },
+  "swing": {
+   "floor_pct": 0,
+   "credible_pct": [
+    0,
+    2.0
+   ],
+   "stretch_pct": 3.0
+  },
+  "rejected": "30-50% per day",
+  "sessions": 42
+ },
+ "risk": {
+  "intraday": {
+   "risk_per_trade_pct": 0.1,
+   "max_notional_pct": 20,
+   "max_entries": 3,
+   "loss_streak_stop": 2,
+   "cooldown_min": 20,
+   "daily_lock_pct": -0.5,
+   "weekly_lock_pct": -1.5,
+   "drawdown_lock_pct": -3.0
+  },
+  "swing": {
+   "risk_per_trade_pct": 0.5,
+   "max_concurrent": 2,
+   "aggregate_open_risk_pct": 1.0,
+   "weekly_lock_pct": -2.0,
+   "drawdown_lock_pct": -4.0
+  },
+  "data_gate": {
+   "quote_max_age_s": 5,
+   "account_state_max_age_s": 5,
+   "clock_offset_max_s": 1
+  },
+  "observation_min": {
+   "sessions": 30,
+   "intraday_trades": 50,
+   "swing_trades": 20
+  }
+ },
+ "authority": {
+  "live_trading": false,
+  "transfers": false,
+  "withdrawals": false,
+  "leverage": false,
+  "derivatives": false,
+  "paper_requires_explicit_owner_authorization": true
+ },
+ "profile_commands": [
+  "hermes profile create trader --no-skills --no-alias",
+  "hermes profile show trader"
+ ],
+ "platform_sequence": [
+  "Alpaca paper (no deposit)",
+  "IBKR (later, shares/ETFs)",
+  "Kraken spot (later, crypto)"
+ ],
+ "skill_names": [
+  "trading-risk-governor",
+  "crypto-analytics-trading",
+  "shares-analytics-trading"
+ ],
+ "scripts": {
+  "risk_calc.py": "from decimal import Decimal, ROUND_DOWN\n\ndef size_long(equity, risk_pct, entry, stop, fee_per_unit, slip_per_unit, cash, max_notional_pct, liquidity_qty, step):\n    d = lambda x: Decimal(str(x))\n    equity, entry, stop = d(equity), d(entry), d(stop)\n    if stop >= entry:\n        return Decimal(0), \"SKIP: stop not below entry\"\n    adverse = (entry - stop) + d(fee_per_unit) + d(slip_per_unit)\n    caps = [equity * d(risk_pct) / Decimal(100) / adverse, d(cash) / entry,\n            equity * d(max_notional_pct) / Decimal(100) / entry, d(liquidity_qty)]\n    step = d(step)\n    q = (min(caps) / step).to_integral_value(rounding=ROUND_DOWN) * step\n    return (q, \"OK\") if q > 0 else (Decimal(0), \"SKIP: below minimum size\")\n\ndef locks(session_start_eq, week_start_eq, hwm_adj, eq_now, loss_streak, entries_today, daily=-0.5, weekly=-1.5, dd=-3.0):\n    pct = lambda a, b: (a - b) / b * 100\n    out = []\n    if pct(eq_now, session_start_eq) <= daily: out.append(\"DAILY_LOCK\")\n    if pct(eq_now, week_start_eq) <= weekly: out.append(\"WEEKLY_LOCK\")\n    if pct(eq_now, hwm_adj) <= dd: out.append(\"DRAWDOWN_LOCK\")\n    if loss_streak >= 2: out.append(\"LOSS_STREAK_LOCK\")\n    if entries_today >= 3: out.append(\"MAX_ENTRIES\")\n    return out\n\ndef quote_ok(age_s, max_age_s=5):\n    return age_s is not None and 0 <= age_s <= max_age_s\n",
+  "test_risk_calc.py": "from decimal import Decimal\nfrom risk_calc import size_long, locks, quote_ok\n\ndef test_size():\n    q, s = size_long(10000, 0.10, 100, 99, 0.01, 0.01, 10000, 20, 1000, 1)\n    assert s == \"OK\" and q == Decimal(9)\n\ndef test_skip_small():\n    q, s = size_long(200, 0.10, 100, 99, 0.05, 0.05, 200, 20, 1000, 1)\n    assert q == 0 and s.startswith(\"SKIP\")\n\ndef test_bad_stop():\n    assert size_long(1000, 0.1, 100, 101, 0, 0, 1000, 20, 10, 1)[0] == 0\n\ndef test_locks():\n    assert \"DAILY_LOCK\" in locks(1000, 1000, 1000, 994, 0, 0)\n    assert locks(1000, 1000, 1000, 1000, 0, 0) == []\n    assert \"LOSS_STREAK_LOCK\" in locks(1000, 1000, 1000, 1000, 2, 0)\n\ndef test_quote():\n    assert quote_ok(3) and not quote_ok(9) and not quote_ok(None)\n"
+ }
+}

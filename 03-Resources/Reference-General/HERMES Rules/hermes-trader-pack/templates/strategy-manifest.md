@@ -1,0 +1,13 @@
+# Strategy Manifest (freeze before the first observation)
+- Test ID / version / date:
+- Mode: INTRADAY | SWING ; Venue/account (paper):
+- Instrument (exact ID, currency, feed):
+- Setup definition (entry, invalidation, time stop, exit; staged vs full):
+- Data fields and freshness limits:
+- Cost/slippage model:
+- Risk per trade %, max exposure %, daily/weekly/drawdown locks:
+- Benchmark(s): cash and passive instrument
+- Minimum sample and pass/fail criteria (net expectancy, max drawdown, CI method):
+- Event exclusions:
+- Owner approval ref and expiry:
+- Changes after freeze (must create new version; never edit silently):

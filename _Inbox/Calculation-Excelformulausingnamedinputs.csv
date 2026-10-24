@@ -1,0 +1,6 @@
+"Calculation","Excel formula using named inputs"
+"Risk budget","'=AccountEquity*RiskPercent"
+"Token quantity","'=IF(Entry>Stop,MIN(RiskBudget/(Entry-Stop),PositionCap/Entry),0)"
+"Planned position value","'=Quantity*Entry"
+"Reward/risk to Sell 2","'=IF(Entry>Stop,(Target2-Entry)/(Entry-Stop),"""")"
+"Net planned profit","'=Quantity*(WeightedExit-Entry)-EstimatedFees"
