@@ -61,3 +61,8 @@ Romanelli-style parent admin (romanelli-studio) + client sub-workspace admin (ro
 ## Links
 - Parent: [[LexFlow-INDEX]]
 - Related: [[LexFlow-T021-Diagram-View-Spec-2026-10-06]]
+
+## Update 2026-10-24 late — project view
+- Roadmap JSON (canonical) gained T-022..T-028; Gantt + graph now show the LexFlow project itself (28 roadmap tasks, 15 dependency arrows). Demo law-firm matters were soft-deleted from the local DB only.
+- Local one-click sign-in: http://127.0.0.1:5057/dev/enter?to=/gantt (and ?to=/graph) — lives in the scratch launcher, not in the repo.
+- Fixes: Gantt crash on overdue tasks; Kanban wiping JWT (T-023).

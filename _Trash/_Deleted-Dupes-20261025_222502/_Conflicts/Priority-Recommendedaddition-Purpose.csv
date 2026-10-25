@@ -1,0 +1,7 @@
+"Priority","Recommended addition","Purpose"
+"1","Independent data-quality gate","Verify asset identity, currency, units, timestamps, feed coverage, and price discrepancies before analysis"
+"2","Deterministic calculation layer","Calculate indicators, valuation, position sizes, and performance in tested code rather than relying on prose arithmetic"
+"3","Forecast and decision journal","Preserve predictions before outcomes, including horizon and invalidation; evaluate errors without hindsight"
+"4","Walk-forward evaluation","Separate strategy development from testing and record every attempted variation"
+"5","Execution-reality checks","Stress spreads, slippage, latency, depth, gaps, and simulator omissions"
+"6","Adversarial review","Have a second pass challenge the thesis, source quality, calculations, and reasons to abstain"
