@@ -53,3 +53,6 @@ Smoothy: (1) Machine/runtime: can this box run ≥6 parallel agents + the 5057 s
 ## Links
 - Parent: [[LexFlow-Context-Graph-and-Gantt-Local-2026-10-24]]
 - Related: [[LexFlow-T021-Diagram-View-Spec-2026-10-06]]
+
+## Addendum 2026-10-26 — Harvey-like tools
+Estimate, calculator spec and pitch timing: [[LexFlow-Harvey-Like-Tools-Estimate-and-Pitch-2026-10-26]] (proposed tasks T-NEW-A..E; to be scheduled by operator-installer).

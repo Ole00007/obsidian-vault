@@ -1,6 +1,6 @@
 # Obsidian Vault — Agent Rules of Engagement
 
-> **Version:** 2.4  
+> **Version:** 2.5  
 > **Scope:** All Hermes agents operating on Ole's workspace  
 > **Location of this document:** `~/Obsidian/AGENT_RULES.md` (symlink → `~/Obsidian/_Meta/AGENT_RULES.md`)  
 > **Sanction:** Any agent that bypasses these rules is operating outside its authority.
@@ -277,6 +277,17 @@ None. If a tool hard-codes another path, fix the tool; do not create the repo so
   never a per-job, per-skill or per-script literal.
 - On review, treat a literal model id inside any automated artifact as a **defect**: remove it and
   report it.
+
+## 13. Shared-Resource Locks & Path Moves (hard, v1.0 — 2026-10-26, Ole)
+- Tool: `~/projects/.locks/lockctl.sh take|release|list <resource> <owner> "<purpose>"` — advisory lock = an atomically created folder with owner/purpose/timestamp; auto-expires after 2 h. It is NOT a registry: work tracking stays on the Kanban board (the agent bus).
+- Take the lock BEFORE touching, release AFTER: `deploy` (git push to a deploy branch / deploy — only `admy_ceo` may take it), `repo-move` (move/rename/delete repos or worktrees — only when NO other lock is held, i.e. nobody is working; tell Admy first), `port-5057` (start/stop/restart the shared demo server; only the lock holder restarts it), `railway-vars` (any change to Railway variables — only with Ole's go).
+- A busy lock = wait or ask the holder via a Kanban comment. Never delete someone else's lock.
+- Admy's daily status run prints `lockctl.sh list` as one "who holds what" line (no new registry/file).
+
+### 13.1 Local demo servers: template auto-reload ON (hard, v1.1 — 2026-10-26, Ole)
+- Every local demo/dev server runs with **template auto-reload ON**, so template / CSS / JS edits show up **without a restart**. Flask reference: `app.config['TEMPLATES_AUTO_RELOAD'] = True` and `app.jinja_env.auto_reload = True` right after the app is created — working example: `/Users/olesiarasing/.hermes/profiles/backend-dev/cache/scratch/eliza_boot.py` (line 30). **Demo/dev only — never in production**; `debug` stays `False` (auto-reload does not require debug).
+- Only **Python code** changes need a restart. The shared demo server on `port-5057` is restarted **only by the holder of the `port-5057` lock** — `lockctl.sh take port-5057 <owner> "restart demo"` → restart → `release` — **nobody else**. If the lock is busy: wait, or ask the holder via a Kanban comment.
+- Why: with `debug=False` Jinja caches templates, so every template tweak used to cost a restart (a terminal approval plus killing the shared server for every other agent) — pure wasted time. Applies to every agent that builds UI/backend locally.
 
 ## Links
 - Parent: [[Obsidian-INDEX]]
