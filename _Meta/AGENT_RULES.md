@@ -289,6 +289,13 @@ None. If a tool hard-codes another path, fix the tool; do not create the repo so
 - Only **Python code** changes need a restart. The shared demo server on `port-5057` is restarted **only by the holder of the `port-5057` lock** — `lockctl.sh take port-5057 <owner> "restart demo"` → restart → `release` — **nobody else**. If the lock is busy: wait, or ask the holder via a Kanban comment.
 - Why: with `debug=False` Jinja caches templates, so every template tweak used to cost a restart (a terminal approval plus killing the shared server for every other agent) — pure wasted time. Applies to every agent that builds UI/backend locally.
 
+## 14. Phase 0 — Estimate before any project or feature (hard, v1.0 — 2026-10-27, Ole)
+- **Trigger:** Ole asks "estimate project/feature X", or any new project/feature/build is proposed. **Any roster member answers this way** — not only the orchestrator. Estimate ONLY: no building, no planning cards, no branches until Ole says "go".
+- **Format (one table + 6 lines, concise):** (1) scope split into pieces; per piece: **calendar time, cost in USD (range), dependencies**; (2) total for MVP vs full; (3) **run cost** per use after launch; (4) what is explicitly OUT of scope; (5) **assumptions and what could change the number**; (6) **parallel plan**: which pieces can run side by side, which agent/model class fits each (cheap model for mechanical work, premium for hard reasoning, external research tools for research drafts), and the critical path; (7) one **recommendation** + the single decision needed from Ole.
+- **Honesty:** say plainly "estimate from comparing scope, not measured"; show size evidence when it exists (LOC, pages, endpoints); never invent precision. After the project, record **actual vs estimate** in the project note so the next estimate improves (weekly review input).
+- Save the estimate as a note in `_Inbox/` (`<Project>-Estimate-<date>.md`, with `## Links`) when Ole asks for a file; otherwise answer in chat only.
+- Reference example: `[[LexFlow-Harvey-Like-Tools-Estimate-and-Pitch-2026-10-26]]`. Operator-installer/Smothy keep the shared skill `estimate-phase-0` installed for every profile.
+
 ## Links
 - Parent: [[Obsidian-INDEX]]
 - Related: [[AGENT_RULES]]

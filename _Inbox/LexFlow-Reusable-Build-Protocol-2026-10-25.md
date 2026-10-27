@@ -118,6 +118,43 @@ RULES: no push/deploy; throwaway DB; no secrets/PII in code, tests, logs; one de
 13. **Dev conveniences live outside the repo** (auto-login route in the launcher script, loopback-only).
 14. **Demo with real-shaped data before declaring done**; two real bugs (view-switch wipe, empty flag) only showed up on screen.
 
+## E. AGENT THINKING PATTERNS (evidence from the LexFlow build)
+
+1. **Evidence before claims**: every "done" has command output (HTTP code, test count, sha). If unverifiable, say so.
+2. **Reproduce first**: reproduce the bug before fixing; the cause is often not the data.
+3. **Smallest reversible change, backup first**: tag + bundle + DB copy before risky work; opt-in flags default OFF so prod is unchanged.
+4. **Delegate by cost and role**: cheap/gate/audit work → junior; UI polish → specialist; rules/profiles → configurator; memory docs → memory-curator. Keep heavy lifting and integration with the lead.
+5. **One source of truth**: Kanban = who does what; roadmap JSON = plan status; Obsidian = knowledge. Add to them, never fork them.
+6. **Honest limits**: infra crashes (worker timeouts) are reported as infra, not hidden.
+
+## F. TEAM COLLABORATION MECHANICS
+
+- **Kanban board = agent bus.** One card per unit of work, body = exact paths + acceptance + report path; comments carry status; blocked = waiting on a human.
+- **Locks** for the 4 shared resources (deploy, port-5057, railway-vars, repo-move). One owner per lock.
+- **Gate chain**: builder ≠ tester → cross-test gate → local merge → human sees it running → push/deploy.
+- **Report-by-exception**: agents notify with one line + file path; human reads the file with the agent that wrote it.
+
+## G. LESSONS LEARNED (from real failures)
+
+| Problem | Cost | Fix |
+|---|---|---|
+| Roadmap JSON stale (wrong executors) | graph shows wrong executors | daily status run must update it from the board; human owns |
+| Worker crashes on infra → card "gave up" → blocked, silent | a day lost on the push | dispatcher alert + one auto-retry; owner checks "gave_up" daily |
+| Session expiry looked like data loss | morning panic | demo servers self-heal login; pages redirect to /login on 401 |
+| Two agents touching the same thing | double work, conflicts | one owner per card, "surgical only" rule, pause others |
+| Repo moved while working | broken paths | repo-move lock |
+| Template cache needed restarts | many approvals | auto-reload on demo servers (hard rule) |
+
+## H. MINIMUM-INVOLVEMENT OPERATING MODEL
+
+1. **Human gives outcomes, not steps** ("be ready for the 13:00 demo", "public link for 3 lawyers"). One orchestrator turns it into cards.
+2. **One orchestrator + one gatekeeper + specialists**: orchestrator (coordinates, owns roster/rules/weekly review), gatekeeper (deploy/credentials), specialists by function. Reduce only DUPLICATED control roles — that lowers cost. Do NOT merge specialists (backend/frontend/audit): bigger roles mean bigger contexts and more errors. Rule: one owner per kind of decision.
+3. **Pre-approved lanes**: standing "yes" for local build/test/commit/branch/restore; human is asked only for: push/deploy of risky items, credentials, anything billing or legal. Everything else = act, then report in ≤10 lines.
+4. **Ready-state definition on every card**: acceptance check + report path + who gates. No card without them.
+5. **Proactive duty**: after each task the agent proposes the next one and creates the card (owner, parents) — human only reorders priorities.
+6. **Weekly rhythm** (human's cron): per agent — cards done, cycle time, crashes, rework, idle days, cost; orchestrator writes the review; improvement = a card (new skill/tool/prompt). Under-active agent → named, given a concrete task or a skill, re-measured next week.
+7. **Evidence in the review, not impressions**: use board runs (created/claimed/crashed/completed), commits, test counts.
+
 ---
 # C. TEMPLATES
 
@@ -139,4 +176,4 @@ Day 1 charter + rules + inventory. Day 2 decisions + skeleton (Phase 2) + deploy
 
 ## Links
 - Parent: [[LexFlow-Platform-Plan-2026-10-24]]
-- Related: [[LexFlow-How-The-Whole-App-Was-Built-2026-10-25]], [[LexFlow-Wave1-Build-Log-Technical-2026-10-25]]
+- Related: [[LexFlow-How-The-Whole-App-Was-Built-2026-10-25]], [[LexFlow-Wave1-Build-Log-Technical-2026-10-25]], [[LexFlow-Session-Summary-and-Operating-Blueprint-2026-10-27]]

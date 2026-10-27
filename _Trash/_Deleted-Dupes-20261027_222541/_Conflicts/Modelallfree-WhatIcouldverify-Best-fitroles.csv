@@ -1,0 +1,8 @@
+"Model (all :free)","What I could verify","Best-fit roles"
+"step-3.7-flash","198B MoE with about 11B active, 256K context, tool calling, three reasoning levels. It placed second on SWE-Bench Pro at 56.3. github+1","tester, gsc-agent, seo-swarm-agent, and the first choice for memory-curator"
+"laguna-s-2.1","118B MoE with 8B active, 262K context, tool calling. It scores 70.2% on Terminal-Bench 2.1. It does not enforce JSON output. huggingface","frontend-developer, as the fallback for tester"
+"laguna-xs-2.1","Smaller sibling of Laguna S. I found no specs.","seo-cron-agent, as a cheap fallback"
+"solar-mini4","Small model. I found no specs.","seo-cron-agent, simple formatting jobs"
+"longcat-2.5-preview","Unverified.","Keep on cron-sentinel, where it is already pinned"
+"beam-1.0-501b-a23b","Large model, unverified.","Escalation for long synthesis (memory-curator, marketing-analyst)"
+"ornith-1.5-122b","122B MoE with 262K context. The source is an unrated model card.","Spare general-purpose fallback"
