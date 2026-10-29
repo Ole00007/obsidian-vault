@@ -626,3 +626,18 @@ If approved, these two changes would resolve the core FP rate defect and the com
 - **(d) Recurring pattern observed:** No stager run detected today. Historical dominant signatures (per prior logs) include ` (n)` browser re-download collision family and serial-part families (`v3-N`, `-partN`, `PointN`), which are legitimately distinct and excluded from suffix dedup per AGENT_RULES §3/§7.
 - **(e) False-positive suspicion:** N/A — no stager run, no flags raised. Carried forward from prior weeks: the ` (n)` suffix on genuinely distinct same-timestamp content continues to demonstrate that suffix-based heuristics are unsafe in both directions.
 - **Note:** No downloads stager run captured for 2026-10-27. _Conflicts/ backlog remains at 58 files. Same count pattern as 2026-10-25 logged entry (58). No new activity.
+### 2026-10-28 — Nightly self-improvement log (stager ran GREEN; 0 conflicts; backlog 58 → 50)
+|- **(a) Conflicts flagged today:** 0 — daily note `05-Daily/2026-10-28.md` present and confirms a clean stager run (0 staged, 0 conflicts, 0 errors); manifest at `~/.hermes/profiles/memory-curator/logs/downloads_stager_2026-10-28.json`. No [CONFLICT] lines.
+|- **(b) Identical dupes skipped:** 0 — 0 staged means no dedup pass logged.
+|- **(c) _Conflicts backlog size now:** 50 files (`search_files` target='files' in `_Inbox/_Conflicts/` returned 50). Previous logged count (2026-10-27): **58**. **Net change: −8** — backlog shrank by 8 files; no triage action by this job today, so the reduction is attributable to an intervening vault-side sweep or manual review.
+|- **(d) Recurring pattern observed:** No new conflict signatures today (clean run). The ` (n)` browser re-download collision family remains the dominant recurring signature across this log (08-26 baseline through 10-27). Serial-part families (`v3-N`, `-partN`, `PointN`, RU/EN pairs) remain legitimately distinct and excluded from suffix dedup per AGENT_RULES §3/§7.
+|- **(e) False-positive suspicion:** N/A — no conflict flags raised today; stager produced a clean run with 0 staged/conflicted items.
+|- **Note:** Downloads stager ran clean on 2026-10-28. _Conflicts/ backlog at 50 files (verified), down 8 from the 10-27 count of 58. No new quarantines today.
+|
+### 2026-10-29 — Nightly self-improvement log (stager ran GREEN; 1 staged; 0 conflicts; backlog flat)
+|- **(a) Conflicts flagged today:** 0 — daily note `05-Daily/2026-10-29.md` confirms a clean stager run (`railway-hobby-audit.md` staged, 0 conflicts, 0 errors; script exited with SIGTERM post-completion). No [CONFLICT] lines.
+|- **(b) Identical dupes skipped:** 0 — 1 staged means no dedup pass logged by the stager. The daily note records a separate Downloads→Trash dedup of 184 byte-identical files (suffix `-dedup-20261029`), but that is outside the stager's identical-skip count.
+|- **(c) _Conflicts backlog size now:** 50 files (`search_files` target='files' in `_Inbox/_Conflicts/` returned 50). Previous logged count (2026-10-28): 50. **Net change: 0** — backlog unchanged.
+|- **(d) Recurring pattern observed:** No new conflict signatures today (clean run). The ` (n)` browser re-download collision family remains the dominant recurring signature across this log (08-26 baseline through 10-28). Serial-part families (`v3-N`, `-partN`, `PointN`, RU/EN language pairs) remain legitimately distinct and excluded from suffix dedup per AGENT_RULES §3/§7.
+|- **(e) False-positive suspicion:** N/A — no conflict flags raised today; stager produced a clean run with 1 staged item and 0 conflicts.
+|- **Note:** Downloads stager ran on 2026-10-29. _Conflicts/ backlog at 50 files (verified), unchanged from 10-28. No new quarantines today.

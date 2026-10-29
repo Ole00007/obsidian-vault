@@ -1,6 +1,6 @@
 # Obsidian Vault — Agent Rules of Engagement
 
-> **Version:** 2.5  
+> **Version:** 2.6    
 > **Scope:** All Hermes agents operating on Ole's workspace  
 > **Location of this document:** `~/Obsidian/AGENT_RULES.md` (symlink → `~/Obsidian/_Meta/AGENT_RULES.md`)  
 > **Sanction:** Any agent that bypasses these rules is operating outside its authority.
@@ -295,6 +295,44 @@ None. If a tool hard-codes another path, fix the tool; do not create the repo so
 - **Honesty:** say plainly "estimate from comparing scope, not measured"; show size evidence when it exists (LOC, pages, endpoints); never invent precision. After the project, record **actual vs estimate** in the project note so the next estimate improves (weekly review input).
 - Save the estimate as a note in `_Inbox/` (`<Project>-Estimate-<date>.md`, with `## Links`) when Ole asks for a file; otherwise answer in chat only.
 - Reference example: `[[LexFlow-Harvey-Like-Tools-Estimate-and-Pitch-2026-10-26]]`. Operator-installer/Smothy keep the shared skill `estimate-phase-0` installed for every profile.
+
+## 15. Saving and Moving Notes (hard, v1.0 — 2026-10-29, Ole)
+- **Create:** write new notes to `_Inbox/` (Vault Boundary rule §6 unchanged) with frontmatter `tags`, `project:` and `home:` (the target folder, e.g. `01-Projects/LexFlow/` or `03-Resources/dev-ops/railway/`). Unique names: `Title-YYYY-MM-DD`. Attachments (csv/png/pdf) sit in the same folder as their note. Every note ends with `## Links` (§V2).
+- **Move:** ONLY `memory-curator` moves notes (inbox → `home:`). Other agents never move or rename notes; Ole may move anything himself.
+- **Before any move:** search the vault, all repos (`~/projects/*`), scripts, cron jobs, skills, rules and DB seeds for the OLD path and file name. Any path found (e.g. `vault_ref`, `LEXFLOW_VAULT_DIR` + relative path, cron inputs) is updated in the same step. Why: name-only `[[wikilinks]]` survive a move, but path links, Markdown links and every path written in code/cron/agent memory do not; a move done outside the Obsidian app does not rewrite links.
+- **How:** move inside Obsidian or with a script that rewrites path links; leave NO duplicate (one source of truth, §9); log one line in the daily note.
+- **Code and agents never hard-code a vault path:** one setting (`LEXFLOW_VAULT_DIR`) plus one relative path in ONE place, so a move is a one-line change.
+- **Ole's own moves:** memory-curator's daily check lists references that no longer resolve (grep for the old path / unresolved `[[links]]`) and repairs them — nobody asks Ole.
+- **Existing (already filed) notes** are moved only in an approved batch, listed as `path → target → reason` in the index of the target folder, with a before/after link check.
+- Reference incident: moving `Rasing-separazione*` out of `_Inbox` broke the demo `vault_ref` paths (Elisa could not read the documents) until the seeds and DB were updated.
+
+## 16. LexFlow Ownership Ladder — who to ask when (hard, v1.0 — 2026-10-29, Ole)
+
+**Project scope: LexFlow only.** For any LexFlow question that is unowned, ambiguous, or parked on a broken agent, the chain is fixed:
+
+1. **Admy (`admy_ceo`) — primary orchestrator.** Ask her first. She is the main orchestrator for LexFlow.
+2. **Backy (`backend-dev`) — first fallback.** Only when Admy is unavailable/broken.
+3. **Smothy (`smoothy_op_dir` / operator-installer) — second fallback.** Only when both above are unavailable.
+
+An agent that answers a LexFlow question outside this ladder (or that guesses instead of asking up the ladder) is out of process. When a card is blocked "for confirmation" and Ole has not answered, ask **up the ladder**, do not sit on it. Reference: this is what unblocked the 2026-10-29 audit — Admy was broken (memory full), so questions routed to her were stalled.
+
+## 17. Memory Cadence — Obsidian daily, Hindsight monthly (hard, v1.0 — 2026-10-29, Ole)
+
+- **Obsidian is the daily source of truth.** Notes are written daily (§V3); the vault staging jobs stay daily.
+- **Hindsight is a MONTHLY derived index of summaries** — not a daily mirror. *How* the summary is produced is still open (owner: Admy + memory-curator); until it is decided the monthly job does a normal reconcile so nothing is lost.
+- **Paths (authority, one each):**
+  - Job script: `/Users/olesiarasing/.hermes/profiles/smoothy_op_dir/scripts/obsidian-sync.sh`
+  - Schedule: `~/Library/LaunchAgents/com.avibe.obsidian-sync.plist` → `Day 1, 06:00`, 3 attempts, read-back required
+  - Ledger of monthly runs: `~/Obsidian/01-Projects/AVibe-CRM/hindsight-monthly-ledger.md`
+  - Index-drift repair: `scripts/hindsight-index-repair.py` (drops index entries whose bank document is gone — a 404 on DELETE aborts the whole reconcile)
+- A run counts as OK **only** if the sync index watermark advanced; exit 0 with an unchanged watermark is FAILED.
+
+## 18. Path Evidence in Every Deliverable (hard, v1.0 — 2026-10-29, Ole)
+
+- **Every report, handoff, card completion and answer that references work must state the exact absolute path(s)** — repo root, file, script, rule file. "In the CRM repo" is not a path.
+- **When citing a rule or decision, give its file and section** (e.g. `~/Obsidian/_Meta/AGENT_RULES.md` §17), never just "the rules say".
+- A deliverable without paths is **rejected back to its author** — same standing as §11.2. This applies to specialist agents too (Backy, Fronty, Daty, Crunchy, Memo, Sally, Mr. Beast, Smarty).
+- **Never assert a technical cause without checking it in the artifact** (config, log, code, git). A plausible-sounding comparison is not evidence.
 
 ## Links
 - Parent: [[Obsidian-INDEX]]

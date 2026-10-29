@@ -1,6 +1,7 @@
 > ⚠️ **SUPERSEDED — DO NOT USE AS A RULE SOURCE (2026-09-17).**
 > This is a stale v2.0 copy. There is exactly ONE authoritative rulebook:
-> **`~/Obsidian/_Meta/AGENT_RULES.md`** (symlink: `~/Obsidian/AGENT_RULES.md`), currently v2.3.
+> **Authority: `~/Obsidian/_Meta/AGENT_RULES.md`** (symlink: `~/Obsidian/AGENT_RULES.md`), currently **v2.6** (2026-10-29).
+> This file is a **routing copy only, not authoritative** — if it differs from the authority, the authority wins (AGENT_RULES §9, no duplicate registries).
 > Per AGENT_RULES §9 (Single Source of Truth — no parallel truths, no duplicate registries),
 > this file is a **derived/obsolete copy**: read the authority, never edit this one.
 > Kept only for history; proposed for archive.

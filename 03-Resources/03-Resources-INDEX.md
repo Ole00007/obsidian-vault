@@ -11,3 +11,4 @@ Hub note for the `03-Resources` folder. Links to every note here.
 
 ## Notes
 
+- [[dev-ops/DevOps-Platform-Audits]] — Weekly DevOps platform audits (memory-curator cron)

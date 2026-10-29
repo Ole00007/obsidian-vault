@@ -90,7 +90,7 @@ Also referenced (not standalone roadmaps): `crm/routes/views.py` and several vau
 
 ## D. DRAFT — rule block for `~/Obsidian/_Meta/AGENT_RULES.md` (do NOT apply)
 
-> **Note:** `AGENT_RULES.md` (v2.3) **already contains a §11 "Repo Path & Deploy Source Rule"**
+> **Note:** `AGENT_RULES.md` (v2.6) **already contains a §11 "Repo Path & Deploy Source Rule"**
 > dated 2026-10-10 whose text matches the draft below almost verbatim — i.e. this rule appears to
 > have already been staged by a prior pass. Treat the block below as the proposed canonical wording;
 > reconcile rather than duplicate a second §11.

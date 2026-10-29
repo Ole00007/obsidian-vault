@@ -1,13 +1,21 @@
 ---
-title: Agent Rules v2.3 — Hard Rules Broadcast (single source of truth + reporting chain)
+title: Agent Rules v2.6 — Hard Rules Broadcast (single source of truth + reporting chain)
 created: 2026-09-17
 tags: [agent-rules, hermes, orchestration, cron, single-source-of-truth]
-status: active
+status: superseded
 source: "Ole standing instruction 2026-09-17 (relayed via kanban t_228db57d, frontend-developer)"
 project: "Hermes workspace"
 ---
 
-# Agent Rules v2.3 — Hard Rules Broadcast (2026-09-17)
+> ⚠ **SUPERSEDED — do not cite the ownership lines in this note.** As of 2026-10-29 the authority is
+> `~/Obsidian/_Meta/AGENT_RULES.md` **v2.6**: **§16** fixes the LexFlow ladder as
+> **Admy (`admy_ceo`) = primary orchestrator → Backy (`backend-dev`) = first fallback →
+> Smothy (`smoothy_op_dir`/operator-installer) = second fallback**; §10's old wording
+> ("operator-installer is the orchestrator … Only Ole may overrule") no longer describes
+> LexFlow work. Everything else here (single source of truth §9, daily status mechanism §10,
+> cron fix) still stands. Historical record only.
+
+# Agent Rules v2.6 — Hard Rules Broadcast (2026-09-17)
 
 Ole set two new **permanent hard rules** for the whole agent roster, plus confirmed the daily
 project-status mechanism. Operator-installer propagated them and fixed the cron that was supposed

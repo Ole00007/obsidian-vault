@@ -1,5 +1,5 @@
 SUPERSEDED — DO NOT USE AS A RULE SOURCE (2026-09-17). Stale v2 draft.
-The one authoritative rulebook is ~/Obsidian/_Meta/AGENT_RULES.md (symlink ~/Obsidian/AGENT_RULES.md, v2.3).
+The one authoritative rulebook is ~/Obsidian/_Meta/AGENT_RULES.md (symlink ~/Obsidian/AGENT_RULES.md, v2.6).
 Per AGENT_RULES section 9 (single source of truth / no duplicate registries) this file is derived+obsolete.
 Kept for history only; proposed for archive.
 ----------------------------------------------------------------------------------------------------
