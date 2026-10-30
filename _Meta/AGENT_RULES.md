@@ -334,6 +334,13 @@ An agent that answers a LexFlow question outside this ladder (or that guesses in
 - A deliverable without paths is **rejected back to its author** — same standing as §11.2. This applies to specialist agents too (Backy, Fronty, Daty, Crunchy, Memo, Sally, Mr. Beast, Smarty).
 - **Never assert a technical cause without checking it in the artifact** (config, log, code, git). A plausible-sounding comparison is not evidence.
 
+## 19. Daily Agent Report (hard, v1.0 — 2026-10-30, Ole)
+- **One report, built from measured data, zero model tokens:** the `memory-curator` cron `agent-daily-report` (08:45 daily, `--no-agent`, script `~/.hermes/profiles/memory-curator/scripts/agent-daily-report.py`) reads every profile's `state.db` (tokens/cost, snapshot-diffed because long sessions only keep running totals), `~/.hermes/kanban.db` (runs, outcomes, crashes) and the LexFlow git log, writes `~/Obsidian/05-Daily/agent-reports/YYYY-MM-DD.md` and delivers it to Ole on Telegram. It starts with "Hi, here's how you blew last session".
+- **Costs are measured, never self-reported** (they are estimates from token usage, not billing). Report shows per agent: cost, calls, tokens, cards done, crashed runs; plus total, cost per delivered item (cards + commits) and FLAGS: crash loops (>=3 crashed runs on one card) and cost without any deliverable.
+- **No per-agent cron jobs** (24 model calls a day would be waste, and §9 forbids a second registry). The deliverable evidence is the kanban completion summary + commits. An agent writes a comment on its card only when something deviates (blocked, crashed, over budget, skipped scope).
+- **memory-curator is the watchdog:** he owns this one job (§10.3, §9), investigates every FLAG the next morning and notifies operator-installer; the weekly agent assessment stays with Ole and Admy and uses this data.
+- **Limits stated honestly:** agents cannot speak first in a TUI session, so the greeting is delivered by cron (Telegram + the daily note); the first run only sets the baseline.
+
 ## Links
 - Parent: [[Obsidian-INDEX]]
 - Related: [[AGENT_RULES]]
