@@ -650,6 +650,21 @@ If approved, these two changes would resolve the core FP rate defect and the com
 |- **(e) False-positive suspicion:** N/A — no conflict flags raised today; stager produced a clean run with 0 staged/conflicted items. The 18:00 stager's whole-vault md5 fix (09-23) continues to suppress false positives on its runs.
 |- **Note:** Downloads stager ran clean on 2026-10-31. _Conflicts/ backlog at 55 files (verified), up 4 from 10-30. No new quarantines today. The 05:00 `obsidian-staging.sh` basename-only identity keying remains the unfixed defect that periodically re-quarantines byte-identical re-downloads.
 
+### 2026-11-02 — Nightly log (no stager run; daily note missing markers; backlog 55 → 50)
+|- **(a) Conflicts flagged today:** 0 (no downloads stager run detected; daily note `05-Daily/2026-11-02.md` carries no [STAGED]/[CONFLICT]/dedup lines — content covers backend-dev demo restore, Elisa Phase 1 hardening, and Fronty JOB 7 calendar year view).
+|- **(b) Identical dupes skipped:** 0 recorded (no stager run → no dedup log).
+|- **(c) _Conflicts backlog size now:** 50 files (`search_files` target='files' in `_Inbox/_Conflicts/` returned 50). Previous logged count (2026-10-31): **55**. **Net change: −5** — five files cleared from backlog since last night; no triage action by this job today, so the reduction is attributable to an intervening vault-side sweep or manual review.
+|- **(d) Recurring pattern observed:** No stager run detected today. Historical dominant signatures (per prior logs) include ` (n)` browser re-download collision family and serial-part families (`v3-N`, `-partN`, `PointN`), which are legitimately distinct and excluded from suffix dedup per AGENT_RULES §3/§7.
+|- **(e) False-positive suspicion:** N/A — no stager run, no flags raised. Carried forward from prior weeks: the ` (n)` suffix on genuinely distinct same-timestamp content continues to demonstrate that suffix-based heuristics are unsafe in both directions.
+|- **Note:** No downloads stager run captured for 2026-11-02. _Conflicts/ backlog at 50 files (verified), down 5 from the 10-31 count of 55. No new quarantines today.
+
+## Links
+|- Parent: [[cron-jobs-INDEX]]
+|- Related: [[_Meta/AGENT_RULES]]
+|- Related: [[downloads_stager]]
+|- Related: [[organize_inbox]]
+|- Related: [[05-Daily-INDEX]] · log file: [[self-improvement-log]]
+
 ## Links
 |- Parent: [[cron-jobs-INDEX]]
 |- Related: [[_Meta/AGENT_RULES]]
