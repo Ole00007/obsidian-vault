@@ -27,12 +27,8 @@
 
 ---
 
-## 1. Profiles (24)
-admy_ceo · ads-expert · agency-growth · backend-dev · chatbot_builder · chatseo-agent ·
-content-creator · crm-outreach-agent · customer-rel-manager · email-digest-agent ·
-frontend-developer-lovable_react · gsc-agent · marketing-analyst · memory-curator ·
-operator-installer · personal-assistant · sales-crm · seo-aeo-expert · seo-cron-agent ·
-seo-swarm-agent · smoothy_op_dir · telegram-utility-agent · tester
+## 1. Profiles (23 runnable)
+MOVED — see [[LexFlow-Agent-Roster-and-Ecosystem-CANONICAL-2026-11-04]] (v4.0, 2026-11-04). Not duplicated here.
 
 ## 2. Repositories
 - Website: github.com/Ole00007/lexflow-website (PUBLIC). Branches: main, feat/heading-align-cta-merge, content/humanization-20260917.

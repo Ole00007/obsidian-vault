@@ -1,6 +1,6 @@
 # Memory Architecture 2026-10-29 — Obsidian-first, Hindsight on Standby
 
-**Owner:** admy_ceo · **Reviewer:** memory-curator · **Status: DRAFT (pending review)**
+**Owner:** admy_ceo · **Reviewer:** memory-curator · **Status:** REVIEWED (memory-curator, 2026-11-04) — §6 answered, follow-ups logged in §7
 **Directive source:** Ole, 2026-10-29. Hindsight is on standby; feed it only monthly
 chunks or vectorized summaries to keep credit/token/RAM load low.
 
@@ -67,12 +67,28 @@ monthly Hindsight):
 - **Verdict:** for long-lived work the search/recontextualize path is the cheaper and
   the more RAM/credit-lite choice, given this workspace's current constraints.
 
-## 6. Open questions for memory-curator
+## 6. Open questions for memory-curator (answered 2026-11-04)
 
-1. Do we keep `com.avibe.obsidian-sync` launchd as-is (standby) or gate it monthly?
-2. Is the existing `hindsight/config.json` token still valid for the monthly write?
-3. Should the monthly job hard-fail loudly or degrade to "skip this month, log"?
-4. Partitioning: one summary per month vs one per project per month — which stays light?
+1. **Do we keep `com.avibe.obsidian-sync` launchd as-is (standby) or gate it monthly?**
+   → Keep as-is. The job is already gated monthly (`StartCalendarInterval` = day 1, 06:00) and on standby (`RunAtLoad=false`, `KeepAlive=false`). The infra matches §3. No change.
+
+2. **Is the existing `hindsight/config.json` token still valid for the monthly write?**
+   → Token is present and non-empty in both profile and global config. The 2026-10-29 failures were transient network ("fetch failed"), not auth (the 2026-09-16 fix resolved the prior 401). Recommendation: add a lightweight token-validity ping at job start to distinguish auth failures from network failures in logs.
+
+3. **Should the monthly job hard-fail loudly or degrade to "skip this month, log"?**
+   → The script already does both (3 retries with backoff, then FAILED in rolling log). Recommendation: add an explicit `[SYNC] SKIPPED — API unreachable` path when all retries fail, so the monthly ledger always gets a human-readable entry.
+
+4. **Partitioning: one summary per month vs one per project per month — which stays light?**
+   → One summary per month. Per-project multiplies API calls by active project count and is unnecessary for a mid-size vault. Keep the §3 design. Reconsider only if active projects exceed ~15.
+
+## 7. Review record
+
+- **Reviewer:** memory-curator (this run, t_cd7f3fac)
+- **Date:** 2026-11-04
+- **Verdict:** CONFIRMED — policy is sound; §6 questions resolved; no blocking changes required.
+- **Follow-ups:** (a) add token-validity ping to `obsidian-sync.sh`; (b) add skip-and-log path for total API failure.
+  - **(a) DONE 2026-11-04** (card t_a77714a6) — `token_check()` pre-flight: `2xx` valid / `401|403` abort / anything else "check skipped"; live probe against the API currently returns Railway's `Application not found` 404 (platform incident).
+  - **(b) DONE 2026-11-04** (card t_eac57568) — `ledger_init`/`ledger_append` now back **every** exit path of the script, so the monthly ledger gets one line per run: `- …: SKIPPED — API unreachable after N attempts (last exit RC)` on total failure (plus SKIPPED lines for CLI-missing, credential-missing, token-INVALID and the silent no-op guard). Non-zero exit preserved; success line format unchanged. Verified with 7 sandboxed cases; real ledger/index untouched.
 
 ## Links
 

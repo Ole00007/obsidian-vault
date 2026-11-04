@@ -1,5 +1,8 @@
 # Agent Roster Consolidation — proposal (2026-09-16)
 
+> **SUPERSEDED 2026-11-04 (roster/profile-count data):** authoritative roster = 23 runnable (22 named + default). See [[LexFlow-Agent-Roster-and-Ecosystem-CANONICAL-2026-11-04]]. Figures below are a historical snapshot.
+
+
 **Status:** PROPOSAL — awaiting Ole's approval. Nothing merged or deleted yet.
 **Author:** operator-installer
 **Trigger:** three roster profiles cannot boot (no model keys) and/or have no track record.

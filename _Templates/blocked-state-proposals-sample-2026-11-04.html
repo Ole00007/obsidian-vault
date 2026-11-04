@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LexFlow — Blocked-State Visual Proposals</title>
+<style>
+  :root{
+    --navy:#0F2A4A; --navy2:#152238; --navy3:#1c2b42;
+    --gold:#c5a55a; --gold-dim:rgba(197,165,90,.45);
+    --bg:#f4f6fa; --surface:#fff; --border:#e2e7f0;
+    --text:#182536; --muted:#6b7686;
+    --red:#d64545; --red-bg:rgba(214,69,69,.08);
+    --amber:#e8a33d; --amber-bg:rgba(232,163,61,.10);
+    --green:#25bd72;
+    --accent:#3b7dd8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:32px 24px 80px}
+  .wrap{max-width:1200px;margin:0 auto}
+  h1{font-size:26px;font-weight:800;letter-spacing:-.02em}
+  .sub{color:var(--muted);font-size:14px;margin:6px 0 28px}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 18px;margin-bottom:32px;font-size:13px}
+  .legend b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
+  .legend .sw{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:6px}
+  .sw.red{background:var(--red)} .sw.amber{background:var(--amber)} .sw.hatch{background:repeating-linear-gradient(45deg,#e8eef7,#e8eef7 3px,#d5deec 3px,#d5deec 6px)}
+  .section{margin-bottom:44px}
+  .section h2{font-size:18px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+  .section .tag{font-size:11px;font-weight:700;background:var(--navy);color:#fff;padding:3px 10px;border-radius:999px;letter-spacing:.04em}
+  .section .desc{color:var(--muted);font-size:13px;margin-bottom:16px}
+  .surface{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:0 2px 12px rgba(15,42,74,.05)}
+  .surface-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:14px}
+
+  /* ── KANBAN ── */
+  .kanban-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .kcol{background:#eef1f7;border-radius:12px;padding:10px}
+  .kcol h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:4px 6px 10px}
+  .kcard{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:10px;position:relative;box-shadow:0 1px 3px rgba(15,42,74,.06)}
+  .kcard .t{font-size:13px;font-weight:600;margin-bottom:6px}
+  .kcard .m{font-size:12px;color:var(--muted)}
+  .kcard .badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;margin-top:8px}
+  .kcard .badge.red{background:var(--red-bg);color:var(--red)}
+  .kcard .badge.amber{background:var(--amber-bg);color:#b97a1e}
+  .kcard .badge.grey{background:#eef1f7;color:var(--muted)}
+  /* A: left stripe */
+  .kcard.stripe-red{border-left:4px solid var(--red)}
+  .kcard.stripe-amber{border-left:4px solid var(--amber)}
+  /* B: dim + hatch */
+  .kcard.dim{opacity:.72;background:repeating-linear-gradient(45deg,#fff,#fff 4px,#f2f5fa 4px,#f2f5fa 8px)}
+  /* C: reason badge */
+  /* D: pulse on awaiting-ole */
+  .kcard.pulse .badge.amber{animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(232,163,61,.5)}50%{box-shadow:0 0 0 6px rgba(232,163,61,0)}}
+  /* E: swimlane */
+  .blocked-lane{background:var(--amber-bg);border:1px dashed var(--amber);border-radius:10px;padding:8px;margin-bottom:10px}
+  .blocked-lane .lane-label{font-size:11px;font-weight:700;color:#b97a1e;text-transform:uppercase;letter-spacing:.05em;padding:2px 4px 6px}
+
+  /* ── GANTT ── */
+  .gantt{overflow-x:auto}
+  .gantt-row{display:flex;align-items:center;gap:0;margin-bottom:8px;min-width:640px}
+  .gantt-label{width:180px;font-size:12px;font-weight:600;flex-shrink:0;padding-right:12px;text-align:right}
+  .gantt-track{flex:1;height:26px;background:#eef1f7;border-radius:6px;position:relative}
+  .gantt-bar{position:absolute;top:2px;height:22px;border-radius:5px;background:var(--accent);display:flex;align-items:center;padding:0 8px;font-size:11px;color:#fff;font-weight:600;white-space:nowrap}
+  .gantt-bar.blocked{background:repeating-linear-gradient(45deg,#d64545,#d64545 5px,#b93a3a 5px,#b93a3a 10px);border-left:3px solid #8f2d2d}
+  .gantt-bar.blocked-amber{background:repeating-linear-gradient(45deg,#e8a33d,#e8a33d 5px,#d18a24 5px,#d18a24 10px);border-left:3px solid #a86a12}
+  .gantt-bar .lock{font-size:10px;margin-right:4px}
+
+  /* ── TASKS ── */
+  table.tasks{width:100%;border-collapse:collapse;font-size:13px}
+  table.tasks th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:8px 10px;border-bottom:2px solid var(--border)}
+  table.tasks td{padding:10px;border-bottom:1px solid var(--border)}
+  table.tasks tr.blocked td{background:var(--amber-bg)}
+  table.tasks tr.blocked td:first-child{border-left:4px solid var(--amber)}
+  table.tasks tr.blocked-hard td{background:var(--red-bg)}
+  table.tasks tr.blocked-hard td:first-child{border-left:4px solid var(--red)}
+  .pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px}
+  .pill.amber{background:var(--amber-bg);color:#b97a1e}
+  .pill.red{background:var(--red-bg);color:var(--red)}
+  .pill.grey{background:#eef1f7;color:var(--muted)}
+
+  /* ── CONTEXT GRAPH ── */
+  .graph{display:flex;align-items:center;justify-content:center;gap:40px;padding:20px 0;flex-wrap:wrap}
+  .node{width:120px;height:120px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:12px;font-weight:600;border:3px solid;position:relative}
+  .node .nlabel{font-size:11px;font-weight:700;margin-bottom:2px}
+  .node .nsub{font-size:10px;color:var(--muted);font-weight:500}
+  .node.ok{border-color:var(--green);background:rgba(37,189,114,.08)}
+  .node.blocked{border-color:var(--amber);background:var(--amber-bg);border-style:dashed}
+  .node.blocked-hard{border-color:var(--red);background:var(--red-bg);border-style:dashed}
+  .node .lock{position:absolute;top:-8px;right:-8px;width:26px;height:26px;border-radius:50%;background:var(--amber);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+  .node .lock.red{background:var(--red)}
+  .edge{width:60px;height:2px;background:var(--border);position:relative}
+  .edge.blocked{background:var(--amber);height:3px}
+  .edge.blocked::after{content:'';position:absolute;left:50%;top:-4px;width:10px;height:10px;border-radius:50%;background:var(--amber);transform:translateX(-50%)}
+
+  .note{background:var(--navy);color:#dbe4f0;border-radius:12px;padding:14px 18px;font-size:13px;margin-top:20px;line-height:1.6}
+  .note b{color:#fff}
+  .note .hl{color:var(--gold);font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Blocked-State Visual Proposals</h1>
+  <p class="sub">LexFlow CRM · how "blocked" should look across kanban, gantt, tasks &amp; context graph — for Ole's assessment before merge</p>
+
+  <div class="legend">
+    <div><b>Hard-blocked</b><span class="sw red"></span>red stripe / hatch</div>
+    <div><b>Awaiting Ole</b><span class="sw amber"></span>amber stripe / hatch</div>
+    <div><b>Dim + hatch</b><span class="sw hatch"></span>recedes from actionable</div>
+    <div><b>Reason badge</b>⛔ awaiting Ole · legal · infra · override</div>
+    <div><b>Pulse</b>only on cards awaiting <i>your</i> action</div>
+  </div>
+
+  <!-- KANBAN -->
+  <div class="section">
+    <h2>Kanban <span class="tag">A + B + C + D + E</span></h2>
+    <p class="desc">Left stripe (red/amber) + dim/hatch + reason badge + pulse on "awaiting you" + blocked swimlane on top.</p>
+    <div class="surface">
+      <div class="surface-label">Board — "To do" column</div>
+      <div class="kanban-cols">
+        <div class="kcol">
+          <h3>Blocked (top lane)</h3>
+          <div class="blocked-lane">
+            <div class="lane-label">⛔ Blocked — 14 awaiting you</div>
+            <div class="kcard stripe-amber dim pulse">
+              <div class="t">T-014 RLS merge</div>
+              <div class="m">18-test Postgres gate</div>
+              <span class="badge amber">⛔ awaiting Ole</span>
+            </div>
+            <div class="kcard stripe-red dim">
+              <div class="t">T-051 Partita IVA</div>
+              <div class="m">Legal entity placeholder</div>
+              <span class="badge red">⛔ legal</span>
+            </div>
+          </div>
+          <div class="kcard stripe-amber dim">
+            <div class="t">T-019 Design/UX rollout</div>
+            <div class="m">Needs localhost review</div>
+            <span class="badge amber">⛔ awaiting Ole</span>
+          </div>
+        </div>
+        <div class="kcol">
+          <h3>In progress</h3>
+          <div class="kcard">
+            <div class="t">T-008 Consolidation</div>
+            <div class="m">Gap register + priorities</div>
+            <span class="badge grey">running</span>
+          </div>
+          <div class="kcard">
+            <div class="t">Elisa launcher</div>
+            <div class="m">Pill-bulb reuse</div>
+            <span class="badge grey">running</span>
+          </div>
+        </div>
+        <div class="kcol">
+          <h3>Done</h3>
+          <div class="kcard">
+            <div class="t">T-005 WhatsApp scoping</div>
+            <div class="m">Note + API contract</div>
+            <span class="badge grey">done</span>
+          </div>
+          <div class="kcard">
+            <div class="t">T-017 SEAT_LIMIT</div>
+            <div class="m">5 seats/tenant</div>
+            <span class="badge grey">done</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GANTT -->
+  <div class="section">
+    <h2>Gantt timeline <span class="tag">hatched bars + lock</span></h2>
+    <p class="desc">Blocked bars get a diagonal hatch + left lock edge; amber = awaiting Ole, red = hard-blocked.</p>
+    <div class="surface">
+      <div class="surface-label">Timeline</div>
+      <div class="gantt">
+        <div class="gantt-row"><div class="gantt-label">T-014 RLS merge</div><div class="gantt-track"><div class="gantt-bar blocked" style="left:10%;width:30%"><span class="lock">🔒</span>awaiting Ole</div></div></div>
+        <div class="gantt-row"><div class="gantt-label">T-051 Partita IVA</div><div class="gantt-track"><div class="gantt-bar blocked" style="left:45%;width:22%"><span class="lock">🔒</span>legal</div></div></div>
+        <div class="gantt-row"><div class="gantt-label">T-019 UX rollout</div><div class="gantt-track"><div class="gantt-bar blocked-amber" style="left:20%;width:35%"><span class="lock">🔒</span>awaiting Ole</div></div></div>
+        <div class="gantt-row"><div class="gantt-label">T-008 Consolidation</div><div class="gantt-track"><div class="gantt-bar" style="left:5%;width:40%">running</div></div></div>
+        <div class="gantt-row"><div class="gantt-label">T-020 i18n</div><div class="gantt-track"><div class="gantt-bar" style="left:60%;width:30%">next week</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TASKS -->
+  <div class="section">
+    <h2>Tasks list <span class="tag">row tint + left stripe + reason pill</span></h2>
+    <p class="desc">Blocked rows get a tinted background + left stripe; reason shown as a pill in the status column.</p>
+    <div class="surface">
+      <div class="surface-label">Task table</div>
+      <table class="tasks">
+        <thead><tr><th>Task</th><th>Matter</th><th>Due</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr class="blocked"><td>T-014 RLS merge</td><td>Platform</td><td>—</td><td><span class="pill amber">⛔ awaiting Ole</span></td></tr>
+          <tr class="blocked-hard"><td>T-051 Partita IVA</td><td>Legal</td><td>—</td><td><span class="pill red">⛔ legal</span></td></tr>
+          <tr class="blocked"><td>T-019 Design/UX</td><td>Frontend</td><td>—</td><td><span class="pill amber">⛔ awaiting Ole</span></td></tr>
+          <tr><td>T-008 Consolidation</td><td>Platform</td><td>Oct 30</td><td><span class="pill grey">running</span></td></tr>
+          <tr><td>Elisa launcher</td><td>Frontend</td><td>Oct 26</td><td><span class="pill grey">done</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CONTEXT GRAPH -->
+  <div class="section">
+    <h2>Context graph <span class="tag">dashed node + lock badge + amber edge</span></h2>
+    <p class="desc">Blocked nodes get a dashed border + lock badge; edges into a blocked node turn amber.</p>
+    <div class="surface">
+      <div class="surface-label">Graph — local view</div>
+      <div class="graph">
+        <div class="node ok"><div class="nlabel">T-008</div><div class="nsub">Consolidation</div></div>
+        <div class="edge"></div>
+        <div class="node blocked"><div class="nlabel">T-014</div><div class="nsub">RLS merge</div><div class="lock">🔒</div></div>
+        <div class="edge blocked"></div>
+        <div class="node blocked-hard"><div class="nlabel">T-051</div><div class="nsub">Partita IVA</div><div class="lock red">🔒</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>Design rationale.</b> The single most important rule: <span class="hl">blocked is a state, not a label</span> — so it must change the card's <i>shape</i> (stripe, hatch, tint, dashed border), not just add text. Red = hard-blocked (legal/infra/override), amber = awaiting Ole. The <span class="hl">pulse</span> is reserved for cards awaiting <i>your</i> action specifically, so your eye goes straight to what only you can unblock. The <span class="hl">blocked swimlane</span> physically separates blocked work from actionable work. Reason is stored as a <i>field</i> (not prose) so the board can group/sort and the summary bar can count it.
+  </div>
+</div>
+</body>
+</html>

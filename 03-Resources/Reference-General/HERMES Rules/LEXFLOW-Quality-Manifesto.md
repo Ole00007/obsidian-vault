@@ -173,6 +173,7 @@ The site is **“deployed” ONLY when ALL □ pass in CI:**
 □ Screen reader: NVDA/VoiceOver smoke test passed  
 □ All 3 locales: pages render, links work, hreflang correct  
 □ Canonical/hreflang/sitemap/robots/`llms.txt`/JSON-LD: valid, 0 placeholder domains  
+□ Favicon/site icons: required icon files exist, load successfully, and match the site's identity
 □ Visual regression: 0 unexpected diffs vs approved baseline  
 □ Forms: submit works, honeypot blocks bots, rate limit triggers  
 □ CRM backlink: points to new hero, 0 legacy Netlify refs  

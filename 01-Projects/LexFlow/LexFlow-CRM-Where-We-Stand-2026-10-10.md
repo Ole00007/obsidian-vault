@@ -33,6 +33,8 @@ on an isolated branch**.
 **What I did:** rebuilt the canonical repo at the §8 path, recovered the "unreachable" history
 (see §4), archived the stray clone and three stale tracker copies (move, not delete — reversible,
 manifest at `/Users/olesiarasing/projects/_archive/2026-10-10-lexflow-dedupe/README.md`).
+The two JSON snapshots previously in `~/Obsidian/_Trash/2026-10-10-lexflow-dedupe/` were moved
+to `~/Obsidian/04-Archive/` on 2026-11-04 (Ole-approved).
 
 ---
 

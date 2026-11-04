@@ -12,6 +12,9 @@ revision: r4 — 2026-09-16 17:33 CEST: round-3 review corrections — §0/§7 s
 
 # Hermes 14-Day Installation Roadmap (draft)
 
+> **SUPERSEDED 2026-11-04 (roster/profile-count data):** authoritative roster = 23 runnable (22 named + default). See [[LexFlow-Agent-Roster-and-Ecosystem-CANONICAL-2026-11-04]]. Figures below are a historical snapshot.
+
+
 **Status: DRAFT / PROPOSAL.** Nothing in here has been executed. No profile was created,
 merged, renamed or deleted; no connector was connected. Every profile-level change listed as
 "propose" needs Ole's approval and is executed by `operator-installer`, not by this note's author.
