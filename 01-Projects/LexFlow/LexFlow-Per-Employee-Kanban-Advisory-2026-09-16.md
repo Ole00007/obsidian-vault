@@ -116,4 +116,4 @@ others in the same pass.
 - Parent: [[LexFlow-INDEX]]
 - Related: [[LexFlow-2026-09-16-Stack-Decision-and-Task-Board]]
 - Related: [[LexFlow-Workspace-UX-Overhaul]]
-- Related: [[05-Daily/2026-09-16|Daily 2026-09-16]]
+- Related: [[05-Daily/2026-09/2026-09-16]]

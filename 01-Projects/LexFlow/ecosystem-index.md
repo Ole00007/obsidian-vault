@@ -6,8 +6,8 @@
 > source of truth.
 >
 > **Renewal cadence:** manual, per the Quality Manifesto §9 reminder. Do NOT automate.
-> **Last renewed:** 2026-09-19 (frontend-developer-lovable_react)
-> **Next renewal:** 2026-09-20 (manual)
+> **Last renewed:** 2026-10-06 (memory-curator)
+> **Next renewal:** 2026-10-07 (manual)
 
 ---
 

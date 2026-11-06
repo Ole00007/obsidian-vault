@@ -1,4 +1,4 @@
-# Memory Architecture 2026-10-29 — Obsidian-first, Hindsight on Standby
+# Memory Architecture 2026-11-04 — Obsidian-first, Hindsight on Standby
 
 **Owner:** admy_ceo · **Reviewer:** memory-curator · **Status:** REVIEWED (memory-curator, 2026-11-04) — §6 answered, follow-ups logged in §7
 **Directive source:** Ole, 2026-10-29. Hindsight is on standby; feed it only monthly
@@ -93,6 +93,6 @@ monthly Hindsight):
 ## Links
 
 [[Obsidian-INDEX]] → Parent folder hub
-[[_Inbox]] → Related sibling (this draft's home)
+[[_Inbox]] → Related sibling (final note, review complete)
 [[memory-policy]] → Related sibling (existing SoR-vs-memory policy, kept)  
 [[Hindsight-Vault-Sync-Fix-2026-09-16]] → Related (known sync failures)

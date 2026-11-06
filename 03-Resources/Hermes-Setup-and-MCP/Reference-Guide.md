@@ -20,8 +20,8 @@ Quick reference materials, templates, external links, API documentation snippets
 ### Important Configs
 - **Vault Path:** `~/Obsidian/_Hermes`
 - **Env Var:** `OBSIDIAN_VAULT_PATH=/Users/olesiarasing/Obsidian/_Hermes`
-- **Profile Location:** `~/.hermes/profiles/operator-installer/`
-- **Memory Location:** `~/.hermes/profiles/operator-installer/memories/`
+- **Profile Location:** `~/.hermes/profiles/smoothy_op_dir/`
+- **Memory Location:** `~/.hermes/profiles/smoothy_op_dir/memories/`
 
 ## Template: Setup Guide
 

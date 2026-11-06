@@ -84,3 +84,7 @@ Use one of these methods:
 > A fully used 5 GB persistent volume costs about $0.75 per month, so storage alone is unlikely to exhaust the credit. However, the 100 GB deployment disk is ephemeral and must not store data that needs to survive redeployments.
 >
 > Check **Workspace Settings → Usage**, rank projects, and inspect memory first. Treat the $5 credit as shared across projects in the same billed workspace. Do not send a token: Railway project tokens are scoped but not read-only. Share a redacted Usage screenshot or run `railway usage` and `railway usage projects` locally instead.
+
+## Links
+- Parent: [[dev-ops-INDEX]]
+- Related: [[Railway-Hobby-Plan-Data-and-Cost-2026-10-27]], [[DevOps-Platform-Audits]]

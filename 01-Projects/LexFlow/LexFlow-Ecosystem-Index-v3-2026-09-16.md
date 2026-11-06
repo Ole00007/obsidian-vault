@@ -45,7 +45,7 @@ vault = what we know and decided; Hindsight = what survives across sessions.
 | **avibe-hindsight** | Long-term memory backend for the 24-profile Hermes roster (bank `avibe-hq`) | Railway | `https://avibe-hindsight-production.up.railway.app/health` → **200** | HEALTHY. LLM routed to OpenRouter, **free models only** (Ole decision 2026-08-30) |
 | **Hermes roster** | 24 independent profiles (own config/keys/sessions/gateway), `operator-installer` orchestrates | local | n/a | Active. operator-installer model moved to OpenRouter `deepseek/deepseek-v4.1-flash` (resolved the Nous-auth blocker) |
 | **Hermes Kanban boards** | Inter-profile work channel; `default` + new isolated `lexflow-learning` | local SQLite `~/.hermes/kanban.db` | n/a | Active, dispatcher running |
-| **Obsidian vault** | Knowledge layer, PARA + `_Inbox`, `AGENT_RULES.md` v2.2 | local + GitHub private | `github.com/Ole00007/obsidian-vault` | git repo, linked graph 210/226 |
+| **Obsidian vault** | Knowledge layer, PARA + `_Inbox`, `AGENT_RULES.md` v2.6 | local + GitHub private | `github.com/Ole00007/obsidian-vault` | git repo, linked graph 210/226 |
 | **AVIBE agency assets** | Brand/site/proposal material | local | n/a | `~/Desktop/projects/services/AVIBE AGENCY` (site placeholder, style book, agentic-architecture-package-v2) |
 | **lexflow_saas_factory** | SaaS-factory deck + plan (HTML/PPTX/XLSX) | local | n/a | `Lexflow Ecosystem & Saas Factory/` — source material for this index |
 

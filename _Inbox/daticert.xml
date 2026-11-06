@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<postacert tipo="posta-certificata" errore="nessuno">
+    <intestazione>
+        <mittente>certificazioni.anagrafiche@pec.comune.fi.it</mittente>
+        <destinatari tipo="esterno">olesya00007@yahoo.com</destinatari>
+        <risposte>certificazioni.anagrafiche@pec.comune.fi.it</risposte>
+        <oggetto>Re: ANOMALIA MESSAGGIO: Fw: Richiesta certificato storico di residenza — nucleo familiare Rasing</oggetto>
+    </intestazione>
+    <dati>
+        <gestore-emittente>Namirial S.p.A.</gestore-emittente>
+        <data zona="+0100">
+            <giorno>05/11/2026</giorno>
+            <ora>10:07:07</ora>
+        </data>
+        <identificativo>opec21220.20261105100707.662278.34.1.47@sicurezzapostale.it</identificativo>
+        <msgid>&lt;5ac374c0900e014b27b45fb91974fbc4@pec.comune.fi.it&gt;</msgid>
+    </dati>
+</postacert>

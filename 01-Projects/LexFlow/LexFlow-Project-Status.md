@@ -1,7 +1,7 @@
 ---
 title: LexFlow — Project Status
 created: 2026-09-19
-updated: 2026-11-04
+updated: 2026-11-06
 tags: [lexflow, status, orchestration]
 status: active
 ---
@@ -12,6 +12,58 @@ Live project-status note for the LexFlow CRM. Refreshed by the `operator-install
 daily status cron (`lexflow-daily-status-crm`, 09:00). The **authority for task status
 is `docs/LexFlow_Agentic_Roadmap.json`** in the CRM repo; this note is the human-readable
 mirror and is never written back into that file.
+
+## Snapshot — 2026-11-06 (09:07 CET)
+
+- **🔴 P0 REGRESSION, DAY 3 — production is still DOWN.** All three probes return **404**:
+  `/` (0.38s), `/health` (0.40s), `/login?ws=lexflow` (0.49s), with `server: railway-hikari`,
+  `x-railway-fallback: true`, `x-railway-edge: zrh1` and body
+  `{"status":"error","code":404,"message":"Application not found"}`. Identical signature to
+  2026-11-04 — **no partial recovery**. Still only Ole can fix it (Railway dashboard/service
+  access; the CLI token 403s on Backboard GraphQL). Tracked as
+  `P0-PROD-DOWN-REGRESSION-2026-11-04` + card **`t_9f758266`** (blocked).
+- **22:08 CET re-baseline (card `t_ba26097d`): a DIFFERENT LexFlow host is healthy.** Re-probed
+  both hostnames: `web-production-031a6` → `/` 404 (0.29s), `/health` 404, `/login?ws=lexflow` 404,
+  all still `x-railway-fallback: true`; but `https://lexflow-web-production.up.railway.app` →
+  `/api/health` **200** `{"status":"ok","database":"healthy","document_storage":"healthy",
+  "service":"lexflow"}`, `/` 200 (Next.js, `lang="hr"`), `/login` 200, `/api/openapi.json` 200
+  (FastAPI "LexFlow" **0.3.0**, 106 paths, tags incl. `case-intelligence`, `smart-scan`,
+  `public-contact`), anon `/api/cases` 401, `/api/contacts` 404 — with **no** fallback header.
+  Which hostname is the real production, and which repo the FastAPI/Next build comes from, is
+  **UNCONFIRMED** (its OpenAPI signature has 0 hits under `~/projects`). Recorded in the authority as
+  new `open_p0` entry **`P0-PROD-IDENTITY-UNCONFIRMED-2026-11-06`** (commit `99e42f8`, local only);
+  nothing was flipped open or closed, and no task column changed.
+- **Nothing moved today, and that is the honest answer.** No CRM commit, no deploy, no push,
+  and **no column change on any of the 31 task nodes**. All 31 carry over exactly as the
+  2026-11-04 run left them: 2 `done`, 2 `deployed`, 11 `local_verified`, 4 `awaiting_confirmation`,
+  7 `blocked`, 5 `backlog`. Evidence used: `git log` on `lexflow_hermes_v1`, the 89-card Kanban
+  board, and the live prod probe.
+- **The 2026-11-05 run never executed.** `cron/executions.db` shows job `cda5f6d4a18a` failing
+  with `RuntimeError: [Errno 8] nodename nor servname provided` plus one interrupted attempt, so
+  the tracker skipped a day (`last_updated` sat at 2026-11-04). Now recorded in
+  `previous_status_runs` so the gap stays auditable.
+- **Repo paths — the cron prompt is still wrong.** The clone is
+  **`/Users/olesiarasing/projects/lexflow/lexflow-crm`**, one level deeper than the prompt's
+  `~/projects/lexflow-crm`, and `~/projects/lexflow` is not a repo. Branch `lexflow_hermes_v1`
+  lives in worktree **`…/lexflow-crm-wt-merge`** — the primary checkout sits on
+  `integration/graph-gantt-local` (`053265e`) where the tracker is a **stale 2026-10-27 copy**
+  (derived checkout, not a second registry per §9; the validator ignores same-repo worktrees).
+  Today's local commit: **`9af129c`** on `lexflow_hermes_v1`, now **15 commits ahead of
+  `origin/lexflow_hermes_v1`** (`ddec0aa`), **unpushed** — a push triggers a Railway deploy and
+  needs Ole's explicit go.
+- **Validator: exit 1, 4 violations, all human-gated.** `[A]` T-016 `column=deployed` without
+  `prod_url`+`commit_hash` (`da19b36` is not an object in this repo and the Netlify landing repo
+  is gone — left unfilled, not guessed); `[B]` T-030 (`t_7fc8830f` blocked) and `[B]` T-031
+  (`t_c0c2b530` blocked) still contradict `roadmap=deployed` — the human must close or re-scope
+  those cards; `[C]` two legacy tracker copies under
+  `~/Desktop/projects/Products & Services/LEGAL/LEXFLOW Production/` (deletion is approval-only).
+  The staleness check `[D]` cleared by stamping `last_updated=2026-11-06`. **Nothing was papered
+  over** to force a clean exit.
+- **Zero cards created (§9/§10.3)** — every unfinished node already owns exactly one open card,
+  confirmed before writing. One genuine duplicate-of-the-job card exists and was left alone:
+  **`t_0202e49699964110`** ("roadmap not updated; run daily status", `ready`, operator-installer).
+  A comment was added to it explaining that cron `cda5f6d4a18a` already owns this work; a human
+  should close it, otherwise the dispatcher can double-run the daily status.
 
 ## Snapshot — 2026-11-04
 
@@ -328,6 +380,31 @@ T-030/T-031 verified already correct (deployed 2026-10-27). Docs-only commit `1e
 pushed (push triggers a Railway deploy). Repo: `/Users/olesiarasing/projects/lexflow/lexflow-crm-wt-merge`.
 Follow-up `t_6b05ac79`: the seeder still fabricates dates for undated nodes.
 
+## 2026-11-06 — evening re-check (card `t_0202e49699964110`)
+
+Second, evening confirmation of today's daily run (21:58 CET), because Ole's card flagged the
+roadmap as stale. **Nothing in the tracker changed** — and that is the evidence-based answer,
+not an omission:
+
+- **Prod re-probed, still down:** `/` 404 (0.28s), `/health` 404 (0.24s), `/login?ws=lexflow`
+  404 (0.26s), `server: railway-hikari`, `x-railway-fallback: true` — day 3 of
+  `P0-PROD-DOWN-REGRESSION-2026-11-04`, signature identical to 09:07, no partial recovery.
+- **No new commit** on `lexflow_hermes_v1` after the 09:07 status commit (`9af129c`); HEAD now
+  `55b644b` (this evening's docs-only re-check commit, **not pushed**).
+- **Validator re-run: same 4 human-gated violations** (T-016 report_rule evidence; T-030/T-031
+  roadmap=deployed vs card blocked; two legacy `~/Desktop` tracker copies). None newly broken,
+  none resolvable from evidence.
+- **0 new Kanban cards, 0 column flips.** The card is COMPLETED with cron `cda5f6d4a18a` named
+  as the permanent owner of the daily status (§9 — no second run, no second registry).
+- **Root cause fixed:** the cron prompt pointed at `~/projects/lexflow-crm`, which does not
+  exist. Corrected in place (repo `/Users/olesiarasing/projects/lexflow/lexflow-crm`, branch
+  `lexflow_hermes_v1` in the `lexflow-crm-wt-merge` worktree), schedule/deliver/toolsets and
+  model pinning untouched, plus a step 0 telling the job to dedupe cards that restate it.
+
+Repo touched: `/Users/olesiarasing/projects/lexflow/lexflow-crm-wt-merge` (branch
+`lexflow_hermes_v1`). Reminder for Ole: Railway → project perceptive-achievement → Postgres →
+Settings → Networking → enable TCP Proxy (may be needed for future DB work).
+
 ## Links
 
 - Parent: [[LexFlow-INDEX]]
@@ -335,6 +412,7 @@ Follow-up `t_6b05ac79`: the seeder still fabricates dates for undated nodes.
 - Related: [[LexFlow-T021-Diagram-View-Spec-2026-10-06]]
 - Related: [[LexFlow-Audit-Checklist]]
 - Related: [[LexFlow-Admy-Push-2026-10-27]]
+- Related: [[2026-11-06]]
 - Related: [[2026-11-04]]
 - Related: [[2026-11-03]]
 - Related: [[2026-10-14]]

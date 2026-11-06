@@ -35,10 +35,10 @@ line.
 
 Files changed:
 
-- `~/.hermes/profiles/operator-installer/scripts/obsidian-sync.sh`
+- `~/.hermes/profiles/smoothy_op_dir/scripts/obsidian-sync.sh`
   - backups: `obsidian-sync.sh.bak-20260916-144541` (original, pre-fix),
     `obsidian-sync.sh.bak-20260916-145554` (token fix, pre-exclude)
-  - token resolved at runtime from `~/.hermes/profiles/operator-installer/hindsight/config.json`
+  - token resolved at runtime from `~/.hermes/profiles/smoothy_op_dir/hindsight/config.json`
     (the documented credential location) and passed as both `--api-token` and
     `HINDSIGHT_API_TOKEN`; no secret literal in the script
   - `set +e` around reconcile + explicit exit-code check → failures are now
@@ -46,7 +46,7 @@ Files changed:
   - `--exclude "01-Projects/AVibe-CRM/_from-repos/avibe-hindsight/obsidian/templates/hindsight-convo-template.md"`
     — one placeholder skeleton, the only uninjestible file in the vault; the
     file itself is untouched
-  - rolling status log `~/.hermes/profiles/operator-installer/logs/obsidian-sync-rolling.log`
+  - rolling status log `~/.hermes/profiles/smoothy_op_dir/logs/obsidian-sync-rolling.log`
     (one OK/FAILED line per run)
 
 Not changed: the vault path, the bank name, the 06:00 schedule, and the plist

@@ -97,6 +97,6 @@ Root cause of the 11-day outage: `git_autocommit.sh` never checked the exit code
 
 ## Links
 
-- Parent: [[05-Daily/2026-09-05]]
+- Parent: [[05-Daily/2026-09/2026-09-05]]
 - Related: [[AGENT_RULES]] § Git & Deployment Boundary
 - Related: [[vault-security-baseline]]
