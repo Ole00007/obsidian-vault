@@ -5,7 +5,7 @@
 
 ## What is observed
 
-`~/.hermes/profiles/memory-curator/scripts/repo_sync.py` (nightly 22:4x cron) walks a hard-coded
+`~/.hermes/profiles/memy/scripts/repo_sync.py` (nightly 22:4x cron) walks a hard-coded
 `ROOTS` map of working code repos and mirrors their doc files (`.md .csv .txt .json .yaml .yml .docx .xlsx .pdf`)
 into the vault's `_from-repos/` mirrors. On **2026-09-16** and again on **2026-09-17** the dry-run printed:
 

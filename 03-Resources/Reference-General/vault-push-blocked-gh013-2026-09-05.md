@@ -91,7 +91,7 @@ It does not match `googleusercontent`, `client_secret`, generic `*.json`, or man
 Root cause of the 11-day outage: `git_autocommit.sh` never checked the exit code of `git push`. From 2026-09-04 onward it printed `[git-autocommit] pushed at …` on every run while GitHub rejected every push with GH013, so the vault silently accumulated 6 unpushed commits.
 
 - Safety ref before the rewrite: `backup/pre-gh013-20260916` → `849c9de` (local-only; **contains the live secret — delete after the credential is revoked, never push it**).
-- Rewrite: `git filter-branch --tree-filter` over `origin/main..main` — deleted both `client_secret_….json` copies and redacted this note via `~/.hermes/profiles/memory-curator/scripts/redact_gh013.py`.
+- Rewrite: `git filter-branch --tree-filter` over `origin/main..main` — deleted both `client_secret_….json` copies and redacted this note via `~/.hermes/profiles/memy/scripts/redact_gh013.py`.
 - Verification: zero residual matches for the client_id/client_secret across every rewritten commit before pushing.
 - Note: this alert note had itself been re-committing the credential in plain text (lines 24–26). Incident notes must show `GOCSPX-REDACTED`, never the real value.
 

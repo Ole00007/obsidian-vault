@@ -12,6 +12,7 @@ Hub note for the `Hermes-Setup-and-MCP` folder. Links to every note here.
 ## Notes
 
 ### Current / start here
+- [[Hermes Doctor_Restart Gate_Set up/Hermes Shared Gateway Restart Protocol]] — consolidated current recovery procedure and comparison of related gateway notes.
 - [[2026-10-21-smoothy-op-dir-handover-and-open-blockers]] — **live state + open blockers** (Telegram delivery, MCP 401s, Canva, aLEXy). Read this first for the estate's current position.
 - [[2026-10-05-canva-fronty-intake-and-d1-15-fix]] — Canva × Fronty × Hermes package intake; D1-15 fixed, owner tasks outstanding.
 - [[2026-10-05-google-api-key-leak]] — aLEXy public Google API key (security incident, still open).
@@ -24,4 +25,3 @@ Hub note for the `Hermes-Setup-and-MCP` folder. Links to every note here.
 The rest of this folder is the dated working archive (roadmaps, incident reports, skill
 inventories, platform comparisons, architecture notes). Search the folder rather than relying
 on this hub to enumerate it.
-

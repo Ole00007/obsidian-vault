@@ -61,7 +61,7 @@ Consistent with the missing manifests for 09-16 and 09-17.
    (Alternative narrower path: *Files and Folders → Hermes → Downloads folder*, only if
    that entry is actually offered for this bundle.)
 2. After relaunch, verify with:
-   `python3 ~/.hermes/profiles/memory-curator/scripts/downloads_stager.py --dry-run`
+   `python3 ~/.hermes/profiles/memy/scripts/downloads_stager.py --dry-run`
 3. Then backfill: same command with `--hours 72` (no `--dry-run`).
 4. **Durable fix (recommended):** the app is rebuilt in place at a versioned ad-hoc path,
    so this will recur on every rebuild. Give the shortcut a stable home — symlink

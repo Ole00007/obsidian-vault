@@ -62,7 +62,8 @@ Two stale copies of the agent rules were sitting in the vault — a parallel sou
 - `03-Resources/Hermes-Setup-and-MCP/AGENT_RULES-v2.txt` — v2 draft (Aug 6)
 
 Both were given a prominent **SUPERSEDED — DO NOT USE AS A RULE SOURCE** banner pointing at the
-authority. Nothing was deleted (no-deletion rule); archive proposed to Ole.
+authority. On 2026-11-07, following Ole's direct cleanup instruction, both obsolete copies were
+deleted. The current authority remains `~/Obsidian/_Meta/AGENT_RULES.md` v2.6.
 
 ## 5. Daily status cron — confirmed live (and repaired)
 
