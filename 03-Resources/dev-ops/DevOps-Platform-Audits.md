@@ -65,8 +65,17 @@ Append a dated entry to this note:
 
 If a platform's API is unreachable, do not silently skip — mark it `UNREACHABLE` and retry next run. If the same platform is unreachable 3× in a row, escalate to Ole with a Telegram alert.
 
-## Links
+## 2026-11-08
 
+- **Railway:** `railway usage` CLI unauthorized (tokens null); public `/services` endpoint returns HTTP 200 but no usage data without auth — CHECK
+- **Netlify:** API `/sites` HTTP 401 without token — CHECK
+- **Cloudflare Pages:** API HTTP 403 without token — CHECK
+- **Vercel:** API HTTP 404 without token — CHECK
+- **GitHub:** 17 repos. Actions: 12 repos 0 runs; `avibe-hindsight` 11 runs but last run 2026-08-15 (stale); `avibe-hospitality` 1 run, deployment "Deploy to Cloudflare Pages" **FAILED** 2026-10-14 — **FLAG**
+- **OpenRouter:** models API HTTP 200 (accessible), balance endpoint requires auth token — CHECK
+- **Summary:** flags / actions needed
+
+## Links
 - Parent: [[dev-ops-INDEX]]
 - Related: [[self-improvement-log]] (weekly audit pairs with the Sunday self-improvement report)
 - Related: [[Memory-Architecture-2026-10-29-Obsidian-first-Hindsight-Standby]] (Hindsight standby policy — audits stay in Obsidian, not Hindsight)

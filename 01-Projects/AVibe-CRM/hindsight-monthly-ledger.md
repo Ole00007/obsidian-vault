@@ -6,3 +6,4 @@ Derived index only. Source of truth = `~/Obsidian` (daily). One line per monthly
 - 2026-10-29 13:47: OK — reconcile: +1 added, ~2 updated, -0 deleted, =594 unchanged (attempts=1, index=2026-10-29T12:47:27.232Z)
 - 2026-10-29 14:01: OK — reconcile: +0 added, ~2 updated, -0 deleted, =595 unchanged (attempts=1, index=2026-10-29T13:01:18.052Z)
 - 2026-11-01 06:00: OK — reconcile: +25 added, ~11 updated, -0 deleted, =586 unchanged (attempts=1, index=2026-11-01T05:00:53.963Z)
+- 2026-11-08 15:16: SKIPPED — Hindsight API unreachable after 3 probe(s) (HTTP 404 "Application not found", railway-hikari / x-railway-fallback) — weekly vault sync could not write; candidates inventoried in 05-Daily/2026-11-08.md (last exit RC 22)

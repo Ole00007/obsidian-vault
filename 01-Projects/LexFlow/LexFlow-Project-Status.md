@@ -1,7 +1,7 @@
 ---
 title: LexFlow — Project Status
 created: 2026-09-19
-updated: 2026-11-06
+updated: 2026-11-08
 tags: [lexflow, status, orchestration]
 status: active
 ---
@@ -12,6 +12,46 @@ Live project-status note for the LexFlow CRM. Refreshed by the `operator-install
 daily status cron (`lexflow-daily-status-crm`, 09:00). The **authority for task status
 is `docs/LexFlow_Agentic_Roadmap.json`** in the CRM repo; this note is the human-readable
 mirror and is never written back into that file.
+
+## Snapshot — 2026-11-08 (15:14 CET, daily status run)
+
+- **🔴 P0 PROD, DAY 5 — still edge-404.** `/` 404 (0.25s), `/health` 404 (0.25s),
+  `/login?ws=lexflow` 404 (0.24s), body `{"status":"error","code":404,"message":"Application not found"}`
+  (request_ids `14BdSKMSRnSgxaaOjq4OvQ` / `YXM9b55XSoOB_pOQ9o6EoQ` / `OCPLLccjSdey93cJ2h0iww`).
+  No partial recovery; `P0-PROD-DOWN-REGRESSION-2026-11-04` stays OPEN and needs Ole's Railway access.
+  The morning briefing's identity test stands: the Flask CRM is serving nowhere right now.
+- **The 2026-11-07 run never executed.** `cron/executions.db` run `7cd7936b2844…` shows job
+  `cda5f6d4a18a` failing 09:02 → 09:15 CET with `RuntimeError: Operation interrupted: waiting for
+  model response (2.4s elapsed)` (delivery suppressed). Recorded in `previous_status_runs` as a gap.
+- **Kanban board was broken for every agent and is now repaired.** `hermes kanban list` and the
+  MCP `kanban_list` tool both died with `sqlite3.IntegrityError: NOT NULL constraint failed:
+  task_events.task_id`. Root cause: exactly one `tasks` row (rowid 119, *"Elisa: wire working LLM
+  model + add strategy draft kind + fix read cap"*, todo/backend-dev) had a **NULL primary-key id**,
+  so `recompute_ready` could not write its "promoted" event. Fixed in place — id `t_03c96721`
+  assigned, repair event written, DB backed up at `~/.hermes/kanban.db.bak-opdir-20261108`, no other
+  table referenced the NULL id. Board: 119 cards — 85 done / 23 blocked / 4 ready / 6 todo / 1 scheduled.
+- **T-016 report_rule gap closed with live evidence (not a guess).** `T-016` (A1 landing repoint
+  ab54f → 031a6) now carries `prod_url=https://poetic-kleicha-28d058.netlify.app` +
+  `commit_hash=da19b36`. Probed 200 (1.07s), `<title>LexFlow — Studio Legale X</title>`, 9 refs to
+  `031a6`. The commit is real and on `main` + `origin/main` of `LexFlow-landing`, whose only on-disk
+  checkout today is `/Users/olesiarasing/projects/LEGAL_backup/LexFlow-landing` (the old
+  `~/LexFlow-landing` path is gone). **Caveat for Ole: the landing is live but points at
+  `031a6`, which is the dead host** — so the landing's CRM buttons are dead until P0 is fixed.
+- **T-030 / T-031 drift resolved on the card side, not by downgrading the roadmap.** Both were
+  tracking cards held `blocked` while the roadmap recorded an Ole-approved deploy
+  (deploy `7354426195` / commit `396bea2`, 2026-10-27; `48094c2` confirmed an ancestor of
+  `origin/lexflow_hermes_v1`). Cards `t_7fc8830f` and `t_c0c2b530` completed with that evidence plus
+  an explicit "unverifiable while prod is 404" caveat in a comment — reopen if the launcher/visuals
+  are missing once prod is back.
+- **Nothing else moved.** No CRM commit, no push, no deploy, **0 column flips on the 31 task nodes**,
+  **0 new cards** (§9/§10.3 — every unfinished node already owns exactly one open card).
+- **Validator: exit 1 — 1 violation left** (down from 5): `[C]` two legacy tracker copies under
+  `~/Desktop/projects/Products & Services/LEGAL/LEXFLOW Production/` (TCC-protected frozen legacy per
+  §8; deletion is Ole's call). `[A]` T-016, both `[B]` drifts and `[D]` staleness were genuinely
+  closed today — nothing was papered over.
+- **Repo touched:** `/Users/olesiarasing/projects/lexflow/lexflow-crm-wt-merge`, branch
+  `lexflow_hermes_v1` — local commit **`1468b0c`** (not pushed; 19 commits ahead of
+  `origin/lexflow_hermes_v1`, a push triggers a Railway deploy and needs Ole's explicit go).
 
 ## Snapshot — 2026-11-06 (09:07 CET)
 
@@ -412,6 +452,7 @@ Settings → Networking → enable TCP Proxy (may be needed for future DB work).
 - Related: [[LexFlow-T021-Diagram-View-Spec-2026-10-06]]
 - Related: [[LexFlow-Audit-Checklist]]
 - Related: [[LexFlow-Admy-Push-2026-10-27]]
+- Related: [[2026-11-08]]
 - Related: [[2026-11-06]]
 - Related: [[2026-11-04]]
 - Related: [[2026-11-03]]

@@ -692,5 +692,51 @@ If approved, these two changes would resolve the core FP rate defect and the com
 
 ## Links
 ||- Parent: [[self-improvement-log]]
+
+## WEEKLY ENFORCEMENT — 2026-11-08 (vault-logging §V3/§V4)
+
+|- Roster: **26 profiles** (verified via `~/.hermes/profiles/*/`).
+|- Profiles active this week (ran sessions / Kanban / session-DB activity): **9**.
+|- Left a vault trace this week: **9 / 9 active ✓ (100%)**.
+|- Non-compliant (active but zero vault trace): **0**.
+|- Dormant (no sessions / Kanban / log activity this week; no trace expected — not violations): **17**.
+|- Daily-note gaps (last 7d): **2026-11-01 MISSING** (`05-Daily/2026-11-01.md` not on disk; `11-02..11-08` all present with entries).
+|- Vault traces (files modified in last 7d, attributed): operator-installer (LexFlow-Project-Status.md 11-08; agent-reports 11-04/11-06/11-07/11-08; LexFlow files 11-06); memy (agent-reports 11-07/11-08; self-improvement-log 11-07; hindsight-monthly-ledger 11-08; LexFlow-Dedup-Report 11-06); frontend-developer-lovable_react (Fronty-JOB7-Calendar-Year-View-2026-11-02.md); smoothy_op_dir (Separazione-Swarm-Workflow-2026-11-07.md, Separazione-Strategy-2026-11-07.md, Elisa-Legal-Assistant-Upgrade-2026-11-07.md); admy_ceo (Separazione files 11-05); cron-sentinel (daily note 11-05); tester (Elisa run 11-05).
+|- Memory-curator renamed to memy (per 11-07 daily note, t_72d5c3d2673c4498).
+|- Reminder §V3: every knowledge-producing task must write a vault note AND append a one-line Daily Note entry; Telegram delivery alone does not satisfy §V3.
 ||- Related: [[cron-jobs-INDEX]]
 ||- Related: [[05-Daily-INDEX]]
+
+## WEEKLY REPORT — 2026-11-08 (Part F synthesis)
+
+|- Window: **2026-11-01 → 2026-11-08**. Sources: this log (running record through the 2026-11-08 weekly-vault-logging-enforcer run at 18:12, plus the 2026-11-07 nightly entry), `_Inbox/_Conflicts` scan (50 files — search_files + terminal `find | wc -l` agree), wikilinks integrity scan (stdlib Python, 572 curated notes), vault-logging compliance check (daily-note attribution + roster per §V3/V4). Baseline for trends: 2026-08-26 (323 notes / 30 unlinked / 28 distinct unresolved / 40 refs).
+|
+|- **(1) FALSE-POSITIVE RATE**
+|  - Nightly `downloads_stager.py` (18:00): 0 conflicts claimed on its runs; whole-vault SHA-256 identity check fixed 09-23. Runs this week (11-02, 11-06, 11-07): **no stager run logged in the record** → FP level not measurable this window; last run was 2026-10-31 (clean).
+|  - `sunday-organize-inbox` (18:15): not run this week. Its upstream chain `obsidian-staging.sh` (05:00) is **still not ported with the 09-23 fix** — when it fires it quarantines 100% of files as "duplicate" (basename-in-`_Inbox` only). Every batch since 09-23 measured 100% FP (09-20: 7/7, 09-22: 2/2, 09-23: 3/3, 09-25: 5/5, 10-21: 45/45, 10-25: 45/45, 10-27: 18/18).
+|  - Backlog this week: 50 files (search_files + terminal agree). Trend: 50 (11-02) → 64 (11-06, +14) → 53 (11-07, −11) → **50** (11-08, terminal). No new quarantines this week; triage: 0 cleared since 09-20 (49-file legacy queue untouched).
+|
+|- **(2) RECURRING PATTERNS + proposed refinement**
+|  - `(n)` browser re-download suffix — dominant since 08-26; this week only inside the existing backlog (`industry-competitive-analyst-skill (2)`, `Point6_Skill_MCP_Marketplaces_Extended (1)`, `md.md`, `INDEX.md`, `--.csv`). Suffix-based EXCLUDE/INCLUDE heuristics are **unsafe in both directions** (09-23: 6/6 distinct WhatsApp images; 09-25/09-26: same-second pairs with different hashes/sizes). **No serial-part EXCLUDE rule this cycle.**
+|  - Root cause unchanged, 31+ days pending: `obsidian-staging.sh` keys identity on `basename-in-_Inbox` only. Single highest-value fix: **port the 09-23 whole-vault SHA-256 identity check into that script**; dedup must md5-verify and move to `_Trash/` with date prefix, never `rm` on size equality.
+|
+|- **(3) BACKLOG TREND**
+|  - Current: **50 files**. Trend: N/A → 1 → 1 → 0 → 45 → 46 → 48 → 49 → 56 → 49 → 50 → 55 → 50 → 64 → 53 → **50**. Zero triage progress this week; the 49-file legacy queue (09-20 clear of 7) is untouched.
+|
+|- **(4) WIKILINKS HEALTH** (baseline 2026-08-26: 323 notes / 30 unlinked / 28 distinct unresolved / 40 refs)
+|  - Curated vault: **572 notes** (323, +77%). Zero-link: **168** (29.4% of notes; 13 canonical hubs/INDEX/README, **155 genuine content notes — flagged**).
+|  - Unresolved: **141 refs / 82 distinct targets** (40/28 baseline). Top offenders: `[[05-Daily]]` (13), `[[LexFlow]]` (8), `[[TOC]]` (6), `[[Workflows/Composio-Integration]]` (4), `[[_Meta]]` (4), `[[Agents/Agent-Name]]` (3), `[[Hermes-Setup-and-MCP]]` (3), `[[Workflows/Email-Digest-Pipeline]]` (3), `[[_Inbox-INDEX]]` (dropped from 57), template placeholders `[[Agents/Agent-Profiles]]`, `[[Skills/Skill-Name]]`.
+|  - Genuine unlinked content notes (155): dominated by `_from-repos` repo imports (~16), the LexFlow build/roadmap family (~15), AVibe-CRM (~9), Reference-General reference notes (~45+) — mostly imported/low-signal notes needing no links; ~15 genuine orphan notes flagged (`LexFlow-Gantt-Plan-v4-2.md`, `LexFlow-Owner-Audit-Prompt.md`, `Carrozzeria 2DI — One-Page Technical SEO AEO Audit.md`, `takeaway_separation_summary_ONEPAGE.md`, `2di_visibility_launch_plan.md`).
+|
+|- **(5) VAULT-LOGGING COMPLIANCE** (weekly-vault-logging-enforcer ran 18:12 today; output already in the log at `## WEEKLY ENFORCEMENT — 2026-11-08`)
+|  - Enforcer's figures: **26 profiles verified**; 9 active this week; **9/9 left a vault trace (100%)**; **0 non-compliant**; 17 dormant (not violations); daily-note gaps: **2026-11-01 MISSING** (`05-Daily/2026-11-01.md` not on disk; 11-02..11-08 all present).
+|  - Vault traces (files modified in last 7d, attributed): operator-installer (LexFlow-Project-Status.md 11-08; agent-reports 11-04/11-06/11-07/11-08; LexFlow files 11-06); memy (agent-reports 11-07/11-08; self-improvement-log 11-07; hindsight-monthly-ledger 11-08; LexFlow-Dedup-Report 11-06); frontend-developer-lovable_react (Fronty-JOB7-Calendar-Year-View-2026-11-02.md); smoothy_op_dir (Separazione-Swarm-Workflow-2026-11-07.md, Separazione-Strategy-2026-11-07.md, Elisa-Legal-Assistant-Upgrade-2026-11-07.md); admy_ceo (Separazione files 11-05); cron-sentinel (daily note 11-05); tester (Elisa run 11-05).
+|  - Cross-check (my daily-note attribution, 11-02..11-08): 7/23 runnable profiles credited with sections (operator-installer 6, backend-dev 5, memy 3, smoothy_op_dir 3, admy_ceo 1, cron-sentinel 1, tester 4) → 16/23 zero-trace, incl. frontend-developer-lovable_react and sales-crm.
+|  - Note: memory-curator renamed to memy (per 11-07 daily note, t_72d5c3d2673c4498). Reminder §V3: every knowledge-producing task must write a vault note AND append a one-line Daily Note entry; Telegram delivery alone does not satisfy §V3.
+|
+|- **(6) PROPOSED ADJUSTMENT (awaiting Ole's decision)**
+|  - Port the 09-23 whole-vault SHA-256 identity check into `obsidian-staging.sh` (the 05:00 chain) and enforce md5-verify + `_Trash/` move, never `rm` on size equality. Highest-value single fix: historically suppresses ~100% of new quarantines. The alternative (extend the `(n)`-suffix EXCLUDE rule) is rejected as unsafe after 09-23/09-25 proved `(n)` marks genuinely distinct content.
+|  - Context: the memory layer is down (Hindsight 404 since 2026-11-04; vault→Hindsight path broken) — vault remains the source of truth; the weekly sync was skipped and logged as SKIPPED.
+|  - Status: **awaiting Ole's decision**.
+|
+*Report generated by the Sunday 18:20 `weekly-self-improvement-report` run, 2026-11-08 18:20 CET.*
