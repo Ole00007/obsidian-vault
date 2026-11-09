@@ -1,7 +1,7 @@
 ---
 title: LexFlow — Project Status
 created: 2026-09-19
-updated: 2026-11-08
+updated: 2026-11-09
 tags: [lexflow, status, orchestration]
 status: active
 ---
@@ -12,6 +12,38 @@ Live project-status note for the LexFlow CRM. Refreshed by the `operator-install
 daily status cron (`lexflow-daily-status-crm`, 09:00). The **authority for task status
 is `docs/LexFlow_Agentic_Roadmap.json`** in the CRM repo; this note is the human-readable
 mirror and is never written back into that file.
+
+## Snapshot — 2026-11-09 (09:00 CET, daily status run `cda5f6d4a18a`)
+
+- **🔴 P0 PROD, DAY 6 — still edge-404, no partial recovery.** `/` 404 (0.29s), `/health` 404 (0.29s),
+  `/login?ws=lexflow` 404 (0.24s); body `{"status":"error","code":404,"message":"Application not found"}`,
+  headers `server: railway-hikari`, `x-railway-fallback: true`, `x-railway-edge: cdg1`
+  (request_ids `1nDmLXbHQEq_Tq0Dlt7tkg` / `C0OZOloLRdSa2diNljLL4A` / `A9w-RgmySGKTi_2yCYBc-A`).
+  `P0-PROD-DOWN-REGRESSION-2026-11-04` stays OPEN; only Ole's Railway access can rebind the hostname.
+  `P0-PROD-IDENTITY-UNCONFIRMED-2026-11-06` also stays open.
+- **Landing still healthy:** `https://poetic-kleicha-28d058.netlify.app/` → **200** (1.00s),
+  `<title>LexFlow — Studio Legale X</title>`, 9 refs to `031a6`. So T-016 remains truthfully `deployed` —
+  but its CRM buttons still point at the dead host.
+- **One column change, on hard evidence: T-009 `local_verified` → `backlog`.** The 8 "untracked files"
+  this node had been resting on **no longer exist and were never committed**: canonical worktree
+  `/Users/olesiarasing/projects/lexflow/lexflow-crm-wt-merge` is clean, `grep -rlE 'class ScheduledAction|
+  scheduled_actions' --include=*.py` across `/Users/olesiarasing/projects/lexflow` returns zero real hits
+  (only `scripts/gen_gantt_*.py` that mention the string), `find -name '*f4a5b6c7d8e9*'` finds nothing, and
+  `git log --all -S scheduled_actions -- '*.py'` shows only the unrelated gantt commit `1e1a357`. Nothing
+  to recover — T-009 has to be rebuilt. Card **`t_4e9ad46d`** (backend-dev) created.
+- **T-027 merge gap re-measured, card created.** `afc4d8e` lives only on `feat/t027-hindsight-memory`:
+  `git merge-base --is-ancestor afc4d8e lexflow_hermes_v1` → exit 1, and `git branch --contains afc4d8e`
+  lists only the feature branch. The 29 Hindsight tests pass locally, but the work is **not on the deploy
+  branch**. Card **`t_62ab8ba0`** (backend-dev) created for a local-only merge + test re-run.
+- **Nothing else moved:** no CRM code commit since `215bcc2` (2026-10-29), no card closed, no push, no
+  deploy. Board: 119 cards — 88 done / 21 blocked / 5 todo / 4 ready / 1 scheduled. All activity since
+  2026-11-07 is admin (`ROSTER NOTICE` reorg cards + the Elisa LLM card `t_03c96721`), not LexFlow delivery.
+- **Validator: exit 1 — one violation only**, `[C]` two frozen legacy tracker copies under
+  `~/Desktop/projects/Products & Services/LEGAL/LEXFLOW Production/` (TCC-protected frozen legacy per §8;
+  deletion is Ole's call, so it is reported and not papered over). No `[A]` or `[B]` violation today.
+- **Repo touched:** `/Users/olesiarasing/projects/lexflow/lexflow-crm-wt-merge`, branch
+  `lexflow_hermes_v1` — local commit **`07fe270`** (not pushed; **20** commits ahead of
+  `origin/lexflow_hermes_v1`; a push triggers a Railway deploy and needs Ole's explicit go).
 
 ## Snapshot — 2026-11-08 (15:14 CET, daily status run)
 
@@ -452,6 +484,7 @@ Settings → Networking → enable TCP Proxy (may be needed for future DB work).
 - Related: [[LexFlow-T021-Diagram-View-Spec-2026-10-06]]
 - Related: [[LexFlow-Audit-Checklist]]
 - Related: [[LexFlow-Admy-Push-2026-10-27]]
+- Related: [[2026-11-09]]
 - Related: [[2026-11-08]]
 - Related: [[2026-11-06]]
 - Related: [[2026-11-04]]

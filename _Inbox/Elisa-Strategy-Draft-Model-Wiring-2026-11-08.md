@@ -16,7 +16,7 @@ home: 01-Projects/LexFlow
 ## Model wiring (all env vars on the demo boot, nothing in code)
 | Var | Value | Revoke / change |
 |---|---|---|
-| LEXFLOW_AGENT_LLM_URL | https://openrouter.ai/api/v1 | change provider |
+| LEXFLOW_AGENT_LLM_URL | CURRENT: https://inference-api.nousresearch.com/v1 (Nous). OpenRouter dropped: free stepfun slug withdrawn (404), account returned 402 | change provider |
 | LEXFLOW_AGENT_LLM_MODEL | stepfun/step-3.7-flash:free | swap id |
 | LEXFLOW_AGENT_LLM_FALLBACKS | deepseek/deepseek-chat | paid, small, optional |
 | LEXFLOW_AGENT_LLM_KEY | from OPENROUTER_API_KEY in the backend-dev profile .env (reference only) | rotate or delete at OpenRouter |
@@ -46,3 +46,12 @@ Verified with SYNTHETIC text only (live call returned a structured note). The re
 - Demo on 5057 restarted by backend-dev under the port-5057 lock (released after). Boot script: ~/.hermes/profiles/backend-dev/cache/scratch/elisa_boot_5057.py (reads the key from the profile .env at start; same DB as Admy's demo, 6 documents on case 1).
 - Live check on 5057: login 200, document list 6, strategy draft 3415 chars with dated quotes tied to source files.
 - Card t_03c96721: spawn failure root cause = workspace_kind "lexflow" is not valid (allowed: scratch, dir, worktree). Set to dir + repo path and completed. Whoever creates cards must not use a custom kind.
+
+## Update (2026-11-09): Nous models, profiles, docs
+- Models now: Nous inference API, primary ~deepseek/deepseek-flash-latest (~$0.006/M in, $0.50/M out), fallback ~z-ai/glm-flash-latest. Key = the agent_key inside ~/.hermes/auth.json (NOT access_token, which gives 401). Short-lived: the boot script re-reads it every 5 min. Never stored in a file or note. A key pasted in chat is exposed: rotate it in the Nous portal.
+- Client profiles (standard, executive, anxious, analytical, low_literacy, hostile) + optional assistant addressee. Live run on the Nous models: executive 83 words / 3 bullets, anxious 192, analytical 452 / 14 bullets, low_literacy 103 words / shortest sentences (13.3 words), hostile 72. Profiles change the output measurably.
+- Bugs fixed on the way: strategy answers were EMPTY on long dossiers (reasoning model ran out of tokens; now 8000, env LEXFLOW_AGENT_LLM_STRATEGY_TOKENS); strategy result cut by a 4 KB tool cap and shown as 'Could not build the draft' (cap raised for strategy only); banner duplicated by the model.
+- Docs: docs/ELISA.md (new, in repo) + README docs index. Rule from Ole: every approved change updates Elisa docs and CRM docs in the same commit.
+- Where drafts and templates are stored: templates = code (crm/agent/drafts.py, profiles.py, llm.py prompts; checklists in crm/services/checklist_templates.py). Drafts are NOT persisted as documents: returned in chat, kept only in agent_runs.final_text / agent_audit. The lawyer saves one by attaching it to the matter (/api/attachments/). Elisa writes nothing to the vault.
+- Merged (local, not pushed) into integration/filters-roi-demo2 at c5bacc6. Full suite 124 pass, 1 pre-existing fail (test_insights). 5057 restarted under lock, lock released.
+- OPEN for Ole: (1) persona set of realistic client QUESTIONS not yet written; (2) no 'save draft to matter' action in chat (needs approval flow); (3) test_insights duplicate blueprint.
