@@ -1,7 +1,7 @@
 ---
 title: LexFlow — Project Status
 created: 2026-09-19
-updated: 2026-11-09
+updated: 2026-11-11
 tags: [lexflow, status, orchestration]
 status: active
 ---
@@ -12,6 +12,38 @@ Live project-status note for the LexFlow CRM. Refreshed by the `operator-install
 daily status cron (`lexflow-daily-status-crm`, 09:00). The **authority for task status
 is `docs/LexFlow_Agentic_Roadmap.json`** in the CRM repo; this note is the human-readable
 mirror and is never written back into that file.
+
+## Snapshot — 2026-11-11 (09:37 CET, daily status run `cda5f6d4a18a`)
+
+- **🔴 P0 PROD, DAY 8 — still edge-404, no partial recovery.** `/` → 404 and `/login?ws=lexflow` → 404;
+  headers `server: railway-hikari`, `x-railway-fallback: true`, `x-railway-edge: zrh1`,
+  `content-type: application/json`, request id `WSy-kYZzQoqAYKQuljLL4A`. Signature identical to
+  2026-11-04..2026-11-09. `P0-PROD-DOWN-REGRESSION-2026-11-04` stays OPEN; only Ole's Railway access
+  can rebind the hostname.
+- **Landing still healthy:** `https://poetic-kleicha-28d058.netlify.app/` → **200**, so T-016 remains
+  truthfully `deployed` (its CRM buttons still point at the dead host).
+- **Zero column changes — and that is the honest result.** No commit landed on 2026-11-10 or
+  2026-11-11; HEAD is still `be5ae63` (T-009 rebuild). Every node's column already matches its evidence,
+  so nothing was moved for the sake of looking busy.
+- **T-009 and T-027 re-verified on disk, both keep `local_verified` + `deploy_status: local`.**
+  T-009: `crm/models/scheduled_action.py`, `crm/services/scheduled_actions.py`, `crm/services/notify_gate.py`,
+  `crm/worker.py`, `migrations/versions/l3a4b5c6d7e8_add_scheduled_actions.py` and
+  `tests/test_scheduled_actions.py` all exist in `be5ae63`. T-027: `git merge-base --is-ancestor afc4d8e
+  lexflow_hermes_v1` → **exit 0**, so merge `848c2c3` really is on the deploy branch.
+- **New card `t_15bf3380` (operator-installer):** the only genuinely pending work — both commits were
+  self-marked `local_verified` but the operator cross-audit of their diffs never ran. No column changes
+  in the tracker; the verdict lands on that card.
+- **2026-11-10 status run recorded as a GAP**, not skipped silently: no session dir for `20261110`
+  (0 matches), no daily-status commit that day, no tracker entry. Now written into
+  `previous_status_runs` so the hole is auditable.
+- **Board:** 122 cards — 90 done / 21 blocked / 5 todo / 4 ready / 1 scheduled / 1 running.
+- **Validator: exit 1 — one violation only**, `[C]` two frozen legacy tracker copies under
+  `~/Desktop/projects/Products & Services/LEGAL/LEXFLOW Production/` (TCC-protected frozen legacy per §8;
+  deletion is Ole's call, so it is reported and not papered over). `[D]` stale-`last_updated` is fixed by
+  this run; no `[A]`/`[B]` report_rule or card↔roadmap violation exists today.
+- **Repo touched:** `/Users/olesiarasing/projects/lexflow/lexflow-crm-wt-merge`, branch `lexflow_hermes_v1`
+  — local commit **`84af7fc`** (not pushed; 30 commits ahead of `origin/lexflow_hermes_v1` = `ddec0aa`).
+  No push, no deploy, no external send; prod and landing probed read-only.
 
 ## Snapshot — 2026-11-09 (09:00 CET, daily status run `cda5f6d4a18a`)
 
@@ -480,6 +512,7 @@ Settings → Networking → enable TCP Proxy (may be needed for future DB work).
 ## Links
 
 - Parent: [[LexFlow-INDEX]]
+- Related: [[2026-11-11]]
 - Related: [[LexFlow-2026-09-16-Stack-Decision-and-Task-Board]]
 - Related: [[LexFlow-T021-Diagram-View-Spec-2026-10-06]]
 - Related: [[LexFlow-Audit-Checklist]]
