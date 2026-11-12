@@ -1,7 +1,7 @@
 ---
 title: LexFlow — Project Status
 created: 2026-09-19
-updated: 2026-11-11
+updated: 2026-11-12
 tags: [lexflow, status, orchestration]
 status: active
 ---
@@ -12,6 +12,42 @@ Live project-status note for the LexFlow CRM. Refreshed by the `operator-install
 daily status cron (`lexflow-daily-status-crm`, 09:00). The **authority for task status
 is `docs/LexFlow_Agentic_Roadmap.json`** in the CRM repo; this note is the human-readable
 mirror and is never written back into that file.
+
+## Snapshot — 2026-11-12 (10:15 CET, daily status run `cda5f6d4a18a`)
+
+- **🔴 P0 PROD, DAY 9 — still edge-404, no partial recovery.** `/` → 404 and `/login?ws=lexflow` → 404;
+  headers `server: railway-hikari`, `x-railway-fallback: true`, `x-railway-edge: cdg1`, `x-hikari-trace: cdg1.8vsn`,
+  `content-type: application/json`, request id `plPl51JSSuOX5eO22prcFg`. The edge zone moved `zrh1 → cdg1`, the
+  "Application not found" signature is otherwise identical to 2026-11-04..2026-11-11. `P0-PROD-DOWN-REGRESSION-2026-11-04`
+  stays OPEN; only Ole's Railway access can rebind the hostname.
+- **Landing still healthy:** `https://poetic-kleicha-28d058.netlify.app/` → **200**, so T-016 remains truthfully
+  `deployed` (its CRM buttons still point at the dead host).
+- **Zero column changes, zero new cards — and that is the honest result.** The work that landed since yesterday
+  finishes *follow-up cards*, it does not move a roadmap node: `e94c396` records the T-009 (`be5ae63`) + T-027
+  (`848c2c3`) cross-audit as **APPROVED** (columns deliberately unchanged), and `f0930e8` fixes the fresh-schema
+  migration drift (card `t_fdbc90f7`).
+- **T-009 keeps `local_verified` + `deploy_status: local`.** Its one open piece (the cross-audit, card `t_15bf3380`)
+  is closed and approved, and its follow-up — the alembic chain could not provision a fresh schema (3 tables +
+  5 columns missing, upgrade failing at `h9c0d1e2f3a4`) — is fixed on the deploy branch with a real drift test
+  (`migrations/versions/h9c0d1e2f3a4_add_task_team_roles.py`, `m4b5c6d7e8f9_reconcile_models_drift.py`,
+  `tests/test_agent.py`). Committed, **not pushed, not deployed**.
+- **T-025 stays `backlog`, by evidence.** `f0930e8` unblocks the *alembic leg* of the staging smoke test, but the
+  gate still depends on T-024 (Railway `SECRET_KEY`/`JWT_SECRET_KEY`, blocked on Ole) and on the T-022/T-021/T-029
+  parents. Noted on the node instead of guessing a move.
+- **§10.3: no cards created** — all 15 unfinished nodes already own exactly one open card (T-002 `t_a5f4dd68`,
+  T-003 `t_a7e05e2c`, T-004 `t_34e5415d`, T-006 `t_ba95cc42`, T-010 `t_da4552e5`, T-011 `t_226f9045`,
+  T-012 `t_b8dfc0cc`, T-013 `t_5cf7a308`, T-014 `t_594fcced`, T-015 `t_f0a8b939`, T-018 `t_f48b0a11`,
+  T-020 `t_a4e0ad76`, T-024 `t_aa43a4c0`, T-025 `t_fe4e8687`, T-026 `t_76894c79`); a new one would be a duplicate.
+- **Board:** 123 cards — 92 done / 21 blocked / 5 todo / 4 ready / 1 scheduled.
+- **⚠️ Operational drift for Ole:** two live cards (`t_b8c5107e4fbc466a`, `t_d75fd050`) are assigned to the profile
+  name `operator-installer`, which is **not** in `hermes profile list` (the live profile is `smoothy_op_dir`) — the
+  dispatcher will never pick them up.
+- **Validator: exit 1 — one violation only**, `[C]` the two frozen legacy tracker copies under
+  `~/Desktop/projects/Products & Services/LEGAL/LEXFLOW Production/` (TCC-protected frozen legacy per §8; deletion is
+  Ole's call, so it is reported and not papered over). No `[A]`/`[B]` report_rule or card↔roadmap violation today.
+- **Repo touched:** `/Users/olesiarasing/projects/lexflow/lexflow-crm-wt-merge`, branch `lexflow_hermes_v1`
+  — local commit **`93dd00a`** (not pushed; 33 commits ahead of `origin/lexflow_hermes_v1` = `ddec0aa`).
+  No push, no deploy, no external send; prod and landing probed read-only.
 
 ## Snapshot — 2026-11-11 (09:37 CET, daily status run `cda5f6d4a18a`)
 
@@ -512,6 +548,7 @@ Settings → Networking → enable TCP Proxy (may be needed for future DB work).
 ## Links
 
 - Parent: [[LexFlow-INDEX]]
+- Related: [[2026-11-12]]
 - Related: [[2026-11-11]]
 - Related: [[LexFlow-2026-09-16-Stack-Decision-and-Task-Board]]
 - Related: [[LexFlow-T021-Diagram-View-Spec-2026-10-06]]
