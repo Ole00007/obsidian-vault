@@ -1,0 +1,20 @@
+﻿id,ruolo,missione,strumenti,controllo
+R01,Avvocato (supervisore),Approva ogni fase e decide,—,APPROVAZIONI 0-3
+R02,Coordinatore,"Pianifica, assegna ai sub-agenti, tiene il registro","Claude Code, sub-agenti",Riferisce all'avvocato
+R03,Acquisizione,"Importa, hash, import WhatsApp",case_tools.py,Mappatura mittenti confermata
+R04,Trascrittore A/B,"OCR con due motori, audio",Tesseract (+ secondo motore),Differenze elencate
+R05,Strutturatore,"messages.csv, cronologia, partecipanti",Python,Differenze irrisolte all'avvocato
+R06,Autenticita',Presume contenuto umano e reale salvo segni chiari,—,Ogni segno -> domanda
+R07,Analista frasi/emozioni,"Conteggi letterali, sinonimi, ambigui",case_tools.py count,Numeri da script
+R08,Riassuntore,Sintesi con citazioni,citecheck,PASS obbligatorio
+R09,Intervistatore,Domande a cliente/avvocato,—,APPROVAZIONE 1
+R10,Navigatore procedura,Questionario e vie R1-R4,—,APPROVAZIONE 0
+R11,Ricerca documenti,Propone altri documenti utili (sola lettura),filesystem MCP / cartella sincronizzata,APPROVAZIONE 2
+R12,Costruttore del fascicolo,Fonde vecchi e nuovi documenti in UN fascicolo,case_tools.py,Conteggi rieseguiti
+R13,Stratega,Strategia per rappresentanti A-D,—,Prove citate
+R14,Redattore,Bozze atti e lettere in italiano,modelli,Revisione avvocato
+R15,Controparte simulata,Domande ostili,—,Solo fatti del fascicolo
+R16,Difensore,Risposte veritiere con prove,—,Risposte senza prova segnalate
+R17,Privacy Guard,Segnala dati sensibili di terzi,—,Stop e domanda
+R18,Revisore,Controllo finale,case_tools.py verify/count/citecheck,APPROVAZIONE 3
+R19,Archivista,Archivio dopo ANALYSIS_COMPLETE,case_tools.py archive,Nessuna cancellazione senza CONFIRM DELETE

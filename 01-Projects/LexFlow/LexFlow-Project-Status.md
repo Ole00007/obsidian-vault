@@ -1,7 +1,7 @@
 ---
 title: LexFlow — Project Status
 created: 2026-09-19
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [lexflow, status, orchestration]
 status: active
 ---
@@ -12,6 +12,42 @@ Live project-status note for the LexFlow CRM. Refreshed by the `operator-install
 daily status cron (`lexflow-daily-status-crm`, 09:00). The **authority for task status
 is `docs/LexFlow_Agentic_Roadmap.json`** in the CRM repo; this note is the human-readable
 mirror and is never written back into that file.
+
+## Snapshot — 2026-11-13 (09:0x CET, daily status run `cda5f6d4a18a`)
+
+- **Nothing changed today, and that is the honest result — not an omission.** No commit landed on
+  `lexflow_hermes_v1` between the 2026-11-12 status run and this one (HEAD was `93dd00a`, itself
+  yesterday's docs-only status commit), the working tree was clean, and a 36-hour window query over
+  `tasks.completed_at / started_at / created_at` in `~/.hermes/kanban.db` returned **zero rows**:
+  no card was created, started or closed. **0 column flips, 0 new cards.**
+- **🔴 P0 PROD, DAY 10 — still edge-404, no partial recovery.** `/` → 404 and `/login` → 404;
+  headers `server: railway-hikari`, `x-railway-fallback: true`, `x-railway-edge: cdg1`,
+  `x-hikari-trace: cdg1.e9jw`, `x-railway-request-id: 7KIciHvqRjW5vBpZY53eZw`,
+  `content-type: application/json`. Identical "Application not found" signature to
+  2026-11-04..2026-11-12. `P0-PROD-DOWN-REGRESSION-2026-11-04` stays OPEN; **only Ole's Railway
+  access can rebind the hostname** — no code change on this branch can fix it.
+- **Landing still healthy:** `https://poetic-kleicha-28d058.netlify.app/` → **200**, so T-016 remains
+  truthfully `deployed` (its CRM buttons still point at the dead host).
+- **Board static:** 123 cards — 92 done / 21 blocked / 5 todo / 4 ready / 1 scheduled, exactly the
+  2026-11-12 distribution.
+- **§10.3: no cards created.** All 15 unfinished nodes already own exactly one open card (T-002
+  `t_a5f4dd68`, T-003 `t_a7e05e2c`, T-004 `t_34e5415d`, T-006 `t_ba95cc42`, T-010 `t_da4552e5`,
+  T-011 `t_226f9045`, T-012 `t_b8dfc0cc`, T-013 `t_5cf7a308`, T-014 `t_594fcced`, T-015 `t_f0a8b939`,
+  T-018 `t_f48b0a11`, T-020 `t_a4e0ad76`, T-024 `t_aa43a4c0`, T-025 `t_fe4e8687`, T-026 `t_76894c79`);
+  a new one would be a duplicate registry.
+- **Gap repaired:** the 2026-11-12 run never appended itself to `previous_status_runs`; it is now
+  recorded there (commit `93dd00a`) so the daily sequence has no silent hole.
+- **⚠️ Operational drift, day 3:** two ready cards (`t_b8c5107e4fbc466a`, `t_d75fd050`) are assigned
+  to the profile name `operator-installer`, which is **not** in `hermes profile list` (the live
+  profile is `smoothy_op_dir`) — the dispatcher will never pick them up. Needs a rename/reassign by Ole.
+- **Validator: exit 1 — one violation only**, `[C]` the two frozen legacy tracker copies under
+  `~/Desktop/projects/Products & Services/LEGAL/LEXFLOW Production/` (§8 frozen legacy, TCC-protected;
+  deletion is Ole's call, so it is reported and not papered over). No `[A]`/`[B]` report_rule or
+  card↔roadmap violation today.
+- **Repo touched:** `/Users/olesiarasing/projects/lexflow/lexflow-crm-wt-merge`, branch
+  `lexflow_hermes_v1` — local commit **`6a4c49f`** (not pushed; **34** commits ahead of
+  `origin/lexflow_hermes_v1` = `ddec0aa`). No push, no deploy, no external send; prod and landing
+  probed read-only.
 
 ## Snapshot — 2026-11-12 (10:15 CET, daily status run `cda5f6d4a18a`)
 
@@ -548,6 +584,7 @@ Settings → Networking → enable TCP Proxy (may be needed for future DB work).
 ## Links
 
 - Parent: [[LexFlow-INDEX]]
+- Related: [[2026-11-13]]
 - Related: [[2026-11-12]]
 - Related: [[2026-11-11]]
 - Related: [[LexFlow-2026-09-16-Stack-Decision-and-Task-Board]]

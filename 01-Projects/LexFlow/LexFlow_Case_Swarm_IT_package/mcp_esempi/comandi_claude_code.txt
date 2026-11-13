@@ -1,0 +1,9 @@
+# Windows (PowerShell), dalla cartella del fascicolo
+claude mcp add fascicoli -- cmd /c npx -y @modelcontextprotocol/server-filesystem C:/Casi/caso_demo
+claude mcp list
+# macOS
+claude mcp add fascicoli -- npx -y @modelcontextprotocol/server-filesystem ~/Casi/caso_demo
+# Server remoto (esempio)
+claude mcp add --transport http NOME https://URL/mcp
+# Nota: dopo la modifica di claude_desktop_config.json, chiudere completamente Claude Desktop e riaprirlo.
+# Sostituire i percorsi di esempio con la cartella dei fascicoli; non concedere accesso all'intero disco.

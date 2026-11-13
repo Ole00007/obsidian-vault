@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "fascicoli": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:/Casi/caso_demo"
+      ]
+    }
+  }
+}

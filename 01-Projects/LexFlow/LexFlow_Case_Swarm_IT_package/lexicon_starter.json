@@ -1,0 +1,24 @@
+{
+ "clusters": {
+  "apology": [
+   "sorry",
+   "my bad",
+   "forgive me",
+   "scusa",
+   "прости"
+  ],
+  "anger": [
+   "i hate",
+   "furious",
+   "sono stufo",
+   "бесит"
+  ]
+ },
+ "ambiguous": [
+  "fine",
+  "ok",
+  "sure",
+  "va bene",
+  "ладно"
+ ]
+}

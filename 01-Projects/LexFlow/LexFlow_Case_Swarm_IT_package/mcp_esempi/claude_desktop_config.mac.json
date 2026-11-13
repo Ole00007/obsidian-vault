@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "fascicoli": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/NOME/Casi/caso_demo"
+      ]
+    },
+    "ffmpeg": {
+      "command": "uvx",
+      "args": [
+        "ffmpeg-mcp-lite"
+      ]
+    }
+  }
+}

@@ -1,0 +1,20 @@
+﻿strumento_formato,uso,comando_o_programma,integrazione_con_Claude,installazione,note
+WebP,immagini/screenshot,Pillow o cwebp,Terminale,pip install pillow,qualita' 60-80 per ridurre 80-89%; senza perdita se serve esattezza
+PDF ottimizzato,scansioni e PDF,"ocrmypdf, ghostscript, qpdf",Terminale,brew install ocrmypdf ghostscript qpdf (Windows: WSL o solo Tesseract),Non serve PDF/A per uso interno; per obblighi di conservazione valutare con l'avvocato
+Markdown (.md),sintesi e bozze,—,File,—,Formato principale leggibile dagli agenti
+CSV UTF-8,"messaggi, cronologia, conteggi, indice prove",—,File,—,Le intestazioni sono il contratto dati
+DOCX/PDF,bozze da condividere,pandoc,Terminale,winget install JohnMacFarlane.Pandoc,Generare solo a fine lavoro
+OCR Tesseract,"screenshot, scansioni",tesseract IN.png OUT -l ita+eng,Terminale,winget install UB-Mannheim.TesseractOCR,Motore A o B
+Secondo OCR,controllo incrociato,"PaddleOCR (server MCP ufficiale, modalita' locale)",MCP o terminale,verificare le variabili nella guida del server,"Facoltativo: se difficile da installare, usare solo Tesseract + revisione umana"
+Trascrizione audio,vocali WhatsApp,whisper.cpp (locale),MCP whisper-mcp o terminale,verificare disponibilita' su Windows,Usare modello multilingue; etichettare come trascrizione automatica
+Audio Opus,ridurre vocali,ffmpeg -c:a libopus -b:a 32k,Terminale,winget install Gyan.FFmpeg,24-32 kbps per parlato
+Video H.265,ridurre video,ffmpeg -c:v libx265 -crf 27,Terminale o ffmpeg-mcp-lite,uvx ffmpeg-mcp-lite,Lento ma efficace
+Archivio tar+zstd / xz,conservare originali,python case_tools.py archive,Terminale,winget install 7zip.7zip (xz usato se manca zstd),Gli originali non si cancellano senza CONFIRM DELETE
+SHA-256 manifest,dimostrare che gli originali non cambiano,python case_tools.py hash/verify,Terminale,—,Eseguire prima di ogni elaborazione
+Import WhatsApp,chat esportate,python case_tools.py parse-wa,Terminale,—,Preferire l'esportazione agli screenshot
+Conteggio frasi,ripetizioni e sinonimi,python case_tools.py count,Terminale,—,Numeri solo da script
+Verifica citazioni,controllo qualita',python case_tools.py citecheck,Terminale,—,PASS obbligatorio
+Ricerca semantica (embedding),"grandi fascicoli, facoltativo",server MCP personalizzato (fastembed + LanceDB),MCP da creare,pip install fastembed lancedb mcp,Non necessaria per un fascicolo medio: usare ricerca per parole
+Filesystem MCP,accesso a cartelle del fascicolo,@modelcontextprotocol/server-filesystem,MCP,npx (Node.js),Limitare alla cartella pratiche
+LexFlow,gestionale pratiche (Flask+PostgreSQL),python run_crm.py,Locale 127.0.0.1:5000,vedi guida sez. 3,Dati reali solo dopo verifiche di sicurezza
+Cartelle cloud (Drive/OneDrive/SharePoint),altri documenti,cartella sincronizzata + filesystem MCP,MCP o file locali,client desktop del provider,Sola lettura; approvazione 2
