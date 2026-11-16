@@ -285,7 +285,7 @@ None. If a tool hard-codes another path, fix the tool; do not create the repo so
 - Admy's daily status run prints `lockctl.sh list` as one "who holds what" line (no new registry/file).
 
 ### 13.1 Local demo servers: template auto-reload ON (hard, v1.1 — 2026-10-26, Ole)
-- Every local demo/dev server runs with **template auto-reload ON**, so template / CSS / JS edits show up **without a restart**. Flask reference: `app.config['TEMPLATES_AUTO_RELOAD'] = True` and `app.jinja_env.auto_reload = True` right after the app is created — working example: `/Users/olesiarasing/.hermes/profiles/backend-dev/cache/scratch/eliza_boot.py` (line 30). **Demo/dev only — never in production**; `debug` stays `False` (auto-reload does not require debug).
+- Every local demo/dev server runs with **template auto-reload ON**, so template / CSS / JS edits show up **without a restart**. Flask reference: `app.config['TEMPLATES_AUTO_RELOAD'] = True` and `app.jinja_env.auto_reload = True` right after the app is created — working example: `/Users/olesiarasing/.hermes/profiles/backend-dev/cache/scratch/elisa_boot_5057.py` (lines 1–2, 38–39; also `eliza_boot.py` line 30 where present). **Demo/dev only — never in production**; `debug` stays `False` (auto-reload does not require debug).
 - Only **Python code** changes need a restart. The shared demo server on `port-5057` is restarted **only by the holder of the `port-5057` lock** — `lockctl.sh take port-5057 <owner> "restart demo"` → restart → `release` — **nobody else**. If the lock is busy: wait, or ask the holder via a Kanban comment.
 - Why: with `debug=False` Jinja caches templates, so every template tweak used to cost a restart (a terminal approval plus killing the shared server for every other agent) — pure wasted time. Applies to every agent that builds UI/backend locally.
 
@@ -341,6 +341,22 @@ An agent that answers a LexFlow question outside this ladder (or that guesses in
 - **memory-curator is the watchdog:** he owns this one job (§10.3, §9), investigates every FLAG the next morning and notifies operator-installer; the weekly agent assessment stays with Ole and Admy and uses this data.
 - **Limits stated honestly:** agents cannot speak first in a TUI session, so the greeting is delivered by cron (Telegram + the daily note); the first run only sets the baseline.
 
+## 20. Settings & Config Touch: restricted to Admy + Smothy (hard, v1.0 — 2026-11-16, Ole)
+
+- **Only TWO agents may touch Hermes/workspace settings and config:** `admy_ceo` (Admy) and `smoothy_op_dir` (Smothy). This covers `config.yaml`, `.env`, auth/token stores, model & provider routing, gateway/profile registration, and deployment variables. **No other agent edits settings or config** — unless Ole explicitly says otherwise in a specific session, and only for the duration/scope he grants.
+- Admy and Smothy are the **permanent owners** of the Hermes architecture doc and the Hermes "bugs-and-fixes / incident" doc: they keep both updated, in place, **never duplicating**. When an incident or a config change happens, they record it (this is their job, not optional).
+- Other agents encountering a settings or config problem: **report it to Admy/Smothy via a Kanban card** (or to Ole if urgent) — do not self-fix settings.
+- Rationale: the 2026-11-16 "No model providers" outage traced back to config churn across the fleet; only the two owners touching config keeps a single accountable source and prevents §9 parallel-authority drift.
+
+## 21. Local Boot Scripts & Unsaved Artifacts — paths never guessed, never "missing" without proof (hard, v1.0 — 2026-11-16, Ole)
+
+- **Any load-bearing local artifact (boot scripts, demo launchers, password/seed files, worktrees, db files, keys referenced by code) MUST be recorded by absolute path in the doc that references it** — the moment it is created or moved, in the same PR/commit/note (§14-adjacent; §18: "state the exact absolute path"). The canonical doc for LexFlow demo boot paths is the CRM architecture appendix (`~/Obsidian/01-Projects/LexFlow/lexflow-architecture-v1.md` §"Ports & local endpoints"), which holds the ADR-style ports log.
+- **Never assert a boot script or path is "missing from disk" based on a partial or wrong-depth search.** The 2026-11-16 incident: `elisa_boot_5057.py` was reported missing, but it existed at `/Users/olesiarasing/.hermes/profiles/backend-dev/cache/scratch/elisa_boot_5057.py` — the first search just used the wrong depth. Before claiming missing: search the whole profile (`find <profile> -maxdepth 6 -iname '*boot*'`), the whole project tree, and check `lsof` for the running process (the script is often the *live* server's cwd/argv). A verified "not found" requires: the exact commands run + the exact paths searched.
+- **Who owns each load-bearing script is recorded too** — writer, mtime, repo/scratch. Scratch files (`~/.hermes/profiles/*/cache/scratch/`) are outside version control and idle-pruned after 24 h by the runtime: if a boot script is the only thing that can start the demo, it must be committed to the repo (or the path + content replicated into the ADR log) — otherwise a prune deletes the demo.
+- **Unsaved / scratch work is presumed volatile:** if a deliverable only exists in scratch or an uncommitted file, the card/proposal must say so and the work must be committed or the path must be in the doc before the session ends (§18 applies). "V.unsaved" is not a deliverable state.
+- **Extrapolation beyond Elisa (applies to every agent/project):** any file that starts a server, seeds a DB, holds a demo password, points one tool at another, or is referenced by name in any doc/card/cron — same rule. When in doubt, record the path.
+- Existing reference that must now be treated as canonical (not re-discovered): `elisa_boot_5057.py` (owner `backend-dev`, 2026-11-16 15:05, serves `127.0.0.1:5057` with template auto-reload ON — §13.1).
+
 ## Links
 - Parent: [[Obsidian-INDEX]]
-- Related: [[AGENT_RULES]]
+- Related: [[AGENT_RULES]], [[Hermes-Agent-Incident-Report-2026-11-16]], [[LexFlow-Surgical-Paths-and-Boot-Scripts]]

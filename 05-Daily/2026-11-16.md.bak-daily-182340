@@ -1,0 +1,45 @@
+---
+tags: [daily, lexflow, hermes-infra]
+project: LexFlow
+home: 05-Daily
+---
+
+# 2026-11-16 — Daily Note
+
+## Hermes fleet "No model providers" incident — diagnosis + fix (frontend-developer)
+
+**User report:** Web-dashboard chat: *"No model providers are set up yet. Add an API key under Keys or sign in to a provider under Models."* — occurs even on a fresh chat; several agents can't be started.
+
+**Diagnosis (verified, not assumed):**
+- ✅ **Nous Portal API is NOT missing.** Credential is shared/global at `~/.hermes/shared/nous_auth.json` (scope `inference:invoke`, oauth_device_code) + top-level `~/.hermes/auth.json` has a `nous` entry. Profiles with `provider: nous` report `nous: logged in` even with **no per-profile auth.json** (verified: ads-expert, gsc-agent, crm-outreach-agent, backend-dev). Per-profile credential_pool lacking `nous` is **by design** (shared store).
+- ❌ **Root cause:** the root/default surface (`~/.hermes/config.yaml`) had `model.provider: openrouter` but **no `OPENROUTER_API_KEY`** in `~/.hermes/.env` (grep=0) → provider with no credential ⇒ "No model providers."
+- ⏰ **Config event:** every `profiles/*/config.yaml` batch-rewritten **Nov 14 10:17** (identical mtimes); root `config.yaml` at **10:15**. Backup `config.yaml.bak-20261114T091524Z` exists. So the crew/operator-installer (or `hermes setup`/`model`) ran a config pass on Nov 14 — that's what changed, not organic drift.
+- 👻 **Orphan cron-only profiles (not registered for chat):** `memory-curator`, `operator-installer`, `lexflow-crm-elisa`, `lexflow-intake-elisa` — logs show cron still running **today** (downloads_stager 2026-11-15, staging 2026-11-16) but **no `config.yaml`** ⇒ not dashboard startable. `lexflow-*` have been empty shells since Oct 29.
+
+**Action taken:**
+- Delegated fleet-wide fix to **smoothy_op_dir** (woke it) with a brief: set `model.provider nous` on all agents + root, decide registration of the 4 orphans, verify, no deploys, no secrets in notes/env.
+- Set my own profile provider to `nous` (was already nous; no-op, verified intact).
+- Delivered background proc `proc_7f488dd58d46`.
+
+**Resolution (smoothy_op_dir report, 2026-11-16 11:30):**
+- Real proximate cause of "No model providers": **stale dashboard process** (PID 87942, 21h old, code `2bd378ed1b` vs disk `3b42157858`) → model-options API returned HTTP 503 "Restart required" → empty picker → empty-state message. Not a per-profile credential gap.
+- Root + **22/22 profiles → `model.provider nous`**; default models preserved & validated against live Nous catalog. `agency-growth` dead model bug fixed (`poolside/laguna-s-2.1:free` → `deepseek/deepseek-v4-flash`).
+- Dashboard restarted on current build → PID 24389, port 9119, open-profile `smoothy_op_dir`. Live API + real inference verified (root, seo-aeo-expert, personal-assistant, sales-crm all PASS).
+- **4 "orphan" dirs = rename remnants (2026-11-06):** `memory-curator`→`memy`, `operator-installer`→`smoothy_op_dir`; two `lexflow-*` = dead empty shells since Oct 29. Recommended NOT to register (duplicate identity + known "assignee memory-curator cannot be dispatched" failure). All 9 cron jobs live in registered stores; one stale path fixed (backup kept).
+- Open items awaiting Ole: restart host gateway PID 67628 (stale code, drops live sessions) Y/N; hide/add-key for credential-less openrouter row.
+
+## MTA MAIN note
+"take a separate branch call it **MTA MAIN** and deploy Mta" → **MTA Group** client offer. Repo `github.com/Ole00007/MTA-Group-` (PUBLIC, created 2026-09-19) is **empty** (size 0, no commit, default branch `main`); branch was never made. Deliverable HTML: `~/Desktop/AVIBE_ Preventivo /preventivo-mta-group-final-v2.html` (776 KB).
+
+- 2026-11-16 downloads stager: 0 new files staged, 0 vault-identical skips, 0 conflicts, 1 excluded (.DS_Store), 2 sensitive excluded (app.db, client_secret Google JSON)
+- Parent: [[05-Daily-INDEX]]
+- Related: [[ecosystem-index]]
+- Related: [[LexFlow]] (Hub)
+- Related: [[2026-09-23-AVIBE-Ecosystem-Master-Table]]
+
+## Late correction (15:40)
+- Verified on disk: `elisa_boot_5057.py` was NOT missing — it exists at `/Users/olesiarasing/.hermes/profiles/backend-dev/cache/scratch/elisa_boot_5057.py` (2,042 B, mtime 15:05, writer backend-dev). Earlier "missing" claim was a wrong-depth search; retracted.
+- 5057 demo is LIVE: PID 63889, `/graph` 200, `/static/favicon.svg` 200, `/login` 200 (15:05–15:39 log).
+- AGENT_RULES §21 added (hard, v1.0, Ole): boot scripts/load-bearing local artifacts must be recorded by absolute path + owner + mtime in the referencing doc; never claim "missing" without full-depth search + lsof proof; scratch is volatile (24h prune) → commit load-bearing scripts; applies beyond Elisa.
+- §13.1 example path corrected `eliza_boot.py` → `elisa_boot_5057.py` (canonical).
+- ADR-LXF-001 status flipped DOWN→live in `lexflow-architecture-v1.md` and the `_Inbox` doc-sync proposal.

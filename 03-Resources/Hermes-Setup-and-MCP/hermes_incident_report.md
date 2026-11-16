@@ -101,3 +101,33 @@ gateway PID).
 ## Links
 - Parent: [[Hermes-Setup-and-MCP-INDEX]]
 - Related: [[Hermes-Setup-and-MCP-INDEX]]
+
+---
+
+# 2026-11-16 — Hermes fleet "No model providers are set up yet" (dashboard, all agents)
+
+## Owners
+Admy + Smothy (settings owners per `~/Obsidian/_Meta/AGENT_RULES.md` §20). This entry written by frontend-developer on Ole's request; config changes executed by smokey_op_dir.
+
+## Symptoms
+- Web dashboard (`http://127.0.0.1:9119`) chat showed: *"No model providers are set up yet. Add an API key under Keys or sign in to a provider under Models."* for every agent — even on a fresh chat (personal-assistant, others).
+- Screenshot supplied by Ole 2026-11-16, 10:36.
+
+## Root Cause (two defects)
+1. **Stale dashboard process (the proximate cause):** PID 87942 had been running ~21h on pre-update code (`2bd378ed1b`) while the checkout on disk was `3b42157858`. `GET /api/model/options` (the exact call behind the model picker) returned `HTTP 503 {detail:"Restart required: …risk a stale-module crash"}` → picker refused → zero providers → empty-state message. An isolated control home proved that a keyless `openrouter` provider alone still returns catalog rows (unconfigured providers are appended), so the missing key was NOT the single cause.
+2. **Config pointing at credential-less providers:** root `~/.hermes/config.yaml` had `model.provider: openrouter` but `~/.hermes/.env` has NO `OPENROUTER_API_KEY`; 10 profiles pointed at `google`/`openrouter` (keys absent on this host).
+
+## Fix applied (smokey_op_dir, verified real output)
+- Root + **22/22 profiles → `model.provider: nous`** (Nous Portal shared token is the credential that actually exists). Default models preserved, all validated against live Nous catalog. `agency-growth`'s dead model (`poolside/laguna-s-2.1:free`) fixed → `deepseek/deepseek-v4-flash`.
+- Restarted dashboard on current code → PID 24389, port 9119, open-profile `smoothy_op_dir`.
+- Verified: live API `/api/model/options` now returns `nous … usable=3 models=131` (root/seo-aeo-expert/smoothy_op_dir/sales-crm, 129–157 models each, no 503) + real inference smoke tests returned `NOUS_OK` / `LIVE_OK_*`.
+- Cron drift: `agent-roster-friday-kpi` pointed at a deleted path (`operator-installer/scripts/…`), fixed to `smoothy_op_dir/scripts/…`, backup kept.
+- No token copied anywhere, `~/.hermes/.env` untouched (mtime Aug 29), nothing deployed/pushed.
+
+## 4 "orphan" profile dirs — NOT a bug
+- `memory-curator` → pre-rename home of **`memy`** (renamed 2026-11-06). `operator-installer` → pre-rename home of **`smoothy_op_dir`**. `lexflow-crm-elisa` / `lexflow-intake-elisa` = dead empty shells (no logs, Oct 29).
+- Recommendation (followed): do **not** `hermes profile create` these — duplicate identities + known "assignee memory-curator cannot be dispatched" failure. Their 9 cron jobs live in registered stores (`memy` ×2, `smoothy_op_dir` ×7) and are active.
+
+## Open items (await Ole)
+- R1: host gateway PID 67628 also on pre-update code (up 21h+); works (new sessions read config fresh) but should restart at the next maintenance window — restarting drops live sessions across all profiles. **Decision: restart at maintenance window (Ole 2026-11-16).**
+- R2: add an OpenRouter API key (or hide the row) — **Decision: add key before/right after R1.**
