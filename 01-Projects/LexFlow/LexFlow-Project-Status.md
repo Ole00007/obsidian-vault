@@ -1,7 +1,7 @@
 ---
 title: LexFlow — Project Status
 created: 2026-09-19
-updated: 2026-11-13
+updated: 2026-11-17
 tags: [lexflow, status, orchestration]
 status: active
 ---
@@ -12,6 +12,45 @@ Live project-status note for the LexFlow CRM. Refreshed by the `operator-install
 daily status cron (`lexflow-daily-status-crm`, 09:00). The **authority for task status
 is `docs/LexFlow_Agentic_Roadmap.json`** in the CRM repo; this note is the human-readable
 mirror and is never written back into that file.
+
+## Snapshot — 2026-11-17 (09:11 CET, daily status run `cda5f6d4a18a`)
+
+- **🟢 PROD IS BACK — after 12 days of edge-404.** Probed 09:05–09:08 CET: `/` → **200** `text/html`
+  (title *LexFlow – Legal Intake & Status Suite*), `/health` → **200**
+  `{"database_url_set":true,"db":"ok","environment":"production","python":"3.11.8","status":"ok"}`,
+  `/kanban` → **200** (*Kanban — Secure Workspace*), `/tasks` → **200**,
+  `/login?ws=lexflow|romanelli|pagliano` → **200**. **No `x-railway-fallback` header any more**
+  (`server: railway-hikari`, `x-railway-edge: cdg1`, `x-hikari-trace: cdg1.8vsn`, CSP/HSTS/X-Frame-Options
+  present) — a real service is bound to the hostname again.
+  → `P0-PROD-DOWN-REGRESSION-2026-11-04` is **RESOLVED** (was open 13 days) and `P0-PROD-DOWN` is
+  re-confirmed RESOLVED at HTTP level.
+- **It was not us.** No commit landed on **any** branch since 2026-11-13 (`git log --all --since=2026-11-13`
+  = zero rows) and `lexflow_hermes_v1` is still **34 commits ahead** of `origin/ddec0aa` (2026-10-27).
+  The recovery was a Railway-side service/domain re-attach — Ole's Railway access, exactly as the card
+  predicted. Card `t_9f758266` closed on this evidence.
+- **Residual, still open:** the live build is **older** than our local work — `/gantt`, `/graph`,
+  `/api/public/intake` all return **404** — so the deployed commit is *not* readable from outside and
+  T-021/T-022 stay `local_verified`. Tracked in `P0-PROD-IDENTITY-UNCONFIRMED-2026-11-06` (fact (a)
+  invalidated, commit identity still open). One look at the Railway deploy panel closes it.
+- **0 column flips.** Nothing was pushed and nothing was deployed from our side, so promoting any
+  `local_verified` node to `deployed` would be a guess — deliberately not done.
+- **Board:** 125 cards — 94 done / 25 blocked / 5 todo / 1 scheduled. Only six cards touched since
+  2026-11-14, all on 2026-11-16: `t_476b9b7e` done (memy, §21 doc-sync check), `t_39609afa` done
+  (backend-dev, demo on :5057), four roster-notice cards picked up by the 18:08 dispatcher pass.
+  **No LexFlow engineering card moved.**
+- **§10.3 routing:** 11 unfinished `local_verified` nodes (T-005, T-008, T-009, T-017, T-019, T-021,
+  T-022, T-023, T-027, T-028, T-029) each lacked an open card, but they share **one** blocker — the
+  push/deploy gate — so they got **one consolidated gate card** (`t_9548af59`, blocked on Ole's per-push
+  go) instead of 11 duplicate cards (§9). T-005 got its own card (`t_9b6bcaef`, blocked on Ole's scope +
+  provider approval).
+- **Run gaps recorded, not hidden:** 2026-11-14 was a **partial** run (this tracker was edited at 09:17
+  but never committed, no daily note); 2026-11-15 and 2026-11-16 **did not run at all**. All three are
+  now explicit entries in `previous_status_runs`.
+- **Validator: exit 1 — one violation only**, `[C]` the two frozen legacy tracker copies under
+  `~/Desktop/projects/Products & Services/LEGAL/LEXFLOW Production/` (§8 frozen legacy, TCC-protected;
+  deletion is Ole's call). The stale-`last_updated` violation `[D]` was closed by this run.
+- **Repo touched:** `/Users/olesiarasing/projects/lexflow/lexflow-crm-wt-merge`, branch
+  `lexflow_hermes_v1` — local commit **`1d57f83`** (not pushed). No push, no deploy, no external send.
 
 ## Snapshot — 2026-11-13 (09:0x CET, daily status run `cda5f6d4a18a`)
 
@@ -584,6 +623,7 @@ Settings → Networking → enable TCP Proxy (may be needed for future DB work).
 ## Links
 
 - Parent: [[LexFlow-INDEX]]
+- Related: [[2026-11-17]]
 - Related: [[2026-11-13]]
 - Related: [[2026-11-12]]
 - Related: [[2026-11-11]]
