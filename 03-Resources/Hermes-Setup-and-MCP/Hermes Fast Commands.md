@@ -12,6 +12,12 @@ The local dashboard opens at <http://127.0.0.1:9119>. To open Smoothy's profile 
 
 <http://127.0.0.1:9119/chat?profile=smoothy_op_dir>
 
+## `hermes url`
+
+Run `hermes dashboard` in Terminal to start Hermes' local web dashboard and open it at <http://127.0.0.1:9119>.
+
+Memy's direct dashboard URL: <http://127.0.0.1:9119/chat?profile=memy>
+
 ## Check the shared gateway
 
 ```bash

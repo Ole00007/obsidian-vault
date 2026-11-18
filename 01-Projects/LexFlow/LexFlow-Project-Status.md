@@ -1,7 +1,7 @@
 ---
 title: LexFlow — Project Status
 created: 2026-09-19
-updated: 2026-11-17
+updated: 2026-11-18
 tags: [lexflow, status, orchestration]
 status: active
 ---
@@ -12,6 +12,36 @@ Live project-status note for the LexFlow CRM. Refreshed by the `operator-install
 daily status cron (`lexflow-daily-status-crm`, 09:00). The **authority for task status
 is `docs/LexFlow_Agentic_Roadmap.json`** in the CRM repo; this note is the human-readable
 mirror and is never written back into that file.
+
+## Snapshot — 2026-11-18 (09:26–09:35 CET, daily status run `cda5f6d4a18a`)
+
+- **Nothing moved in 24h, and that is the honest result — not an omission.** `git log --all --since=2026-11-17`
+  in `/Users/olesiarasing/projects/lexflow/lexflow-crm-wt-merge` returned **exactly one** commit —
+  `1d57f83`, yesterday's own status commit. Working tree clean, **zero engineering commits on any of the
+  30 worktrees/branches** in the window.
+- **🟢 Prod stable — day 2 after the 12-day edge-404 outage.** Probed 09:26–09:29 CET:
+  `/` → **200**, `/health` → **200** `{"database_url_set":true,"db":"ok","environment":"production","python":"3.11.8","status":"ok"}`,
+  `/kanban` → **200**, `/tasks` → **200**, `/login?ws=lexflow` → **200**; `server: railway-hikari`,
+  **no `x-railway-fallback`**, CSP + HSTS + X-Frame-Options present. No regression.
+- **Live build still older than local work:** `/gantt`, `/graph`, `/api/public/intake` → **404**
+  (unchanged) → T-021/T-022/T-027 stay `local_verified`, and `P0-PROD-IDENTITY-UNCONFIRMED-2026-11-06`
+  (deployed commit not readable from outside) stays open.
+- **0 column flips.** No push, no deploy, no card transition → promoting anything to `deployed` would
+  be a guess. Columns left exactly as the 2026-11-17 evidence supports.
+- **Board:** 127 cards — 95 done / 26 blocked / 5 todo / 1 scheduled. **Zero** cards created, started
+  or completed since the 2026-11-17 09:11 run.
+- **Everything is gated on Ole, not on engineering velocity:** `t_9548af59` (DEPLOY GATE — 35 local
+  commits, 11 `local_verified` nodes behind it), `t_aa43a4c0` (Railway SECRET_KEY/JWT_SECRET_KEY),
+  `t_da4552e5` (Resend verified domain/SMTP), `t_9b6bcaef` (T-005 WhatsApp scope), `t_4ae8b7e1`
+  (feature-flag vars), `t_a885fb80` (Admy Railway token).
+- **§10.3 routing: 0 new cards.** Every unfinished node already owns exactly one open card, or sits
+  behind the consolidated deploy gate — the §9 dedupe held.
+- **Validator: exit 1 — one violation only,** `[C]` the two frozen legacy tracker copies under
+  `~/Desktop/projects/Products & Services/LEGAL/LEXFLOW Production/` (§8 frozen legacy, TCC-protected;
+  pre-existing, deletion is Ole's call). Checks **A** (report_rule), **B** (card↔roadmap) and **D**
+  (freshness) all clean.
+- **Repo touched:** `/Users/olesiarasing/projects/lexflow/lexflow-crm-wt-merge`, branch
+  `lexflow_hermes_v1` — local commit **`1fca808`** (not pushed). No push, no deploy, no external send.
 
 ## Snapshot — 2026-11-17 (09:11 CET, daily status run `cda5f6d4a18a`)
 
@@ -623,6 +653,7 @@ Settings → Networking → enable TCP Proxy (may be needed for future DB work).
 ## Links
 
 - Parent: [[LexFlow-INDEX]]
+- Related: [[2026-11-18]]
 - Related: [[2026-11-17]]
 - Related: [[2026-11-13]]
 - Related: [[2026-11-12]]
